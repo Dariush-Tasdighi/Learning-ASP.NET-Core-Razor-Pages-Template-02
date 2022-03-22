@@ -1,0 +1,113 @@
+﻿@page "{path?}"
+@model Server.Pages.Admin.FileManager.IndexModel
+
+@{
+}
+
+<div class="row">
+	<div class="col">
+		<h5>
+			Current Path: @(Model.CurrentPath)
+		</h5>
+	</div>
+</div>
+
+<hr class="mt-2 mb-3" />
+
+<div class="row" dir="ltr">
+	<div class="col table-responsive">
+		<table class="table table-bordered table-sm table-striped table-hover align-middle">
+			<thead>
+				<tr>
+					<th scope="col">
+						#
+					</th>
+					<th scope="col">
+						Name
+					</th>
+					<th scope="col">
+						Creation Time
+					</th>
+					<th scope="col">
+						Last Write Time
+					</th>
+					<th scope="col">
+						Last Access Time
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.CurrentPath != "\\")
+				{
+					var temp = Model.CurrentPath ?? "\\";
+					temp = temp[..temp.LastIndexOf("\\")][..temp.LastIndexOf("\\")];
+
+					<tr>
+						<th scope="row">
+						</th>
+						<td>
+							<i class="bi bi-reply-all"></i>
+							<a href="~/Admin/FileManager/Index">
+								[ROOT]
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+
+					<tr>
+						<th scope="row">
+						</th>
+						<td>
+							<i class="bi bi-reply"></i>
+							<a href="~/Admin/FileManager/Index?path=@(temp)">
+								[PARENT]
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+				}
+
+				@if (Model.Directories != null)
+				{
+					for (var index = 0; index <= Model.Directories.Count - 1; index++)
+					{
+						var item = Model.Directories[index];
+
+						var path = $"{Model.CurrentPath}\\{item.Name}";
+
+						<tr>
+							<th scope="row">
+								@(index + 1)
+							</th>
+							<td>
+								<i class="bi bi-folder"></i>
+								<a href="~/Admin/FileManager/Index?path=@(path)">
+									@(item.Name)
+								</a>
+							</td>
+							<td>
+								@(item.CreationTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+							<td>
+								@(item.LastWriteTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+							<td>
+								@(item.LastAccessTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
