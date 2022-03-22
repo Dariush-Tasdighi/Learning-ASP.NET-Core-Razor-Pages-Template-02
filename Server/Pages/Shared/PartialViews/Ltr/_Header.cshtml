@@ -1,0 +1,37 @@
+﻿<header>
+	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow fixed-top">
+		<div class="container">
+			<a class="navbar-brand" asp-page="/Index">
+				@(Resources.DataDictionary.SiteTitle)
+			</a>
+
+			<button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-page="/Index">
+							@(Resources.PageTitles.Index)
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-page="/About">
+							@(Resources.PageTitles.About)
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link text-dark" asp-page="/Contact">
+							@(Resources.PageTitles.Contact)
+						</a>
+					</li>
+				</ul>
+
+				<partial name="PartialViews/_ChangeCulture" />
+			</div>
+		</div>
+	</nav>
+</header>

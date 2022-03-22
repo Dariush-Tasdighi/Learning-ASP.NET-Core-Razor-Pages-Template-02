@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Nullable>enable</Nullable>
+		<TargetFramework>net6.0</TargetFramework>
+		<!--<ImplicitUsings>enable</ImplicitUsings>-->
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Dtat\Dtat.csproj" />
+		<ProjectReference Include="..\Resources\Resources.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Cms\" />
+	</ItemGroup>
+
+</Project>

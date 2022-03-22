@@ -1,0 +1,31 @@
+﻿@page
+@model Server.Pages.IndexModel
+
+@{
+	var pageTitle =
+		Resources.PageTitles.Index;
+
+	ViewData["PageTitle"] = pageTitle;
+}
+
+<h3>
+	@(pageTitle)
+</h3>
+
+<hr />
+
+<div class="row">
+	<div class="col">
+		@(Resources.DataDictionary.SourceCode)
+
+		<br />
+
+		<div dir="ltr">
+			<a href="https://github.com/Dariush-Tasdighi/Learning-ASP.NET-Core-Razor-Pages-Template-02" target="_blank">
+				https://github.com/Dariush-Tasdighi/Learning-ASP.NET-Core-Razor-Pages-Template-02
+			</a>
+		</div>
+	</div>
+</div>
+
+<hr />

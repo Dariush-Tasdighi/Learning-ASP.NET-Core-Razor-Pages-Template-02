@@ -1,0 +1,267 @@
+﻿//using System.Linq;
+
+//namespace Infrastructure.Middlewares
+//{
+//	public class CultureCookieHandlerMiddleware : object
+//	{
+//		#region Class
+//		private class PathParts : object
+//		{
+//			public PathParts(string path) : base()
+//			{
+//				if (string.IsNullOrEmpty(path))
+//				{
+//					PurePath = "Index";
+//					return;
+//				}
+
+//				if (path == "/")
+//				{
+//					PurePath = "Index";
+//					return;
+//				}
+
+//				if (path.Length < 4)
+//				{
+//					PurePath = path;
+//					return;
+//				}
+
+//				var temp =
+//					path.Substring(startIndex: 0, length: 4);
+
+//				if (temp.StartsWith("/") == false || temp.EndsWith("/") == false)
+//				{
+//					PurePath = path;
+//					return;
+//				}
+
+//				PurePath =
+//					path.Substring(startIndex: 4);
+
+//				CultureName =
+//					temp.Substring(startIndex: 1, length: 2);
+//			}
+
+//			public string PurePath { get; }
+
+//			public string? CultureName { get; }
+//		}
+//		#endregion /Class
+
+//		#region Static Member(s)
+//		public readonly static string CookieName = "Culture.Cookie";
+
+//		public static string? GetCultureNameByCookie
+//			(Microsoft.AspNetCore.Http.HttpContext httpContext,
+//			System.Collections.Generic.IList<string>? supportedCultureNames)
+//		{
+//			if (supportedCultureNames == null)
+//			{
+//				return null;
+//			}
+
+//			if (supportedCultureNames.Count == 0)
+//			{
+//				return null;
+//			}
+
+//			var cultureName =
+//				httpContext.Request.Cookies[key: CookieName];
+
+//			if (string.IsNullOrWhiteSpace(cultureName))
+//			{
+//				return null;
+//			}
+
+//			cultureName =
+//				cultureName
+//				.Replace(" ", string.Empty)
+//				.Trim()
+//				;
+
+//			if (cultureName.Length < 2)
+//			{
+//				return null;
+//			}
+
+//			cultureName =
+//				cultureName
+//				.Substring(startIndex: 0, length: 2)
+//				;
+
+//			if (supportedCultureNames.Contains(cultureName) == false)
+//			{
+//				return null;
+//			}
+
+//			return cultureName;
+//		}
+
+//		public static void SetCulture(string? cultureName)
+//		{
+//			if (string.IsNullOrWhiteSpace(cultureName) == false)
+//			{
+//				var cultureInfo =
+//					new System.Globalization.CultureInfo(name: cultureName);
+
+//				System.Threading.Thread.CurrentThread.CurrentCulture = cultureInfo;
+//				System.Threading.Thread.CurrentThread.CurrentUICulture = cultureInfo;
+//			}
+//		}
+
+//		public static void CreateCookie
+//			(Microsoft.AspNetCore.Http.HttpContext httpContext, string cultureName)
+//		{
+//			// https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.cookieoptions?view=aspnetcore-6.0
+
+//			var cookieOptions =
+//				new Microsoft.AspNetCore.Http.CookieOptions
+//				{
+//					Path = "/", // Default: [null]
+
+//					// Domain: Gets or sets the domain to associate the cookie with.
+//					// نباید تغییر دهیم، خودش به طور
+//					// خودکار بر اساس دامنه سایت تنظیم می‌شود
+
+//					Secure = false, // Default: [false]
+
+//					// Secure: Gets or sets a value that indicates whether to transmit
+//					// the cookie using Secure Sockets Layer (SSL)--that is, over HTTPS only.
+
+//					HttpOnly = false, // Default: [false]
+
+//					// HttpOnly: Gets or sets a value that indicates
+//					// whether a cookie is accessible by client-side script.
+//					// [true] if a cookie must not be accessible by client-side script; otherwise, [false].
+
+//					IsEssential = false, // Default: [false]
+
+//					// Indicates if this cookie is essential for the application
+//					// to function correctly. If true then consent policy checks may be bypassed.
+
+//					MaxAge = null, // Default: [null]
+
+//					// MaxAge: Gets or sets the max-age for the cookie.
+
+//					Expires =
+//						System.DateTimeOffset.UtcNow.AddYears(1), // Default: [null]
+
+//					// Expires: Gets or sets the expiration date and time for the cookie.
+
+//					SameSite =
+//						Microsoft.AspNetCore.Http.SameSiteMode.Unspecified, // Default: [Unspecified]
+
+//					// SameSite: Gets or sets the value for the SameSite attribute of the cookie.
+
+//					// The SameSiteMode representing the enforcement mode of the cookie:
+
+//					// Lax			1	Indicates the client should send the cookie with "same-site"
+//					//					requests, and with "cross-site" top-level navigations.
+//					// None			0	Indicates the client should disable same-site restrictions.
+//					// Strict		2	Indicates the client should only send the cookie with
+//					//					"same-site" requests.
+//					// Unspecified	-1	No SameSite field will be set, the client should
+//					//					follow its default cookie policy.
+//				};
+
+//			httpContext.Response.Cookies.Delete(key: CookieName);
+
+//			if (string.IsNullOrWhiteSpace(cultureName) == false)
+//			{
+//				cultureName =
+//					cultureName
+//					.Substring(startIndex: 0, length: 2)
+//					.ToLower()
+//					;
+
+//				httpContext.Response.Cookies.Append(key: CookieName,
+//					value: cultureName, options: cookieOptions);
+//			}
+//		}
+//		#endregion /Static Member(s)
+
+//		public CultureCookieHandlerMiddleware
+//			(Microsoft.AspNetCore.Http.RequestDelegate next) : base()
+//		{
+//			Next = next;
+//		}
+
+//		private Microsoft.AspNetCore.Http.RequestDelegate Next { get; }
+
+//		public async System.Threading.Tasks.Task InvokeAsync
+//			(Microsoft.AspNetCore.Http.HttpContext httpContext,
+//			Microsoft.Extensions.Options.IOptions
+//				<Microsoft.AspNetCore.Builder.RequestLocalizationOptions> requestLocalizationOptions)
+//		{
+//			// Default Culture: fa
+//			// Supported Cultures: fa, en, ar
+
+//			// We do not have cookie:
+//			//	/
+//			//		/fa/
+//			//	/about
+//			//		/fa/about
+//			//
+//			//	/fa/about
+//			//		/fa/about
+//			//
+//			//	/fr/about
+//			//		/fa/about
+
+//			// We have cookie: (en)
+//			//	/
+//			//		/en/
+//			//
+//			//	/about
+//			//		/en/about
+//			//
+//			//	/fa/about
+//			//		
+//			//	/fr/about
+
+//			// **************************************************
+//			var defaultCultureName =
+//				requestLocalizationOptions.Value?
+//				.DefaultRequestCulture.Culture.TwoLetterISOLanguageName;
+
+//			var supportedCultureNames =
+//				requestLocalizationOptions.Value?.SupportedCultures?
+//				.Select(current => current.Name)
+//				.ToList()
+//				;
+
+//			var currentCultureName =
+//				GetCultureNameByCookie
+//				(httpContext: httpContext, supportedCultureNames: supportedCultureNames);
+
+//			string requestPath =
+//				httpContext.Request.Path;
+
+//			var parts =
+//				new PathParts(path: requestPath);
+
+//			if (currentCultureName == null)
+//			{
+//				if (parts.CultureName == defaultCultureName)
+//				{
+//					currentCultureName = defaultCultureName;
+//					SetCulture(cultureName: currentCultureName);
+//					//httpContext.Request.Path = $"/{currentCultureName}/{parts.PurePath}";
+//					await Next(context: httpContext);
+//					return;
+//				}
+//				else
+//				{
+//					currentCultureName = defaultCultureName;
+//					SetCulture(cultureName: currentCultureName);
+//					//httpContext.Request.Path = $"/{currentCultureName}/{parts.PurePath}";
+//					httpContext.Response.Redirect(location: $"/{currentCultureName}/{parts.PurePath}", permanent: true);
+//					return;
+//				}
+//			}
+
+//			await Next(context: httpContext);
+//		}
+//	}
+//}

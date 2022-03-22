@@ -1,0 +1,30 @@
+﻿@page
+@model Server.Pages.AboutModel
+
+@{
+	var pageTitle =
+		Resources.PageTitles.About;
+
+	ViewData["PageTitle"] = pageTitle;
+}
+
+<h3>
+	@(pageTitle)
+</h3>
+
+<hr />
+
+<div class="row">
+	<div class="col">
+	</div>
+	<div class="col">
+		@(Resources.DataDictionary.SiteAuthor)
+	</div>
+	<div class="col">
+		<img src="~/images/Dariush.jpg" alt="Dariush Tasdighi" asp-append-version=true />
+	</div>
+	<div class="col">
+	</div>
+</div>
+
+<hr />

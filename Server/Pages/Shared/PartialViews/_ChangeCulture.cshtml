@@ -1,0 +1,51 @@
+﻿@inject Microsoft.Extensions.Options.IOptions<Infrastructure.Settings.ApplicationSettings> applicationSettingsOptions
+
+@{
+	var applicationSettings =
+		applicationSettingsOptions.Value;
+
+	if (applicationSettings == null)
+	{
+		return;
+	}
+
+	var cultureSettings =
+		applicationSettings.CultureSettings;
+
+	if (cultureSettings == null)
+	{
+		return;
+	}
+
+	var supportedCultureNames =
+		cultureSettings.SupportedCultureNames;
+
+	if (supportedCultureNames == null ||
+		supportedCultureNames.Length <= 1)
+	{
+		return;
+	}
+
+	var currentCultureName =
+		System.Threading.Thread
+		.CurrentThread.CurrentUICulture.Name;
+}
+
+<span class="d-flex">
+	@foreach (var supportedCultureName in supportedCultureNames)
+	{
+		var country = supportedCultureName[3..].ToLower();
+
+		var supportedCulture = new System.Globalization.CultureInfo(name: supportedCultureName);
+
+		var language = supportedCulture.NativeName[..(supportedCulture.NativeName.IndexOf('(') - 1)];
+
+		if (currentCultureName != supportedCultureName)
+		{
+			<a href="/ChangeCulture/@(supportedCultureName)" class="nav-link text-dark">
+				@(language)
+				<span class="flag-icon flag-icon-@(country)"></span>
+			</a>
+		}
+	}
+</span>

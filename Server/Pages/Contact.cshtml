@@ -1,0 +1,60 @@
+﻿@page
+@model Server.Pages.ContactModel
+
+@{
+	var pageTitle =
+		Resources.PageTitles.Contact;
+
+	ViewData["PageTitle"] = pageTitle;
+}
+
+<h3>
+	@(pageTitle)
+</h3>
+
+<hr />
+
+<div class="row">
+	<div class="col">
+		@(Resources.DataDictionary.CellPhoneNumber):
+		<a href="tel:09121087461">09121087461</a>
+		<br />
+		@(Resources.DataDictionary.EmailAddress):
+		<a href="mailto:DariushT@GMail.com" target="_blank">DariushT@GMail.com</a>
+		<br />
+		@(Resources.DataDictionary.Blog):
+		<a href="https://virgool.io/@@dariush-tasdighi" target="_blank">https://virgool.io/@@dariush-tasdighi</a>
+
+		<hr />
+
+		<h5>
+			@(Resources.DataDictionary.Websites)
+		</h5>
+
+		<ul dir="ltr">
+			<li><a href="https://DTAT.ir/" target="_blank">https://DTAT.ir</a></li>
+			<li><a href="https://DTApp.ir/" target="_blank">https://DTApp.ir</a></li>
+			<li><a href="https://zeussystem.ir/" target="_blank">https://ZeusSystem.ir</a></li>
+			<li><a href="http://iranianexperts.ir/" target="_blank">http://IranianExperts.ir</a></li>
+			<li><a href="https://websiteanalytics.ir/" target="_blank">https://WebsiteAnalytics.ir</a></li>
+		</ul>
+	</div>
+	<div class="col">
+		<h5>
+			@(Resources.DataDictionary.SocialNetworks)
+		</h5>
+
+		<ul dir="ltr">
+			<li>Telegram: <a href="https://t.me/iranianexperts/" target="_blank">https://T.Me/IranianExperts</a></li>
+			<li>Aparat: <a href="https://www.aparat.com/DariushT" target="_blank">https://www.Aparat.com/DariushT</a></li>
+			<li>Twitter: <a href="https://twitter.com/DariushTasdighi" target="_blank">https://Twitter.com/DariushTasdighi</a></li>
+			<li>Github: <a href="https://github.com/dariush-tasdighi" target="_blank">https://GitHub.com/Dariush-Tasdighi</a></li>
+			<li>linkedin: <a href="https://www.linkedin.com/in/tasdighi/" target="_blank">https://www.LinkedIn.com/In/Tasdighi</a></li>
+			<li>Nuget: <a href="https://www.nuget.org/profiles/dariusht" target="_blank">https://www.Nuget.org/Profiles/DariushT</a></li>
+			<li>Facebook: <a href="https://www.facebook.com/dariush.tasdighi" target="_blank">https://www.FaceBook.com/Dariush.Tasdighi</a></li>
+			<li>Instagram: <a href="https://www.instagram.com/dariushtasdighi/" target="_blank">https://www.Instagram.com/DariushTasdighi</a></li>
+		</ul>
+	</div>
+</div>
+
+<hr />

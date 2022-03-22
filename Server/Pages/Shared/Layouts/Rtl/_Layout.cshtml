@@ -1,0 +1,40 @@
+﻿@{
+	var currentCultureName =
+		System.Threading.Thread
+		.CurrentThread.CurrentUICulture.Name;
+}
+
+<!doctype html>
+
+<html lang="@(currentCultureName)" dir="rtl">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<partial name="PartialViews/_Seo" />
+
+	<partial name="PartialViews/_OpenGraph" />
+
+	<partial name="PartialViews/_FavoriteIcon" />
+
+	<partial name="PartialViews/Rtl/_StyleSheets" />
+
+	@RenderSection(name: "StyleSheets", required: false)
+</head>
+
+<body>
+	<partial name="PartialViews/Rtl/_Header" />
+
+	<main role="main" class="my-5 py-4">
+		<div class="container">
+			@(RenderBody())
+		</div>
+	</main>
+
+	<partial name="PartialViews/Rtl/_Footer" />
+
+	<partial name="PartialViews/Rtl/_Scripts" />
+
+	@RenderSection(name: "Scripts", required: false)
+</body>
+</html>

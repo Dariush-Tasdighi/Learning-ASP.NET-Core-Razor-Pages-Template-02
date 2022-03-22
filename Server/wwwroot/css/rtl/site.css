@@ -1,0 +1,17 @@
+﻿@import url(fontiran.css);
+
+body {
+	font-family: IRANSansX !important;
+}
+
+h1, h2, h3, h4, h5, h6, input, textarea {
+	font-family: IRANSansX !important;
+}
+
+h1 {
+	font-weight: bold !important;
+}
+
+.ltr {
+	direction: ltr;
+}
