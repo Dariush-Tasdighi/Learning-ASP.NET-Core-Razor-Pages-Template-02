@@ -10,7 +10,7 @@ namespace Server.Pages.Admin.FileManager
 			HostEnvironment = hostEnvironment;
 
 			RootPhysicalPath =
-				$"{HostEnvironment.ContentRootPath}\\wwwroot";
+				$"{HostEnvironment.ContentRootPath}wwwroot";
 		}
 
 		public string RootPhysicalPath { get; }

@@ -1,7 +1,12 @@
 ﻿@page "{path?}"
 @model Server.Pages.Admin.FileManager.IndexModel
 
-<div class="row">
+@*
+	https://github.com/SixLabors/ImageSharp
+	https://docs.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-6.0
+*@
+
+<div class="row" dir="ltr">
 	<div class="col">
 		<h5>
 			Current Path: @(Model.CurrentPath)
@@ -15,7 +20,7 @@
 	<div class="col table-responsive">
 		<table class="table table-bordered table-sm table-striped table-hover align-middle">
 			<thead>
-				<tr>
+				<tr class="table-warning">
 					<th scope="col">
 						#
 					</th>
@@ -95,7 +100,7 @@
 					{
 						var item = Model.Directories[index];
 
-						var path = $"{Model.CurrentPath}\\{item.Name}";
+						var path = $"{Model.CurrentPath}{item.Name}".Replace("\\", "/");
 
 						<tr>
 							<th scope="row">
@@ -130,18 +135,21 @@
 	</div>
 </div>
 
-<hr class="mt-2 mb-3" />
+<hr class="mt-1 mb-3" />
 
 <div class="row" dir="ltr">
 	<div class="col table-responsive">
 		<table class="table table-bordered table-sm table-striped table-hover align-middle">
 			<thead>
-				<tr>
+				<tr class="table-warning">
 					<th scope="col">
 						#
 					</th>
 					<th scope="col">
 						Name
+					</th>
+					<th>
+						Type
 					</th>
 					<th>
 						Length
@@ -161,13 +169,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				@if (Model.Files != null && Model.Files.Count > 0)
-				{
-					for (var index = 0; index <= Model.Files.Count - 1; index++)
-					{
-						var item = Model.Files[index];
+				@{
+					long totalLength = 0;
 
-						var pathName = $"{Model.CurrentPath}{item.Name}";
+					var filesDetails =
+					Model?.Files?
+					.OrderBy(current => current.Extension)
+					.ThenBy(current => current.Name)
+					.ToList()
+					;
+				}
+
+				@if (filesDetails != null && filesDetails.Count > 0)
+				{
+					for (var index = 0; index <= filesDetails.Count - 1; index++)
+					{
+						var item = filesDetails[index];
+						var pathName = $"{Model?.CurrentPath}{item.Name}";
+
+						totalLength += item.Length;
 
 						<tr>
 							<th scope="row">
@@ -179,13 +199,13 @@
 								</a>
 							</td>
 							<td>
+								@(item.Extension?.ToLower())
+							</td>
+							<td>
 								@(item.Length.ToString("#,##0"))
 							</td>
 							<td>
 								@(item.Attributes)
-								@*
-									@(GetFileAttributes(item))
-								*@
 							</td>
 							<td>
 								@(item.CreationTime.ToString("yyyy/MM/dd - HH:mm:ss"))
@@ -198,23 +218,100 @@
 							</td>
 						</tr>
 					}
+
+					<tr class="table-warning">
+						<td colspan="3">
+						</td>
+						<td>
+							@(totalLength.ToString("#,##0")) B
+							<br />
+							@(((double)totalLength / (double)1024).ToString("#,##0")) MB
+						</td>
+						<td colspan="4">
+						</td>
+					</tr>
 				}
 			</tbody>
 		</table>
 	</div>
 </div>
 
+<hr class="mt-1 mb-3" />
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" dir="ltr">
+	@{
+		string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
+
+		var filesIcons =
+		Model?.Files?
+		.Where(current => imageExtensions.Contains(current.Extension))
+		.OrderBy(current => current.Extension)
+		.ThenBy(current => current.Name)
+		.ToList()
+		;
+
+		if (filesIcons != null && filesIcons.Count > 0)
+		{
+			for (var index = 0; index <= filesIcons.Count - 1; index++)
+			{
+				var item = filesIcons[index];
+
+				var pathName = $"{Model?.CurrentPath}{item.Name}";
+
+				// **********
+				System.Drawing.Image? image = null;
+
+				var fileName =
+				$"{Model?.RootPhysicalPath}{pathName}";
+
+				if (System.IO.File.Exists(fileName))
+				{
+					image = System.Drawing.Image.FromFile(filename: fileName);
+				}
+
+				<div class="col">
+					<div class="card h-100 shadow-lg">
+						<a href="@(pathName)" target="_blank">
+							<img src="@(pathName)" class="card-img-top" alt="@(item.Name)" title="@(item.Name)" />
+						</a>
+
+						<div class="card-body">
+							<p class="card-text">
+								Length: @(item.Length.ToString("#,##0"))
+								<br />
+								Width: @(image?.Width)
+								<br />
+								Height: @(image?.Height)
+								<br />
+								Horizontal Resolution: @(image?.HorizontalResolution)
+								<br />
+								Vertical Resolution: @(image?.VerticalResolution)
+								<br />
+								Pixel Format: @(image?.PixelFormat)
+								<br />
+								Attributes: @(item.Attributes)
+								<br />
+								Tag: @(image?.Tag)
+							</p>
+						</div>
+
+						<div class="card-footer">
+							<h5 class="card-title">@(item.Name)</h5>
+						</div>
+					</div>
+				</div>
+			}
+		}
+	}
+</div>
+
 @{
 	string GetContentCount(System.IO.DirectoryInfo directoryInfo)
 	{
-		var fileCount =
-			directoryInfo.GetFiles().Count();
+		var fileCount = directoryInfo.GetFiles().Count();
+		var directoryCount = directoryInfo.GetDirectories().Count();
 
-		var directoryCount =
-			directoryInfo.GetDirectories().Count();
-
-		var contentCount =
-			fileCount + directoryCount;
+		var contentCount = fileCount + directoryCount;
 
 		var result = "[EMPTY]";
 
@@ -226,154 +323,154 @@
 		return result;
 	}
 
-	string GetFileAttributes(System.IO.FileAttributes attributes)
-	{
-		var result = string.Empty;
+	//string GetFileAttributes(System.IO.FileAttributes attributes)
+	//{
+	//	var result = string.Empty;
 
-		if ((attributes | System.IO.FileAttributes.Archive) == System.IO.FileAttributes.Archive)
-		{
-			result += "A";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Archive) == System.IO.FileAttributes.Archive)
+	//	{
+	//		result += "A";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.Compressed) == System.IO.FileAttributes.Compressed)
-		{
-			result += "C";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Compressed) == System.IO.FileAttributes.Compressed)
+	//	{
+	//		result += "C";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.Hidden) == System.IO.FileAttributes.Hidden)
-		{
-			result += "H";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Hidden) == System.IO.FileAttributes.Hidden)
+	//	{
+	//		result += "H";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.ReadOnly) == System.IO.FileAttributes.ReadOnly)
-		{
-			result += "R";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.ReadOnly) == System.IO.FileAttributes.ReadOnly)
+	//	{
+	//		result += "R";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.System) == System.IO.FileAttributes.System)
-		{
-			result += "S";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.System) == System.IO.FileAttributes.System)
+	//	{
+	//		result += "S";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.Encrypted) == System.IO.FileAttributes.Encrypted)
-		{
-			result += "E";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Encrypted) == System.IO.FileAttributes.Encrypted)
+	//	{
+	//		result += "E";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.Device) == System.IO.FileAttributes.Device)
-		{
-			result += "Div";
-		}
-		else
-		{
-			result += "___";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Device) == System.IO.FileAttributes.Device)
+	//	{
+	//		result += "Div";
+	//	}
+	//	else
+	//	{
+	//		result += "___";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.Directory) == System.IO.FileAttributes.Directory)
-		{
-			result += "Dir";
-		}
-		else
-		{
-			result += "___";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Directory) == System.IO.FileAttributes.Directory)
+	//	{
+	//		result += "Dir";
+	//	}
+	//	else
+	//	{
+	//		result += "___";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.IntegrityStream) == System.IO.FileAttributes.IntegrityStream)
-		{
-			result += "I";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.IntegrityStream) == System.IO.FileAttributes.IntegrityStream)
+	//	{
+	//		result += "I";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.Normal) == System.IO.FileAttributes.Normal)
-		{
-			result += "Nor";
-		}
-		else
-		{
-			result += "___";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Normal) == System.IO.FileAttributes.Normal)
+	//	{
+	//		result += "Nor";
+	//	}
+	//	else
+	//	{
+	//		result += "___";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.NoScrubData) == System.IO.FileAttributes.NoScrubData)
-		{
-			result += "Nos";
-		}
-		else
-		{
-			result += "___";
-		}
+	//	if ((attributes | System.IO.FileAttributes.NoScrubData) == System.IO.FileAttributes.NoScrubData)
+	//	{
+	//		result += "Nos";
+	//	}
+	//	else
+	//	{
+	//		result += "___";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.NotContentIndexed) == System.IO.FileAttributes.NotContentIndexed)
-		{
-			result += "Not";
-		}
-		else
-		{
-			result += "___";
-		}
+	//	if ((attributes | System.IO.FileAttributes.NotContentIndexed) == System.IO.FileAttributes.NotContentIndexed)
+	//	{
+	//		result += "Not";
+	//	}
+	//	else
+	//	{
+	//		result += "___";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.Offline) == System.IO.FileAttributes.Offline)
-		{
-			result += "O";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Offline) == System.IO.FileAttributes.Offline)
+	//	{
+	//		result += "O";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.ReparsePoint) == System.IO.FileAttributes.ReparsePoint)
-		{
-			result += "Re";
-		}
-		else
-		{
-			result += "__";
-		}
+	//	if ((attributes | System.IO.FileAttributes.ReparsePoint) == System.IO.FileAttributes.ReparsePoint)
+	//	{
+	//		result += "Re";
+	//	}
+	//	else
+	//	{
+	//		result += "__";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.SparseFile) == System.IO.FileAttributes.SparseFile)
-		{
-			result += "Sp";
-		}
-		else
-		{
-			result += "__";
-		}
+	//	if ((attributes | System.IO.FileAttributes.SparseFile) == System.IO.FileAttributes.SparseFile)
+	//	{
+	//		result += "Sp";
+	//	}
+	//	else
+	//	{
+	//		result += "__";
+	//	}
 
-		if ((attributes | System.IO.FileAttributes.Temporary) == System.IO.FileAttributes.Temporary)
-		{
-			result += "T";
-		}
-		else
-		{
-			result += "_";
-		}
+	//	if ((attributes | System.IO.FileAttributes.Temporary) == System.IO.FileAttributes.Temporary)
+	//	{
+	//		result += "T";
+	//	}
+	//	else
+	//	{
+	//		result += "_";
+	//	}
 
-		return result;
-	}
+	//	return result;
+	//}
 }
