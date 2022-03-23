@@ -33,9 +33,11 @@
 			<tbody>
 				@if (Model.CurrentPath != "/")
 				{
-					var temp = Model.CurrentPath ?? "/";
-					temp = temp[..temp.LastIndexOf("/")];
-					temp = temp[..temp.LastIndexOf("/")];
+					var parentDirectoryPath =
+					Model.CurrentPath ?? "/";
+
+					parentDirectoryPath = parentDirectoryPath[..parentDirectoryPath.LastIndexOf("/")];
+					parentDirectoryPath = parentDirectoryPath[..parentDirectoryPath.LastIndexOf("/")];
 
 					<tr class="table-success">
 						<th scope="row">
@@ -67,7 +69,7 @@
 						</td>
 						<td>
 							<i class="bi bi-reply"></i>
-							<a href="@(Model.PageRouting)?path=@(temp)" class="text-decoration-none">
+							<a href="@(Model.PageRouting)?path=@(parentDirectoryPath)" class="text-decoration-none">
 								[PARENT]
 							</a>
 						</td>
@@ -88,9 +90,11 @@
 				{
 					for (var index = 0; index <= Model.Directories.Count - 1; index++)
 					{
-						var item = Model.Directories[index];
+						var item =
+						Model.Directories[index];
 
-						var path = $"{Model.CurrentPath}{item.Name}".Replace("\\", "/");
+						var path =
+						$"{Model.CurrentPath}{item.Name}";
 
 						<tr>
 							<th scope="row">
