@@ -12,7 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Cms\" />
+		<Folder Include="Cms\" />
 	</ItemGroup>
 
 </Project>
