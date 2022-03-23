@@ -1,0 +1,76 @@
+﻿@model Server.Pages.Admin.FileManager.IndexModel
+
+@{
+	string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
+
+	var files =
+	Model?.Files?
+	.Where(current => imageExtensions.Contains(current.Extension))
+	.OrderBy(current => current.Extension)
+	.ThenBy(current => current.Name)
+	.ToList()
+	;
+
+	if (files == null || files.Count == 0)
+	{
+		return;
+	}
+}
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" dir="ltr">
+
+	@for (var index = 0; index <= files.Count - 1; index++)
+	{
+		var item = files[index];
+
+		var pathName = $"{Model?.CurrentPath}{item.Name}";
+
+		// **********
+		System.Drawing.Image? image = null;
+
+		var fileName =
+		$"{Model?.RootPhysicalPath}{pathName}";
+
+		if (System.IO.File.Exists(fileName))
+		{
+			image = System.Drawing.Image.FromFile(filename: fileName);
+		}
+
+		<div class="col">
+			<div class="card h-100 shadow-lg">
+				<a href="@(pathName)" class="text-decoration-none" target="_blank">
+					<img src="@(pathName)" class="card-img-top" alt="@(item.Name)" title="@(item.Name)" />
+				</a>
+
+				<div class="card-body">
+					<p class="card-text">
+						Length: @(item.Length.ToString("#,##0"))
+						<br />
+						Width: @(image?.Width)
+						<br />
+						Height: @(image?.Height)
+						<br />
+						Horizontal Resolution: @(image?.HorizontalResolution)
+						<br />
+						Vertical Resolution: @(image?.VerticalResolution)
+						<br />
+						Pixel Format: @(image?.PixelFormat)
+						<br />
+						Attributes: @(item.Attributes)
+						<br />
+						Tag: @(image?.Tag)
+					</p>
+				</div>
+
+				<div class="card-footer">
+					<h5 class="card-title mt-2">
+						<a href="@(pathName)" class="text-decoration-none" target="_blank">
+							@(item.Name)
+						</a>
+					</h5>
+				</div>
+			</div>
+		</div>
+	}
+
+</div>

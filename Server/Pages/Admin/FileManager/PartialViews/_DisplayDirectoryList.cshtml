@@ -1,0 +1,148 @@
+﻿@model Server.Pages.Admin.FileManager.IndexModel
+
+<div class="row">
+	<div class="col table-responsive">
+		<table class="table table-bordered table-sm table-striped table-hover align-middle">
+			<thead>
+				<tr class="table-warning">
+					<th scope="col">
+						#
+					</th>
+					<th>
+					</th>
+					<th scope="col">
+						Name
+					</th>
+					<th>
+						Contents
+					</th>
+					<th>
+						Attributes
+					</th>
+					<th scope="col">
+						Creation Time
+					</th>
+					<th scope="col">
+						Last Write Time
+					</th>
+					<th scope="col">
+						Last Access Time
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.CurrentPath != "\\")
+				{
+					var temp = Model.CurrentPath ?? "\\";
+					temp = temp[..temp.LastIndexOf("\\")];
+					temp = temp[..temp.LastIndexOf("\\")];
+
+					<tr class="table-success">
+						<th scope="row">
+						</th>
+						<td>
+						</td>
+						<td>
+							<i class="bi bi-reply-all"></i>
+							<a asp-page="Index" class="text-decoration-none">
+								[ROOT]
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+
+					<tr class="table-success">
+						<th scope="row">
+						</th>
+						<td>
+						</td>
+						<td>
+							<i class="bi bi-reply"></i>
+							<a href="~/Admin/FileManager/Index?path=@(temp)" class="text-decoration-none">
+								[PARENT]
+							</a>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+						<td>
+						</td>
+					</tr>
+				}
+
+				@if (Model.Directories != null && Model.Directories.Count > 0)
+				{
+					for (var index = 0; index <= Model.Directories.Count - 1; index++)
+					{
+						var item = Model.Directories[index];
+
+						var path = $"{Model.CurrentPath}{item.Name}".Replace("\\", "/");
+
+						<tr>
+							<th scope="row">
+								@(index + 1)
+							</th>
+							<td>
+								<input type="checkbox" id="@(item.Name)" class="form-check-input" />
+							</td>
+							<td>
+								<i class="bi bi-folder"></i>
+								<a href="~/Admin/FileManager/Index?path=@(path)" class="text-decoration-none">
+									@(item.Name)
+								</a>
+							</td>
+							<td>
+								@(GetContentCount(item))
+							</td>
+							<td>
+								@(item.Attributes)
+							</td>
+							<td>
+								@(item.CreationTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+							<td>
+								@(item.LastWriteTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+							<td>
+								@(item.LastAccessTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@{
+	string GetContentCount(System.IO.DirectoryInfo directoryInfo)
+	{
+		var fileCount = directoryInfo.GetFiles().Count();
+		var directoryCount = directoryInfo.GetDirectories().Count();
+
+		var contentCount = fileCount + directoryCount;
+
+		var result = "[EMPTY]";
+
+		if (contentCount != 0)
+		{
+			result = contentCount.ToString("#,##0");
+		}
+
+		return result;
+	}
+}
