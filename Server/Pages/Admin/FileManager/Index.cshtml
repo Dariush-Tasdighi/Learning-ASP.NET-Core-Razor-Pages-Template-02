@@ -3,7 +3,7 @@
 
 <div dir="ltr">
 
-	<form method="post">
+	<form enctype="multipart/form-data" method="post">
 
 		<input type="hidden" id="Path" name="Path" value="@(Model.CurrentPath)" />
 
@@ -11,17 +11,13 @@
 			Current Path: @(Model.CurrentPath)
 		</h5>
 
-		<div class="row mb-3">
-			<div class="col">
-				<button asp-page-handler="DeleteItems" type="submit" class="btn btn-danger btn-sm">Delete</button>
-			</div>
-		</div>
+		<partial name="PartialViews/_DisplayControls" model="Model" />
 
-		<partial name="PartialViews/_DisplayDirectoryList.cshtml" model="Model" />
+		<partial name="PartialViews/_DisplayDirectoryList" model="Model" />
 
-		<partial name="PartialViews/_DisplayFileList.cshtml" model="Model" />
+		<partial name="PartialViews/_DisplayFileList" model="Model" />
 
-		<partial name="PartialViews/_DisplayIcons.cshtml" model="Model" />
+		<partial name="PartialViews/_DisplayIcons" model="Model" />
 
 	</form>
 

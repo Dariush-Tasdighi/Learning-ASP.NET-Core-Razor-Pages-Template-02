@@ -1,0 +1,23 @@
+﻿@model Server.Pages.Admin.FileManager.IndexModel
+
+<div class="row gy-2 gx-3 align-items-center mb-3">
+	<div class="col-auto">
+		<button asp-page-handler="DeleteItems" type="submit" class="btn btn-danger btn-sm">Delete</button>
+	</div>
+
+	<div class="col-auto">
+		<input type="text" id="directoryName" name="directoryName" class="form-control" placeholder="Directory Name" aria-label="Directory Name" />
+	</div>
+
+	<div class="col-auto">
+		<button asp-page-handler="CreateDirectory" type="submit" class="btn btn-primary btn-sm">Create Directory</button>
+	</div>
+
+	<div class="col-auto">
+		<input type="file" id="FileUpload.FormFiles" name="FileUpload.FormFiles" class="form-control" placeholder="Files" aria-label="Files" multiple />
+	</div>
+
+	<div class="col-auto">
+		<button asp-page-handler="UploadFiles" type="submit" class="btn btn-primary btn-sm">Upload Files</button>
+	</div>
+</div>

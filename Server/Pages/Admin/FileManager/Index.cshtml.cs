@@ -10,6 +10,9 @@ namespace Server.Pages.Admin.FileManager
 			PageRouting =
 				"/Admin/FileManager/Index";
 
+			DateTimeFormat =
+				"yyyy/MM/dd [HH:mm:ss]";
+
 			HostEnvironment = hostEnvironment;
 
 			PhysicalRootPath =
@@ -18,6 +21,8 @@ namespace Server.Pages.Admin.FileManager
 		}
 
 		public string PageRouting { get; }
+
+		public string DateTimeFormat { get; }
 
 		public string PhysicalRootPath { get; }
 
@@ -67,11 +72,41 @@ namespace Server.Pages.Admin.FileManager
 							}
 						}
 					}
-					catch (System.Exception ex)
+					catch //(System.Exception ex)
 					{
 					}
 				}
 			}
+
+			SetDirectoriesAndFiles();
+		}
+
+		public void OnPostCreateDirectory
+			(string? path, string? directoryName)
+		{
+			CheckPathAndSetCurrentPath(path: path);
+
+			if (string.IsNullOrWhiteSpace(directoryName))
+			{
+				SetDirectoriesAndFiles();
+				return;
+			}
+
+			directoryName =
+				directoryName.Replace(" ", string.Empty);
+
+			var physicalPath =
+				$"{PhysicalRootPath}{CurrentPath}{directoryName}"
+				.Replace("/", "\\");
+
+			if (System.IO.Directory.Exists(path: physicalPath))
+			{
+				SetDirectoriesAndFiles();
+				return;
+			}
+
+			System.IO.Directory
+				.CreateDirectory(path: physicalPath);
 
 			SetDirectoriesAndFiles();
 		}

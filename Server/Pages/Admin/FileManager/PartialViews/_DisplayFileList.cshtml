@@ -76,13 +76,13 @@
 								@(item.Attributes)
 							</td>
 							<td>
-								@(item.CreationTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+								@(item.CreationTime.ToString(Model.DateTimeFormat))
 							</td>
 							<td>
-								@(item.LastWriteTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+								@(item.LastWriteTime.ToString(Model.DateTimeFormat))
 							</td>
 							<td>
-								@(item.LastAccessTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+								@(item.LastAccessTime.ToString(Model.DateTimeFormat))
 							</td>
 						</tr>
 					}
@@ -91,9 +91,11 @@
 						<td colspan="4">
 						</td>
 						<td>
-							@(totalLength.ToString("#,##0")) B
+							@((((double)totalLength) / ((double)(1024 * 1024))).ToString("#,##0"))MB
 							<br />
-							@(((double)totalLength / (double)1024).ToString("#,##0")) MB
+							@((((double)totalLength) / ((double)1024)).ToString("#,##0"))KB
+							<br />
+							@(totalLength.ToString("#,##0"))B
 						</td>
 						<td colspan="4">
 						</td>
