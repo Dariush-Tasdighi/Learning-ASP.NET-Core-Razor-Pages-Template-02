@@ -31,11 +31,11 @@
 				</tr>
 			</thead>
 			<tbody>
-				@if (Model.CurrentPath != "\\")
+				@if (Model.CurrentPath != "/")
 				{
-					var temp = Model.CurrentPath ?? "\\";
-					temp = temp[..temp.LastIndexOf("\\")];
-					temp = temp[..temp.LastIndexOf("\\")];
+					var temp = Model.CurrentPath ?? "/";
+					temp = temp[..temp.LastIndexOf("/")];
+					temp = temp[..temp.LastIndexOf("/")];
 
 					<tr class="table-success">
 						<th scope="row">
@@ -44,7 +44,7 @@
 						</td>
 						<td>
 							<i class="bi bi-reply-all"></i>
-							<a asp-page="Index" class="text-decoration-none">
+							<a href="@(Model.PageRouting)" class="text-decoration-none">
 								[ROOT]
 							</a>
 						</td>
@@ -67,7 +67,7 @@
 						</td>
 						<td>
 							<i class="bi bi-reply"></i>
-							<a href="~/Admin/FileManager/Index?path=@(temp)" class="text-decoration-none">
+							<a href="@(Model.PageRouting)?path=@(temp)" class="text-decoration-none">
 								[PARENT]
 							</a>
 						</td>
@@ -97,11 +97,12 @@
 								@(index + 1)
 							</th>
 							<td>
-								<input type="checkbox" id="@(item.Name)" class="form-check-input" />
+								<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
 							</td>
 							<td>
 								<i class="bi bi-folder"></i>
-								<a href="~/Admin/FileManager/Index?path=@(path)" class="text-decoration-none">
+
+								<a href="@(Model.PageRouting)?path=@(path)" class="text-decoration-none">
 									@(item.Name)
 								</a>
 							</td>

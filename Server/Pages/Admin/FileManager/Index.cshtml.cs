@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 
 namespace Server.Pages.Admin.FileManager
 {
@@ -7,17 +7,23 @@ namespace Server.Pages.Admin.FileManager
 		public IndexModel
 			(Microsoft.Extensions.Hosting.IHostEnvironment hostEnvironment) : base()
 		{
+			PageRouting =
+				"/Admin/FileManager/Index";
+
 			HostEnvironment = hostEnvironment;
 
-			RootPhysicalPath =
-				$"{HostEnvironment.ContentRootPath}wwwroot";
+			PhysicalRootPath =
+				$"{HostEnvironment.ContentRootPath}wwwroot"
+				.Replace("/", "\\");
 		}
 
-		public string RootPhysicalPath { get; }
+		public string PageRouting { get; }
+
+		public string PhysicalRootPath { get; }
 
 		public string? CurrentPath { get; set; }
 
-		public string? CurrentPhysicalPath { get; }
+		public string? PhysicalCurrentPath { get; set; }
 
 		private Microsoft.Extensions.Hosting.IHostEnvironment HostEnvironment { get; }
 
@@ -27,56 +33,122 @@ namespace Server.Pages.Admin.FileManager
 
 		public void OnGet(string? path)
 		{
-			// **************************************************
-			if (string.IsNullOrWhiteSpace(path))
-			{
-				path = "\\";
-			}
-			else
-			{
-				path =
-					path.Replace("/", "\\");
+			CheckPathAndSetCurrentPath(path: path);
 
-				if (path.StartsWith("\\") == false)
+			SetDirectoriesAndFiles();
+		}
+
+		public void OnPostDeleteItems
+			(string? path, System.Collections.Generic.IList<string>? items)
+		{
+			CheckPathAndSetCurrentPath(path: path);
+
+			if (items != null)
+			{
+				foreach (var item in items)
 				{
-					path =
-						$"\\{path}";
+					try
+					{
+						var physicalItemPath =
+							$"{PhysicalRootPath}{CurrentPath}{item}"
+							.Replace("/", "\\");
+
+						if (System.IO.Directory.Exists(path: physicalItemPath))
+						{
+							System.IO.Directory.Delete
+								(path: physicalItemPath, recursive: true);
+						}
+						else
+						{
+							if (System.IO.File.Exists(path: physicalItemPath))
+							{
+								System.IO.File.Delete
+									(path: physicalItemPath);
+							}
+						}
+					}
+					catch (System.Exception ex)
+					{
+					}
+				}
+			}
+
+			SetDirectoriesAndFiles();
+		}
+
+		/// <summary>
+		/// قانون
+		///
+		/// CurrentPath:
+		///		/
+		///		/Images/
+		///
+		/// یعنی همیشه دو طرف آن / دارد
+		/// </summary>
+		public void CheckPathAndSetCurrentPath(string? path)
+		{
+			// **************************************************
+			string fixedPath = "/";
+
+			if (string.IsNullOrWhiteSpace(path) == false)
+			{
+				fixedPath =
+					path.Replace("\\", "/");
+
+				if (fixedPath.StartsWith("/") == false)
+				{
+					fixedPath =
+						$"/{fixedPath}";
 				}
 
-				if (path.EndsWith("\\") == false)
+				if (fixedPath.EndsWith("/") == false)
 				{
-					path =
-						$"{path}\\";
+					fixedPath =
+						$"{fixedPath}/";
 				}
 
-
-				while (path.Contains("\\\\"))
+				while (fixedPath.Contains("//"))
 				{
-					path =
-						path.Replace("\\\\", "\\");
+					fixedPath =
+						fixedPath.Replace("//", "/");
 				}
 			}
-
-			CurrentPath = $"{path}";
 			// **************************************************
 
 			// **************************************************
-			var physicalPath =
-				$"{RootPhysicalPath}\\{path}";
+			CurrentPath = fixedPath;
+			// **************************************************
 
-			if (System.IO.Directory.Exists(path: physicalPath) == false)
+			// **************************************************
+			PhysicalCurrentPath =
+				$"{PhysicalRootPath}{CurrentPath}"
+				.Replace("/", "\\");
+
+			if (System.IO.Directory.Exists(path: PhysicalCurrentPath) == false)
 			{
-				physicalPath = RootPhysicalPath;
+				PhysicalCurrentPath = PhysicalRootPath;
 			}
 			// **************************************************
+		}
 
-			// **************************************************
+		public void SetDirectoriesAndFiles()
+		{
+			if (string.IsNullOrWhiteSpace(PhysicalCurrentPath) ||
+				System.IO.Directory.Exists(PhysicalCurrentPath) == false)
+			{
+				Files = null;
+				Directories = null;
+
+				return;
+			}
+
 			var directoryInfo =
-				new System.IO.DirectoryInfo(path: physicalPath);
+				new System.IO.DirectoryInfo(path: PhysicalCurrentPath);
 
 			Files =
 				directoryInfo.GetFiles()
-				.OrderBy(current => current.Name)
+				.OrderBy(current => current.Extension)
+				.ThenBy(current => current.Name)
 				.ToList()
 				;
 
@@ -85,7 +157,6 @@ namespace Server.Pages.Admin.FileManager
 				.OrderBy(current => current.Name)
 				.ToList()
 				;
-			// **************************************************
 		}
 	}
 }
