@@ -1,9 +1,6 @@
 ﻿@page "{path?}"
 @model Server.Pages.Admin.FileManager.IndexModel
 
-@{
-}
-
 <div class="row">
 	<div class="col">
 		<h5>
@@ -25,6 +22,12 @@
 					<th scope="col">
 						Name
 					</th>
+					<th>
+						Contents
+					</th>
+					<th>
+						Attributes
+					</th>
 					<th scope="col">
 						Creation Time
 					</th>
@@ -40,9 +43,10 @@
 				@if (Model.CurrentPath != "\\")
 				{
 					var temp = Model.CurrentPath ?? "\\";
-					temp = temp[..temp.LastIndexOf("\\")][..temp.LastIndexOf("\\")];
+					temp = temp[..temp.LastIndexOf("\\")];
+					temp = temp[..temp.LastIndexOf("\\")];
 
-					<tr>
+					<tr class="table-success">
 						<th scope="row">
 						</th>
 						<td>
@@ -57,9 +61,13 @@
 						</td>
 						<td>
 						</td>
+						<td>
+						</td>
+						<td>
+						</td>
 					</tr>
 
-					<tr>
+					<tr class="table-success">
 						<th scope="row">
 						</th>
 						<td>
@@ -74,10 +82,14 @@
 						</td>
 						<td>
 						</td>
+						<td>
+						</td>
+						<td>
+						</td>
 					</tr>
 				}
 
-				@if (Model.Directories != null)
+				@if (Model.Directories != null && Model.Directories.Count > 0)
 				{
 					for (var index = 0; index <= Model.Directories.Count - 1; index++)
 					{
@@ -96,6 +108,12 @@
 								</a>
 							</td>
 							<td>
+								@(GetContentCount(item))
+							</td>
+							<td>
+								@(item.Attributes)
+							</td>
+							<td>
 								@(item.CreationTime.ToString("yyyy/MM/dd - HH:mm:ss"))
 							</td>
 							<td>
@@ -111,3 +129,251 @@
 		</table>
 	</div>
 </div>
+
+<hr class="mt-2 mb-3" />
+
+<div class="row" dir="ltr">
+	<div class="col table-responsive">
+		<table class="table table-bordered table-sm table-striped table-hover align-middle">
+			<thead>
+				<tr>
+					<th scope="col">
+						#
+					</th>
+					<th scope="col">
+						Name
+					</th>
+					<th>
+						Length
+					</th>
+					<th>
+						Attributes
+					</th>
+					<th scope="col">
+						Creation Time
+					</th>
+					<th scope="col">
+						Last Write Time
+					</th>
+					<th scope="col">
+						Last Access Time
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.Files != null && Model.Files.Count > 0)
+				{
+					for (var index = 0; index <= Model.Files.Count - 1; index++)
+					{
+						var item = Model.Files[index];
+
+						var pathName = $"{Model.CurrentPath}{item.Name}";
+
+						<tr>
+							<th scope="row">
+								@(index + 1)
+							</th>
+							<td>
+								<a href="@(pathName)" target="_blank">
+									@(item.Name)
+								</a>
+							</td>
+							<td>
+								@(item.Length.ToString("#,##0"))
+							</td>
+							<td>
+								@(item.Attributes)
+								@*
+									@(GetFileAttributes(item))
+								*@
+							</td>
+							<td>
+								@(item.CreationTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+							<td>
+								@(item.LastWriteTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+							<td>
+								@(item.LastAccessTime.ToString("yyyy/MM/dd - HH:mm:ss"))
+							</td>
+						</tr>
+					}
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+@{
+	string GetContentCount(System.IO.DirectoryInfo directoryInfo)
+	{
+		var fileCount =
+			directoryInfo.GetFiles().Count();
+
+		var directoryCount =
+			directoryInfo.GetDirectories().Count();
+
+		var contentCount =
+			fileCount + directoryCount;
+
+		var result = "[EMPTY]";
+
+		if (contentCount != 0)
+		{
+			result = contentCount.ToString("#,##0");
+		}
+
+		return result;
+	}
+
+	string GetFileAttributes(System.IO.FileAttributes attributes)
+	{
+		var result = string.Empty;
+
+		if ((attributes | System.IO.FileAttributes.Archive) == System.IO.FileAttributes.Archive)
+		{
+			result += "A";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		if ((attributes | System.IO.FileAttributes.Compressed) == System.IO.FileAttributes.Compressed)
+		{
+			result += "C";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		if ((attributes | System.IO.FileAttributes.Hidden) == System.IO.FileAttributes.Hidden)
+		{
+			result += "H";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		if ((attributes | System.IO.FileAttributes.ReadOnly) == System.IO.FileAttributes.ReadOnly)
+		{
+			result += "R";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		if ((attributes | System.IO.FileAttributes.System) == System.IO.FileAttributes.System)
+		{
+			result += "S";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		if ((attributes | System.IO.FileAttributes.Encrypted) == System.IO.FileAttributes.Encrypted)
+		{
+			result += "E";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		if ((attributes | System.IO.FileAttributes.Device) == System.IO.FileAttributes.Device)
+		{
+			result += "Div";
+		}
+		else
+		{
+			result += "___";
+		}
+
+		if ((attributes | System.IO.FileAttributes.Directory) == System.IO.FileAttributes.Directory)
+		{
+			result += "Dir";
+		}
+		else
+		{
+			result += "___";
+		}
+
+		if ((attributes | System.IO.FileAttributes.IntegrityStream) == System.IO.FileAttributes.IntegrityStream)
+		{
+			result += "I";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		if ((attributes | System.IO.FileAttributes.Normal) == System.IO.FileAttributes.Normal)
+		{
+			result += "Nor";
+		}
+		else
+		{
+			result += "___";
+		}
+
+		if ((attributes | System.IO.FileAttributes.NoScrubData) == System.IO.FileAttributes.NoScrubData)
+		{
+			result += "Nos";
+		}
+		else
+		{
+			result += "___";
+		}
+
+		if ((attributes | System.IO.FileAttributes.NotContentIndexed) == System.IO.FileAttributes.NotContentIndexed)
+		{
+			result += "Not";
+		}
+		else
+		{
+			result += "___";
+		}
+
+		if ((attributes | System.IO.FileAttributes.Offline) == System.IO.FileAttributes.Offline)
+		{
+			result += "O";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		if ((attributes | System.IO.FileAttributes.ReparsePoint) == System.IO.FileAttributes.ReparsePoint)
+		{
+			result += "Re";
+		}
+		else
+		{
+			result += "__";
+		}
+
+		if ((attributes | System.IO.FileAttributes.SparseFile) == System.IO.FileAttributes.SparseFile)
+		{
+			result += "Sp";
+		}
+		else
+		{
+			result += "__";
+		}
+
+		if ((attributes | System.IO.FileAttributes.Temporary) == System.IO.FileAttributes.Temporary)
+		{
+			result += "T";
+		}
+		else
+		{
+			result += "_";
+		}
+
+		return result;
+	}
+}
