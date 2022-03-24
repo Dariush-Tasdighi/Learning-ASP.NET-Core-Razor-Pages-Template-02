@@ -45,21 +45,24 @@
 
 				<div class="card-body">
 					<p class="card-text">
-						Length: @(item.Length.ToString("#,##0"))
+						<strong>Length:</strong> @(item.Length.ToString("#,##0"))
 						<br />
-						Width: @(image?.Width)
+						<strong>Attributes:</strong> @(item.Attributes)
+						<hr />
+						<strong>Width:</strong> @(image?.Width)
 						<br />
-						Height: @(image?.Height)
+						<strong>Height:</strong> @(image?.Height)
+						<hr />
+						<strong>Vertical Resolution:</strong> @(image?.VerticalResolution)
 						<br />
-						Horizontal Resolution: @(image?.HorizontalResolution)
+						<strong>Horizontal Resolution:</strong> @(image?.HorizontalResolution)
 						<br />
-						Vertical Resolution: @(image?.VerticalResolution)
-						<br />
-						Pixel Format: @(image?.PixelFormat)
-						<br />
-						Attributes: @(item.Attributes)
-						<br />
-						Tag: @(image?.Tag)
+						<strong>Pixel Format:</strong> @(image?.PixelFormat)
+						@if (image?.Tag != null)
+						{
+							<hr />
+							<strong>Tag:</strong> @(image?.Tag)
+						}
 					</p>
 				</div>
 

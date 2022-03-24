@@ -76,6 +76,10 @@ namespace Server.Pages.Admin.FileManager
 						{
 							if (System.IO.File.Exists(path: physicalItemPath))
 							{
+								// نوشتن دو دستور ذیل بسیار اهمیت دارد
+								System.GC.Collect();
+								System.GC.WaitForPendingFinalizers();
+
 								System.IO.File.Delete
 									(path: physicalItemPath);
 							}
