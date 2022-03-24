@@ -4,6 +4,7 @@ namespace Server.Pages.Admin.FileManager
 {
 	public class IndexModel : Infrastructure.BasePageModel
 	{
+		#region Constructor
 		public IndexModel
 			(Microsoft.Extensions.Hosting.IHostEnvironment hostEnvironment) : base()
 		{
@@ -19,30 +20,38 @@ namespace Server.Pages.Admin.FileManager
 				$"{HostEnvironment.ContentRootPath}wwwroot"
 				.Replace("/", "\\");
 		}
+		#endregion /Constructor
 
+		#region Public Read Only Property(ies)
 		public string PageRouting { get; }
 
 		public string DateTimeFormat { get; }
 
 		public string PhysicalRootPath { get; }
 
+		public Microsoft.Extensions.Hosting.IHostEnvironment HostEnvironment { get; }
+		#endregion /Public Read Only Property(ies)
+
+		#region Public Property(ies)
 		public string? CurrentPath { get; set; }
 
 		public string? PhysicalCurrentPath { get; set; }
 
-		private Microsoft.Extensions.Hosting.IHostEnvironment HostEnvironment { get; }
-
 		public System.Collections.Generic.IList<System.IO.FileInfo>? Files { get; set; }
 
 		public System.Collections.Generic.IList<System.IO.DirectoryInfo>? Directories { get; set; }
+		#endregion /Public Property(ies)
 
+		#region OnGet
 		public void OnGet(string? path)
 		{
 			CheckPathAndSetCurrentPath(path: path);
 
 			SetDirectoriesAndFiles();
 		}
+		#endregion /OnGet
 
+		#region OnPostDeleteItems
 		public void OnPostDeleteItems
 			(string? path, System.Collections.Generic.IList<string>? items)
 		{
@@ -80,7 +89,9 @@ namespace Server.Pages.Admin.FileManager
 
 			SetDirectoriesAndFiles();
 		}
+		#endregion /OnPostDeleteItems
 
+		#region OnPostCreateDirectory
 		public void OnPostCreateDirectory
 			(string? path, string? directoryName)
 		{
@@ -93,7 +104,8 @@ namespace Server.Pages.Admin.FileManager
 			}
 
 			directoryName =
-				directoryName.Replace(" ", string.Empty);
+				directoryName
+				.Replace(" ", string.Empty);
 
 			var physicalPath =
 				$"{PhysicalRootPath}{CurrentPath}{directoryName}"
@@ -110,7 +122,48 @@ namespace Server.Pages.Admin.FileManager
 
 			SetDirectoriesAndFiles();
 		}
+		#endregion /OnPostCreateDirectory
 
+		#region OnPostUploadFiles
+		public async System.Threading.Tasks.Task OnPostUploadFiles(
+			string? path, System.Collections.Generic
+			.List<Microsoft.AspNetCore.Http.IFormFile> files)
+		{
+			CheckPathAndSetCurrentPath(path: path);
+
+			if (files == null || files.Count == 0)
+			{
+				SetDirectoriesAndFiles();
+				return;
+			}
+
+			foreach (var file in files)
+			{
+				if (file.Length > 0)
+				{
+					var fileName =
+						file.FileName
+						.Replace(" ", string.Empty);
+
+					var physicalPathName =
+						$"{PhysicalRootPath}{CurrentPath}{fileName}"
+						.Replace("/", "\\");
+
+					if (System.IO.Directory.Exists(path: physicalPathName) == false)
+					{
+						using var stream =
+							System.IO.File.Create(path: physicalPathName);
+
+						await file.CopyToAsync(target: stream);
+					}
+				}
+			}
+
+			SetDirectoriesAndFiles();
+		}
+		#endregion /OnPostUploadFiles
+
+		#region CheckPathAndSetCurrentPath
 		/// <summary>
 		/// قانون
 		///
@@ -165,7 +218,9 @@ namespace Server.Pages.Admin.FileManager
 			}
 			// **************************************************
 		}
+		#endregion /CheckPathAndSetCurrentPath
 
+		#region SetDirectoriesAndFiles
 		public void SetDirectoriesAndFiles()
 		{
 			if (string.IsNullOrWhiteSpace(PhysicalCurrentPath) ||
@@ -193,5 +248,6 @@ namespace Server.Pages.Admin.FileManager
 				.ToList()
 				;
 		}
+		#endregion /SetDirectoriesAndFiles
 	}
 }
