@@ -1,5 +1,10 @@
 ﻿@model Server.Pages.Admin.FileManager.IndexModel
 
+@if (Model == null)
+{
+	return;
+}
+
 @{
 	string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
 
@@ -58,6 +63,7 @@
 						<strong>Horizontal Resolution:</strong> @(image?.HorizontalResolution)
 						<br />
 						<strong>Pixel Format:</strong> @(image?.PixelFormat)
+
 						@if (image?.Tag != null)
 						{
 							<hr />

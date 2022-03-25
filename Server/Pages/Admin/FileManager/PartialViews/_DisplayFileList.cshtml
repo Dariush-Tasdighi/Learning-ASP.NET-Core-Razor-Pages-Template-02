@@ -1,5 +1,10 @@
 ﻿@model Server.Pages.Admin.FileManager.IndexModel
 
+@if (Model == null)
+{
+	return;
+}
+
 <div class="row">
 	<div class="col table-responsive">
 		<table class="table table-bordered table-sm table-striped table-hover align-middle">
@@ -50,6 +55,7 @@
 					for (var index = 0; index <= files.Count - 1; index++)
 					{
 						var item = files[index];
+
 						var pathName = $"{Model?.CurrentPath}{item.Name}";
 
 						totalLength += item.Length;
@@ -76,13 +82,13 @@
 								@(item.Attributes)
 							</td>
 							<td>
-								@(item.CreationTime.ToString(Model.DateTimeFormat))
+								@(item.CreationTime.ToString(format: Model.DateTimeFormat))
 							</td>
 							<td>
-								@(item.LastWriteTime.ToString(Model.DateTimeFormat))
+								@(item.LastWriteTime.ToString(format: Model.DateTimeFormat))
 							</td>
 							<td>
-								@(item.LastAccessTime.ToString(Model.DateTimeFormat))
+								@(item.LastAccessTime.ToString(format: Model.DateTimeFormat))
 							</td>
 						</tr>
 					}
@@ -91,13 +97,15 @@
 						<td colspan="4">
 						</td>
 						<td>
-							@((((double)totalLength) / ((double)(1024 * 1024))).ToString("#,##0"))MB
-							<br />
-							@((((double)totalLength) / ((double)1024)).ToString("#,##0"))KB
-							<br />
 							@(totalLength.ToString("#,##0"))B
 						</td>
-						<td colspan="4">
+						<td>
+							@((((double)totalLength) / ((double)1024)).ToString("#,##0"))KB
+						</td>
+						<td>
+							@((((double)totalLength) / ((double)(1024 * 1024))).ToString("#,##0"))MB
+						</td>
+						<td colspan="2">
 						</td>
 					</tr>
 				}

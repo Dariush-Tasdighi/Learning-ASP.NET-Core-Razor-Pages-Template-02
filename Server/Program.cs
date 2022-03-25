@@ -11,11 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 var webApplicationOptions =
 	new Microsoft.AspNetCore.Builder.WebApplicationOptions
 	{
-		//EnvironmentName =
-		//	Microsoft.Extensions.Hosting.Environments.Production,
-
 		EnvironmentName =
-			Microsoft.Extensions.Hosting.Environments.Development,
+			System.Diagnostics.Debugger.IsAttached ?
+			Microsoft.Extensions.Hosting.Environments.Development
+			:
+			Microsoft.Extensions.Hosting.Environments.Production,
 	};
 
 var builder =

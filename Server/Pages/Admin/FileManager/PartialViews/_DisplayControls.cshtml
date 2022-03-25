@@ -1,5 +1,10 @@
 ﻿@model Server.Pages.Admin.FileManager.IndexModel
 
+@if (Model == null)
+{
+	return;
+}
+
 <div class="row gy-2 gx-3 align-items-center mb-3">
 	<div class="col-auto">
 		<button asp-page-handler="DeleteItems" type="submit" class="btn btn-danger btn-sm">Delete</button>

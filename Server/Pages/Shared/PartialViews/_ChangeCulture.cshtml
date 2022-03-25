@@ -38,7 +38,7 @@
 
 		var supportedCulture = new System.Globalization.CultureInfo(name: supportedCultureName);
 
-		var language = supportedCulture.NativeName[..(supportedCulture.NativeName.IndexOf('(') - 1)];
+		var language = supportedCulture.Parent.NativeName;
 
 		if (currentCultureName != supportedCultureName)
 		{

@@ -1,13 +1,17 @@
-﻿<environment include="Development">
+﻿<environment include="Development" exclude="Production">
+
 	<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/lib/flag-icon-css/css/flag-icons.css" asp-append-version="true" />
+
 </environment>
 
-<environment exclude="Development">
+<environment include="Production" exclude="Development">
+
 	<link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/lib/flag-icon-css/css/flag-icons.min.css" asp-append-version="true" />
+
 </environment>
 
 <link rel="stylesheet" href="~/css/ltr/site.css" asp-append-version="true" />

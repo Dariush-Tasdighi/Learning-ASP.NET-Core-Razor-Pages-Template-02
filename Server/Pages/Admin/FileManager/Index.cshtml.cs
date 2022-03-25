@@ -25,7 +25,7 @@ namespace Server.Pages.Admin.FileManager
 		#region Public Read Only Property(ies)
 		public string PageRouting { get; }
 
-		public string DateTimeFormat { get; }
+		public string? DateTimeFormat { get; }
 
 		public string PhysicalRootPath { get; }
 

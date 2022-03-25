@@ -1,7 +1,15 @@
 ﻿<footer class="footer border-top py-3 bg-light text-muted fixed-bottom">
-	<div class="container">
-		<span class="text-muted text-light">
-			&copy;2022 - @(Resources.DataDictionary.SiteTitle)
-		</span>
+	<div class="container text-muted">
+		<small>
+			<environment include="Development" exclude="Production">
+				[Development]
+			</environment>
+
+			<environment include="Production" exclude="Development">
+				[Production]
+			</environment>
+		</small>
+
+		&copy;2022 - @(Resources.DataDictionary.SiteTitle)
 	</div>
 </footer>

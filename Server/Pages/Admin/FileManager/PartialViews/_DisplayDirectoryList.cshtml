@@ -1,5 +1,10 @@
 ﻿@model Server.Pages.Admin.FileManager.IndexModel
 
+@if (Model == null)
+{
+	return;
+}
+
 <div class="row">
 	<div class="col table-responsive">
 		<table class="table table-bordered table-sm table-striped table-hover align-middle">
@@ -33,8 +38,7 @@
 			<tbody>
 				@if (Model.CurrentPath != "/")
 				{
-					var parentDirectoryPath =
-					Model.CurrentPath ?? "/";
+					var parentDirectoryPath = Model.CurrentPath ?? "/";
 
 					parentDirectoryPath = parentDirectoryPath[..parentDirectoryPath.LastIndexOf("/")];
 					parentDirectoryPath = parentDirectoryPath[..parentDirectoryPath.LastIndexOf("/")];
@@ -90,11 +94,8 @@
 				{
 					for (var index = 0; index <= Model.Directories.Count - 1; index++)
 					{
-						var item =
-						Model.Directories[index];
-
-						var path =
-						$"{Model.CurrentPath}{item.Name}";
+						var item = Model.Directories[index];
+						var path = $"{Model.CurrentPath}{item.Name}";
 
 						<tr>
 							<th scope="row">
