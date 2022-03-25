@@ -146,4 +146,7 @@ services.AddHttpContextAccessor();
 - In 'Server' Project -> In 'Infrastructure' Folder -> In 'Middlewares' Folder:
 
 	- Create 'ActivationKeysHandlerMiddleware.cs' File
+
+4)
+- Publish
 **************************************************
