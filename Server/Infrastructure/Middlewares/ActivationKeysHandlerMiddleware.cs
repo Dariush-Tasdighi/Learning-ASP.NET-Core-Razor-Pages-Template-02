@@ -70,6 +70,8 @@ namespace Infrastructure.Middlewares
 			var domain =
 				httpContext.Request.Host.Value;
 
+			//domain = "dtat.ir";
+
 			var validActivationKey =
 				GetValidActivationKeyByDomain(domain: domain);
 
