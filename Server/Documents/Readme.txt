@@ -5,8 +5,21 @@ Session (22)
 **************************************************
 **************************************************
 **************************************************
-Tanx Mr. Ali Varposhti - علی ورپشتی
+Tanx Mr. Sadegh Dehghani - صادق دهقانی
+**************************************************
+- In 'Server' Project -> In 'Pages' Folder:
 
+	- In '_ViewStart.cshtml' Page:
+
+1)
+cultureInfo.TextInfo.IsRightToLeft;
+cultureInfo.TwoLetterISOLanguageName;
+**************************************************
+
+**************************************************
+Tanx Mr. Ali Varposhti - علی ورپشتی
+**************************************************
+1)
 - In 'Server' Project -> In 'Pages' Folder:
 
 	- In '_ChangeCulture.cshtml' Page:
@@ -20,19 +33,9 @@ var language =
 **************************************************
 
 **************************************************
-Tanx Mr. Sadegh Dehghani - صادق دهقانی
-
-- In 'Server' Project -> In 'Pages' Folder:
-
-	- In '_ViewStart.cshtml' Page:
-
-	cultureInfo.TextInfo.IsRightToLeft;
-	cultureInfo.TwoLetterISOLanguageName;
-**************************************************
-
-**************************************************
 Tanx: Mr. Nima Sheikhani - نیما شیخانی
-
+**************************************************
+1)
 - Async:
 
 https://stackoverflow.com/questions/70963014/using-task-run-in-asp-net-core
@@ -40,6 +43,7 @@ https://stackoverflow.com/questions/51256520/when-should-i-use-task-run-in-asp-n
 https://docs.microsoft.com/en-us/aspnet/core/performance/performance-best-practices?view=aspnetcore-6.0
 https://stackoverflow.com/questions/60283722/is-it-allowed-to-use-task-run-in-an-asp-net-core-controller
 
+2)
 - In 'program.cs' File:
 
 var webApplicationOptions =
@@ -64,32 +68,9 @@ var webApplicationOptions =
 **************************************************
 
 **************************************************
-Tanx: Mr. Dariush Tasdighi :-)
-
-- In 'Server' Project -> In 'Pages' Folder -> In 'PartialViews' Folder -> In 'Ltr' and 'Rtl' Folders:
-
-	- In '_Footer.cshtml', '_Scripts.cshtml', '_StyleSheets.cshtml' Files
-
-<environment include="Development" exclude="Production">
-</environment>
-
-<environment include="Production" exclude="Development">
-</environment>
-
-- In 'Server' Project -> In 'Infrastructure' Folder -> In 'Settings' Folder:
-
-	- Create 'FileManagerSettings.cs' File
-	- Update 'ApplicationSettings.cs' File
-
-- In 'Server' Project:
-
-	- Update 'appsettings.json' File
-	- Update 'appsettings.Development.json' File
-**************************************************
-
-**************************************************
 Tanx Mr. Reza Ghadimi - رضا قدیمی
-
+**************************************************
+1)
 - In 'program.cs' File:
 
 builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
@@ -108,6 +89,7 @@ builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
 		return result;
 	});
 
+2)
 - In 'Server' Project -> In 'Pages' Folder:
 
 	- In 'ChangeCulture.cshtml.cs' File:
@@ -120,6 +102,48 @@ builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
 
 	- In '_ChangeCulture.cshtml' File:
 
-Microsoft.Extensions.Options.IOptions ->
-	Infrastructure.Settings.ApplicationSettings
+Microsoft.Extensions.Options.IOptions<Infrastructure.Settings.ApplicationSettings>
+->
+Infrastructure.Settings.ApplicationSettings
+**************************************************
+
+**************************************************
+Tanx: Mr. Dariush Tasdighi :-)
+**************************************************
+1)
+- In 'Server' Project -> In 'Pages' Folder -> In 'PartialViews' Folder -> In 'Ltr' and 'Rtl' Folders:
+
+	- In '_Footer.cshtml', '_Scripts.cshtml', '_StyleSheets.cshtml' Files:
+
+<environment include="Development" exclude="Production">
+</environment>
+
+<environment include="Production" exclude="Development">
+</environment>
+
+2)
+- In 'Server' Project -> In 'Pages' Folder -> In 'PartialViews' Folder -> In 'Ltr' and 'Rtl' Folders:
+
+	- In '_Footer.cshtml' File:
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor
+
+- In 'Server' Project -> In 'Program.cs' File:
+
+services.AddHttpContextAccessor();
+
+3)
+- In 'Server' Project:
+
+	- Update 'appsettings.json' File
+	- Update 'appsettings.Development.json' File
+
+- In 'Server' Project -> In 'Infrastructure' Folder -> In 'Settings' Folder:
+
+	- Create 'FileManagerSettings.cs' File
+	- Update 'ApplicationSettings.cs' File
+
+- In 'Server' Project -> In 'Infrastructure' Folder -> In 'Middlewares' Folder:
+
+	- Create 'ActivationKeysHandlerMiddleware.cs' File
 **************************************************

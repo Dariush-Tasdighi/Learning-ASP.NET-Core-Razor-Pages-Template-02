@@ -24,6 +24,11 @@ var builder =
 // **************************************************
 
 // **************************************************
+// AddHttpContextAccessor() -> using Microsoft.Extensions.DependencyInjection;
+builder.Services.AddHttpContextAccessor();
+// **************************************************
+
+// **************************************************
 // AddRazorPages() -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddRazorPages();
 // **************************************************
@@ -106,6 +111,11 @@ app.UseHttpsRedirection();
 // **************************************************
 // UseStaticFiles() -> using Microsoft.AspNetCore.Builder;
 app.UseStaticFiles();
+// **************************************************
+
+// **************************************************
+// UseActivationKeys() -> using Infrastructure.Middlewares;
+app.UseActivationKeys();
 // **************************************************
 
 // **************************************************

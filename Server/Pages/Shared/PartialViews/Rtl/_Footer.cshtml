@@ -1,6 +1,10 @@
-﻿<footer class="footer border-top py-3 bg-light text-muted fixed-bottom">
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor
+
+<footer class="footer border-top py-3 bg-light text-muted fixed-bottom">
 	<div class="container text-muted">
 		<small>
+			[@(httpContextAccessor.HttpContext?.Request.Host.Value)]
+
 			<environment include="Development" exclude="Production">
 				[Development]
 			</environment>
