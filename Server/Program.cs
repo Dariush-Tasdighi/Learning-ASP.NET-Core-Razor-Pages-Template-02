@@ -31,13 +31,19 @@ builder.Services.AddRazorPages();
 // **************************************************
 // Configure()-> using Microsoft.Extensions.DependencyInjection;
 builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
-	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName));
+	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName))
+	// AddSingleton()-> using Microsoft.Extensions.DependencyInjection;
+	.AddSingleton
+	(implementationFactory: serviceType =>
+	{
+		var result =
+			// GetRequiredService()-> using Microsoft.Extensions.DependencyInjection;
+			serviceType.GetRequiredService
+			<Microsoft.Extensions.Options.IOptions
+			<Infrastructure.Settings.ApplicationSettings>>().Value;
 
-//builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
-//	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName))
-//	.AddScoped
-//	(serviceType => serviceType.GetRequiredService<Microsoft.Extensions.Options.IOptions<Infrastructure.Settings.ApplicationSettings>>().Value
-//);
+		return result;
+	});
 // **************************************************
 
 // **************************************************

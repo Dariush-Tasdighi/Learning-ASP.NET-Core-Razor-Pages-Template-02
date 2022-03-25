@@ -76,6 +76,38 @@ Tanx: Mr. Dariush Tasdighi :-)
 <environment include="Production" exclude="Development">
 </environment>
 
+- In 'Server' Project -> In 'Infrastructure' Folder -> In 'Settings' Folder:
+
+	- Create 'FileManagerSettings.cs' File
+	- Update 'ApplicationSettings.cs' File
+
+- In 'Server' Project:
+
+	- Update 'appsettings.json' File
+	- Update 'appsettings.Development.json' File
+**************************************************
+
+**************************************************
+Tanx Mr. Reza Ghadimi - رضا قدیمی
+
+- In 'program.cs' File:
+
+builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
+	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName));
+
+builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
+	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName))
+	.AddSingleton
+	(implementationFactory: serviceType =>
+	{
+		var result =
+			serviceType.GetRequiredService
+			<Microsoft.Extensions.Options.IOptions
+			<Infrastructure.Settings.ApplicationSettings>>().Value;
+
+		return result;
+	});
+
 - In 'Server' Project -> In 'Pages' Folder:
 
 	- In 'ChangeCulture.cshtml.cs' File:
@@ -88,14 +120,6 @@ Tanx: Mr. Dariush Tasdighi :-)
 
 	- In '_ChangeCulture.cshtml' File:
 
-Microsoft.Extensions.Options.IOptions -> Microsoft.Extensions.Options.IOptionsSnapshot
-**************************************************
-
-**************************************************
-Tanx Mr. Reza Ghadimi:
-
-- In 'program.cs' File:
-
-builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
-	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName));
+Microsoft.Extensions.Options.IOptions ->
+	Infrastructure.Settings.ApplicationSettings
 **************************************************

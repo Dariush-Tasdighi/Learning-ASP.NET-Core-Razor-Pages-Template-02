@@ -8,8 +8,10 @@
 		{
 		}
 
-		public string? ActivationKey { get; set; }
+		public string[]? ActivationKeys { get; set; }
 
 		public CultureSettings? CultureSettings { get; set; }
+
+		public FileManagerSettings? FileManagerSettings { get; set; }
 	}
 }

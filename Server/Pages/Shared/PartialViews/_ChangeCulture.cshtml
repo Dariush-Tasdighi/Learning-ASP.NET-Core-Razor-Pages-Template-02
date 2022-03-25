@@ -1,14 +1,6 @@
-﻿@inject Microsoft.Extensions.Options.IOptions<Infrastructure.Settings.ApplicationSettings> applicationSettingsOptions
+﻿@inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
 @{
-	var applicationSettings =
-		applicationSettingsOptions.Value;
-
-	if (applicationSettings == null)
-	{
-		return;
-	}
-
 	var cultureSettings =
 		applicationSettings.CultureSettings;
 

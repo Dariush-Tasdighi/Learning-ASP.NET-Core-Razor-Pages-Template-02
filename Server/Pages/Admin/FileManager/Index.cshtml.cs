@@ -6,15 +6,17 @@ namespace Server.Pages.Admin.FileManager
 	{
 		#region Constructor
 		public IndexModel
-			(Microsoft.Extensions.Hosting.IHostEnvironment hostEnvironment) : base()
+			(Microsoft.Extensions.Hosting.IHostEnvironment hostEnvironment,
+			Infrastructure.Settings.ApplicationSettings applicationSettings) : base()
 		{
+			HostEnvironment = hostEnvironment;
+			ApplicationSettings = applicationSettings;
+
 			PageRouting =
 				"/Admin/FileManager/Index";
 
 			DateTimeFormat =
 				"yyyy/MM/dd [HH:mm:ss]";
-
-			HostEnvironment = hostEnvironment;
 
 			PhysicalRootPath =
 				$"{HostEnvironment.ContentRootPath}wwwroot"
@@ -30,6 +32,8 @@ namespace Server.Pages.Admin.FileManager
 		public string PhysicalRootPath { get; }
 
 		public Microsoft.Extensions.Hosting.IHostEnvironment HostEnvironment { get; }
+
+		public Infrastructure.Settings.ApplicationSettings ApplicationSettings { get; }
 		#endregion /Public Read Only Property(ies)
 
 		#region Public Property(ies)
@@ -56,6 +60,13 @@ namespace Server.Pages.Admin.FileManager
 			(string? path, System.Collections.Generic.IList<string>? items)
 		{
 			CheckPathAndSetCurrentPath(path: path);
+
+			if (ApplicationSettings.FileManagerSettings == null ||
+				ApplicationSettings.FileManagerSettings.DeleteItemsEnabled == false)
+			{
+				SetDirectoriesAndFiles();
+				return;
+			}
 
 			if (items != null)
 			{
@@ -101,6 +112,13 @@ namespace Server.Pages.Admin.FileManager
 		{
 			CheckPathAndSetCurrentPath(path: path);
 
+			if (ApplicationSettings.FileManagerSettings == null ||
+				ApplicationSettings.FileManagerSettings.CreateDirectoryEnabled == false)
+			{
+				SetDirectoriesAndFiles();
+				return;
+			}
+
 			if (string.IsNullOrWhiteSpace(directoryName))
 			{
 				SetDirectoriesAndFiles();
@@ -134,6 +152,13 @@ namespace Server.Pages.Admin.FileManager
 			.List<Microsoft.AspNetCore.Http.IFormFile> files)
 		{
 			CheckPathAndSetCurrentPath(path: path);
+
+			if (ApplicationSettings.FileManagerSettings == null ||
+				ApplicationSettings.FileManagerSettings.UploadFilesEnabled == false)
+			{
+				SetDirectoriesAndFiles();
+				return;
+			}
 
 			if (files == null || files.Count == 0)
 			{

@@ -111,13 +111,11 @@
 
 		public CultureCookieHandlerMiddleware
 			(Microsoft.AspNetCore.Http.RequestDelegate next,
-			Microsoft.Extensions.Options.IOptions
-			<Settings.ApplicationSettings> applicationSettingsOptions) : base()
+			Settings.ApplicationSettings applicationSettings) : base()
 		{
 			Next = next;
 
-			ApplicationSettings =
-				applicationSettingsOptions.Value;
+			ApplicationSettings = applicationSettings;
 		}
 
 		private Microsoft.AspNetCore.Http.RequestDelegate Next { get; }
