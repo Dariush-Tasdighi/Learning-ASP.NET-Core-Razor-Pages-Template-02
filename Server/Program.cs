@@ -29,9 +29,15 @@ builder.Services.AddRazorPages();
 // **************************************************
 
 // **************************************************
-// Configure() -> using Microsoft.Extensions.DependencyInjection;
+// Configure()-> using Microsoft.Extensions.DependencyInjection;
 builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
 	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName));
+
+//builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
+//	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName))
+//	.AddScoped
+//	(serviceType => serviceType.GetRequiredService<Microsoft.Extensions.Options.IOptions<Infrastructure.Settings.ApplicationSettings>>().Value
+//);
 // **************************************************
 
 // **************************************************

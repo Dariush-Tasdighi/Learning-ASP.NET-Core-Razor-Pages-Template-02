@@ -75,6 +75,20 @@ Tanx: Mr. Dariush Tasdighi :-)
 
 <environment include="Production" exclude="Development">
 </environment>
+
+- In 'Server' Project -> In 'Pages' Folder:
+
+	- In 'ChangeCulture.cshtml.cs' File:
+
+- In 'Server' Project -> In 'Infrastructure' Folder -> In 'Middlewares' Folder:
+
+	- In 'CultureCookieHandlerMiddleware.cs' File:
+
+- In 'Server' Project -> In 'Pages' Folder -> In 'PartialViews' Folder:
+
+	- In '_ChangeCulture.cshtml' File:
+
+Microsoft.Extensions.Options.IOptions -> Microsoft.Extensions.Options.IOptionsSnapshot
 **************************************************
 
 **************************************************
@@ -84,5 +98,4 @@ Tanx Mr. Reza Ghadimi:
 
 builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
 	(builder.Configuration.GetSection(key: Infrastructure.Settings.ApplicationSettings.KeyName));
-
 **************************************************
