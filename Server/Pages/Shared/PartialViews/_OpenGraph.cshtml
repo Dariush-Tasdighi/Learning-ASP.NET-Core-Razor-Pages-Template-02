@@ -1,5 +1,12 @@
-﻿<meta property="og:type" content="website" />
-<meta property="og:url" content="https://DTAT.ir/" />
-<meta property="og:image" content="/images/Dariush.jpg" />
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor
+
+@{
+	var siteUrl = $"https://{httpContextAccessor.HttpContext?.Request.Host.Value}";
+	var imageUrl = $"{siteUrl}/images/Dariush.jpg";
+}
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="@(siteUrl)" />
+<meta property="og:image" content="@(imageUrl)" />
 <meta property="og:title" content="An Advanced ASP.NET Core Razor Page Template" />
 <meta property="og:description" content="This site has been developed by .NET 6, C# language and ASP.NET Core Razor Pages Technology!" />
