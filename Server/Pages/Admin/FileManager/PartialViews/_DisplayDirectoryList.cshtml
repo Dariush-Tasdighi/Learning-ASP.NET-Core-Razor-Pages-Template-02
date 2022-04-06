@@ -1,20 +1,37 @@
 ﻿@model Server.Pages.Admin.FileManager.IndexModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
-@if (Model == null)
+@if (Model == null || applicationSettings == null || applicationSettings.FileManagerSettings == null)
 {
 	return;
+}
+
+@{
+	var selectItemEnabled = false;
+
+	if (applicationSettings.FileManagerSettings.DeleteItemsEnabled)
+	{
+		selectItemEnabled = true;
+	}
 }
 
 <div class="row">
 	<div class="col table-responsive">
 		<table class="table table-bordered table-sm table-striped table-hover align-middle">
-			<thead>
-				<tr class="table-warning">
+			<caption>Directories</caption>
+
+			<thead class="table-primary">
+				<tr>
 					<th scope="col">
 						#
 					</th>
-					<th>
-					</th>
+
+					@if (selectItemEnabled)
+					{
+						<th>
+						</th>
+					}
+
 					<th scope="col">
 						Name
 					</th>
@@ -35,6 +52,7 @@
 					</th>
 				</tr>
 			</thead>
+
 			<tbody>
 				@if (Model.CurrentPath != "/")
 				{
@@ -46,8 +64,13 @@
 					<tr class="table-success">
 						<th scope="row">
 						</th>
-						<td>
-						</td>
+
+						@if (selectItemEnabled)
+						{
+							<td>
+							</td>
+						}
+
 						<td>
 							<i class="bi bi-reply-all"></i>
 							<a href="@(Model.PageRouting)" class="text-decoration-none">
@@ -69,8 +92,13 @@
 					<tr class="table-success">
 						<th scope="row">
 						</th>
-						<td>
-						</td>
+
+						@if (selectItemEnabled)
+						{
+							<td>
+							</td>
+						}
+
 						<td>
 							<i class="bi bi-reply"></i>
 							<a href="@(Model.PageRouting)?path=@(parentDirectoryPath)" class="text-decoration-none">
@@ -101,9 +129,14 @@
 							<th scope="row">
 								@(index + 1)
 							</th>
-							<td>
-								<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
-							</td>
+
+							@if (selectItemEnabled)
+							{
+								<td>
+									<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
+								</td>
+							}
+
 							<td>
 								<i class="bi bi-folder"></i>
 

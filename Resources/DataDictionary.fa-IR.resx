@@ -135,6 +135,9 @@
   <data name="EmailAddress" xml:space="preserve">
     <value>نشانی پست الکترونیکی</value>
   </data>
+  <data name="FileManager" xml:space="preserve">
+    <value>مدیریت فایل‌ها</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>نام و نام خانوادگی</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="UpdateDateTime" xml:space="preserve">
     <value>زمان ویرایش</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>نسخه</value>
   </data>
   <data name="Websites" xml:space="preserve">
     <value>وب‌سایت‌ها</value>

@@ -1,19 +1,31 @@
-﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor
+﻿@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpContextAccessor
 
 <footer class="footer border-top py-3 bg-light text-muted fixed-bottom">
 	<div class="container text-muted">
-		<small>
-			[@(httpContextAccessor.HttpContext?.Request.Host.Value)]
+		|
+		@(httpContextAccessor.HttpContext?.Request.Host.Value)
 
-			<environment include="Development" exclude="Production">
-				[Development]
-			</environment>
+		|
+		<environment include="Development" exclude="Production">
+			Development Mode
+		</environment>
 
-			<environment include="Production" exclude="Development">
-				[Production]
-			</environment>
-		</small>
+		<environment include="Production" exclude="Development">
+			Production Mode
+		</environment>
 
-		&copy;2022 - @(Resources.DataDictionary.SiteTitle)
+		|
+		&copy;2022
+
+		|
+		@(Resources.DataDictionary.SiteTitle)
+
+		@if (applicationSettings != null && string.IsNullOrWhiteSpace(applicationSettings.Version) == false)
+		{
+			var version = $"| {Resources.DataDictionary.Version}: {applicationSettings.Version} |";
+
+			@(version)
+		}
 	</div>
 </footer>

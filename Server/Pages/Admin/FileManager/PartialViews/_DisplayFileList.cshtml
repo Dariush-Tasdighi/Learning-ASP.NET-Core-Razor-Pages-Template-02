@@ -1,20 +1,37 @@
 ﻿@model Server.Pages.Admin.FileManager.IndexModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
-@if (Model == null)
+@if (Model == null || applicationSettings == null || applicationSettings.FileManagerSettings == null)
 {
 	return;
+}
+
+@{
+	var selectItemEnabled = false;
+
+	if (applicationSettings.FileManagerSettings.DeleteItemsEnabled)
+	{
+		selectItemEnabled = true;
+	}
 }
 
 <div class="row">
 	<div class="col table-responsive">
 		<table class="table table-bordered table-sm table-striped table-hover align-middle">
-			<thead>
-				<tr class="table-warning">
+			<caption>Files</caption>
+
+			<thead class="table-primary">
+				<tr>
 					<th scope="col">
 						#
 					</th>
-					<th>
-					</th>
+
+					@if (selectItemEnabled)
+					{
+						<th>
+						</th>
+					}
+
 					<th scope="col">
 						Name
 					</th>
@@ -64,9 +81,14 @@
 							<th scope="row">
 								@(index + 1)
 							</th>
-							<td>
-								<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
-							</td>
+
+							@if (selectItemEnabled)
+							{
+								<td>
+									<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
+								</td>
+							}
+
 							<td>
 								<a href="@(pathName)" class="text-decoration-none" target="_blank">
 									@(item.Name)
@@ -92,24 +114,21 @@
 							</td>
 						</tr>
 					}
-
-					<tr class="table-warning">
-						<td colspan="4">
-						</td>
-						<td>
-							@(totalLength.ToString("#,##0"))B
-						</td>
-						<td>
-							@((((double)totalLength) / ((double)1024)).ToString("#,##0"))KB
-						</td>
-						<td>
-							@((((double)totalLength) / ((double)(1024 * 1024))).ToString("#,##0"))MB
-						</td>
-						<td colspan="2">
-						</td>
-					</tr>
 				}
 			</tbody>
+
+			<tfoot class="table-primary">
+				<tr>
+					<th scope="col" colspan="10">
+						Total Length:
+						@(totalLength.ToString("#,##0")) Bytes
+						|
+						@((((double)totalLength) / ((double)1024)).ToString("#,##0")) KBytes
+						|
+						@((((double)totalLength) / ((double)(1024 * 1024))).ToString("#,##0")) MBytes
+					</th>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 </div>

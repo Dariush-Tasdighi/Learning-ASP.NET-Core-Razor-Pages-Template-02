@@ -8,6 +8,8 @@
 		{
 		}
 
+		public string? Version { get; set; }
+
 		public string[]? ActivationKeys { get; set; }
 
 		public CultureSettings? CultureSettings { get; set; }

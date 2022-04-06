@@ -135,6 +135,9 @@
   <data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
   </data>
+  <data name="FileManager" xml:space="preserve">
+    <value>File Manager</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>Full Name</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="UpdateDateTime" xml:space="preserve">
     <value>Update Time</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
   </data>
   <data name="Websites" xml:space="preserve">
     <value>Websites</value>
