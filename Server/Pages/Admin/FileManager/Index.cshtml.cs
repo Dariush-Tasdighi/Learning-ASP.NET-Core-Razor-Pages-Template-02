@@ -12,22 +12,20 @@ namespace Server.Pages.Admin.FileManager
 			HostEnvironment = hostEnvironment;
 			ApplicationSettings = applicationSettings;
 
-			PageRouting =
+			PageAddress =
 				"/Admin/FileManager/Index";
-
-			DateTimeFormat =
-				"yyyy/MM/dd [HH:mm:ss]";
 
 			PhysicalRootPath =
 				$"{HostEnvironment.ContentRootPath}wwwroot"
 				.Replace("/", "\\");
+
+			Files = new System.Collections.Generic.List<System.IO.FileInfo>();
+			Directories = new System.Collections.Generic.List<System.IO.DirectoryInfo>();
 		}
 		#endregion /Constructor
 
 		#region Public Read Only Property(ies)
-		public string PageRouting { get; }
-
-		public string? DateTimeFormat { get; }
+		public string PageAddress { get; }
 
 		public string PhysicalRootPath { get; }
 
@@ -41,9 +39,9 @@ namespace Server.Pages.Admin.FileManager
 
 		public string? PhysicalCurrentPath { get; set; }
 
-		public System.Collections.Generic.IList<System.IO.FileInfo>? Files { get; set; }
+		public System.Collections.Generic.IList<System.IO.FileInfo> Files { get; set; }
 
-		public System.Collections.Generic.IList<System.IO.DirectoryInfo>? Directories { get; set; }
+		public System.Collections.Generic.IList<System.IO.DirectoryInfo> Directories { get; set; }
 		#endregion /Public Property(ies)
 
 		#region OnGet
@@ -255,8 +253,8 @@ namespace Server.Pages.Admin.FileManager
 			if (string.IsNullOrWhiteSpace(PhysicalCurrentPath) ||
 				System.IO.Directory.Exists(PhysicalCurrentPath) == false)
 			{
-				Files = null;
-				Directories = null;
+				Files = new System.Collections.Generic.List<System.IO.FileInfo>();
+				Directories = new System.Collections.Generic.List<System.IO.DirectoryInfo>();
 
 				return;
 			}

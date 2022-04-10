@@ -9,7 +9,7 @@
 	string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
 
 	var files =
-	Model?.Files?
+	Model.Files
 	.Where(current => imageExtensions.Contains(current.Extension))
 	.OrderBy(current => current.Extension)
 	.ThenBy(current => current.Name)
@@ -28,19 +28,9 @@
 	{
 		var item = files[index];
 
-		var pathName = $"{Model?.CurrentPath}{item.Name}";
-
-		// **********
-		System.Drawing.Image? image = null;
-
-		var fileName =
-		$"{Model?.PhysicalRootPath}{pathName}";
-
-		if (System.IO.File.Exists(fileName))
-		{
-			image = System.Drawing.Image.FromFile(filename: fileName);
-		}
-		// **********
+		var pathName = $"{Model.CurrentPath}{item.Name}";
+		var fileName = $"{Model.PhysicalRootPath}{pathName}";
+		var image = System.Drawing.Image.FromFile(filename: fileName);
 
 		<div class="col">
 			<div class="card h-100 shadow-lg">
@@ -54,20 +44,20 @@
 						<br />
 						<strong>Attributes:</strong> @(item.Attributes)
 						<hr />
-						<strong>Width:</strong> @(image?.Width)
+						<strong>Width:</strong> @(image.Width)
 						<br />
-						<strong>Height:</strong> @(image?.Height)
+						<strong>Height:</strong> @(image.Height)
 						<hr />
-						<strong>Vertical Resolution:</strong> @(image?.VerticalResolution)
+						<strong>Vertical Resolution:</strong> @(image.VerticalResolution)
 						<br />
-						<strong>Horizontal Resolution:</strong> @(image?.HorizontalResolution)
+						<strong>Horizontal Resolution:</strong> @(image.HorizontalResolution)
 						<br />
-						<strong>Pixel Format:</strong> @(image?.PixelFormat)
+						<strong>Pixel Format:</strong> @(image.PixelFormat)
 
-						@if (image?.Tag != null)
+						@if (image.Tag != null)
 						{
 							<hr />
-							<strong>Tag:</strong> @(image?.Tag)
+							<strong>Tag:</strong> @(image.Tag)
 						}
 					</p>
 				</div>

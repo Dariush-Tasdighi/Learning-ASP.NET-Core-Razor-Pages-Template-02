@@ -162,6 +162,9 @@
   <data name="Ordering" xml:space="preserve">
     <value>Ordering</value>
   </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
   <data name="SiteAuthor" xml:space="preserve">
     <value>Dariush Tasdighi</value>
   </data>

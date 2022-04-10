@@ -17,10 +17,10 @@
 
 <div class="row">
 	<div class="col table-responsive">
-		<table class="table table-bordered table-sm table-striped table-hover align-middle">
+		<table class="@(applicationSettings.FileManagerSettings.TableStyle)">
 			<caption>Directories</caption>
 
-			<thead class="table-primary">
+			<thead class="@(applicationSettings.FileManagerSettings.TableHeaderStyle)">
 				<tr>
 					<th scope="col">
 						#
@@ -61,7 +61,7 @@
 					parentDirectoryPath = parentDirectoryPath[..parentDirectoryPath.LastIndexOf("/")];
 					parentDirectoryPath = parentDirectoryPath[..parentDirectoryPath.LastIndexOf("/")];
 
-					<tr class="table-success">
+					<tr>
 						<th scope="row">
 						</th>
 
@@ -71,25 +71,15 @@
 							</td>
 						}
 
-						<td>
+						<td colspan="6">
 							<i class="bi bi-reply-all"></i>
-							<a href="@(Model.PageRouting)" class="text-decoration-none">
+							<a href="@(Model.PageAddress)" class="text-decoration-none">
 								[ROOT]
 							</a>
 						</td>
-						<td>
-						</td>
-						<td>
-						</td>
-						<td>
-						</td>
-						<td>
-						</td>
-						<td>
-						</td>
 					</tr>
 
-					<tr class="table-success">
+					<tr>
 						<th scope="row">
 						</th>
 
@@ -99,68 +89,55 @@
 							</td>
 						}
 
-						<td>
+						<td colspan="6">
 							<i class="bi bi-reply"></i>
-							<a href="@(Model.PageRouting)?path=@(parentDirectoryPath)" class="text-decoration-none">
+							<a href="@(Model.PageAddress)?path=@(parentDirectoryPath)" class="text-decoration-none">
 								[PARENT]
 							</a>
-						</td>
-						<td>
-						</td>
-						<td>
-						</td>
-						<td>
-						</td>
-						<td>
-						</td>
-						<td>
 						</td>
 					</tr>
 				}
 
-				@if (Model.Directories != null && Model.Directories.Count > 0)
+				@for (var index = 0; index <= Model.Directories.Count - 1; index++)
 				{
-					for (var index = 0; index <= Model.Directories.Count - 1; index++)
-					{
-						var item = Model.Directories[index];
-						var path = $"{Model.CurrentPath}{item.Name}";
+					var item = Model.Directories[index];
+					var path = $"{Model.CurrentPath}{item.Name}";
 
-						<tr>
-							<th scope="row">
-								@(index + 1)
-							</th>
+					<tr>
+						<th scope="row">
+							@(index + 1)
+						</th>
 
-							@if (selectItemEnabled)
-							{
-								<td>
-									<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
-								</td>
-							}
+						@if (selectItemEnabled)
+						{
+							<td>
+								<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
+							</td>
+						}
 
-							<td>
-								<i class="bi bi-folder"></i>
+						<td>
+							<i class="bi bi-folder"></i>
 
-								<a href="@(Model.PageRouting)?path=@(path)" class="text-decoration-none">
-									@(item.Name)
-								</a>
-							</td>
-							<td>
-								@(GetContentCount(item))
-							</td>
-							<td>
-								@(item.Attributes)
-							</td>
-							<td>
-								@(item.CreationTime.ToString(Model.DateTimeFormat))
-							</td>
-							<td>
-								@(item.LastWriteTime.ToString(Model.DateTimeFormat))
-							</td>
-							<td>
-								@(item.LastAccessTime.ToString(Model.DateTimeFormat))
-							</td>
-						</tr>
-					}
+							<a href="@(Model.PageAddress)?path=@(path)" class="text-decoration-none">
+								@(item.Name)
+							</a>
+						</td>
+						<td>
+							@(GetContentCount(item))
+						</td>
+						<td>
+							@(item.Attributes)
+						</td>
+						<td>
+							@(item.CreationTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
+						</td>
+						<td>
+							@(item.LastWriteTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
+						</td>
+						<td>
+							@(item.LastAccessTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
+						</td>
+					</tr>
 				}
 			</tbody>
 		</table>

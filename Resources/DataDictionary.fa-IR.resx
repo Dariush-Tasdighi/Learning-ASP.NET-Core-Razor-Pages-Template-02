@@ -162,6 +162,9 @@
   <data name="Ordering" xml:space="preserve">
     <value>چیدمان</value>
   </data>
+  <data name="Resume" xml:space="preserve">
+    <value>رزومه</value>
+  </data>
   <data name="SiteAuthor" xml:space="preserve">
     <value>داریوش تصدیقی</value>
   </data>

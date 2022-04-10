@@ -17,10 +17,10 @@
 
 <div class="row">
 	<div class="col table-responsive">
-		<table class="table table-bordered table-sm table-striped table-hover align-middle">
+		<table class="@(applicationSettings.FileManagerSettings.TableStyle)">
 			<caption>Files</caption>
 
-			<thead class="table-primary">
+			<thead class="@(applicationSettings.FileManagerSettings.TableHeaderStyle)">
 				<tr>
 					<th scope="col">
 						#
@@ -55,25 +55,15 @@
 					</th>
 				</tr>
 			</thead>
+
 			<tbody>
 				@{
 					long totalLength = 0;
 
-					var files =
-					Model?.Files?
-					.OrderBy(current => current.Extension)
-					.ThenBy(current => current.Name)
-					.ToList()
-					;
-				}
-
-				@if (files != null && files.Count > 0)
-				{
-					for (var index = 0; index <= files.Count - 1; index++)
+					for (var index = 0; index <= Model.Files.Count - 1; index++)
 					{
-						var item = files[index];
-
-						var pathName = $"{Model?.CurrentPath}{item.Name}";
+						var item = Model.Files[index];
+						var pathName = $"{Model.CurrentPath}{item.Name}";
 
 						totalLength += item.Length;
 
@@ -95,7 +85,7 @@
 								</a>
 							</td>
 							<td>
-								@(item.Extension?.ToLower())
+								@(item.Extension.ToLower())
 							</td>
 							<td>
 								@(item.Length.ToString("#,##0"))
@@ -104,20 +94,20 @@
 								@(item.Attributes)
 							</td>
 							<td>
-								@(item.CreationTime.ToString(format: Model.DateTimeFormat))
+								@(item.CreationTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
 							</td>
 							<td>
-								@(item.LastWriteTime.ToString(format: Model.DateTimeFormat))
+								@(item.LastWriteTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
 							</td>
 							<td>
-								@(item.LastAccessTime.ToString(format: Model.DateTimeFormat))
+								@(item.LastAccessTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
 							</td>
 						</tr>
 					}
 				}
 			</tbody>
 
-			<tfoot class="table-primary">
+			<tfoot class="@(applicationSettings.FileManagerSettings.TableFooterStyle)">
 				<tr>
 					<th scope="col" colspan="10">
 						Total Length:
