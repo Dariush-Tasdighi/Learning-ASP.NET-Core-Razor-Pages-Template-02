@@ -16,8 +16,7 @@ namespace Server.Pages.Admin.FileManager
 				"/Admin/FileManager/Index";
 
 			PhysicalRootPath =
-				$"{HostEnvironment.ContentRootPath}wwwroot"
-				.Replace("/", "\\");
+				$"{HostEnvironment.ContentRootPath}wwwroot";
 
 			Files = new System.Collections.Generic.List<System.IO.FileInfo>();
 			Directories = new System.Collections.Generic.List<System.IO.DirectoryInfo>();
