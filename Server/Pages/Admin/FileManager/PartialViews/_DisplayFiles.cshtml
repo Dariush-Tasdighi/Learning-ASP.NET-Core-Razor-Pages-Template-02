@@ -25,23 +25,17 @@
 					<th scope="col">
 						#
 					</th>
-
-					@if (selectItemEnabled)
-					{
-						<th>
-						</th>
-					}
-
+					<th scope="col"></th>
 					<th scope="col">
 						Name
 					</th>
-					<th>
+					<th scope="col">
 						Type
 					</th>
-					<th>
+					<th scope="col">
 						Length
 					</th>
-					<th>
+					<th scope="col">
 						Attributes
 					</th>
 					<th scope="col">
@@ -71,14 +65,12 @@
 							<th scope="row">
 								@(index + 1)
 							</th>
-
-							@if (selectItemEnabled)
-							{
-								<td>
+							<td>
+								@if (selectItemEnabled)
+								{
 									<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
-								</td>
-							}
-
+								}
+							</td>
 							<td>
 								<a href="@(pathName)" class="text-decoration-none" target="_blank">
 									@(item.Name)
@@ -109,7 +101,7 @@
 
 			<tfoot class="@(applicationSettings.FileManagerSettings.TableFooterStyle)">
 				<tr>
-					<th scope="col" colspan="10">
+					<th scope="col" colspan="9">
 						Total Length:
 						@(totalLength.ToString("#,##0")) Bytes
 						|

@@ -240,6 +240,7 @@ namespace Server.Pages.Admin.FileManager
 
 			if (System.IO.Directory.Exists(path: PhysicalCurrentPath) == false)
 			{
+				CurrentPath = "/";
 				PhysicalCurrentPath = PhysicalRootPath;
 			}
 			// **************************************************

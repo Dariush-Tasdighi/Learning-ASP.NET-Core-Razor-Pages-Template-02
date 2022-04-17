@@ -25,20 +25,14 @@
 					<th scope="col">
 						#
 					</th>
-
-					@if (selectItemEnabled)
-					{
-						<th>
-						</th>
-					}
-
+					<th scope="col"></th>
 					<th scope="col">
 						Name
 					</th>
-					<th>
+					<th scope="col">
 						Contents
 					</th>
-					<th>
+					<th scope="col">
 						Attributes
 					</th>
 					<th scope="col">
@@ -61,17 +55,11 @@
 					parentDirectoryPath = parentDirectoryPath[..parentDirectoryPath.LastIndexOf("/")];
 
 					<tr>
-						<th scope="row">
-						</th>
-
-						@if (selectItemEnabled)
-						{
-							<td>
-							</td>
-						}
-
+						<th scope="row"></th>
+						<td></td>
 						<td colspan="6">
 							<i class="bi bi-reply-all"></i>
+
 							<a href="@(Model.PageAddress)" class="text-decoration-none">
 								[ROOT]
 							</a>
@@ -79,17 +67,11 @@
 					</tr>
 
 					<tr>
-						<th scope="row">
-						</th>
-
-						@if (selectItemEnabled)
-						{
-							<td>
-							</td>
-						}
-
+						<th scope="row"></th>
+						<td></td>
 						<td colspan="6">
 							<i class="bi bi-reply"></i>
+
 							<a href="@(Model.PageAddress)?path=@(parentDirectoryPath)" class="text-decoration-none">
 								[PARENT]
 							</a>
@@ -106,14 +88,12 @@
 						<th scope="row">
 							@(index + 1)
 						</th>
-
-						@if (selectItemEnabled)
-						{
-							<td>
+						<td>
+							@if (selectItemEnabled)
+							{
 								<input type="checkbox" id="@(item.Name)" value="@(item.Name)" name="items" class="form-check-input" />
-							</td>
-						}
-
+							}
+						</td>
 						<td>
 							<i class="bi bi-folder"></i>
 
