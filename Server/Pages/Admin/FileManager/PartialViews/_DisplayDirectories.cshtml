@@ -1,7 +1,7 @@
 ﻿@model Server.Pages.Admin.FileManager.IndexModel
 @inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
-@if (Model == null || applicationSettings == null || applicationSettings.FileManagerSettings == null)
+@if (Model == null || applicationSettings == null)
 {
 	return;
 }

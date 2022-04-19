@@ -6,14 +6,34 @@
 
 		public ApplicationSettings() : base()
 		{
+			ToastSettings =
+				new ToastSettings();
+
+			CultureSettings =
+				new CultureSettings();
+
+			FileManagerSettings =
+				new FileManagerSettings();
 		}
 
+		// **********
 		public string? Version { get; set; }
+		// **********
 
+		// **********
 		public string[]? ActivationKeys { get; set; }
+		// **********
 
-		public CultureSettings? CultureSettings { get; set; }
+		// **********
+		public ToastSettings ToastSettings { get; set; }
+		// **********
 
-		public FileManagerSettings? FileManagerSettings { get; set; }
+		// **********
+		public CultureSettings CultureSettings { get; set; }
+		// **********
+
+		// **********
+		public FileManagerSettings FileManagerSettings { get; set; }
+		// **********
 	}
 }

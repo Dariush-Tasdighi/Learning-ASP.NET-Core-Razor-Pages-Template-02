@@ -127,10 +127,10 @@
 		{
 			// **************************************************
 			var defaultCultureName =
-				ApplicationSettings.CultureSettings?.DefaultCultureName;
+				ApplicationSettings.CultureSettings.DefaultCultureName;
 
 			var supportedCultureNames =
-				ApplicationSettings.CultureSettings?.SupportedCultureNames;
+				ApplicationSettings.CultureSettings.SupportedCultureNames;
 			// **************************************************
 
 			// **************************************************

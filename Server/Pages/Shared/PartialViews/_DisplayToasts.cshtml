@@ -1,0 +1,104 @@
+﻿@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+
+@{
+	if (applicationSettings == null)
+	{
+		return;
+	}
+
+	var toastSettings =
+		applicationSettings.ToastSettings;
+
+	int delayStep =
+		toastSettings.DelayStep;
+
+	int delay =
+		toastSettings.InitialDelay - delayStep;
+
+	var errorToasts =
+		ViewData[index: Infrastructure.BasePageModel.ErrorToastsKeyName] as
+		System.Collections.Generic.IList<string>;
+
+	var warningToasts =
+		ViewData[index: Infrastructure.BasePageModel.WarningToastsKeyName] as
+		System.Collections.Generic.IList<string>;
+
+	var successToasts =
+		ViewData[index: Infrastructure.BasePageModel.SuccessToastsKeyName] as
+		System.Collections.Generic.IList<string>;
+
+	if (errorToasts == null && warningToasts == null && successToasts == null)
+	{
+		return;
+	}
+}
+
+<div aria-live="polite" aria-atomic="true" class="position-relative">
+	<div class="toast-container position-absolute @(toastSettings.Style)" style="z-index: 10000;">
+
+		@{
+			if (errorToasts != null)
+			{
+				foreach (var message in errorToasts)
+				{
+					delay += delayStep;
+
+					<div class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="@(delay)" data-bs-animation="true" data-bs-autohide="true">
+						<div class="toast-body">
+							@(message)
+						</div>
+					</div>
+				}
+			}
+
+			if (warningToasts != null)
+			{
+				foreach (var message in warningToasts)
+				{
+					delay += delayStep;
+
+					<div class="toast bg-warning text-black" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="@(delay)" data-bs-animation="true" data-bs-autohide="true">
+						<div class="toast-body">
+							@(message)
+						</div>
+					</div>
+				}
+			}
+
+			if (successToasts != null)
+			{
+				foreach (var message in successToasts)
+				{
+					delay += delayStep;
+
+					<div class="toast bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="@(delay)" data-bs-animation="true" data-bs-autohide="true">
+						<div class="toast-body">
+							@(message)
+						</div>
+					</div>
+				}
+			}
+		}
+
+	</div>
+</div>
+
+<script>
+
+	window.addEventListener('load', (e) => {
+
+		var toastElements =
+			document.querySelectorAll('.toast')
+
+		toastElements.forEach((toastElement, index) => {
+
+			let toast =
+				new bootstrap.Toast(toastElement)
+
+			toast.show()
+
+		})
+
+	})
+
+</script>

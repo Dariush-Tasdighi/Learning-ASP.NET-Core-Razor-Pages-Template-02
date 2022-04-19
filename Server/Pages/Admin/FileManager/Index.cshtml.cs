@@ -58,9 +58,19 @@ namespace Server.Pages.Admin.FileManager
 		{
 			CheckPathAndSetCurrentPath(path: path);
 
-			if (ApplicationSettings.FileManagerSettings == null ||
-				ApplicationSettings.FileManagerSettings.DeleteItemsEnabled == false)
+			if (ApplicationSettings.FileManagerSettings.DeleteItemsEnabled == false)
 			{
+				SetDirectoriesAndFiles();
+				return;
+			}
+
+			if(items == null || items.Count == 0)
+			{
+				var errorMessage =
+					Resources.FileManager.MessageYouDidNotSelectAnyItemsForDeleting;
+
+				AddErrorToast(message: errorMessage);
+
 				SetDirectoriesAndFiles();
 				return;
 			}
@@ -107,39 +117,59 @@ namespace Server.Pages.Admin.FileManager
 		public void OnPostCreateDirectory
 			(string? path, string? directoryName)
 		{
-			CheckPathAndSetCurrentPath(path: path);
-
-			if (ApplicationSettings.FileManagerSettings == null ||
-				ApplicationSettings.FileManagerSettings.CreateDirectoryEnabled == false)
+			try
 			{
-				SetDirectoriesAndFiles();
-				return;
-			}
+				CheckPathAndSetCurrentPath(path: path);
 
-			if (string.IsNullOrWhiteSpace(directoryName))
+				if (ApplicationSettings.FileManagerSettings.CreateDirectoryEnabled == false)
+				{
+					SetDirectoriesAndFiles();
+					return;
+				}
+
+				if (string.IsNullOrWhiteSpace(directoryName))
+				{
+					SetDirectoriesAndFiles();
+					return;
+				}
+
+				directoryName =
+					directoryName
+					.Replace(" ", string.Empty);
+
+				var physicalPath =
+					$"{PhysicalRootPath}{CurrentPath}{directoryName}"
+					.Replace("/", "\\");
+
+				if (System.IO.Directory.Exists(path: physicalPath))
+				{
+					// **************************************************
+					var errorMessage = string.Format
+						(Resources.FileManager.MessageFolderAlreadyExists, directoryName);
+
+					AddErrorMessage(message: errorMessage);
+					// **************************************************
+
+					SetDirectoriesAndFiles();
+					return;
+				}
+
+				System.IO.Directory
+					.CreateDirectory(path: physicalPath);
+
+				// **************************************************
+				var successMessage = string.Format
+					(Resources.FileManager.MessageFolderHasBeenCreated, directoryName);
+
+				AddSuccessToast(message: successMessage);
+				// **************************************************
+
+				SetDirectoriesAndFiles();
+			}
+			catch (System.Exception ex)
 			{
-				SetDirectoriesAndFiles();
-				return;
+				AddErrorToast(message: ex.Message);
 			}
-
-			directoryName =
-				directoryName
-				.Replace(" ", string.Empty);
-
-			var physicalPath =
-				$"{PhysicalRootPath}{CurrentPath}{directoryName}"
-				.Replace("/", "\\");
-
-			if (System.IO.Directory.Exists(path: physicalPath))
-			{
-				SetDirectoriesAndFiles();
-				return;
-			}
-
-			System.IO.Directory
-				.CreateDirectory(path: physicalPath);
-
-			SetDirectoriesAndFiles();
 		}
 		#endregion /OnPostCreateDirectory
 
@@ -150,8 +180,7 @@ namespace Server.Pages.Admin.FileManager
 		{
 			CheckPathAndSetCurrentPath(path: path);
 
-			if (ApplicationSettings.FileManagerSettings == null ||
-				ApplicationSettings.FileManagerSettings.UploadFilesEnabled == false)
+			if (ApplicationSettings.FileManagerSettings.UploadFilesEnabled == false)
 			{
 				SetDirectoriesAndFiles();
 				return;
