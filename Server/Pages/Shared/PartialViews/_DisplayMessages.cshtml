@@ -3,7 +3,7 @@
 	ViewData[index: Infrastructure.BasePageModel.ErrorMessagesKeyName] as
 	System.Collections.Generic.IList<string>;
 
-	if (errorMessages != null)
+	if (errorMessages != null && errorMessages.Count != 0)
 	{
 		<div class="alert alert-danger pb-0" role="alert">
 			<ul>
@@ -19,7 +19,7 @@
 	ViewData[index: Infrastructure.BasePageModel.WarningMessagesKeyName] as
 	System.Collections.Generic.IList<string>;
 
-	if (warningMessages != null)
+	if (warningMessages != null && warningMessages.Count != 0)
 	{
 		<div class="alert alert-warning pb-0" role="alert">
 			<ul>

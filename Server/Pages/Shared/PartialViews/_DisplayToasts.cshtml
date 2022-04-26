@@ -27,7 +27,9 @@
 		ViewData[index: Infrastructure.BasePageModel.SuccessToastsKeyName] as
 		System.Collections.Generic.IList<string>;
 
-	if (errorToasts == null && warningToasts == null && successToasts == null)
+	if ((errorToasts == null || errorToasts.Count == 0) &&
+	(warningToasts == null || warningToasts.Count == 0) &&
+	(successToasts == null || successToasts.Count == 0))
 	{
 		return;
 	}

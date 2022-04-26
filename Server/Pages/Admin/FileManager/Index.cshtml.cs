@@ -64,7 +64,7 @@ namespace Server.Pages.Admin.FileManager
 				return;
 			}
 
-			if(items == null || items.Count == 0)
+			if (items == null || items.Count == 0)
 			{
 				var errorMessage =
 					Resources.FileManager.MessageYouDidNotSelectAnyItemsForDeleting;
@@ -174,8 +174,8 @@ namespace Server.Pages.Admin.FileManager
 		#endregion /OnPostCreateDirectory
 
 		#region OnPostUploadFiles
-		public async System.Threading.Tasks.Task OnPostUploadFiles(
-			string? path, System.Collections.Generic
+		public async System.Threading.Tasks.Task OnPostUploadFiles
+			(string? path, System.Collections.Generic
 			.List<Microsoft.AspNetCore.Http.IFormFile> files)
 		{
 			CheckPathAndSetCurrentPath(path: path);
@@ -198,7 +198,8 @@ namespace Server.Pages.Admin.FileManager
 				{
 					var fileName =
 						file.FileName
-						.Replace(" ", string.Empty);
+						.Trim()
+						.Replace(" ", "_");
 
 					var physicalPathName =
 						$"{PhysicalRootPath}{CurrentPath}{fileName}"

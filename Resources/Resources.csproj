@@ -44,7 +44,7 @@
 			<LastGenOutput>DataDictionary.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="FileManager.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
+			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>FileManager.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="LableCaptions.resx">
