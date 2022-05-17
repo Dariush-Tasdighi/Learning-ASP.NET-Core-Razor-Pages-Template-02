@@ -9,6 +9,12 @@
 			TableHeaderStyle = "table-primary";
 			TableFooterStyle = "table-secondary";
 			TableStyle = "table table-bordered table-sm table-striped table-hover";
+
+			PictureExtensions =
+				new string[] { ".ico", ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
+
+			PermittedFileExtensions =
+				new string[] { ".ico", ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
 		}
 
 		// **********
@@ -37,6 +43,14 @@
 
 		// **********
 		public string DisplayDateTimeFormat { get; set; }
+		// **********
+
+		// **********
+		public string[] PictureExtensions { get; set; }
+		// **********
+
+		// **********
+		public string[] PermittedFileExtensions { get; set; }
 		// **********
 	}
 }

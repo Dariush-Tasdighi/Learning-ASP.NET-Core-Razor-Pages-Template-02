@@ -121,7 +121,7 @@
     <value>The [{0}] file has been deleted.</value>
   </data>
   <data name="MessageFolderAlreadyExists" xml:space="preserve">
-    <value>The [{0}] folder already exists!</value>
+    <value />
   </data>
   <data name="MessageFolderHasBeenCreated" xml:space="preserve">
     <value>The [{0}] folder has been created.</value>

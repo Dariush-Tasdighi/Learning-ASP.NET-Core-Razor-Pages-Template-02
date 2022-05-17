@@ -1,7 +1,12 @@
 ﻿@page "{path?}"
 @model Server.Pages.Admin.FileManager.IndexModel
 
-<div dir="ltr">
+@{
+	Layout =
+		"Layouts/Ltr/_Layout";
+}
+
+<div>
 
 	<form method="post" enctype="multipart/form-data">
 

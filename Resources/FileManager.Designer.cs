@@ -70,7 +70,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The [{0}] folder already exists!.
+        ///   Looks up a localized string similar to .
         /// </summary>
         public static string MessageFolderAlreadyExists {
             get {

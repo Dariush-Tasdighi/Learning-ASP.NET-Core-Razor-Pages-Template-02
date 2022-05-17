@@ -46,9 +46,17 @@ namespace Server.Pages.Admin.FileManager
 		#region OnGet
 		public void OnGet(string? path)
 		{
-			CheckPathAndSetCurrentPath(path: path);
+			try
+			{
+				CheckPathAndSetCurrentPath(path: path);
 
-			SetDirectoriesAndFiles();
+				SetDirectoriesAndFiles();
+			}
+			catch (System.Exception ex)
+			{
+				AddToastError
+					(message: ex.Message);
+			}
 		}
 		#endregion /OnGet
 
@@ -56,28 +64,28 @@ namespace Server.Pages.Admin.FileManager
 		public void OnPostDeleteItems
 			(string? path, System.Collections.Generic.IList<string>? items)
 		{
-			CheckPathAndSetCurrentPath(path: path);
-
-			if (ApplicationSettings.FileManagerSettings.DeleteItemsEnabled == false)
+			try
 			{
-				SetDirectoriesAndFiles();
-				return;
-			}
+				CheckPathAndSetCurrentPath(path: path);
 
-			if (items == null || items.Count == 0)
-			{
-				var errorMessage =
-					Resources.FileManager.MessageYouDidNotSelectAnyItemsForDeleting;
+				if (ApplicationSettings.FileManagerSettings.DeleteItemsEnabled == false)
+				{
+					SetDirectoriesAndFiles();
+					return;
+				}
 
-				AddToastError
-					(message: errorMessage);
+				if (items == null || items.Count == 0)
+				{
+					var errorMessage =
+						"You did not select any files or folders for deleting!";
 
-				SetDirectoriesAndFiles();
-				return;
-			}
+					AddToastError
+						(message: errorMessage);
 
-			if (items != null)
-			{
+					SetDirectoriesAndFiles();
+					return;
+				}
+
 				foreach (var item in items)
 				{
 					try
@@ -90,6 +98,12 @@ namespace Server.Pages.Admin.FileManager
 						{
 							System.IO.Directory.Delete
 								(path: physicalItemPath, recursive: true);
+
+							var successMessage =
+								$"The direcotry ({item}) deleted successfully.";
+
+							AddToastSuccess
+								(message: successMessage);
 						}
 						else
 						{
@@ -101,16 +115,29 @@ namespace Server.Pages.Admin.FileManager
 
 								System.IO.File.Delete
 									(path: physicalItemPath);
+
+								var successMessage =
+									$"The file ({item}) deleted successfully.";
+
+								AddToastSuccess
+									(message: successMessage);
 							}
 						}
 					}
-					catch //(System.Exception ex)
+					catch (System.Exception ex)
 					{
+						AddToastError
+							(message: ex.Message);
 					}
 				}
-			}
 
-			SetDirectoriesAndFiles();
+				SetDirectoriesAndFiles();
+			}
+			catch (System.Exception ex)
+			{
+				AddToastError
+					(message: ex.Message);
+			}
 		}
 		#endregion /OnPostDeleteItems
 
@@ -145,8 +172,8 @@ namespace Server.Pages.Admin.FileManager
 				if (System.IO.Directory.Exists(path: physicalPath))
 				{
 					// **************************************************
-					var errorMessage = string.Format
-						(Resources.FileManager.MessageFolderAlreadyExists, directoryName);
+					var errorMessage =
+						$"The [{directoryName}] folder already exists!";
 
 					AddPageError
 						(message: errorMessage);
@@ -160,8 +187,8 @@ namespace Server.Pages.Admin.FileManager
 					.CreateDirectory(path: physicalPath);
 
 				// **************************************************
-				var successMessage = string.Format
-					(Resources.FileManager.MessageFolderHasBeenCreated, directoryName);
+				var successMessage =
+					$"The [{directoryName}] folder has been created successfully.";
 
 				AddToastSuccess
 					(message: successMessage);
@@ -177,51 +204,174 @@ namespace Server.Pages.Admin.FileManager
 		}
 		#endregion /OnPostCreateDirectory
 
-		#region OnPostUploadFiles
-		public async System.Threading.Tasks.Task OnPostUploadFiles
+		#region OnPostUploadFilesAsync
+		public async System.Threading.Tasks.Task
+			OnPostUploadFilesAsync
 			(string? path, System.Collections.Generic
 			.List<Microsoft.AspNetCore.Http.IFormFile> files)
 		{
-			CheckPathAndSetCurrentPath(path: path);
-
-			if (ApplicationSettings.FileManagerSettings.UploadFilesEnabled == false)
+			try
 			{
-				SetDirectoriesAndFiles();
-				return;
-			}
+				CheckPathAndSetCurrentPath(path: path);
 
-			if (files == null || files.Count == 0)
-			{
-				SetDirectoriesAndFiles();
-				return;
-			}
-
-			foreach (var file in files)
-			{
-				if (file.Length > 0)
+				if (ApplicationSettings.FileManagerSettings.UploadFilesEnabled == false)
 				{
-					var fileName =
-						file.FileName
-						.Trim()
-						.Replace(" ", "_");
+					SetDirectoriesAndFiles();
+					return;
+				}
 
-					var physicalPathName =
-						$"{PhysicalRootPath}{CurrentPath}{fileName}"
-						.Replace("/", "\\");
+				if (files == null || files.Count == 0)
+				{
+					var errorMessage =
+						"You did not specify any files for uploading!";
 
-					if (System.IO.Directory.Exists(path: physicalPathName) == false)
-					{
-						using var stream =
-							System.IO.File.Create(path: physicalPathName);
+					AddToastError
+						(message: errorMessage);
 
-						await file.CopyToAsync(target: stream);
-					}
+					return;
+				}
+
+				foreach (var file in files)
+				{
+					await CheckFileValidationAndSaveAsync
+						(overwriteIfFileExists: true, file: file);
+				}
+
+				SetDirectoriesAndFiles();
+			}
+			catch (System.Exception ex)
+			{
+				AddToastError
+					(message: ex.Message);
+			}
+		}
+		#endregion /OnPostUploadFilesAsync
+
+		#region CheckFileValidationAndSaveAsync
+		private async System.Threading.Tasks.Task<bool>
+			CheckFileValidationAndSaveAsync
+			(bool overwriteIfFileExists, Microsoft.AspNetCore.Http.IFormFile? file)
+		{
+			var result =
+				CheckFileValidation(file: file);
+
+			if (result == false)
+			{
+				return false;
+			}
+
+			var fileName =
+				file!.FileName
+				.Trim()
+				.Replace(" ", "_");
+
+			var physicalPathName =
+				$"{PhysicalRootPath}{CurrentPath}{fileName}"
+				.Replace("/", "\\");
+
+			if (overwriteIfFileExists == false)
+			{
+				if (System.IO.File.Exists(path: physicalPathName))
+				{
+					var errorMessage = string.Format
+						("File '{0}' already exists!", fileName);
+
+					AddToastError
+						(message: errorMessage);
+
+					return false;
 				}
 			}
 
-			SetDirectoriesAndFiles();
+			using (var stream = System.IO.File.Create(path: physicalPathName))
+			{
+				await file.CopyToAsync(target: stream);
+
+				await stream.FlushAsync();
+
+				stream.Close();
+			}
+
+			if (string.Compare(file.FileName, fileName, ignoreCase: true) == 0)
+			{
+				var successMessage = string.Format
+					("File '{0}' uploaded successfully.", fileName);
+
+				AddToastSuccess
+					(message: successMessage);
+			}
+			else
+			{
+				var successMessage = string.Format
+					("File '{0}' with the name of '{1}' uploaded successfully.",
+					file.FileName, fileName);
+
+				AddToastSuccess
+					(message: successMessage);
+			}
+
+			return true;
 		}
-		#endregion /OnPostUploadFiles
+		#endregion /CheckFileValidationAndSaveAsync
+
+		#region CheckFileValidation
+		private bool CheckFileValidation
+			(Microsoft.AspNetCore.Http.IFormFile? file)
+		{
+			if (file == null)
+			{
+				var errorMessage =
+					"You did not specify any files for uploading!";
+
+				AddToastError
+					(message: errorMessage);
+
+				return false;
+			}
+
+			if (file.Length == 0)
+			{
+				var errorMessage =
+					$"The file ({file.FileName}) did not uploaded successfully!";
+
+				AddToastError
+					(message: errorMessage);
+
+				return false;
+			}
+
+			var fileExtension =
+				System.IO.Path.GetExtension
+				(path: file.FileName)?.ToLower();
+
+			if (fileExtension == null)
+			{
+				var errorMessage =
+					$"The file ({file.FileName}) does not have any extension!";
+
+				AddToastError
+					(message: errorMessage);
+
+				return false;
+			}
+
+			var permittedFileExtensions =
+				ApplicationSettings.FileManagerSettings.PermittedFileExtensions.ToList();
+
+			if (permittedFileExtensions.Contains(item: fileExtension) == false)
+			{
+				var errorMessage =
+					$"The file ({file.FileName}) does not have a valid extension!";
+
+				AddToastError
+					(message: errorMessage);
+
+				return false;
+			}
+
+			return true;
+		}
+		#endregion /CheckFileValidation
 
 		#region CheckPathAndSetCurrentPath
 		/// <summary>

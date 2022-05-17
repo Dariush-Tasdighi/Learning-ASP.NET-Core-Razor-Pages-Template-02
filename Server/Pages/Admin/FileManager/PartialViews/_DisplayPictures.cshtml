@@ -1,20 +1,22 @@
 ﻿@model Server.Pages.Admin.FileManager.IndexModel
-
-@if (Model == null)
-{
-	return;
-}
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
 @{
-	string[] imageExtensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif" };
+	if (Model == null || applicationSettings == null)
+	{
+		return;
+	}
+
+	string[] pictureExtensions =
+		applicationSettings.FileManagerSettings.PictureExtensions;
 
 	var files =
-	Model.Files
-	.Where(current => imageExtensions.Contains(current.Extension))
-	.OrderBy(current => current.Extension)
-	.ThenBy(current => current.Name)
-	.ToList()
-	;
+		Model.Files
+		.Where(current => pictureExtensions.Contains(current.Extension.ToLower()))
+		.OrderBy(current => current.Extension)
+		.ThenBy(current => current.Name)
+		.ToList()
+		;
 
 	if (files == null || files.Count == 0)
 	{
@@ -30,7 +32,21 @@
 
 		var pathName = $"{Model.CurrentPath}{item.Name}";
 		var fileName = $"{Model.PhysicalRootPath}{pathName}";
-		var image = System.Drawing.Image.FromFile(filename: fileName);
+
+		System.Drawing.Image? image = null;
+
+		try
+		{
+			image = System.Drawing.Image.FromFile(filename: fileName);
+		}
+		catch
+		{
+		}
+
+		if (image == null)
+		{
+			continue;
+		}
 
 		<div class="col">
 			<div class="card h-100 shadow-lg">
