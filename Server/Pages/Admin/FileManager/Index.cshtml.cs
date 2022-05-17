@@ -69,7 +69,8 @@ namespace Server.Pages.Admin.FileManager
 				var errorMessage =
 					Resources.FileManager.MessageYouDidNotSelectAnyItemsForDeleting;
 
-				AddErrorToast(message: errorMessage);
+				AddToastError
+					(message: errorMessage);
 
 				SetDirectoriesAndFiles();
 				return;
@@ -147,7 +148,8 @@ namespace Server.Pages.Admin.FileManager
 					var errorMessage = string.Format
 						(Resources.FileManager.MessageFolderAlreadyExists, directoryName);
 
-					AddErrorMessage(message: errorMessage);
+					AddPageError
+						(message: errorMessage);
 					// **************************************************
 
 					SetDirectoriesAndFiles();
@@ -161,14 +163,16 @@ namespace Server.Pages.Admin.FileManager
 				var successMessage = string.Format
 					(Resources.FileManager.MessageFolderHasBeenCreated, directoryName);
 
-				AddSuccessToast(message: successMessage);
+				AddToastSuccess
+					(message: successMessage);
 				// **************************************************
 
 				SetDirectoriesAndFiles();
 			}
 			catch (System.Exception ex)
 			{
-				AddErrorToast(message: ex.Message);
+				AddToastError
+					(message: ex.Message);
 			}
 		}
 		#endregion /OnPostCreateDirectory

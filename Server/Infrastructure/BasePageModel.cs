@@ -1,229 +1,55 @@
 ﻿namespace Infrastructure
 {
+	/// <summary>
+	/// Version 3.0
+	/// </summary>
 	public abstract class BasePageModel :
-		Microsoft.AspNetCore.Mvc.RazorPages.PageModel
+		Microsoft.AspNetCore.Mvc.RazorPages.PageModel, Messages.IMessageHandler
 	{
-		public static readonly string ErrorToastsKeyName = "ErrorToasts";
-		public static readonly string WarningToastsKeyName = "WarningToasts";
-		public static readonly string SuccessToastsKeyName = "SuccessToasts";
-
-		public static readonly string ErrorMessagesKeyName = "ErrorMessages";
-		public static readonly string WarningMessagesKeyName = "WarningMessages";
-		public static readonly string SuccessMessagesKeyName = "SuccessMessages";
-
 		public BasePageModel() : base()
 		{
 		}
 
-		public string? FixText(string? text)
+		public bool AddPageError(string? message)
 		{
-			if (string.IsNullOrWhiteSpace(text))
-			{
-				return null;
-			}
-
-			text =
-				text.Trim();
-
-			while (text.Contains("  "))
-			{
-				text =
-					text.Replace("  ", " ");
-			}
-
-			return text;
+			return AddMessage
+				(type: Messages.MessageType.PageError, message: message);
 		}
 
-		public bool AddErrorMessage(string? message)
+		public bool AddPageWarning(string? message)
 		{
-			message =
-				FixText(text: message);
-
-			if (message == null)
-			{
-				return false;
-			}
-
-			var list =
-				ViewData[index: ErrorMessagesKeyName] as
-				System.Collections.Generic.IList<string>;
-
-			if (list == null)
-			{
-				list =
-					new System.Collections.Generic.List<string>();
-
-				ViewData[index: ErrorMessagesKeyName] = list;
-			}
-
-			if (list.Contains(item: message))
-			{
-				return false;
-			}
-
-			list.Add(item: message);
-
-			return true;
+			return AddMessage
+				(type: Messages.MessageType.PageWarning, message: message);
 		}
 
-		public bool AddWarningMessage(string? message)
+		public bool AddPageSuccess(string? message)
 		{
-			message =
-				FixText(text: message);
-
-			if (message == null)
-			{
-				return false;
-			}
-
-			var list =
-				ViewData[index: WarningMessagesKeyName] as
-				System.Collections.Generic.IList<string>;
-
-			if (list == null)
-			{
-				list =
-					new System.Collections.Generic.List<string>();
-
-				ViewData[index: WarningMessagesKeyName] = list;
-			}
-
-			if (list.Contains(item: message))
-			{
-				return false;
-			}
-
-			list.Add(item: message);
-
-			return true;
+			return AddMessage
+				(type: Messages.MessageType.PageSuccess, message: message);
 		}
 
-		public bool AddSuccessMessage(string? message)
+		public bool AddToastError(string? message)
 		{
-			message =
-				FixText(text: message);
-
-			if (message == null)
-			{
-				return false;
-			}
-
-			var list =
-				ViewData[index: SuccessMessagesKeyName] as
-				System.Collections.Generic.IList<string>;
-
-			if (list == null)
-			{
-				list =
-					new System.Collections.Generic.List<string>();
-
-				ViewData[index: SuccessMessagesKeyName] = list;
-			}
-
-			if (list.Contains(item: message))
-			{
-				return false;
-			}
-
-			list.Add(item: message);
-
-			return true;
+			return AddMessage
+				(type: Messages.MessageType.ToastError, message: message);
 		}
 
-		public bool AddErrorToast(string? message)
+		public bool AddToastWarning(string? message)
 		{
-			message =
-				FixText(text: message);
-
-			if (message == null)
-			{
-				return false;
-			}
-
-			var list =
-				ViewData[index: ErrorToastsKeyName] as
-				System.Collections.Generic.IList<string>;
-
-			if (list == null)
-			{
-				list =
-					new System.Collections.Generic.List<string>();
-
-				ViewData[index: ErrorToastsKeyName] = list;
-			}
-
-			if (list.Contains(item: message))
-			{
-				return false;
-			}
-
-			list.Add(item: message);
-
-			return true;
+			return AddMessage
+				(type: Messages.MessageType.ToastWarning, message: message);
 		}
 
-		public bool AddWarningToast(string? message)
+		public bool AddToastSuccess(string? message)
 		{
-			message =
-				FixText(text: message);
-
-			if (message == null)
-			{
-				return false;
-			}
-
-			var list =
-				ViewData[index: WarningToastsKeyName] as
-				System.Collections.Generic.IList<string>;
-
-			if (list == null)
-			{
-				list =
-					new System.Collections.Generic.List<string>();
-
-				ViewData[index: WarningToastsKeyName] = list;
-			}
-
-			if (list.Contains(item: message))
-			{
-				return false;
-			}
-
-			list.Add(item: message);
-
-			return true;
+			return AddMessage
+				(type: Messages.MessageType.ToastSuccess, message: message);
 		}
 
-		public bool AddSuccessToast(string? message)
+		public bool AddMessage(Messages.MessageType type, string? message)
 		{
-			message =
-				FixText(text: message);
-
-			if (message == null)
-			{
-				return false;
-			}
-
-			var list =
-				ViewData[index: SuccessToastsKeyName] as
-				System.Collections.Generic.IList<string>;
-
-			if (list == null)
-			{
-				list =
-					new System.Collections.Generic.List<string>();
-
-				ViewData[index: SuccessToastsKeyName] = list;
-			}
-
-			if (list.Contains(item: message))
-			{
-				return false;
-			}
-
-			list.Add(item: message);
-
-			return true;
+			return Messages.Utility.AddMessage
+				(tempData: TempData, type: type, message: message);
 		}
 	}
 }

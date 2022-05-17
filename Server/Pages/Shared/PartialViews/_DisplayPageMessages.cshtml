@@ -1,0 +1,51 @@
+﻿@{
+	// نکته مهم
+	// در همه شرایط کار نمی‌کند List استفاده از کلاس
+	var pageErrors =
+		TempData[key: Infrastructure.Messages.MessageType.PageError.ToString()] as
+		System.Collections.Generic.IList<string>;
+
+	var pageWarnings =
+		TempData[key: Infrastructure.Messages.MessageType.PageWarning.ToString()] as
+		System.Collections.Generic.IList<string>;
+
+	var pageSuccesses =
+		TempData[key: Infrastructure.Messages.MessageType.PageSuccess.ToString()] as
+		System.Collections.Generic.IList<string>;
+
+	if (pageErrors != null && pageErrors.Count != 0)
+	{
+		<div class="alert alert-danger" role="alert">
+			<ul class="mb-0">
+				@foreach (var message in pageErrors)
+				{
+					<li>@(message)</li>
+				}
+			</ul>
+		</div>
+	}
+
+	if (pageWarnings != null && pageWarnings.Count != 0)
+	{
+		<div class="alert alert-warning" role="alert">
+			<ul class="mb-0">
+				@foreach (var message in pageWarnings)
+				{
+					<li>@(message)</li>
+				}
+			</ul>
+		</div>
+	}
+
+	if (pageSuccesses != null && pageSuccesses.Count != 0)
+	{
+		<div class="alert alert-success" role="alert">
+			<ul class="mb-0">
+				@foreach (var message in pageSuccesses)
+				{
+					<li>@(message)</li>
+				}
+			</ul>
+		</div>
+	}
+}
