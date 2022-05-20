@@ -1,5 +1,8 @@
 ﻿namespace Infrastructure.Messages
 {
+	/// <summary>
+	/// Version 3.0
+	/// </summary>
 	public interface IMessageHandler
 	{
 		bool AddPageError(string? message);

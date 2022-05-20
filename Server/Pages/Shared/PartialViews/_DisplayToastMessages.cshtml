@@ -1,6 +1,16 @@
-﻿@{
-	int delayStep = 1000;
-	int delay = 4000 - delayStep;
+﻿@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+
+@{
+	/// Version 3.0
+
+	var toastSettings =
+		applicationSettings.ToastSettings;
+
+	int delayStep =
+		toastSettings.DelayStep;
+
+	int delay =
+		toastSettings.InitialDelay - delayStep;
 
 	// نکته مهم
 	// در همه شرایط کار نمی‌کند List استفاده از کلاس
@@ -25,7 +35,7 @@
 }
 
 <div aria-live="polite" aria-atomic="true" class="posiiton-relative">
-	<div class="toast-container position-absolute top-25 end-0 p-3 opacity-50" style="z-index: 10000;">
+	<div class="toast-container position-absolute @(toastSettings.Style)" style="z-index: 10000;">
 
 		@{
 			if (toastErrors != null)

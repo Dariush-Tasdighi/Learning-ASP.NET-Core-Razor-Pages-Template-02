@@ -8,7 +8,7 @@
 			InitialDelay = 4000;
 
 			Style =
-				"top-0 end-0 p-3 opacity-50";
+				"top-25 end-0 p-3 opacity-50";
 		}
 
 		// **********

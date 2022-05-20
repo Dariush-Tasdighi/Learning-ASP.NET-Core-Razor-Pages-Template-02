@@ -120,16 +120,49 @@
   <data name="About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="AccessDenied" xml:space="preserve">
+    <value>Access Denied</value>
+  </data>
+  <data name="AdminSettings" xml:space="preserve">
+    <value>Admin Settings</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
+  </data>
+  <data name="DeactivateAccount" xml:space="preserve">
+    <value>Deactivate Account</value>
   </data>
   <data name="Error500" xml:space="preserve">
     <value>Internal Server Error!</value>
   </data>
+  <data name="FileManager" xml:space="preserve">
+    <value>File Manager</value>
+  </data>
   <data name="Index" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="TerminateAccount" xml:space="preserve">
+    <value>Terminate Account</value>
+  </data>
   <data name="UnexpectedError" xml:space="preserve">
     <value>Unexpected Error!</value>
+  </data>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>Update Profile</value>
+  </data>
+  <data name="UserSettings" xml:space="preserve">
+    <value>User Settings</value>
   </data>
 </root>

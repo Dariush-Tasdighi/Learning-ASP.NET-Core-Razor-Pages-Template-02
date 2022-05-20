@@ -150,3 +150,78 @@ services.AddHttpContextAccessor();
 4)
 - Publish
 **************************************************
+
+**************************************************
+**************************************************
+**************************************************
+Session (41)
+**************************************************
+**************************************************
+**************************************************
+1)
+- In 'Server' Project -> In 'Pages' Folder -> In 'PartialViews' Folder:
+
+	- Create '_LoginStatus.cshtml' File
+
+2)
+- In 'Server' Project -> In 'Pages' Folder -> In 'PartialViews' Folder -> In 'Ltr' and 'Rtl' Folders:
+
+	- Update '_Header.cshtml' File
+
+3)
+- In 'Domain' Project -> In 'SeedWork' Folder:
+
+	- Create 'RegularExpression.cs' File
+
+4)
+- In 'ViewModels' Project:
+
+	- Create 'Pages' Folder
+
+		- Create 'Account' Folder
+
+			- Create 'LoginViewModel' File
+			- Create 'RegisterViewModel' File
+
+5)
+- In 'Server' Project -> In 'Pages' Folder -> In 'Shared' Folder -> In 'Layouts' Folder -> In 'Ltr' and 'Rtl' Folder:
+
+	- Create 'Security.cshtml' File
+
+)
+- In 'Resources' Project -> In 'PageTitles.resx' and 'PageTitles.fa-IR.resx' File:
+
+	- Add Keys:
+
+		- AccessDenied
+		- Login
+		- Register
+
+)
+- In 'Resources' Project -> In 'ButtonCaptions.resx' and 'ButtonCaptions.fa-IR.resx' File:
+
+	- Add Keys:
+
+		- Home
+		- Login
+		- Register
+		- ForgotUsername
+		- ForgotPassword
+		- SendAgainEmailAddressVerificationKey
+
+1)
+- In 'Server' Project -> In 'Infrastructure' Folder:
+
+	- Create 'Security' Folder:
+
+		- Create 'Utility.cs' File
+
+6)
+- In 'Server' Project -> In 'Pages' Folder:
+
+	- Create 'Account' Folder
+
+		- Create 'Login.cshtml' Page
+		- Create 'Logout.cshtml' Page
+		- Create 'Register.cshtml' Page
+		- Create 'AccessDenied.cshtml' Page

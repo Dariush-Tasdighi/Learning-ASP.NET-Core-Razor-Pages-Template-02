@@ -25,15 +25,7 @@
 <body>
 	<partial name="PartialViews/_DisplayToastMessages" />
 
-	<partial name="PartialViews/Ltr/_Header" />
-
-	<main role="main" class="my-5 py-4">
-		<div class="container">
-			@(RenderBody())
-		</div>
-	</main>
-
-	<partial name="PartialViews/Ltr/_Footer" />
+	@(RenderBody())
 
 	<partial name="PartialViews/Ltr/_Scripts" />
 

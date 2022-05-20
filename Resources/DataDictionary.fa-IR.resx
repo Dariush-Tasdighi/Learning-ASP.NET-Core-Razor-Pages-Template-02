@@ -123,11 +123,8 @@
   <data name="CellPhoneNumber" xml:space="preserve">
     <value>شماره تلفن همراه</value>
   </data>
-  <data name="Culture" xml:space="preserve">
-    <value>زبان</value>
-  </data>
-  <data name="Cultures" xml:space="preserve">
-    <value>زبان‌ها</value>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>تکرار گذرواژه</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>توضیحات</value>
@@ -150,6 +147,12 @@
   <data name="IsActive" xml:space="preserve">
     <value>فعال</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>زبان</value>
+  </data>
+  <data name="Languages" xml:space="preserve">
+    <value>زبان‌ها</value>
+  </data>
   <data name="List" xml:space="preserve">
     <value>فهرست</value>
   </data>
@@ -161,6 +164,12 @@
   </data>
   <data name="Ordering" xml:space="preserve">
     <value>چیدمان</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>گذرواژه</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>مرا به خاطر داشته باش</value>
   </data>
   <data name="Resume" xml:space="preserve">
     <value>رزومه</value>
@@ -185,6 +194,9 @@
   </data>
   <data name="UpdateDateTime" xml:space="preserve">
     <value>زمان ویرایش</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>شناسه کاربری</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>نسخه</value>

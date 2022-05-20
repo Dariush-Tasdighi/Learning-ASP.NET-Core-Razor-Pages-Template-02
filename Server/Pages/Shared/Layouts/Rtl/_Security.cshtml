@@ -6,7 +6,7 @@
 
 <!doctype html>
 
-<html lang="@(currentCultureName)" dir="ltr">
+<html lang="@(currentCultureName)" dir="rtl">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,7 +17,7 @@
 
 	<partial name="PartialViews/_FavoriteIcon" />
 
-	<partial name="PartialViews/Ltr/_StyleSheets" />
+	<partial name="PartialViews/Rtl/_StyleSheets" />
 
 	@(RenderSection(name: "StyleSheets", required: false))
 </head>
@@ -25,17 +25,9 @@
 <body>
 	<partial name="PartialViews/_DisplayToastMessages" />
 
-	<partial name="PartialViews/Ltr/_Header" />
+	@(RenderBody())
 
-	<main role="main" class="my-5 py-4">
-		<div class="container">
-			@(RenderBody())
-		</div>
-	</main>
-
-	<partial name="PartialViews/Ltr/_Footer" />
-
-	<partial name="PartialViews/Ltr/_Scripts" />
+	<partial name="PartialViews/Rtl/_Scripts" />
 
 	@(RenderSection(name: "Scripts", required: false))
 </body>

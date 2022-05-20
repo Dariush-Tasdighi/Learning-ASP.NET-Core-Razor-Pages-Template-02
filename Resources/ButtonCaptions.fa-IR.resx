@@ -132,11 +132,29 @@
   <data name="Edit" xml:space="preserve">
     <value>ویرایش</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>فراموشی گذرواژه</value>
+  </data>
+  <data name="ForgotUsername" xml:space="preserve">
+    <value>فراموشی شناسه‌کاربری</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>خانه</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت‌نام</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>حالت اولیه</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>ذخیره</value>
+  </data>
+  <data name="SendAgainEmailAddressVerificationKey" xml:space="preserve">
+    <value>ارسال مجدد کد تایید</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>ویرایش</value>

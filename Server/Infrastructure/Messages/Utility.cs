@@ -2,6 +2,9 @@
 
 namespace Infrastructure.Messages
 {
+	/// <summary>
+	/// Version 3.0
+	/// </summary>
 	public static class Utility
 	{
 		static Utility()
