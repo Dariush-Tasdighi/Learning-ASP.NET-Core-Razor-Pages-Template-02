@@ -1,0 +1,52 @@
+﻿@page
+@model Server.Pages.Account.ProfileModel
+
+<div dir="ltr">
+	<h1>
+		Profile
+	</h1>
+
+	@if (User == null || User.Identity == null)
+	{
+		return;
+	}
+
+	<ul>
+		<li>
+			AuthenticationType: @(User.Identity.AuthenticationType)
+		</li>
+		<li>
+			IsAuthenticated: @(User.Identity.IsAuthenticated)
+		</li>
+		<li>
+			Name: @(User.Identity.Name)
+		</li>
+	</ul>
+
+	<hr />
+
+	<h3>
+		Claims
+	</h3>
+
+	<ul>
+		@foreach (var claim in User.Claims)
+		{
+			<li>
+				Issuer: @(claim.Issuer)
+				<br />
+				OriginalIssuer: @(claim.OriginalIssuer)
+				<br />
+				Subject: @(claim.Subject)
+				<br />
+				Type: @(claim.Type)
+				<br />
+				Value: @(claim.Value)
+				<br />
+				ValueType: @(claim.ValueType)
+				<br />
+				Properties.Count: @(claim.Properties.Count)
+			</li>
+		}
+	</ul>
+</div>

@@ -19,7 +19,7 @@
 
 	<partial name="PartialViews/Ltr/_StyleSheets" />
 
-	@(RenderSection(name: "StyleSheets", required: false))
+	@(await RenderSectionAsync(name: "StyleSheets", required: false))
 </head>
 
 <body>
@@ -37,6 +37,6 @@
 
 	<partial name="PartialViews/Ltr/_Scripts" />
 
-	@(RenderSection(name: "Scripts", required: false))
+	@(await RenderSectionAsync(name: "Scripts", required: false))
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace Server.Pages.Admin.FileManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
 	public class IndexModel : Infrastructure.BasePageModel
 	{
 		#region Constructor

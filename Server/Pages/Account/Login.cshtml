@@ -23,7 +23,7 @@
 
 	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
 		<div class="row">
-			<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4 col-lg-6 offset-lg-3 p-lg-5 border border-2 rounded-3 shadow-lg">
+			<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4 col-lg-6 offset-lg-3 p-lg-5 bg-light border border-2 rounded-3 shadow-lg">
 				<legend>
 					@(pageTitle)
 				</legend>
@@ -37,7 +37,7 @@
 
 					<div class="input-group">
 						<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-						<input asp-for="ViewModel.Username" class="form-control" />
+						<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
 					</div>
 
 					<span asp-validation-for="ViewModel.Username" class="text-danger"></span>
@@ -48,7 +48,7 @@
 
 					<div class="input-group">
 						<div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-						<input asp-for="ViewModel.Password" class="form-control" />
+						<input asp-for="ViewModel.Password" class="form-control" dir="ltr" />
 					</div>
 
 					<span asp-validation-for="ViewModel.Password" class="text-danger"></span>

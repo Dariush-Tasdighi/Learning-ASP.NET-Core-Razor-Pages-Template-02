@@ -37,8 +37,90 @@ namespace Server.Pages.Security
 				return Page();
 			}
 
-			await Infrastructure.Security
-				.Utility.Login(httpContext: HttpContext, viewModel: ViewModel);
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			var claims =
+				new System.Collections.Generic
+				.List<System.Security.Claims.Claim>();
+
+			System.Security.Claims.Claim claim;
+
+			// **************************************************
+			claim =
+				new System.Security.Claims.Claim
+				(type: "FullName", value: "Mr. Dariush Tasdighi");
+
+			claims.Add(item: claim);
+			// **************************************************
+
+			// **************************************************
+			claim =
+				new System.Security.Claims.Claim
+				(type: System.Security.Claims.ClaimTypes.Role, value: "Admin");
+
+			claims.Add(item: claim);
+			// **************************************************
+
+			// **************************************************
+			claim =
+				new System.Security.Claims.Claim
+				(type: System.Security.Claims.ClaimTypes.Name, value: "Dariush");
+
+			claims.Add(item: claim);
+			// **************************************************
+
+			// **************************************************
+			claim =
+				new System.Security.Claims.Claim
+				(type: System.Security.Claims.ClaimTypes.Email, value: "DariushT@GMail.com");
+
+			claims.Add(item: claim);
+			// **************************************************
+			// **************************************************
+			// **************************************************
+
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			var claimsIdentity =
+				new System.Security.Claims.ClaimsIdentity(claims: claims,
+				authenticationType: Infrastructure.Security.Utility.AuthenticationScheme);
+			// **************************************************
+			// **************************************************
+			// **************************************************
+
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			var claimsPrincipal =
+				new System.Security.Claims.ClaimsPrincipal(identity: claimsIdentity);
+			// **************************************************
+			// **************************************************
+			// **************************************************
+
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			var authenticationProperties =
+				new Microsoft.AspNetCore.Authentication.AuthenticationProperties
+				{
+					IsPersistent = ViewModel.RememberMe,
+				};
+			// **************************************************
+			// **************************************************
+			// **************************************************
+
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			// SignInAsync -> using Microsoft.AspNetCore.Authentication;
+			await HttpContext.SignInAsync
+				(scheme: Infrastructure.Security.Utility.AuthenticationScheme,
+				principal: claimsPrincipal, properties: authenticationProperties);
+			// **************************************************
+			// **************************************************
+			// **************************************************
 
 			if (string.IsNullOrWhiteSpace(ReturnUrl))
 			{

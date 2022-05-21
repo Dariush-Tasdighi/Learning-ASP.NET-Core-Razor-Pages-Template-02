@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication;
+
 namespace Server.Pages.Account
 {
 	public class LogoutModel : Infrastructure.BasePageModel
@@ -9,7 +11,9 @@ namespace Server.Pages.Account
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnGet()
 		{
-			await Infrastructure.Security.Utility.Logout(httpContext: HttpContext);
+			// SignOutAsync -> using Microsoft.AspNetCore.Authentication;
+			await HttpContext.SignOutAsync
+				(scheme: Infrastructure.Security.Utility.AuthenticationScheme);
 
 			return RedirectToPage(pageName: "/Index");
 		}

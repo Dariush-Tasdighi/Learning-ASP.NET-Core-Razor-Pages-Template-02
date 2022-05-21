@@ -142,10 +142,10 @@
     <value>صفحه نخست</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>ورود به سامانه</value>
+    <value>ورود</value>
   </data>
   <data name="Logout" xml:space="preserve">
-    <value>خروج از سامانه</value>
+    <value>خروج</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>ثبت‌نام</value>

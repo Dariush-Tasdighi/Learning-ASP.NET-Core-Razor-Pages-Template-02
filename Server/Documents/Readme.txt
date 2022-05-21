@@ -150,6 +150,8 @@ services.AddHttpContextAccessor();
 4)
 - Publish
 **************************************************
+**************************************************
+**************************************************
 
 **************************************************
 **************************************************
@@ -188,7 +190,7 @@ Session (41)
 
 	- Create 'Security.cshtml' File
 
-)
+6)
 - In 'Resources' Project -> In 'PageTitles.resx' and 'PageTitles.fa-IR.resx' File:
 
 	- Add Keys:
@@ -197,7 +199,7 @@ Session (41)
 		- Login
 		- Register
 
-)
+7)
 - In 'Resources' Project -> In 'ButtonCaptions.resx' and 'ButtonCaptions.fa-IR.resx' File:
 
 	- Add Keys:
@@ -209,19 +211,43 @@ Session (41)
 		- ForgotPassword
 		- SendAgainEmailAddressVerificationKey
 
-1)
+8)
 - In 'Server' Project -> In 'Infrastructure' Folder:
 
 	- Create 'Security' Folder:
 
 		- Create 'Utility.cs' File
 
-6)
+9)
 - In 'Server' Project -> In 'Pages' Folder:
 
 	- Create 'Account' Folder
 
 		- Create 'Login.cshtml' Page
 		- Create 'Logout.cshtml' Page
+		- Create 'Profile.cshtml' Page
 		- Create 'Register.cshtml' Page
 		- Create 'AccessDenied.cshtml' Page
+
+10)
+- In 'Server' Project:
+
+	- Update 'Program.cs' File
+
+// **************************************************
+builder.Services
+	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
+	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme);
+// **************************************************
+
+// **************************************************
+// UseAuthorization() -> using Microsoft.AspNetCore.Builder;
+app.UseAuthentication();
+// **************************************************
+
+// **************************************************
+// UseAuthorization() -> using Microsoft.AspNetCore.Builder;
+app.UseAuthorization();
+**************************************************
+**************************************************
+**************************************************

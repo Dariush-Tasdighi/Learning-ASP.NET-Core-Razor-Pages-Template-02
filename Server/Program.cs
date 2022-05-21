@@ -29,6 +29,17 @@ builder.Services.AddHttpContextAccessor();
 // **************************************************
 
 // **************************************************
+builder.Services.AddRouting(options =>
+{
+	options.LowercaseUrls = true;
+	options.LowercaseQueryStrings = true;
+
+	//options.AppendTrailingSlash
+	//options.SuppressCheckForUnhandledSecurityMetadata = false;
+});
+// **************************************************
+
+// **************************************************
 // AddRazorPages() -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddRazorPages();
 // **************************************************
@@ -49,6 +60,12 @@ builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
 
 		return result;
 	});
+// **************************************************
+
+// **************************************************
+builder.Services
+	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
+	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme);
 // **************************************************
 
 // **************************************************
@@ -125,12 +142,12 @@ app.UseRouting();
 
 // **************************************************
 // UseAuthorization() -> using Microsoft.AspNetCore.Builder;
-//app.UseAuthentication();
+app.UseAuthentication();
 // **************************************************
 
 // **************************************************
 // UseAuthorization() -> using Microsoft.AspNetCore.Builder;
-//app.UseAuthorization();
+app.UseAuthorization();
 // **************************************************
 
 // **************************************************
