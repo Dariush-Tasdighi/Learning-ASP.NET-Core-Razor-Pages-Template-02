@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection;
 // **************************************************
 
@@ -63,27 +64,52 @@ builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
 // **************************************************
 
 // **************************************************
+// **************************************************
+// **************************************************
+//builder.Services
+//	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
+//	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme);
+// **************************************************
+
+// **************************************************
 builder.Services
 	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
-	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme);
+	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme)
+	.AddGoogle(authenticationScheme: Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme,
+	configureOptions: options =>
+	{
+		options.ClientId =
+			builder.Configuration["ApplicationSettings:Authentication:Google:ClientId"];
+
+		options.ClientSecret =
+			builder.Configuration["ApplicationSettings:Authentication:Google:ClientSecret"];
+
+		// MapJsonKey() -> using Microsoft.AspNetCore.Authentication;
+		options.ClaimActions.MapJsonKey
+			(claimType: "urn:google:picture", jsonKey: "picture", valueType: "url");
+	})
+	;
+// **************************************************
+// **************************************************
 // **************************************************
 
 // **************************************************
 // GetConnectionString() -> using Microsoft.Extensions.Configuration;
 var connectionString =
-	builder.Configuration.GetConnectionString("ConnectionString");
+	builder.Configuration.GetConnectionString(name: "ConnectionString");
 
 // AddDbContext -> using Microsoft.Extensions.DependencyInjection;
-builder.Services.AddDbContext<Persistence.DatabaseContext>(options =>
-{
-	options
-		// using Microsoft.EntityFrameworkCore;
-		.UseLazyLoadingProxies();
+builder.Services.AddDbContext<Persistence.DatabaseContext>
+	(optionsAction: options =>
+	{
+		options
+			// using Microsoft.EntityFrameworkCore;
+			.UseLazyLoadingProxies();
 
-	options
-		// using Microsoft.EntityFrameworkCore;
-		.UseSqlServer(connectionString: connectionString);
-});
+		options
+			// using Microsoft.EntityFrameworkCore;
+			.UseSqlServer(connectionString: connectionString);
+	});
 // **************************************************
 
 // **************************************************
