@@ -93,6 +93,11 @@ namespace Server.Pages.Security
 			// **************************************************
 			// **************************************************
 			// **************************************************
+			//var claimsPrincipal =
+			//	new System.Security.Claims.ClaimsPrincipal();
+
+			//claimsPrincipal.AddIdentity(identity: claimsIdentity);
+
 			var claimsPrincipal =
 				new System.Security.Claims.ClaimsPrincipal(identity: claimsIdentity);
 			// **************************************************

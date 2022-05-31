@@ -1,6 +1,13 @@
 ﻿@page
 @model Server.Pages.Account.ProfileModel
 
+@{
+	var pageTitle =
+		Resources.PageTitles.Profile;
+
+	ViewData["PageTitle"] = pageTitle;
+}
+
 <div dir="ltr">
 	<h1>
 		Profile

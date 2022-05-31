@@ -66,29 +66,29 @@ builder.Services.Configure<Infrastructure.Settings.ApplicationSettings>
 // **************************************************
 // **************************************************
 // **************************************************
-//builder.Services
-//	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
-//	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme);
-// **************************************************
-
-// **************************************************
 builder.Services
 	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
-	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme)
-	.AddGoogle(authenticationScheme: Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme,
-	configureOptions: options =>
-	{
-		options.ClientId =
-			builder.Configuration["ApplicationSettings:Authentication:Google:ClientId"];
+	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme);
+// **************************************************
 
-		options.ClientSecret =
-			builder.Configuration["ApplicationSettings:Authentication:Google:ClientSecret"];
+// **************************************************
+//builder.Services
+//	.AddAuthentication(defaultScheme: Infrastructure.Security.Utility.AuthenticationScheme)
+//	.AddCookie(authenticationScheme: Infrastructure.Security.Utility.AuthenticationScheme)
+//	.AddGoogle(authenticationScheme: Microsoft.AspNetCore.Authentication.Google.GoogleDefaults.AuthenticationScheme,
+//	configureOptions: options =>
+//	{
+//		options.ClientId =
+//			builder.Configuration["ApplicationSettings:Authentication:Google:ClientId"];
 
-		// MapJsonKey() -> using Microsoft.AspNetCore.Authentication;
-		options.ClaimActions.MapJsonKey
-			(claimType: "urn:google:picture", jsonKey: "picture", valueType: "url");
-	})
-	;
+//		options.ClientSecret =
+//			builder.Configuration["ApplicationSettings:Authentication:Google:ClientSecret"];
+
+//		// MapJsonKey() -> using Microsoft.AspNetCore.Authentication;
+//		options.ClaimActions.MapJsonKey
+//			(claimType: "urn:google:picture", jsonKey: "picture", valueType: "url");
+//	})
+//	;
 // **************************************************
 // **************************************************
 // **************************************************

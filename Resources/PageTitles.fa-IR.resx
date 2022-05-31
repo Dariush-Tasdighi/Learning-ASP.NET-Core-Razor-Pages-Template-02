@@ -147,6 +147,9 @@
   <data name="Logout" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="Profile" xml:space="preserve">
+    <value>پروفایل</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>ثبت‌نام</value>
   </data>

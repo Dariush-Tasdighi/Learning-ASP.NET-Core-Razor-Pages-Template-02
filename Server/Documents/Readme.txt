@@ -161,14 +161,33 @@ Session (41)
 **************************************************
 **************************************************
 1)
-- In 'Server' Project -> In 'Pages' Folder -> In 'PartialViews' Folder:
+- In 'Server' Project ->
+	In 'Pages' Folder ->
+		In 'Shared' Folder ->
+			In 'PartialViews' Folder:
 
-	- Create '_LoginStatus.cshtml' File
+				- Create '_LoginStatus.cshtml' File
+
+Note:
+
+	User
+
+		ClaimsPrincipal
+
+			Identities
+
+			Identity (Main)
+
+				Claims
 
 2)
-- In 'Server' Project -> In 'Pages' Folder -> In 'PartialViews' Folder -> In 'Ltr' and 'Rtl' Folders:
+- In 'Server' Project ->
+	In 'Pages' Folder ->
+		In 'Shared' Folder ->
+			In 'PartialViews' Folder ->
+				In 'Ltr' and 'Rtl' Folders:
 
-	- Update '_Header.cshtml' File
+					- Update '_Header.cshtml' File
 
 3)
 - In 'Domain' Project -> In 'SeedWork' Folder:
@@ -176,6 +195,13 @@ Session (41)
 	- Create 'RegularExpression.cs' File
 
 4)
+- In 'Resources' Project:
+
+	- Create 'Messages' Folder
+
+		- Create 'Validations.resx' and 'Validations.fa-IR.resx' Files
+
+5)
 - In 'ViewModels' Project:
 
 	- Create 'Pages' Folder
@@ -185,51 +211,60 @@ Session (41)
 			- Create 'LoginViewModel' File
 			- Create 'RegisterViewModel' File
 
-5)
-- In 'Server' Project -> In 'Pages' Folder -> In 'Shared' Folder -> In 'Layouts' Folder -> In 'Ltr' and 'Rtl' Folder:
-
-	- Create 'Security.cshtml' File
-
 6)
-- In 'Resources' Project -> In 'PageTitles.resx' and 'PageTitles.fa-IR.resx' File:
+- In 'Server' Project ->
+	In 'Pages' Folder ->
+		In 'Shared' Folder ->
+			In 'Layouts' Folder ->
+				In 'Ltr' and 'Rtl' Folders:
 
-	- Add Keys:
-
-		- AccessDenied
-		- Login
-		- Register
+					- Create 'Security.cshtml' File
 
 7)
-- In 'Resources' Project -> In 'ButtonCaptions.resx' and 'ButtonCaptions.fa-IR.resx' File:
+- In 'Resources' Project ->
+	In 'PageTitles.resx' and 'PageTitles.fa-IR.resx' Files:
 
-	- Add Keys:
+		- Add Keys:
 
-		- Home
-		- Login
-		- Register
-		- ForgotUsername
-		- ForgotPassword
-		- SendAgainEmailAddressVerificationKey
+			- Login
+			- Profile
+			- Register
+			- AccessDenied
 
 8)
-- In 'Server' Project -> In 'Infrastructure' Folder:
+- In 'Resources' Project ->
+	In 'ButtonCaptions.resx' and 'ButtonCaptions.fa-IR.resx' Files:
 
-	- Create 'Security' Folder:
+		- Add Keys:
 
-		- Create 'Utility.cs' File
+			- Home
+			- Login
+			- Register
+			- ForgotUsername
+			- ForgotPassword
+			- SendAgainEmailAddressVerificationKey
 
 9)
-- In 'Server' Project -> In 'Pages' Folder:
+- In 'Server' Project ->
+	In 'Infrastructure' Folder:
 
-	- Create 'Account' Folder
+		- Create 'Security' Folder:
 
-		- Create 'Login.cshtml' Page
-		- Create 'Logout.cshtml' Page
-		- Create 'Profile.cshtml' Page
-		- Create 'Register.cshtml' Page
-		- Create 'AccessDenied.cshtml' Page
+			- Create 'Utility.cs' File
 
 10)
+- In 'Server' Project ->
+	In 'Pages' Folder:
+
+		- Create 'Account' Folder
+
+			- Create 'Login.cshtml' Page
+			- Create 'Logout.cshtml' Page
+			- Create 'Profile.cshtml' Page
+			- Create 'Register.cshtml' Page
+			- Create 'AccessDenied.cshtml' Page
+
+11)
 - In 'Server' Project:
 
 	- Update 'Program.cs' File
@@ -248,6 +283,16 @@ app.UseAuthentication();
 // **************************************************
 // UseAuthorization() -> using Microsoft.AspNetCore.Builder;
 app.UseAuthorization();
+**************************************************
+
+12)
+- In 'Server' Project ->
+	In 'Pages' Folder ->
+		- In 'Account' Folder:
+
+			- Update 'Login.cshtml.cs' File
+			- Update 'Logout.cshtml.cs' File
+			- Update 'Profile.cshtml.cs' File
 **************************************************
 **************************************************
 **************************************************

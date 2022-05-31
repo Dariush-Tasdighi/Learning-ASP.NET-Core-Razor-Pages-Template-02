@@ -13,15 +13,18 @@
 
 		[System.ComponentModel.DataAnnotations.Required
 			(AllowEmptyStrings = false,
-			ErrorMessage = "You did not specify {0}!")]
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
-		[System.ComponentModel.DataAnnotations.StringLength
-			(maximumLength: 20,
-			ErrorMessage = "The maximum length of {0} is {1}!")]
+		[System.ComponentModel.DataAnnotations.MaxLength
+			(length: Domain.SeedWork.Constant.MaxLength.Username,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.RegularExpression.Username,
-			ErrorMessage = "{0} is not valid!")]
+			(pattern: Domain.SeedWork.Constant.RegularExpression.Username,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
 		public string? Username { get; set; }
 		// **********
 
@@ -32,15 +35,18 @@
 
 		[System.ComponentModel.DataAnnotations.Required
 			(AllowEmptyStrings = false,
-			ErrorMessage = "You did not specify {0}!")]
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
-		[System.ComponentModel.DataAnnotations.StringLength
-			(maximumLength: 20,
-			ErrorMessage = "The maximum length of {0} is {1}!")]
+		[System.ComponentModel.DataAnnotations.MaxLength
+			(length: Domain.SeedWork.Constant.MaxLength.Password,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.RegularExpression.Password,
-			ErrorMessage = "{0} is not valid!")]
+			(pattern: Domain.SeedWork.Constant.RegularExpression.Password,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Password))]
 
 		[System.ComponentModel.DataAnnotations.DataType
 			(dataType: System.ComponentModel.DataAnnotations.DataType.Password)]
@@ -54,14 +60,16 @@
 
 		[System.ComponentModel.DataAnnotations.Required
 			(AllowEmptyStrings = false,
-			ErrorMessage = "You did not specify {0}!")]
-
-		[System.ComponentModel.DataAnnotations.DataType
-			(dataType: System.ComponentModel.DataAnnotations.DataType.Password)]
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.Compare
 			(otherProperty: nameof(Password),
-			ErrorMessage = "The {0} should be equql to {1}!")]
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Compare))]
+
+		[System.ComponentModel.DataAnnotations.DataType
+			(dataType: System.ComponentModel.DataAnnotations.DataType.Password)]
 		public string? ConfirmPassword { get; set; }
 		// **********
 
@@ -72,15 +80,18 @@
 
 		[System.ComponentModel.DataAnnotations.Required
 			(AllowEmptyStrings = false,
-			ErrorMessage = "You did not specify {0}!")]
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
-		[System.ComponentModel.DataAnnotations.StringLength
-			(maximumLength: 250,
-			ErrorMessage = "The maximum length of {0} is {1}!")]
+		[System.ComponentModel.DataAnnotations.MaxLength
+			(length: Domain.SeedWork.Constant.MaxLength.EmailAddress,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.RegularExpression.EmailAddress,
-			ErrorMessage = "{0} is not valid!")]
+			(pattern: Domain.SeedWork.Constant.RegularExpression.EmailAddress,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
 
 		//[System.ComponentModel.DataAnnotations.DataType
 		//	(dataType: System.ComponentModel.DataAnnotations.DataType.EmailAddress)]

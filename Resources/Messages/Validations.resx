@@ -117,55 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>About</value>
+  <data name="CellPhoneNumber" xml:space="preserve">
+    <value>{0} is not valid!</value>
   </data>
-  <data name="AccessDenied" xml:space="preserve">
-    <value>Access Denied</value>
+  <data name="Compare" xml:space="preserve">
+    <value>{0} should be equql to {1}!</value>
   </data>
-  <data name="AdminSettings" xml:space="preserve">
-    <value>Admin Settings</value>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email address is not valid!</value>
   </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>Change Password</value>
+  <data name="GreaterThan" xml:space="preserve">
+    <value>{0} should be greater than {1}!</value>
   </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Contact</value>
+  <data name="GreaterThanOrEqualTo" xml:space="preserve">
+    <value>{0} should be greater than or equal to {1}!</value>
   </data>
-  <data name="DeactivateAccount" xml:space="preserve">
-    <value>Deactivate Account</value>
+  <data name="MaxLength" xml:space="preserve">
+    <value>Max length of {0} is {1}!</value>
   </data>
-  <data name="Error500" xml:space="preserve">
-    <value>Internal Server Error!</value>
+  <data name="NationalCode" xml:space="preserve">
+    <value>{0} is not valid!</value>
   </data>
-  <data name="FileManager" xml:space="preserve">
-    <value>File Manager</value>
+  <data name="Password" xml:space="preserve">
+    <value>{0} is not valid!</value>
   </data>
-  <data name="Index" xml:space="preserve">
-    <value>Home</value>
+  <data name="Required" xml:space="preserve">
+    <value>{0} is required!</value>
   </data>
-  <data name="Login" xml:space="preserve">
-    <value>Login</value>
+  <data name="Url" xml:space="preserve">
+    <value>{0} is not valid!</value>
   </data>
-  <data name="Logout" xml:space="preserve">
-    <value>Logout</value>
-  </data>
-  <data name="Profile" xml:space="preserve">
-    <value>Profile</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>Register</value>
-  </data>
-  <data name="TerminateAccount" xml:space="preserve">
-    <value>Terminate Account</value>
-  </data>
-  <data name="UnexpectedError" xml:space="preserve">
-    <value>Unexpected Error!</value>
-  </data>
-  <data name="UpdateProfile" xml:space="preserve">
-    <value>Update Profile</value>
-  </data>
-  <data name="UserSettings" xml:space="preserve">
-    <value>User Settings</value>
+  <data name="Username" xml:space="preserve">
+    <value>{0} is not valid!</value>
   </data>
 </root>
