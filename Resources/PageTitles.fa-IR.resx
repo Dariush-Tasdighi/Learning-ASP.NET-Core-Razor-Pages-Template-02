@@ -126,6 +126,9 @@
   <data name="AdminSettings" xml:space="preserve">
     <value>تنظیمات مدیریتی</value>
   </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغییر گذرواژه</value>
+  </data>
   <data name="Contact" xml:space="preserve">
     <value>تماس با ما</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="UnexpectedError" xml:space="preserve">
     <value>خطای ناشناخته!</value>
+  </data>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>ویرایش مشخصات</value>
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>تنظیمات کاربری</value>

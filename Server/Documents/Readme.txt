@@ -156,7 +156,7 @@ services.AddHttpContextAccessor();
 **************************************************
 **************************************************
 **************************************************
-Session (41)
+Session (43)
 **************************************************
 **************************************************
 **************************************************
@@ -230,6 +230,10 @@ Note:
 			- Profile
 			- Register
 			- AccessDenied
+			- UpdateProfile
+			- TerminateAccount
+			- DeactivateAccount
+
 
 8)
 - In 'Resources' Project ->
@@ -291,8 +295,47 @@ app.UseAuthorization();
 		- In 'Account' Folder:
 
 			- Update 'Login.cshtml.cs' File
+
+				- Remember Me
+
+				- await HttpContext.SignInAsync(...)
+
 			- Update 'Logout.cshtml.cs' File
+
+				- await HttpContext.SignOutAsync(...)
+
+				- [Microsoft.AspNetCore.Authorization.Authorize]
+
 			- Update 'Profile.cshtml.cs' File
+
+				- [Microsoft.AspNetCore.Authorization.Authorize]
+
+				- زمانی که هنوز وارد سامانه نشده‌ایم نشانی ذیل را می‌زنیم
+				- به طور خودکار ما را به صفحه ورود هدایت کند
+
+				- https://localhost:7301/account/profile
+
+					- returnUrl
+
+13)
+- In 'Server' Project ->
+	In 'Pages' Folder ->
+		- In 'Admin' Folder ->
+			- In 'FileManager' Folder ->
+
+				- Update 'Index.cshtml.cs' File
+
+					- [Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
+
+					- یک‌بار با نقش ادمین و یک‌بار بدون نقش ادمین وارد صفحه ذیل می‌شویم
+
+						- https://localhost:7301/admin/filemanager
+
+							- AccessDenied
+
+14)
+
+	- ورود از طریق اکانت گوگل و غیره در دوره امنیت آموزش داده می‌شود
 **************************************************
 **************************************************
 **************************************************

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Server.Pages.Account
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	public class LogoutModel : Infrastructure.BasePageModel
 	{
 		public LogoutModel() : base()
