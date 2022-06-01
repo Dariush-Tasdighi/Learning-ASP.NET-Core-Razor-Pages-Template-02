@@ -60,6 +60,10 @@ namespace Server.Pages.Security
 			// **************************************************
 
 			// **************************************************
+			//claim =
+			//	new System.Security.Claims.Claim
+			//	(type: "Role", value: "Admin");
+
 			claim =
 				new System.Security.Claims.Claim
 				(type: System.Security.Claims.ClaimTypes.Role, value: "Admin");
@@ -68,6 +72,10 @@ namespace Server.Pages.Security
 			// **************************************************
 
 			// **************************************************
+			//claim =
+			//	new System.Security.Claims.Claim
+			//	(type: "Username", value: "Dariush");
+
 			claim =
 				new System.Security.Claims.Claim
 				(type: System.Security.Claims.ClaimTypes.Name, value: "Dariush");
