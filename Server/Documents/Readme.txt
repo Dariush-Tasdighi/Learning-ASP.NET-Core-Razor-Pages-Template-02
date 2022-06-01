@@ -192,7 +192,7 @@ Note:
 3)
 - In 'Domain' Project -> In 'SeedWork' Folder:
 
-	- Create 'RegularExpression.cs' File
+	- Create 'Constant.cs' File
 
 4)
 - In 'Resources' Project:
@@ -255,6 +255,10 @@ Note:
 		- Create 'Security' Folder:
 
 			- Create 'Utility.cs' File
+
+**************************************************
+Session (44)
+**************************************************
 
 10)
 - In 'Server' Project ->

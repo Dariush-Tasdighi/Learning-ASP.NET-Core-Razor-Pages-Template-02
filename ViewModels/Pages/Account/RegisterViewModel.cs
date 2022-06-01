@@ -63,6 +63,11 @@
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
+		//[System.ComponentModel.DataAnnotations.Compare
+		//	(otherProperty: "Password",
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Compare))]
+
 		[System.ComponentModel.DataAnnotations.Compare
 			(otherProperty: nameof(Password),
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),

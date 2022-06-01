@@ -31,6 +31,11 @@
 		//	(AllowEmptyStrings = false,
 		//	ErrorMessage = "You did not specify {0}!")]
 
+		//[System.ComponentModel.DataAnnotations.Required
+		//	(AllowEmptyStrings = false,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = "Required")]
+
 		[System.ComponentModel.DataAnnotations.Required
 			(AllowEmptyStrings = false,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
@@ -45,6 +50,11 @@
 			(length: Domain.SeedWork.Constant.MaxLength.Username,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
+		//[System.ComponentModel.DataAnnotations.RegularExpression
+		//	(pattern: @"^[a-zA-Z0-9_]{6,20}$",
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
 			(pattern: Domain.SeedWork.Constant.RegularExpression.Username,
