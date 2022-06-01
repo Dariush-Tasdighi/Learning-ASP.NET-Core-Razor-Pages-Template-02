@@ -1,22 +1,10 @@
 ﻿@page
 @model Server.Pages.Account.AccessDeniedModel
-
 @{
 	var pageTitle =
 		Resources.PageTitles.AccessDenied;
 
 	ViewData["PageTitle"] = pageTitle;
-
-	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-	{
-		Layout =
-			"Layouts/Rtl/_Security";
-	}
-	else
-	{
-		Layout =
-			"Layouts/Ltr/_Security";
-	}
 }
 
 <div class="container">

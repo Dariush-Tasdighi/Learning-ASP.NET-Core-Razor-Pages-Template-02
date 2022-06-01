@@ -1,6 +1,5 @@
 ﻿@page
 @model Server.Pages.Security.LoginModel
-
 @{
 	var pageTitle =
 		Resources.PageTitles.Login;
@@ -23,65 +22,85 @@
 
 	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
 		<div class="row">
-			<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4 col-lg-6 offset-lg-3 p-lg-5 bg-light border border-2 rounded-3 shadow-lg">
-				<legend>
-					@(pageTitle)
-				</legend>
+			<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+				<fieldset>
+					<legend>
+						@(pageTitle)
+					</legend>
 
-				<hr />
+					<hr />
 
-				<input type="hidden" value="@(Model.ReturnUrl)" />
+					<input type="hidden" value="@(Model.ReturnUrl)" />
 
-				<div class="mb-3">
-					<label asp-for="ViewModel.Username" class="form-label"></label>
+					<div class="mb-3">
+						<label asp-for="ViewModel.Username" class="form-label"></label>
 
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-						<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+							<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.Username" class="text-danger"></span>
 					</div>
 
-					<span asp-validation-for="ViewModel.Username" class="text-danger"></span>
-				</div>
+					<div class="mb-3">
+						<label asp-for="ViewModel.Password" class="form-label"></label>
 
-				<div class="mb-3">
-					<label asp-for="ViewModel.Password" class="form-label"></label>
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+							<input asp-for="ViewModel.Password" class="form-control" dir="ltr" />
+						</div>
 
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
-						<input asp-for="ViewModel.Password" class="form-control" dir="ltr" />
+						<span asp-validation-for="ViewModel.Password" class="text-danger"></span>
 					</div>
 
-					<span asp-validation-for="ViewModel.Password" class="text-danger"></span>
-				</div>
-
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.RememberMe" class="form-check-input" />
-						<label asp-for="ViewModel.RememberMe" class="form-check-label"></label>
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.RememberMe" class="form-check-input" />
+							<label asp-for="ViewModel.RememberMe" class="form-check-label"></label>
+						</div>
 					</div>
-				</div>
 
-				<div class="mb-3">
-					<button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Login)</button>
-					<button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
-				</div>
+					<div class="mb-3">
+						<button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Login)</button>
+						<button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
+					</div>
+				</fieldset>
 
 				<hr class="mt-4" />
 
 				<div class="d-grid gap-2 mb-3">
-					<a asp-page="/Google/Login" class="btn btn-danger">Google</a>
+					<a asp-page="/Google/Login" class="btn btn-danger">
+						@(Resources.ButtonCaptions.LoginWithGoogle)
+					</a>
 				</div>
 
 				<hr class="mt-4" />
 
 				<div class="text-center">
-					<a href="#">@(Resources.ButtonCaptions.ForgotUsername)</a>
+					<a asp-page="/Index" class="text-decoration-none">
+						@(Resources.ButtonCaptions.Home)
+					</a>
 					|
-					<a href="#">@(Resources.ButtonCaptions.ForgotPassword)</a>
+					<a asp-page="/Account/Register" class="text-decoration-none">
+						@(Resources.ButtonCaptions.Register)
+					</a>
+
+					<br />
+
+					<a href="#" class="text-decoration-none">
+						@(Resources.ButtonCaptions.ForgotUsername)
+					</a>
 					|
-					<a asp-page="Register">@(Resources.ButtonCaptions.Register)</a>
-					|
-					<a href="/">@(Resources.ButtonCaptions.Home)</a>
+					<a href="#" class="text-decoration-none">
+						@(Resources.ButtonCaptions.ForgotPassword)
+					</a>
+
+					<br />
+
+					<a href="#" class="text-decoration-none">
+						@(Resources.ButtonCaptions.SendAgainEmailAddressVerificationKey)
+					</a>
 				</div>
 			</div>
 		</div>

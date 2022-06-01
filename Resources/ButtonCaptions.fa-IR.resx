@@ -144,6 +144,9 @@
   <data name="Login" xml:space="preserve">
     <value>ورود</value>
   </data>
+  <data name="LoginWithGoogle" xml:space="preserve">
+    <value>ورود از طریق گوگل</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>ثبت‌نام</value>
   </data>
@@ -154,7 +157,7 @@
     <value>ذخیره</value>
   </data>
   <data name="SendAgainEmailAddressVerificationKey" xml:space="preserve">
-    <value>ارسال مجدد کد تایید</value>
+    <value>ارسال مجدد کد تایید نشانی پست الکترونیکی</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>ویرایش</value>
