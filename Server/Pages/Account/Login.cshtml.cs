@@ -4,9 +4,11 @@ namespace Server.Pages.Security
 {
 	public class LoginModel : Infrastructure.BasePageModel
 	{
-		public LoginModel() : base()
+		public LoginModel
+			(Infrastructure.Settings.ApplicationSettings applicationSettings) : base()
 		{
 			ViewModel = new();
+			ApplicationSettings = applicationSettings;
 		}
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
@@ -14,6 +16,8 @@ namespace Server.Pages.Security
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Account.LoginViewModel ViewModel { get; set; }
+
+		public Infrastructure.Settings.ApplicationSettings ApplicationSettings { get; }
 
 		public void OnGet(string? returnUrl)
 		{
@@ -28,14 +32,47 @@ namespace Server.Pages.Security
 				return Page();
 			}
 
-			if (string.Compare(ViewModel.Username, "Dariush", ignoreCase: true) != 0 ||
-				string.Compare(ViewModel.Password, "1234512345", ignoreCase: true) != 0)
+			// **************************************************
+			//if (string.Compare(ViewModel.Username, "Dariush", ignoreCase: true) != 0 ||
+			//	string.Compare(ViewModel.Password, "1234512345", ignoreCase: true) != 0)
+			//{
+			//	AddPageError
+			//		(message: "Wrong username and/or password!");
+
+			//	return Page();
+			//}
+			// **************************************************
+
+			// **************************************************
+			if (string.Compare(strA: ViewModel.Username, strB: "Dariush", ignoreCase: true) != 0)
 			{
-				AddPageError
-					(message: "Wrong username and/or password!");
+				AddPageError(message:
+					Resources.Messages.Errors.InvalidUsernameOrPassword);
 
 				return Page();
 			}
+
+			string? passwordHash =
+				Dtat.Security.Cryptography
+				.GetSha256(text: ViewModel.Password);
+
+			if (string.IsNullOrWhiteSpace(value: passwordHash))
+			{
+				AddPageError(message:
+					Resources.Messages.Errors.InvalidUsernameOrPassword);
+
+				return Page();
+			}
+
+			if (string.Compare(passwordHash,
+				ApplicationSettings.MasterPassword, ignoreCase: true) != 0)
+			{
+				AddPageError(message:
+					Resources.Messages.Errors.InvalidUsernameOrPassword);
+
+				return Page();
+			}
+			// **************************************************
 
 			// **************************************************
 			// TODO

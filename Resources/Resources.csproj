@@ -27,6 +27,11 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>LableCaptions.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Messages\Errors.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Errors.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Messages\Validations.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -55,6 +60,10 @@
 		<EmbeddedResource Update="LableCaptions.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>LableCaptions.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Messages\Errors.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Errors.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Messages\Validations.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>

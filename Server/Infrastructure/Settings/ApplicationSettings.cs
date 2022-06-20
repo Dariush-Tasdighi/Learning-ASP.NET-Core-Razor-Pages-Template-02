@@ -21,6 +21,10 @@
 		// **********
 
 		// **********
+		public string? MasterPassword { get; set; }
+		// **********
+
+		// **********
 		public string[]? ActivationKeys { get; set; }
 		// **********
 
