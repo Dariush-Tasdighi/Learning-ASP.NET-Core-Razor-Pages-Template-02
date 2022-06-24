@@ -73,7 +73,7 @@ namespace Persistence.Configurations.Account
 				.Property(current => current.EmailAddressVerificationKey)
 				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.EmailAddressVerificationKey)
 				.IsUnicode(unicode: false)
-				.IsRequired(required: true)
+				.IsRequired(required: false)
 				//.IsFixedLength(fixedLength: true)
 				;
 			// **************************************************
@@ -86,7 +86,6 @@ namespace Persistence.Configurations.Account
 				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
-
 
 			builder
 				.Property(current => current.CellPhoneNumberVerificationKey)
