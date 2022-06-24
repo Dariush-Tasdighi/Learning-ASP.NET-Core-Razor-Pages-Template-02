@@ -223,11 +223,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Cell Phone Number Verified.
+        /// </summary>
+        public static string IsCellPhoneNumberVerified {
+            get {
+                return ResourceManager.GetString("IsCellPhoneNumberVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Deleted.
         /// </summary>
         public static string IsDeleted {
             get {
                 return ResourceManager.GetString("IsDeleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Email Address Verified.
+        /// </summary>
+        public static string IsEmailAddressVerified {
+            get {
+                return ResourceManager.GetString("IsEmailAddressVerified", resourceCulture);
             }
         }
         

@@ -141,6 +141,13 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public bool? IsEmailAddressVerified { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.CellPhoneNumber),
 			ResourceType = typeof(Resources.DataDictionary))]
 
@@ -154,6 +161,13 @@
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
 		public string? CellPhoneNumber { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public bool? IsCellPhoneNumberVerified { get; set; }
 		// **********
 
 		// **********

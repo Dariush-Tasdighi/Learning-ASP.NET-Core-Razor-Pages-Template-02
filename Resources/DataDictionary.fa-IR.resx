@@ -168,8 +168,14 @@
   <data name="IsActive" xml:space="preserve">
     <value>فعال</value>
   </data>
+  <data name="IsCellPhoneNumberVerified" xml:space="preserve">
+    <value>شماره تلفن همراه تایید شده است</value>
+  </data>
   <data name="IsDeleted" xml:space="preserve">
     <value>حذف</value>
+  </data>
+  <data name="IsEmailAddressVerified" xml:space="preserve">
+    <value>پست الکترونیکی تایید شده است</value>
   </data>
   <data name="IsVerified" xml:space="preserve">
     <value>فعال</value>

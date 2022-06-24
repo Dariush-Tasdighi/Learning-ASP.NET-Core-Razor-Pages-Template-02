@@ -171,8 +171,14 @@
   <data name="IsActive" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="IsCellPhoneNumberVerified" xml:space="preserve">
+    <value>Is Cell Phone Number Verified</value>
+  </data>
   <data name="IsDeleted" xml:space="preserve">
     <value>Is Deleted</value>
+  </data>
+  <data name="IsEmailAddressVerified" xml:space="preserve">
+    <value>Is Email Address Verified</value>
   </data>
   <data name="IsVerified" xml:space="preserve">
     <value>IsVerified</value>
