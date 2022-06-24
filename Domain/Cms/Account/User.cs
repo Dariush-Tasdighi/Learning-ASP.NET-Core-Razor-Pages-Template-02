@@ -10,7 +10,7 @@
 
 		public const int PasswordMinLength = 8;
 		public const int PasswordMaxLength = 20;
-		public const int PasswordLengthInDatabase = 40;
+		public const int PasswordLengthInDatabase = 64;
 		public const string PasswordRegularExpression = "^[a-zA-Z0-9_-]{8,20}$";
 
 		public const int EmailAddressMaxLength = 250;
@@ -26,19 +26,20 @@
 
 		public User() : base()
 		{
+			IsActive = false;
+			IsVerified = false;
+			// است false ها Boolean مقدار پیش فرض
+			// مقداردهی این دو متغیر در "سازنده ی پیش فرض کلاس"، صرفا برای تاکید بیشتر
+			// بر "غیر فعال" بودن و "تایید" نشدن کاربر در زمان درخواست "ثبت نام" است
 		}
 
-		//// **********
-		//// **********
-		//// **********
-		//public Role Role { get; set; }
-		//// **********
-
-		//// **********
-		//public System.Guid RoleId { get; set; }
-		//// **********
-		//// **********
-		//// **********
+		// **********
+		// **********
+		// **********
+		public System.Guid? RoleId { get; set; }
+		// **********
+		// **********
+		// **********
 
 		// **********
 		public string? Username { get; set; }
@@ -46,6 +47,10 @@
 
 		// **********
 		public string? Password { get; set; }
+		// **********
+
+		// **********
+		public Enumerations.Gender Gender { get; set; }
 		// **********
 
 		// **********
@@ -57,7 +62,7 @@
 		// **********
 
 		// **********
-		public string? EmailAddress { get; set; }
+		public System.DateTime? BirthDate { get; set; }
 		// **********
 
 		// **********
@@ -65,11 +70,19 @@
 		// **********
 
 		// **********
+		public string? EmailAddress { get; set; }
+		// **********
+
+		// **********
 		public string? Description { get; set; }
 		// **********
 
 		// **********
-		public Enumerations.Gender Gender { get; set; }
+		public string? EmailVerificationKey { get; set; }
+		// **********
+
+		// **********
+		public System.DateTime? EmailVerificationKeyExpireDateTime { get; set; }
 		// **********
 
 		// **********
@@ -77,31 +90,19 @@
 		// **********
 
 		// **********
-		public bool IsDeleted { get; set; }
-		// **********
-
-		// **********
 		public bool IsVerified { get; set; }
 		// **********
 
 		// **********
-		public bool IsCellPhoneVerified { get; set; }
+		public bool IsDeleted { get; set; }
 		// **********
 
 		// **********
-		public bool IsEmailAddressVerified { get; set; }
+		public System.DateTime? VerifyDateTime { get; set; }
 		// **********
 
 		// **********
-		public string? EmailAddressVerificationCode { get; set; }
-		// **********
-
-		// **********
-		public string? CellPhoneVerificationCode { get; set; }
-		// **********
-
-		// **********
-		public System.DateTime UpdateDateTime { get; private set; }
+		public System.DateTime? UpdateDateTime { get; private set; }
 		// **********
 
 		public void SetUpdateDateTime()

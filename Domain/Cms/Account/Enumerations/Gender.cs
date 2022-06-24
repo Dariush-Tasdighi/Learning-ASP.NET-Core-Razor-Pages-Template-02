@@ -2,7 +2,7 @@
 {
 	public enum Gender : int
 	{
-		Unselected = 0,
+		Unspecified = 0,
 		Male = 1,
 		Female = 2,
 	}

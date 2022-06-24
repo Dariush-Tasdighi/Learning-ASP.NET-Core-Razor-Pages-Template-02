@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Dtat
+﻿namespace Dtat.String
 {
-	public static class String
+	public static class Text : object
 	{
-		static String()
+		static Text()
 		{
 		}
 

@@ -1,4 +1,6 @@
-﻿namespace Persistence.Configurations
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Persistence.Configurations.Account
 {
 	internal class UserConfiguration :
 		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Cms.Account.User>
@@ -53,6 +55,14 @@
 
 			// **************************************************
 			builder
+				.Property(current => current.BirthDate)
+				// Extension Method -> using Microsoft.EntityFrameworkCore;
+				.HasColumnType(typeName: nameof(System.DateTime.Date))
+				;
+			// **************************************************
+
+			// **************************************************
+			builder
 				.Property(current => current.EmailAddress)
 				.HasMaxLength(maxLength: Domain.Cms.Account.User.EmailAddressMaxLength)
 				.IsRequired(required: false)
@@ -60,7 +70,7 @@
 				;
 
 			builder
-				.Property(current => current.EmailAddressVerificationCode)
+				.Property(current => current.EmailVerificationKey)
 				.HasMaxLength(maxLength: Domain.Cms.Account.User.EmailAddressVerificationKeyFixLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
@@ -77,12 +87,12 @@
 				;
 
 
-			builder
-				.Property(current => current.CellPhoneVerificationCode)
-				.HasMaxLength(maxLength: Domain.Cms.Account.User.CellPhoneVerificationKeyFixLength)
-				.IsRequired(required: false)
-				.IsUnicode(unicode: false)
-				;
+			//builder
+			//	.Property(current => current.CellPhoneVerificationKey)
+			//	.HasMaxLength(maxLength: Domain.Cms.Account.User.CellPhoneVerificationKeyFixLength)
+			//	.IsRequired(required: false)
+			//	.IsUnicode(unicode: false)
+			//	;
 			// **************************************************
 
 
