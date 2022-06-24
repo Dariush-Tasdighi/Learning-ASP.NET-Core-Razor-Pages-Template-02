@@ -97,9 +97,6 @@
 			(pattern: Domain.SeedWork.Constant.RegularExpression.EmailAddress,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
-
-		//[System.ComponentModel.DataAnnotations.DataType
-		//	(dataType: System.ComponentModel.DataAnnotations.DataType.EmailAddress)]
 		public string? EmailAddress { get; set; }
 		// **********
 	}

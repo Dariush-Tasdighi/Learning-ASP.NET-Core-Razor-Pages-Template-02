@@ -16,14 +16,14 @@ namespace Persistence.Configurations.Account
 			// **************************************************
 			builder
 				.Property(current => current.Username)
-				.HasMaxLength(maxLength: Domain.Cms.Account.User.UsernameMaxLength)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.Username)
 				.IsRequired(required: true)
 				.IsUnicode(unicode: false)
 				;
 
 			builder
 				.Property(current => current.Password)
-				.HasMaxLength(maxLength: Domain.Cms.Account.User.PasswordLengthInDatabase)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.PasswordInDatabase)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
@@ -32,14 +32,14 @@ namespace Persistence.Configurations.Account
 			// **************************************************
 			builder
 				.Property(current => current.FirstName)
-				.HasMaxLength(maxLength: Domain.Cms.Account.User.FirstNameMaxLength)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.FirstName)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
 
 			builder
 				.Property(current => current.LastName)
-				.HasMaxLength(maxLength: Domain.Cms.Account.User.LastNameMaxLength)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.LastName)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -64,16 +64,17 @@ namespace Persistence.Configurations.Account
 			// **************************************************
 			builder
 				.Property(current => current.EmailAddress)
-				.HasMaxLength(maxLength: Domain.Cms.Account.User.EmailAddressMaxLength)
-				.IsRequired(required: false)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.EmailAddress)
+				.IsRequired(required: true)
 				.IsUnicode(unicode: false)
 				;
 
 			builder
-				.Property(current => current.EmailVerificationKey)
-				.HasMaxLength(maxLength: Domain.Cms.Account.User.EmailAddressVerificationKeyFixLength)
-				.IsRequired(required: false)
+				.Property(current => current.EmailAddressVerificationKey)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.EmailAddressVerificationKey)
 				.IsUnicode(unicode: false)
+				.IsRequired(required: true)
+				//.IsFixedLength(fixedLength: true)
 				;
 			// **************************************************
 
@@ -81,18 +82,19 @@ namespace Persistence.Configurations.Account
 			// **************************************************
 			builder
 				.Property(current => current.CellPhoneNumber)
-				.HasMaxLength(maxLength: Domain.Cms.Account.User.CellPhoneMaxLength)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.CellPhoneNumber)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
 
 
-			//builder
-			//	.Property(current => current.CellPhoneVerificationKey)
-			//	.HasMaxLength(maxLength: Domain.Cms.Account.User.CellPhoneVerificationKeyFixLength)
-			//	.IsRequired(required: false)
-			//	.IsUnicode(unicode: false)
-			//	;
+			builder
+				.Property(current => current.CellPhoneNumberVerificationKey)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.CellPhoneNumberVerificationKey)
+				.IsUnicode(unicode: false)
+				.IsRequired(required: false)
+				//.IsFixedLength(fixedLength: true)
+				;
 			// **************************************************
 
 
@@ -101,6 +103,21 @@ namespace Persistence.Configurations.Account
 				.HasIndex(user => new { user.Username })
 				.IsUnique(unique: true)
 				;
+			// **************************************************
+
+			// **************************************************
+			// true با IsUnique در صورت برابر بودن مقدار
+			// در صورت مقدار ندادن به هر یک از این دو فیلد، برای دو کاربر در زمان ثبت یا ویرایش با خطا مواجه خواهیم شد
+			// **************************************************
+			//builder
+			//	.HasIndex(user => new { user.CellPhoneNumber })
+			//	.IsUnique(unique: false)
+			//	;
+
+			//builder
+			//	.HasIndex(user => new { user.EmailAddress })
+			//	.IsUnique(unique: false)
+			//	;
 			// **************************************************
 		}
 	}

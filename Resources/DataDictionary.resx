@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
   <data name="Blog" xml:space="preserve">
     <value>Blog</value>
   </data>
   <data name="CellPhoneNumber" xml:space="preserve">
     <value>Cell Phone Number</value>
+  </data>
+  <data name="CellPhoneNumberVerificationKey" xml:space="preserve">
+    <value>Cell Phone Number Verification Key</value>
+  </data>
+  <data name="CellPhoneNumberVerificationKeyExpireDateTime" xml:space="preserve">
+    <value>Cell Phone Number Verification Key Expire Time</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
@@ -132,11 +141,26 @@
   <data name="EmailAddress" xml:space="preserve">
     <value>Email Address</value>
   </data>
+  <data name="EmailAddressVerificationKey" xml:space="preserve">
+    <value>Email Address Verification Key</value>
+  </data>
+  <data name="EmailAddressVerificationKeyExpireDateTime" xml:space="preserve">
+    <value>Email Address Verification Key Expire Time</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
   <data name="FileManager" xml:space="preserve">
     <value>File Manager</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>Full Name</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
@@ -147,11 +171,20 @@
   <data name="IsActive" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="IsDeleted" xml:space="preserve">
+    <value>Is Deleted</value>
+  </data>
+  <data name="IsVerified" xml:space="preserve">
+    <value>IsVerified</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>Languages</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
   </data>
   <data name="List" xml:space="preserve">
     <value>List</value>
@@ -159,8 +192,14 @@
   <data name="ListOf" xml:space="preserve">
     <value>List of </value>
   </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>National Code</value>
   </data>
   <data name="Ordering" xml:space="preserve">
     <value>Ordering</value>
@@ -189,11 +228,17 @@
   <data name="Title" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="Unspecified" xml:space="preserve">
+    <value>Unspecified</value>
+  </data>
   <data name="UpdateDateTime" xml:space="preserve">
     <value>Update Time</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="VerifyDateTime" xml:space="preserve">
+    <value>Verify Time</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>

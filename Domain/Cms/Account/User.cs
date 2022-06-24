@@ -2,28 +2,6 @@
 {
 	public class User : SeedWork.Entity, SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime
 	{
-		#region Constant(s)
-		public const int UsernameMinLength = 6;
-		public const int UsernameMaxLength = 20;
-		public const string UsernameRegularExpression = "^[a-zA-Z0-9_-]{8,20}$";
-
-
-		public const int PasswordMinLength = 8;
-		public const int PasswordMaxLength = 20;
-		public const int PasswordLengthInDatabase = 64;
-		public const string PasswordRegularExpression = "^[a-zA-Z0-9_-]{8,20}$";
-
-		public const int EmailAddressMaxLength = 250;
-		public const int EmailAddressVerificationKeyFixLength = 32;
-
-		public const int CellPhoneMaxLength = 11;
-		public const int CellPhoneVerificationKeyFixLength = 6;
-		public const string CellPhoneRegularExpression = @"09\d{9}";
-
-		public const int LastNameMaxLength = 50;
-		public const int FirstNameMaxLength = 50;
-		#endregion Constant(s)
-
 		public User() : base()
 		{
 			IsActive = false;
@@ -36,16 +14,58 @@
 		// **********
 		// **********
 		// **********
+		//[System.ComponentModel.DataAnnotations.Display
+		//	(Name = nameof(Resources.DataDictionary.Role),
+		//	ResourceType = typeof(Resources.DataDictionary))]
 		public System.Guid? RoleId { get; set; }
 		// **********
 		// **********
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Username),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.Required
+		//	(AllowEmptyStrings = false,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.Username,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
+		[System.ComponentModel.DataAnnotations.RegularExpression
+			(pattern: Domain.SeedWork.Constant.RegularExpression.Username,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
 		public string? Username { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Password),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.Required
+		//	(AllowEmptyStrings = false,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.Password,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
+		[System.ComponentModel.DataAnnotations.RegularExpression
+			(pattern: Domain.SeedWork.Constant.RegularExpression.Password,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Password))]
+
+		[System.ComponentModel.DataAnnotations.DataType
+			(dataType: System.ComponentModel.DataAnnotations.DataType.Password)]
 		public string? Password { get; set; }
 		// **********
 
@@ -54,54 +74,166 @@
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.FirstName),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.FirstName,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? FirstName { get; set; }
 		// **********
 
 		// **********
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.LastName),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.LastName,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? LastName { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.BirthDate),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public System.DateTime? BirthDate { get; set; }
 		// **********
 
 		// **********
-		public string? CellPhoneNumber { get; set; }
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.NationalCode),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.NationalCode,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+		public string? NationalCode { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.EmailAddress),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.Required
+		//	(AllowEmptyStrings = false,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.EmailAddress,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
+		[System.ComponentModel.DataAnnotations.RegularExpression
+			(pattern: Domain.SeedWork.Constant.RegularExpression.EmailAddress,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
 		public string? EmailAddress { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.CellPhoneNumber),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.CellPhoneNumber,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
+		[System.ComponentModel.DataAnnotations.RegularExpression
+			(pattern: Domain.SeedWork.Constant.RegularExpression.CellPhoneNumber,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
+		public string? CellPhoneNumber { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Description),
+			ResourceType = typeof(Resources.DataDictionary))]
+
 		public string? Description { get; set; }
 		// **********
 
 		// **********
-		public string? EmailVerificationKey { get; set; }
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.EmailAddressVerificationKey),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.EmailAddressVerificationKey,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+		public string? EmailAddressVerificationKey { get; set; }
 		// **********
 
 		// **********
-		public System.DateTime? EmailVerificationKeyExpireDateTime { get; set; }
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.EmailAddressVerificationKeyExpireDateTime),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public System.DateTime? EmailAddressVerificationKeyExpireDateTime { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.CellPhoneNumberVerificationKey),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		//[System.ComponentModel.DataAnnotations.MaxLength
+		//	(length: Domain.SeedWork.Constant.MaxLength.CellPhoneNumberVerificationKey,
+		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+		public string? CellPhoneNumberVerificationKey { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.CellPhoneNumberVerificationKeyExpireDateTime),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public System.DateTime? CellPhoneNumberVerificationKeyExpireDateTime { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsActive),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsActive { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsVerified),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsVerified { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsDeleted),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsDeleted { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.VerifyDateTime),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public System.DateTime? VerifyDateTime { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public System.DateTime? UpdateDateTime { get; private set; }
 		// **********
 

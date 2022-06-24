@@ -117,11 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BirthDate" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
   <data name="Blog" xml:space="preserve">
     <value>وبلاگ</value>
   </data>
   <data name="CellPhoneNumber" xml:space="preserve">
     <value>شماره تلفن همراه</value>
+  </data>
+  <data name="CellPhoneNumberVerificationKey" xml:space="preserve">
+    <value>کد تایید شماره تلفن همراه</value>
+  </data>
+  <data name="CellPhoneNumberVerificationKeyExpireDateTime" xml:space="preserve">
+    <value>زمان انقضا کد تایید شماره تلفن همراه</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>تکرار گذرواژه</value>
@@ -132,11 +141,23 @@
   <data name="EmailAddress" xml:space="preserve">
     <value>نشانی پست الکترونیکی</value>
   </data>
+  <data name="EmailAddressVerificationKey" xml:space="preserve">
+    <value>کد تایید پست الکترونیکی</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>آقا</value>
+  </data>
   <data name="FileManager" xml:space="preserve">
     <value>مدیریت فایل‌ها</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>نام و نام خانوادگی</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>جنسیت</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>شناسه</value>
@@ -147,11 +168,20 @@
   <data name="IsActive" xml:space="preserve">
     <value>فعال</value>
   </data>
+  <data name="IsDeleted" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="IsVerified" xml:space="preserve">
+    <value>فعال</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>زبان</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>زبان‌ها</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
   </data>
   <data name="List" xml:space="preserve">
     <value>فهرست</value>
@@ -159,8 +189,14 @@
   <data name="ListOf" xml:space="preserve">
     <value>فهرست </value>
   </data>
+  <data name="Male" xml:space="preserve">
+    <value>خانم</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>کد ملی</value>
   </data>
   <data name="Ordering" xml:space="preserve">
     <value>چیدمان</value>
@@ -192,11 +228,20 @@
   <data name="Title" xml:space="preserve">
     <value>عنوان</value>
   </data>
+  <data name="Unspecified" xml:space="preserve">
+    <value>مشخص نشده</value>
+  </data>
   <data name="UpdateDateTime" xml:space="preserve">
     <value>زمان ویرایش</value>
   </data>
   <data name="Username" xml:space="preserve">
     <value>شناسه کاربری</value>
+  </data>
+  <data name="VerificationKeyExpireDateTime" xml:space="preserve">
+    <value>زمان انقضا کد تایید پست الکترونیکی</value>
+  </data>
+  <data name="VerifyDateTime" xml:space="preserve">
+    <value>زمان تایید</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>نسخه</value>
