@@ -65,7 +65,7 @@ namespace Persistence.Configurations.Account
 			builder
 				.Property(current => current.EmailAddress)
 				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.EmailAddress)
-				.IsRequired(required: true)
+				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
 

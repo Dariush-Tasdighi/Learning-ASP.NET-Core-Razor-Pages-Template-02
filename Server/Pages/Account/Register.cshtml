@@ -22,13 +22,15 @@
 
 	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
 		<div class="row">
-			<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+			<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
 				<fieldset>
 					<legend>
 						@(pageTitle)
 					</legend>
 
 					<hr />
+
+					<partial name="PartialViews/_DisplayPageMessages" />
 
 					<div class="mb-3">
 						<label asp-for="ViewModel.Username" class="form-label"></label>
