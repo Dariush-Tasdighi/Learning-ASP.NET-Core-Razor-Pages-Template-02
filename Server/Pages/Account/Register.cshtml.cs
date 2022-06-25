@@ -48,6 +48,7 @@ namespace Server.Pages.Security
 					bool isEmailAddressFound =
 						await DatabaseContext.Users
 						.Where(current => current.EmailAddress == fixedEmailAddress)
+						.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
 						.AnyAsync();
 
 					// **************************************************
