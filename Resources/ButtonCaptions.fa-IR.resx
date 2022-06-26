@@ -123,6 +123,9 @@
   <data name="BackToList" xml:space="preserve">
     <value>بازگشت به فهرست</value>
   </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>منصرف شدم</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>ایجاد</value>
   </data>

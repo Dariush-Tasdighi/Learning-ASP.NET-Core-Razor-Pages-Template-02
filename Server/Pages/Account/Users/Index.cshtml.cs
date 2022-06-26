@@ -26,12 +26,12 @@ namespace Server.Pages.Account.Users
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public System.DateTime? BirthDate { get; set; }
+		public string? NationalCode { get; set; }
 		// **********
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public string? NationalCode { get; set; }
+		public System.DateTime? BirthDate { get; set; }
 		// **********
 
 		// **********
@@ -41,6 +41,42 @@ namespace Server.Pages.Account.Users
 
 		public void OnGet()
 		{
+		}
+
+		public async
+			System.Threading.Tasks.Task OnPostEditGenderAsync()
+		{
+			await System.Threading.Tasks.Task.CompletedTask;
+		}
+
+		public async
+			System.Threading.Tasks.Task OnPostEditUsernameAsync()
+		{
+			await System.Threading.Tasks.Task.CompletedTask;
+		}
+		
+		public async
+			System.Threading.Tasks.Task OnPostEditBirthDateAsync()
+		{
+			await System.Threading.Tasks.Task.CompletedTask;
+		}
+
+		public async
+			System.Threading.Tasks.Task OnPostEditFullNameAsync()
+		{
+			await System.Threading.Tasks.Task.CompletedTask;
+		}
+
+		public async
+			System.Threading.Tasks.Task OnPostEditDescriptionAsync()
+		{
+			await System.Threading.Tasks.Task.CompletedTask;
+		}
+
+		public async
+			System.Threading.Tasks.Task OnPostEditNationalCodeAsync()
+		{
+			await System.Threading.Tasks.Task.CompletedTask;
 		}
 	}
 }
