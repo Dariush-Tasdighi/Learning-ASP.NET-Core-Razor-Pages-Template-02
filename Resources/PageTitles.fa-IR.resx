@@ -132,6 +132,9 @@
   <data name="Contact" xml:space="preserve">
     <value>تماس با ما</value>
   </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>تعریف کاربر</value>
+  </data>
   <data name="DeactivateAccount" xml:space="preserve">
     <value>غیرفعال کردن حساب کاربری</value>
   </data>

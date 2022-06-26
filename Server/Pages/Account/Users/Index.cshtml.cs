@@ -1,8 +1,9 @@
 namespace Server.Pages.Account.Users
 {
-	public class IndexModel : Infrastructure.BasePageModel
+	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
-		public IndexModel() : base()
+		public IndexModel
+			(Persistence.DatabaseContext databaseContext) : base(databaseContext: databaseContext)
 		{
 		}
 
@@ -46,36 +47,42 @@ namespace Server.Pages.Account.Users
 		public async
 			System.Threading.Tasks.Task OnPostEditGenderAsync()
 		{
+			// TO DO:
 			await System.Threading.Tasks.Task.CompletedTask;
 		}
 
 		public async
 			System.Threading.Tasks.Task OnPostEditUsernameAsync()
 		{
+			// TO DO:
 			await System.Threading.Tasks.Task.CompletedTask;
 		}
 		
 		public async
 			System.Threading.Tasks.Task OnPostEditBirthDateAsync()
 		{
+			// TO DO:
 			await System.Threading.Tasks.Task.CompletedTask;
 		}
 
 		public async
 			System.Threading.Tasks.Task OnPostEditFullNameAsync()
 		{
+			// TO DO:
 			await System.Threading.Tasks.Task.CompletedTask;
 		}
 
 		public async
 			System.Threading.Tasks.Task OnPostEditDescriptionAsync()
 		{
+			// TO DO:
 			await System.Threading.Tasks.Task.CompletedTask;
 		}
 
 		public async
 			System.Threading.Tasks.Task OnPostEditNationalCodeAsync()
 		{
+			// TO DO:
 			await System.Threading.Tasks.Task.CompletedTask;
 		}
 	}

@@ -1,17 +1,18 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Security
+namespace Server.Pages.Admin.UserManagement
 {
-	public class RegisterModel : Infrastructure.BasePageModelWithDatabase
+	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
-		public RegisterModel(Persistence.DatabaseContext databaseContext) : base(databaseContext: databaseContext)
+		public CreateModel
+			(Persistence.DatabaseContext databaseContext) : base(databaseContext: databaseContext)
 		{
 			ViewModel = new();
 		}
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Account.RegisterViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.UserManagement.CreateUserViewModel ViewModel { get; set; }
 
 		public void OnGet()
 		{
@@ -73,11 +74,34 @@ namespace Server.Pages.Security
 					}
 
 					// **************************************************
+					if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
+					{
+						ViewModel.IsEmailAddressVerified = true;
+					}
+
+					if (string.IsNullOrWhiteSpace(value: ViewModel.CellPhoneNumber) == false)
+					{
+						ViewModel.IsCellPhoneNumberVerified = true;
+					}
+					// **************************************************
+
+					// **************************************************
 					Domain.Cms.Account.User user = new()
 					{
+						//Role = ViewModel.Role,
+						Gender = ViewModel.Gender,
+						IsActive = ViewModel.IsActive,
+
+						IsVerified = ViewModel.IsVerified,
+						VerifyDateTime = Domain.SeedWork.Utility.Now,
+						IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
+						IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
+
 						Username = fixedUsername,
-						//RoleId = DefaultRoleId,
 						EmailAddress = fixedEmailAddress,
+						CellPhoneNumber = ViewModel.CellPhoneNumber,
+						LastName = Infrastructure.Utility.FixText(text: ViewModel.LastName),
+						FirstName = Infrastructure.Utility.FixText(text: ViewModel.FirstName),
 						Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
 					};
 
@@ -87,11 +111,7 @@ namespace Server.Pages.Security
 					// **************************************************
 
 					// TODO: Read From Resource File
-					AddToastSuccess(message: "اطلاعات شما با موفقیت در این سامانه ثبت شد...");
-
-					// **************************************************
-					// TODO: Send Verification Key To User Email Address
-					// **************************************************
+					AddToastSuccess(message: "اطلاعات کاربر با موفقیت در این سامانه ثبت شد...");
 				}
 			}
 			catch (System.Exception ex)
