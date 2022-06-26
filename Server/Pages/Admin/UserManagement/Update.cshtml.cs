@@ -27,6 +27,7 @@ namespace Server.Pages.Admin.UserManagement
 
 					if (foundedUser is not null)
 					{
+						// ViewModel.Role = foundedUser.Role,
 						ViewModel.Gender = foundedUser.Gender;
 						ViewModel.IsActive = foundedUser.IsActive;
 						ViewModel.IsVerified = foundedUser.IsVerified;
@@ -34,7 +35,6 @@ namespace Server.Pages.Admin.UserManagement
 						ViewModel.Username = foundedUser.Username;
 						ViewModel.LastName = foundedUser.LastName;
 						ViewModel.FirstName = foundedUser.FirstName;
-
 						ViewModel.BirthDate = foundedUser.BirthDate;
 						ViewModel.EmailAddress = foundedUser.EmailAddress;
 						ViewModel.CellPhoneNumber = foundedUser.CellPhoneNumber;
