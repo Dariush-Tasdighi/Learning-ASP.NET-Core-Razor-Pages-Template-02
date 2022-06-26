@@ -181,7 +181,7 @@
     <value>Is Email Address Verified</value>
   </data>
   <data name="IsVerified" xml:space="preserve">
-    <value>IsVerified</value>
+    <value>Verified</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>

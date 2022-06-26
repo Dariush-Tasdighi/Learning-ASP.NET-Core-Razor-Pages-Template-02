@@ -250,7 +250,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IsVerified.
+        ///   Looks up a localized string similar to Verified.
         /// </summary>
         public static string IsVerified {
             get {
