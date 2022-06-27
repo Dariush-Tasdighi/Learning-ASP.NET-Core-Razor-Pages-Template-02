@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
   <data name="BirthDate" xml:space="preserve">
     <value>Birth Date</value>
   </data>
@@ -134,6 +140,12 @@
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
+  </data>
+  <data name="Deactive" xml:space="preserve">
+    <value>Deactive</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -207,6 +219,9 @@
   <data name="NationalCode" xml:space="preserve">
     <value>National Code</value>
   </data>
+  <data name="NotVerified" xml:space="preserve">
+    <value>Not Verified</value>
+  </data>
   <data name="Ordering" xml:space="preserve">
     <value>Ordering</value>
   </data>
@@ -245,6 +260,9 @@
   </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="Verified" xml:space="preserve">
+    <value>Verified</value>
   </data>
   <data name="VerifyDateTime" xml:space="preserve">
     <value>Verify Time</value>

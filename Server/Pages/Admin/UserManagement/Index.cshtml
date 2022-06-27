@@ -12,11 +12,12 @@
 					<tr>
 						<td>@(Resources.DataDictionary.FirstName)</td>
 						<td>@(Resources.DataDictionary.LastName)</td>
-						<td>@(Resources.DataDictionary.EmailAddress)</td>
-						<td>@(Resources.DataDictionary.CellPhoneNumber)</td>
+						<td>@(Resources.DataDictionary.Username)</td>
 						<td>@(Resources.DataDictionary.IsActive)</td>
 						<td>@(Resources.DataDictionary.IsVerified)</td>
+						<td>@(Resources.DataDictionary.IsDeleted)</td>
 						<td>@(Resources.DataDictionary.InsertDateTime)</td>
+						<td>@(Resources.DataDictionary.Action)</td>
 					</tr>
 				</thead>
 
@@ -26,11 +27,22 @@
 						<tr>
 							<td>@item.FirstName</td>
 							<td>@item.LastName</td>
-							<td>@item.EmailAddress</td>
-							<td>@item.CellPhoneNumber</td>
-							<td>@item.IsActive</td>
-							<td>@item.IsVerified</td>
+							<td>@item.Username</td>
+							<td><i class="@(item.IsActive ? applicationSettings.UserManagementSettings.YesIcon : applicationSettings.UserManagementSettings.NoIcon)"></i></td>
+							<td><i class="@(item.IsVerified? applicationSettings.UserManagementSettings.YesIcon : applicationSettings.UserManagementSettings.NoIcon)"></i></td>
+							<td><i class="@(item.IsDeleted ? applicationSettings.UserManagementSettings.YesIcon : applicationSettings.UserManagementSettings.NoIcon)"></i></td>
 							<td>@item.InsertDateTime</td>
+							<td>
+								<a href="#" class="mx-1 text-danger text-decoration-none">
+									<i class="bi bi-pencil-fill"></i>
+								</a>
+								<a href="#" class="mx-1 text-danger text-decoration-none">
+									<i class="bi bi-trash-fill"></i>
+								</a>
+								<a href="#" class="mx-1 text-danger text-decoration-none">
+									<i class="bi bi-zoom-in"></i>
+								</a>
+							</td>
 						</tr>
 					}
 				</tbody>
