@@ -1,6 +1,7 @@
-﻿namespace Domain.Cms.Account
+﻿namespace Domain.Account
 {
-	public class User : SeedWork.Entity, SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime
+	public class User : SeedWork.Entity,
+		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime
 	{
 		public User() : base()
 		{

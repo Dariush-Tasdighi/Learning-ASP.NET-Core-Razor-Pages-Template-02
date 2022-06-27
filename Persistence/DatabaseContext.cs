@@ -16,7 +16,7 @@
 			base.OnConfiguring(optionsBuilder);
 		}
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Cms.Account.User> Users { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Account.User> Users { get; set; }
 
 		protected override void OnModelCreating
 			(Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)

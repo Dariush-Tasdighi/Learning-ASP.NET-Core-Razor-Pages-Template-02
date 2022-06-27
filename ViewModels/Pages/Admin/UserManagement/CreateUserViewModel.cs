@@ -5,7 +5,7 @@
 		public CreateUserViewModel() : base()
 		{
 			IsVerified = true;
-			Gender = Domain.Cms.Account.Enumerations.Gender.Unspecified;
+			Gender = Domain.Account.Enumerations.Gender.Unspecified;
 		}
 
 		// **********
@@ -170,7 +170,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Gender),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Cms.Account.Enumerations.Gender Gender { get; set; }
+		public Domain.Account.Enumerations.Gender Gender { get; set; }
 		// **********
 
 		// **********

@@ -1,5 +1,5 @@
 ﻿@page "{userId?}"
-@model Server.Pages.Admin.UserManagement.UpdateModel
+@model Server.Pages.Security.User.UpdateModel
 @{
 	var pageTitle =
 		Resources.PageTitles.UpdateProfile;
@@ -63,24 +63,22 @@
 					</div>
 
 					<div class="mb-3">
-						<i class="mr-2">*</i>
 						<label asp-for="ViewModel.Username" class="form-label"></label>
 
 						<div class="input-group">
 							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-							<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
+							<input asp-for="ViewModel.Username" readonly class="form-control" dir="ltr" />
 						</div>
 
 						<span asp-validation-for="ViewModel.Username" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
-						<i class="mr-2">*</i>
 						<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
 
 						<div class="input-group">
 							<div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
-							<input asp-for="ViewModel.EmailAddress" class="form-control" dir="ltr" />
+							<input asp-for="ViewModel.EmailAddress" readonly class="form-control" dir="ltr" />
 						</div>
 
 						<span asp-validation-for="ViewModel.EmailAddress" class="text-danger"></span>
@@ -98,31 +96,12 @@
 					</div>
 
 					<div class="mb-3">
-						<div class="form-check">
-							<input asp-for="ViewModel.IsActive" class="form-check-input" />
-							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
-						</div>
-					</div>
-
-					<div class="mb-3">
-						<div class="form-check">
-							@*TODO: زمانی که کاربر فعال نبود، اجازه ی فعال کردن کاربر را بدهیم*@
-							<input asp-for="ViewModel.IsVerified" disabled="disabled" class="form-check-input" />
-							<label asp-for="ViewModel.IsVerified" class="form-check-label"></label>
-						</div>
-					</div>
-
-					<div class="mb-3 d-flex justify-content-center">
-						<button type="submit" class="btn btn-primary mx-1">@(Resources.ButtonCaptions.Register)</button>
-						<button type="reset" class="btn btn-secondary mx-1">@(Resources.ButtonCaptions.Reset)</button>
+						<button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Update)</button>
+						<a href="#" class="btn btn-secondary">@(Resources.ButtonCaptions.Home)</a>
 					</div>
 				</fieldset>
 
 				<hr class="mt-4" />
-
-				<div class="text-center">
-					<a href="/">@(Resources.ButtonCaptions.Home)</a>
-				</div>
 			</div>
 		</div>
 	</div>

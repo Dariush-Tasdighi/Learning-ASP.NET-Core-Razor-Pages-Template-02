@@ -8,6 +8,6 @@
 
 		public string? NewCellPhoneNumber { get; set; }
 
-		public string? CurrentCellPhoneNumber { get; set; }
+		public string? OldCellPhoneNumber { get; set; }
 	}
 }

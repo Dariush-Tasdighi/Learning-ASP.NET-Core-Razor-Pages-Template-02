@@ -1,4 +1,4 @@
-namespace Server.Pages.Account.Users
+namespace Server.Pages.Security.User
 {
 	public class ChangePasswordModel : Infrastructure.BasePageModel
 	{

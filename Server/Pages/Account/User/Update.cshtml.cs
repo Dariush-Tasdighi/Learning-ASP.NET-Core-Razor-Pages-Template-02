@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.UserManagement
+namespace Server.Pages.Security.User
 {
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
@@ -14,8 +14,12 @@ namespace Server.Pages.Admin.UserManagement
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.UserManagement.UpdateUserViewModel ViewModel { get; set; }
 
-		public async System.Threading.Tasks.Task OnGetAsync(System.Guid? userId)
+		public async System.Threading.Tasks.Task OnGetAsync()
 		{
+			// TODO: Read User Id...
+
+			System.Guid? userId = new System.Guid(); // Replace it with Real Id!
+
 			if (userId.HasValue)
 			{
 				if (DatabaseContext is not null)
@@ -43,8 +47,7 @@ namespace Server.Pages.Admin.UserManagement
 			}
 			else
 			{
-				// TODO: Read From Json File!
-				AddPageError(message: "شناسه کاربری معتبر نمی باشد!");
+				//AddPageError(message: Resources.Messages.Errors.AccessDenied);
 			}
 		}
 
@@ -58,9 +61,6 @@ namespace Server.Pages.Admin.UserManagement
 			}
 
 			// **************************************************
-			string? fixedUsername = Infrastructure.Utility
-				.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.Username);
-
 			string? fixedEmailAddress = Infrastructure.Utility
 				.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.EmailAddress);
 			// **************************************************

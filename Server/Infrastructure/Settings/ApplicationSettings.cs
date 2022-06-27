@@ -14,6 +14,8 @@
 
 			FileManagerSettings =
 				new FileManagerSettings();
+
+			UserManagementSettings = new();
 		}
 
 		// **********
@@ -38,6 +40,10 @@
 
 		// **********
 		public FileManagerSettings FileManagerSettings { get; set; }
+		// **********
+
+		// **********
+		public UserManagementSettings UserManagementSettings { get; set; }
 		// **********
 	}
 }

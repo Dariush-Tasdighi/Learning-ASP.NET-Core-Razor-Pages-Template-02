@@ -1,4 +1,4 @@
-﻿namespace Domain.Cms.Account.Enumerations
+﻿namespace Domain.Account.Enumerations
 {
 	public enum Gender : int
 	{

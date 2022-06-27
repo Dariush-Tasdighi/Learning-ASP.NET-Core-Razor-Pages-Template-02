@@ -86,7 +86,7 @@ namespace Server.Pages.Admin.UserManagement
 					// **************************************************
 
 					// **************************************************
-					Domain.Cms.Account.User user = new()
+					Domain.Account.User user = new()
 					{
 						//Role = ViewModel.Role,
 						Gender = ViewModel.Gender,

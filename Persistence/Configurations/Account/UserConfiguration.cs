@@ -3,7 +3,7 @@
 namespace Persistence.Configurations.Account
 {
 	internal class UserConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Cms.Account.User>
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Account.User>
 	{
 		public UserConfiguration() : base()
 		{
@@ -11,7 +11,7 @@ namespace Persistence.Configurations.Account
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.Cms.Account.User> builder)
+			.Builders.EntityTypeBuilder<Domain.Account.User> builder)
 		{
 			// **************************************************
 			builder
