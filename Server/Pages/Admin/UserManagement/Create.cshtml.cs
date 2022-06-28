@@ -12,18 +12,25 @@ namespace Server.Pages.Admin.UserManagement
 		}
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
+		public string? ReturnUrl { get; set; }
+
+		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.UserManagement.CreateUserViewModel ViewModel { get; set; }
 
-		public void OnGet()
+		public void OnGet(string? returnUrl)
 		{
+			ReturnUrl = returnUrl;
 		}
 
+
 		public async
-			System.Threading.Tasks.Task OnPostAsync()
+			System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult>
+			OnPostAsync()
 		{
 			if (ModelState.IsValid == false)
 			{
-				return;
+				return Page();
 			}
 
 			// **************************************************
@@ -70,7 +77,7 @@ namespace Server.Pages.Admin.UserManagement
 
 					if (isUsernameFound || isEmailAddressFound)
 					{
-						return;
+						return Page();
 					}
 
 					// **************************************************
@@ -133,7 +140,14 @@ namespace Server.Pages.Admin.UserManagement
 				}
 			}
 
-			return;
+			if (string.IsNullOrWhiteSpace(ReturnUrl))
+			{
+				return RedirectToPage(pageName: "/Index");
+			}
+			else
+			{
+				return Redirect(url: ReturnUrl);
+			}
 		}
 	}
 }

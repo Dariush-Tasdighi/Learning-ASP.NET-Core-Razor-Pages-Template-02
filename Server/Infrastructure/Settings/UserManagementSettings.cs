@@ -4,6 +4,8 @@
 	{
 		public UserManagementSettings() : base()
 		{
+			//PageSize = 10;
+
 			DisplayDateTimeFormat = "yyyy/MM/dd [HH:mm:ss]";
 
 			TableHeaderStyle = "table-primary";
@@ -33,6 +35,18 @@
 
 		// **********
 		public string? YesIcon { get; set; }
+		// **********
+
+		// **********
+		public string? NextPageIcon { get; set; }
+		// **********
+
+		// **********
+		public string? PreviousPageIcon { get; set; }
+		// **********
+
+		// **********
+		//public int? PageSize { get; set; }
 		// **********
 	}
 }
