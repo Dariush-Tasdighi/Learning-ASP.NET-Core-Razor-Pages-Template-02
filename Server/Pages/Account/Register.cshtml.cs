@@ -10,8 +10,8 @@ namespace Server.Pages.Security
 			(Persistence.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<RegisterModel> logger) : base(databaseContext: databaseContext)
 		{
-			ViewModel = new();
 			Logger = logger;
+			ViewModel = new();
 		}
 
 		// **********
