@@ -19,22 +19,29 @@ namespace Server.Pages.Admin.UserManager
 				<ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel>();
 		}
 
+		// **********
 		private Microsoft.Extensions.Logging.ILogger<CreateModel> Logger { get; }
+		// **********
 
+		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public string? ReturnUrl { get; set; }
+		// **********
 
+		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.UserManager.CreateUserViewModel ViewModel { get; set; }
+		// **********
 
+		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public System.Collections.Generic.IList
 			<ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel> RolesViewModel
 		{ get; set; }
+		// **********
 
 		public async
-			System.Threading.Tasks.Task
-			OnGetAsync(string? returnUrl)
+			System.Threading.Tasks.Task OnGetAsync(string? returnUrl)
 		{
 			ReturnUrl = returnUrl;
 
@@ -48,20 +55,14 @@ namespace Server.Pages.Admin.UserManager
 			}
 			finally
 			{
-				if (DatabaseContext != null)
-				{
-					await DatabaseContext.DisposeAsync();
-
-					DatabaseContext = null;
-				}
+				await DisposeDatabaseContextAsync();
 			}
 		}
 
 
 		public async
 			System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnPostAsync()
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 		{
 			if (ModelState.IsValid == false)
 			{
@@ -131,7 +132,6 @@ namespace Server.Pages.Admin.UserManager
 					}
 					// **************************************************
 
-					// **************************************************
 					Domain.Models.Account.User user = new()
 					{
 						RoleId = ViewModel.RoleId,
@@ -155,13 +155,14 @@ namespace Server.Pages.Admin.UserManager
 					await DatabaseContext.AddAsync(entity: user);
 
 					await DatabaseContext.SaveChangesAsync();
-					// **************************************************
 
+					// **************************************************
 					string successMessage = string.Format
 						(Resources.Messages.Successes.SuccessfullyCreated,
 						Resources.DataDictionary.User);
 
 					AddToastSuccess(message: successMessage);
+					// **************************************************
 				}
 			}
 			catch (System.Exception ex)
@@ -169,8 +170,6 @@ namespace Server.Pages.Admin.UserManager
 				await SetAccessibleRole();
 
 				Logger.LogError(message: ex.Message);
-
-				System.Console.WriteLine(value: ex.Message);
 
 				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
 			}

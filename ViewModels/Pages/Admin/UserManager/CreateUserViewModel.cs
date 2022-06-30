@@ -5,6 +5,7 @@
 		public CreateUserViewModel() : base()
 		{
 			IsVerified = true;
+
 			Gender = Domain.Models.Account.Enumerations.Gender.Unspecified;
 		}
 
@@ -78,18 +79,18 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.CellPhoneNumber),
-		ResourceType = typeof(Resources.DataDictionary))]
+			(Name = nameof(Resources.DataDictionary.CellPhoneNumber),
+			ResourceType = typeof(Resources.DataDictionary))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-		(length: Domain.SeedWork.Constant.MaxLength.CellPhoneNumber,
-		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+			(length: Domain.SeedWork.Constant.MaxLength.CellPhoneNumber,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-		(pattern: Domain.SeedWork.Constant.RegularExpression.CellPhoneNumber,
-		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
+			(pattern: Domain.SeedWork.Constant.RegularExpression.CellPhoneNumber,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
 		public string? CellPhoneNumber { get; set; }
 		// **********
 
@@ -140,6 +141,17 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Role),
+			ResourceType = typeof(Resources.DataDictionary))]
+
+		[System.ComponentModel.DataAnnotations.Required
+			(ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+		public System.Guid? RoleId { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsActive),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsActive { get; set; }
@@ -171,17 +183,6 @@
 			(Name = nameof(Resources.DataDictionary.Gender),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public Domain.Models.Account.Enumerations.Gender Gender { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Role),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.Required
-			(ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-		public System.Guid? RoleId { get; set; }
 		// **********
 	}
 }

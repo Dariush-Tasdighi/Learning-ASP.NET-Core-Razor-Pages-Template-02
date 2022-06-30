@@ -122,12 +122,13 @@
 					</div>
 
 					<div class="mb-3">
+						<i class="mr-2">*</i>
 						<label asp-for="ViewModel.RoleId" class="form-label"></label>
 
 						<div class="input-group">
 							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
 							<select class="form-select" asp-for="ViewModel.RoleId">
-								<option selected>@(Resources.DataDictionary.NotSelected)</option>
+								<option value="@(null)" selected>@(Resources.DataDictionary.NotSelected)</option>
 
 								@foreach (var item in Model.RolesViewModel)
 								{
@@ -137,6 +138,21 @@
 						</div>
 
 						<span asp-validation-for="ViewModel.RoleId" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Gender" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-people-fill"></i></div>
+							<select class="form-select" asp-for="ViewModel.Gender">
+								<option selected value="@(Domain.Models.Account.Enumerations.Gender.Unspecified)">@(Resources.DataDictionary.Unspecified)</option>
+								<option value="@(Domain.Models.Account.Enumerations.Gender.Female)">@(Resources.DataDictionary.Female)</option>
+								<option value="@(Domain.Models.Account.Enumerations.Gender.Male)">@(Resources.DataDictionary.Male)</option>
+							</select>
+						</div>
+
+						<span asp-validation-for="ViewModel.Gender" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">

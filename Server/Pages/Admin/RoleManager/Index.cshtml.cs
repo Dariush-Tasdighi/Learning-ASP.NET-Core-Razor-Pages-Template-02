@@ -69,12 +69,12 @@ namespace Server.Pages.Admin.RoleManager
 				{
 					return NotFound();
 				}
-
-				return Page();
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError(message: ex.Message);
+
+				System.Console.WriteLine(value: ex.Message);
 
 				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
 			}
@@ -82,6 +82,8 @@ namespace Server.Pages.Admin.RoleManager
 			{
 				await DisposeDatabaseContextAsync();
 			}
+
+			return Page();
 		}
 	}
 }

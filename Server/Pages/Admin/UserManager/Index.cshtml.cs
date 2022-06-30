@@ -1,4 +1,5 @@
 using System.Linq;
+using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
@@ -7,13 +8,23 @@ namespace Server.Pages.Admin.UserManager
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public IndexModel
-			(Persistence.DatabaseContext databaseContext) : base(databaseContext: databaseContext)
+			(Persistence.DatabaseContext databaseContext,
+			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
 		{
+			Logger = logger;
 			ViewModel = new();
 		}
 
+		// **********
+		private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
+		// **********
+
+		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Shared.PaginationWithDataViewModel<Domain.Models.Account.User> ViewModel { get; set; }
+		public ViewModels.Shared.PaginationWithDataViewModel
+			<ViewModels.Pages.Admin.UserManager.GetUserItemViewModel> ViewModel
+		{ get; set; }
+		// **********
 
 		public async
 			System.Threading.Tasks.Task
@@ -27,7 +38,7 @@ namespace Server.Pages.Admin.UserManager
 					{
 						ViewModel =
 							new ViewModels.Shared.PaginationWithDataViewModel
-							<Domain.Models.Account.User>
+							<ViewModels.Pages.Admin.UserManager.GetUserItemViewModel>
 							{
 								PageInformation = new()
 								{
@@ -36,6 +47,7 @@ namespace Server.Pages.Admin.UserManager
 								},
 							};
 
+						// **************************************************
 						ViewModel.PageInformation.TotalCount =
 							await DatabaseContext.Users.CountAsync();
 
@@ -45,20 +57,27 @@ namespace Server.Pages.Admin.UserManager
 								await DatabaseContext.Users
 								.Skip((pageNumber - 1) * pageSize)
 								.Take(pageSize)
+								.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserItemViewModel
+								{
+									Id = current.Id,
+									Username = current.Username,
+									IsActive = current.IsActive,
+									IsDeleted = current.IsDeleted,
+									IsVerified = current.IsVerified,
+									//EmailAddress = current.EmailAddress,
+									InsertDateTime = current.InsertDateTime,
+								})
 								.ToListAsync()
 								;
 						}
-					}
-					else
-					{
-						return;
+						// **************************************************
 					}
 				}
 				catch (System.Exception ex)
 				{
-					// Log ex.Message, Show Unexpected Error
-
 					AddToastError(message: ex.Message);
+
+					Logger.LogError(message: ex.Message);
 				}
 				finally
 				{
