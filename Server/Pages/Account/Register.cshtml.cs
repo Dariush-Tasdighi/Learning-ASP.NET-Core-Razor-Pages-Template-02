@@ -1,17 +1,27 @@
 ﻿using System.Linq;
+using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Security
 {
 	public class RegisterModel : Infrastructure.BasePageModelWithDatabase
 	{
-		public RegisterModel(Persistence.DatabaseContext databaseContext) : base(databaseContext: databaseContext)
+		public RegisterModel
+			(Persistence.DatabaseContext databaseContext,
+			Microsoft.Extensions.Logging.ILogger<RegisterModel> logger) : base(databaseContext: databaseContext)
 		{
 			ViewModel = new();
+			Logger = logger;
 		}
 
+		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Account.RegisterViewModel ViewModel { get; set; }
+		// **********
+
+		// **********
+		private Microsoft.Extensions.Logging.ILogger<RegisterModel> Logger { get; }
+		// **********
 
 		public void OnGet()
 		{
@@ -26,91 +36,81 @@ namespace Server.Pages.Security
 			}
 
 			// **************************************************
-			string? fixedUsername = Infrastructure.Utility
-				.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.Username);
+			//string? fixedUsername = Infrastructure.Utility
+			//	.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.Username);
 
-			string? fixedEmailAddress = Infrastructure.Utility
-				.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.EmailAddress);
+			//string? fixedEmailAddress = Infrastructure.Utility
+			//	.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.EmailAddress);
 			// **************************************************
 
 			try
 			{
-				if (DatabaseContext is not null)
-				{
-					bool isUsernameFound =
-						await DatabaseContext.Users
-						.Where(current => current.Username == fixedUsername)
-						.AnyAsync();
+				//bool isUsernameFound =
+				//	await DatabaseContext.Users
+				//	.Where(current => current.Username == fixedUsername)
+				//	.AnyAsync();
 
-					bool isEmailAddressFound =
-						await DatabaseContext.Users
-						.Where(current => current.EmailAddress == fixedEmailAddress)
-						.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
-						.Where(current => current.IsDeleted == false)
-						.AnyAsync();
+				//bool isEmailAddressFound =
+				//	await DatabaseContext.Users
+				//	.Where(current => current.EmailAddress == fixedEmailAddress)
+				//	.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
+				//	.Where(current => current.IsDeleted == false)
+				//	.AnyAsync();
 
-					// **************************************************
-					if (isUsernameFound)
-					{
-						string errorMessage = string.Format
-							(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.Username);
+				//// **************************************************
+				//if (isUsernameFound)
+				//{
+				//	string errorMessage = string.Format
+				//		(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.Username);
 
-						AddPageError(message: errorMessage);
-					}
+				//	AddPageError(message: errorMessage);
+				//}
 
-					if (isEmailAddressFound)
-					{
-						string errorMessage = string.Format
-							(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.EmailAddress);
+				//if (isEmailAddressFound)
+				//{
+				//	string errorMessage = string.Format
+				//		(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.EmailAddress);
 
-						AddPageError(message: errorMessage);
-					}
-					// **************************************************
+				//	AddPageError(message: errorMessage);
+				//}
+				//// **************************************************
 
-					if (isUsernameFound || isEmailAddressFound)
-					{
-						return;
-					}
+				//if (isUsernameFound || isEmailAddressFound)
+				//{
+				//	return;
+				//}
 
-					// **************************************************
-					Domain.Models.Account.User user = new()
-					{
-						Username = fixedUsername,
-						//RoleId = DefaultRoleId,
-						EmailAddress = fixedEmailAddress,
-						Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
-					};
+				//// **************************************************
+				//Domain.Models.Account.User user = new()
+				//{
+				//	Username = fixedUsername,
+				//	//RoleId = DefaultRoleId,
+				//	EmailAddress = fixedEmailAddress,
+				//	Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
+				//};
 
-					await DatabaseContext.AddAsync(entity: user);
+				//await DatabaseContext.AddAsync(entity: user);
 
-					await DatabaseContext.SaveChangesAsync();
-					// **************************************************
+				//await DatabaseContext.SaveChangesAsync();
+				// **************************************************
 
-					// TODO: Read From Resource File
-					AddToastSuccess(message: "اطلاعات شما با موفقیت در این سامانه ثبت شد...");
+				AddToastSuccess(message: "اطلاعات شما با موفقیت در این سامانه ثبت شد...");
 
-					// **************************************************
-					// TODO: Send Verification Key To User Email Address
-					// **************************************************
-				}
+				// **************************************************
+				// TODO: Send Verification Key To User Email Address
+				// **************************************************
 			}
 			catch (System.Exception ex)
 			{
-				// TODO:
-				// Logger.LogError(message: ex.Message);
+				Logger.LogError(message: ex.Message);
 
-				System.Console.WriteLine(value: ex.Message);
+				//System.Console.WriteLine(value: ex.Message);
 
 				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
-				if (DatabaseContext is not null)
-				{
-					await DatabaseContext.DisposeAsync();
-
-					DatabaseContext = null;
-				}
+				await DisposeDatabaseContextAsync();
 			}
 
 			return;
