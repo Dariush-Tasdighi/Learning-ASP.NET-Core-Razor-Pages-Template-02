@@ -73,7 +73,7 @@ namespace Server.Pages.Security
 					}
 
 					// **************************************************
-					Domain.Account.User user = new()
+					Domain.Models.Account.User user = new()
 					{
 						Username = fixedUsername,
 						//RoleId = DefaultRoleId,

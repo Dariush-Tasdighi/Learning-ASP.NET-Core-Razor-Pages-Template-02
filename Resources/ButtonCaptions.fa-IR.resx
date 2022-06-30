@@ -129,6 +129,9 @@
   <data name="Create" xml:space="preserve">
     <value>ایجاد</value>
   </data>
+  <data name="CreateNew" xml:space="preserve">
+    <value>ایجاد {0} جدید</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>حذف</value>
   </data>

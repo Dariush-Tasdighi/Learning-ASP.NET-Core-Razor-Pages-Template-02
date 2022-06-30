@@ -1,8 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.UserManagement
+namespace Server.Pages.Admin.UserManager
 {
+	//[Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public IndexModel
@@ -12,7 +13,7 @@ namespace Server.Pages.Admin.UserManagement
 		}
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Shared.PaginationWithDataViewModel<Domain.Account.User> ViewModel { get; set; }
+		public ViewModels.Shared.PaginationWithDataViewModel<Domain.Models.Account.User> ViewModel { get; set; }
 
 		public async
 			System.Threading.Tasks.Task
@@ -22,12 +23,11 @@ namespace Server.Pages.Admin.UserManagement
 			{
 				try
 				{
-
 					if (pageNumber > 0)
 					{
 						ViewModel =
 							new ViewModels.Shared.PaginationWithDataViewModel
-							<Domain.Account.User>
+							<Domain.Models.Account.User>
 							{
 								PageInformation = new()
 								{
@@ -45,7 +45,8 @@ namespace Server.Pages.Admin.UserManagement
 								await DatabaseContext.Users
 								.Skip((pageNumber - 1) * pageSize)
 								.Take(pageSize)
-								.ToListAsync();
+								.ToListAsync()
+								;
 						}
 					}
 					else
@@ -61,12 +62,7 @@ namespace Server.Pages.Admin.UserManagement
 				}
 				finally
 				{
-					if (DatabaseContext is not null)
-					{
-						await DatabaseContext.DisposeAsync();
-
-						DatabaseContext = null;
-					}
+					await DisposeDatabaseContextAsync();
 				}
 			}
 		}

@@ -132,6 +132,9 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="CreateRole" xml:space="preserve">
+    <value>Create Role</value>
+  </data>
   <data name="CreateUser" xml:space="preserve">
     <value>Create User</value>
   </data>
@@ -159,6 +162,9 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="RoleManagement" xml:space="preserve">
+    <value>Role Management</value>
+  </data>
   <data name="TerminateAccount" xml:space="preserve">
     <value>Terminate Account</value>
   </data>
@@ -167,6 +173,9 @@
   </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>Update Profile</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>User Management</value>
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>User Settings</value>

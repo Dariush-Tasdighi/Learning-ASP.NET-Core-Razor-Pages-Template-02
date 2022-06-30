@@ -12,7 +12,7 @@ namespace Server.Pages.Security.User
 		}
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManagement.UpdateUserViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.UserManager.UpdateUserViewModel ViewModel { get; set; }
 
 		public async System.Threading.Tasks.Task OnGetAsync()
 		{

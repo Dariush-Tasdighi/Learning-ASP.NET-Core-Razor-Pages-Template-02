@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Role.
+        /// </summary>
+        public static string CreateRole {
+            get {
+                return ResourceManager.GetString("CreateRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create User.
         /// </summary>
         public static string CreateUser {
@@ -187,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Management.
+        /// </summary>
+        public static string RoleManagement {
+            get {
+                return ResourceManager.GetString("RoleManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terminate Account.
         /// </summary>
         public static string TerminateAccount {
@@ -210,6 +228,15 @@ namespace Resources {
         public static string UpdateProfile {
             get {
                 return ResourceManager.GetString("UpdateProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Management.
+        /// </summary>
+        public static string UserManagement {
+            get {
+                return ResourceManager.GetString("UserManagement", resourceCulture);
             }
         }
         

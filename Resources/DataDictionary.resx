@@ -186,11 +186,20 @@
   <data name="IsCellPhoneNumberVerified" xml:space="preserve">
     <value>Is Cell Phone Number Verified</value>
   </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>Is Default</value>
+  </data>
+  <data name="IsDeletable" xml:space="preserve">
+    <value>Is Deletable</value>
+  </data>
   <data name="IsDeleted" xml:space="preserve">
     <value>Is Deleted</value>
   </data>
   <data name="IsEmailAddressVerified" xml:space="preserve">
     <value>Is Email Address Verified</value>
+  </data>
+  <data name="IsSystemic" xml:space="preserve">
+    <value>Systemic</value>
   </data>
   <data name="IsVerified" xml:space="preserve">
     <value>Verified</value>
@@ -210,6 +219,9 @@
   <data name="ListOf" xml:space="preserve">
     <value>List of </value>
   </data>
+  <data name="ListOfItems" xml:space="preserve">
+    <value>List of {0}</value>
+  </data>
   <data name="Male" xml:space="preserve">
     <value>Male</value>
   </data>
@@ -218,6 +230,9 @@
   </data>
   <data name="NationalCode" xml:space="preserve">
     <value>National Code</value>
+  </data>
+  <data name="NotSelected" xml:space="preserve">
+    <value>Not Selected</value>
   </data>
   <data name="NotVerified" xml:space="preserve">
     <value>Not Verified</value>
@@ -233,6 +248,12 @@
   </data>
   <data name="Resume" xml:space="preserve">
     <value>Resume</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
@@ -258,8 +279,17 @@
   <data name="UpdateDateTime" xml:space="preserve">
     <value>Update Time</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="UserManager" xml:space="preserve">
+    <value>User Manager</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Users</value>
   </data>
   <data name="Verified" xml:space="preserve">
     <value>Verified</value>

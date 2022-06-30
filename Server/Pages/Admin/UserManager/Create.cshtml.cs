@@ -1,25 +1,60 @@
 ﻿using System.Linq;
+using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.UserManagement
+namespace Server.Pages.Admin.UserManager
 {
+	//[Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public CreateModel
-			(Persistence.DatabaseContext databaseContext) : base(databaseContext: databaseContext)
+			(Persistence.DatabaseContext databaseContext,
+			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) : base(databaseContext: databaseContext)
 		{
+			Logger = logger;
+
 			ViewModel = new();
+
+			RolesViewModel = new System.Collections.Generic.List
+				<ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel>();
 		}
+
+		private Microsoft.Extensions.Logging.ILogger<CreateModel> Logger { get; }
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public string? ReturnUrl { get; set; }
 
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManagement.CreateUserViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.UserManager.CreateUserViewModel ViewModel { get; set; }
 
-		public void OnGet(string? returnUrl)
+		[Microsoft.AspNetCore.Mvc.BindProperty]
+		public System.Collections.Generic.IList
+			<ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel> RolesViewModel
+		{ get; set; }
+
+		public async
+			System.Threading.Tasks.Task
+			OnGetAsync(string? returnUrl)
 		{
 			ReturnUrl = returnUrl;
+
+			try
+			{
+				await SetAccessibleRole();
+			}
+			catch (System.Exception ex)
+			{
+				Logger.LogError(message: ex.Message);
+			}
+			finally
+			{
+				if (DatabaseContext != null)
+				{
+					await DatabaseContext.DisposeAsync();
+
+					DatabaseContext = null;
+				}
+			}
 		}
 
 
@@ -30,6 +65,8 @@ namespace Server.Pages.Admin.UserManagement
 		{
 			if (ModelState.IsValid == false)
 			{
+				await SetAccessibleRole();
+
 				return Page();
 			}
 
@@ -77,6 +114,8 @@ namespace Server.Pages.Admin.UserManagement
 
 					if (isUsernameFound || isEmailAddressFound)
 					{
+						await SetAccessibleRole();
+
 						return Page();
 					}
 
@@ -93,9 +132,10 @@ namespace Server.Pages.Admin.UserManagement
 					// **************************************************
 
 					// **************************************************
-					Domain.Account.User user = new()
+					Domain.Models.Account.User user = new()
 					{
-						//Role = ViewModel.Role,
+						RoleId = ViewModel.RoleId,
+
 						Gender = ViewModel.Gender,
 						IsActive = ViewModel.IsActive,
 
@@ -117,14 +157,18 @@ namespace Server.Pages.Admin.UserManagement
 					await DatabaseContext.SaveChangesAsync();
 					// **************************************************
 
-					// TODO: Read From Resource File
-					AddToastSuccess(message: "اطلاعات کاربر با موفقیت در این سامانه ثبت شد...");
+					string successMessage = string.Format
+						(Resources.Messages.Successes.SuccessfullyCreated,
+						Resources.DataDictionary.User);
+
+					AddToastSuccess(message: successMessage);
 				}
 			}
 			catch (System.Exception ex)
 			{
-				// TODO:
-				// Logger.LogError(message: ex.Message);
+				await SetAccessibleRole();
+
+				Logger.LogError(message: ex.Message);
 
 				System.Console.WriteLine(value: ex.Message);
 
@@ -132,12 +176,7 @@ namespace Server.Pages.Admin.UserManagement
 			}
 			finally
 			{
-				if (DatabaseContext is not null)
-				{
-					await DatabaseContext.DisposeAsync();
-
-					DatabaseContext = null;
-				}
+				await DisposeDatabaseContextAsync();
 			}
 
 			if (string.IsNullOrWhiteSpace(ReturnUrl))
@@ -148,6 +187,21 @@ namespace Server.Pages.Admin.UserManagement
 			{
 				return Redirect(url: ReturnUrl);
 			}
+		}
+
+		private async
+			System.Threading.Tasks.Task SetAccessibleRole()
+		{
+			RolesViewModel =
+				await DatabaseContext.Roles
+				.Where(current => current.IsDeleted == false)
+				.Select(current => new ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel
+				{
+					Id = current.Id,
+					Name = current.Name,
+				})
+				.ToListAsync()
+				;
 		}
 	}
 }

@@ -268,6 +268,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Default.
+        /// </summary>
+        public static string IsDefault {
+            get {
+                return ResourceManager.GetString("IsDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Is Deletable.
+        /// </summary>
+        public static string IsDeletable {
+            get {
+                return ResourceManager.GetString("IsDeletable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Deleted.
         /// </summary>
         public static string IsDeleted {
@@ -282,6 +300,15 @@ namespace Resources {
         public static string IsEmailAddressVerified {
             get {
                 return ResourceManager.GetString("IsEmailAddressVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Systemic.
+        /// </summary>
+        public static string IsSystemic {
+            get {
+                return ResourceManager.GetString("IsSystemic", resourceCulture);
             }
         }
         
@@ -340,6 +367,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List of {0}.
+        /// </summary>
+        public static string ListOfItems {
+            get {
+                return ResourceManager.GetString("ListOfItems", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Male.
         /// </summary>
         public static string Male {
@@ -363,6 +399,15 @@ namespace Resources {
         public static string NationalCode {
             get {
                 return ResourceManager.GetString("NationalCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Selected.
+        /// </summary>
+        public static string NotSelected {
+            get {
+                return ResourceManager.GetString("NotSelected", resourceCulture);
             }
         }
         
@@ -408,6 +453,24 @@ namespace Resources {
         public static string Resume {
             get {
                 return ResourceManager.GetString("Resume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Roles.
+        /// </summary>
+        public static string Roles {
+            get {
+                return ResourceManager.GetString("Roles", resourceCulture);
             }
         }
         
@@ -484,11 +547,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Manager.
+        /// </summary>
+        public static string UserManager {
+            get {
+                return ResourceManager.GetString("UserManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Username {
             get {
                 return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string Users {
+            get {
+                return ResourceManager.GetString("Users", resourceCulture);
             }
         }
         

@@ -9,5 +9,16 @@
 		}
 
 		protected Persistence.DatabaseContext? DatabaseContext { get; set; }
+
+		protected async
+			System.Threading.Tasks.Task DisposeDatabaseContextAsync()
+		{
+			if (DatabaseContext != null)
+			{
+				await DatabaseContext.DisposeAsync();
+
+				DatabaseContext = null;
+			}
+		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace Domain.Account
+﻿namespace Domain.Models.Account
 {
 	public class User : SeedWork.Entity,
 		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime
@@ -15,9 +15,17 @@
 		// **********
 		// **********
 		// **********
-		//[System.ComponentModel.DataAnnotations.Display
-		//	(Name = nameof(Resources.DataDictionary.Role),
-		//	ResourceType = typeof(Resources.DataDictionary))]
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Role),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public virtual Role? Role { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Role),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public System.Guid? RoleId { get; set; }
 		// **********
 		// **********
@@ -175,7 +183,6 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Description),
 			ResourceType = typeof(Resources.DataDictionary))]
-
 		public string? Description { get; set; }
 		// **********
 

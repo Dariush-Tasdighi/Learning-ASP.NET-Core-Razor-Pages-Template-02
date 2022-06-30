@@ -15,7 +15,7 @@
 			FileManagerSettings =
 				new FileManagerSettings();
 
-			UserManagementSettings = new();
+			TablesDefaultSettings = new();
 		}
 
 		// **********
@@ -43,7 +43,7 @@
 		// **********
 
 		// **********
-		public UserManagementSettings UserManagementSettings { get; set; }
+		public TablesDefaultSettings TablesDefaultSettings { get; set; }
 		// **********
 	}
 }

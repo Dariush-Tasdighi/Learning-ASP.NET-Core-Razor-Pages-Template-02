@@ -1,8 +1,8 @@
 ﻿namespace Infrastructure.Settings
 {
-	public class UserManagementSettings : object
+	public class TablesDefaultSettings : object
 	{
-		public UserManagementSettings() : base()
+		public TablesDefaultSettings() : base()
 		{
 			//PageSize = 10;
 

@@ -1,4 +1,4 @@
-﻿namespace Domain.Account.Enumerations
+﻿namespace Domain.Models.Account.Enumerations
 {
 	public enum Gender : int
 	{

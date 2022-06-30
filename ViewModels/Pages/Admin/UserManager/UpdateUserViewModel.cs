@@ -1,11 +1,11 @@
-﻿namespace ViewModels.Pages.Admin.UserManagement
+﻿namespace ViewModels.Pages.Admin.UserManager
 {
-	public class CreateUserViewModel : object
+	public class UpdateUserViewModel : object
 	{
-		public CreateUserViewModel() : base()
+		public UpdateUserViewModel() : base()
 		{
 			IsVerified = true;
-			Gender = Domain.Account.Enumerations.Gender.Unspecified;
+			Gender = Domain.Models.Account.Enumerations.Gender.Unspecified;
 		}
 
 		// **********
@@ -95,51 +95,6 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Password),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-
-		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.Password,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-
-		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.Constant.RegularExpression.Password,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Password))]
-
-		[System.ComponentModel.DataAnnotations.DataType
-			(dataType: System.ComponentModel.DataAnnotations.DataType.Password)]
-		public string? Password { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.ConfirmPassword),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-
-		[System.ComponentModel.DataAnnotations.Compare
-			(otherProperty: nameof(Password),
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Compare))]
-
-		[System.ComponentModel.DataAnnotations.DataType
-			(dataType: System.ComponentModel.DataAnnotations.DataType.Password)]
-		public string? ConfirmPassword { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsActive),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsActive { get; set; }
@@ -154,23 +109,16 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
+			(Name = nameof(Resources.DataDictionary.BirthDate),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public bool? IsEmailAddressVerified { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool? IsCellPhoneNumberVerified { get; set; }
+		public System.DateTime? BirthDate { get; set; }
 		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Gender),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Account.Enumerations.Gender Gender { get; set; }
+		public Domain.Models.Account.Enumerations.Gender Gender { get; set; }
 		// **********
 
 		// **********

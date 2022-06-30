@@ -117,67 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>درباره ما</value>
-  </data>
-  <data name="AccessDenied" xml:space="preserve">
-    <value>عدم امکان دسترسی</value>
-  </data>
-  <data name="AdminSettings" xml:space="preserve">
-    <value>تنظیمات مدیریتی</value>
-  </data>
-  <data name="ChangePassword" xml:space="preserve">
-    <value>تغییر گذرواژه</value>
-  </data>
-  <data name="Contact" xml:space="preserve">
-    <value>تماس با ما</value>
-  </data>
-  <data name="CreateRole" xml:space="preserve">
-    <value>ایجاد نقش</value>
-  </data>
-  <data name="CreateUser" xml:space="preserve">
-    <value>تعریف کاربر</value>
-  </data>
-  <data name="DeactivateAccount" xml:space="preserve">
-    <value>غیرفعال کردن حساب کاربری</value>
-  </data>
-  <data name="Error500" xml:space="preserve">
-    <value>خطای داخلی سرور!</value>
-  </data>
-  <data name="FileManager" xml:space="preserve">
-    <value>مدیریت فایل</value>
-  </data>
-  <data name="Index" xml:space="preserve">
-    <value>صفحه نخست</value>
-  </data>
-  <data name="Login" xml:space="preserve">
-    <value>ورود</value>
-  </data>
-  <data name="Logout" xml:space="preserve">
-    <value>خروج</value>
-  </data>
-  <data name="Profile" xml:space="preserve">
-    <value>پروفایل</value>
-  </data>
-  <data name="Register" xml:space="preserve">
-    <value>ثبت‌نام</value>
-  </data>
-  <data name="RoleManagement" xml:space="preserve">
-    <value>مدیریت نقش ها</value>
-  </data>
-  <data name="TerminateAccount" xml:space="preserve">
-    <value>حذف حساب کاربری</value>
-  </data>
-  <data name="UnexpectedError" xml:space="preserve">
-    <value>خطای ناشناخته!</value>
-  </data>
-  <data name="UpdateProfile" xml:space="preserve">
-    <value>ویرایش مشخصات</value>
-  </data>
-  <data name="UserManagement" xml:space="preserve">
-    <value>مدیریت کاربران</value>
-  </data>
-  <data name="UserSettings" xml:space="preserve">
-    <value>تنظیمات کاربری</value>
+  <data name="SuccessfullyCreated" xml:space="preserve">
+    <value>{0} successfully created...</value>
   </data>
 </root>

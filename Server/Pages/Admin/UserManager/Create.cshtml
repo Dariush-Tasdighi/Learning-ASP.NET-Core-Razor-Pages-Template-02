@@ -1,5 +1,5 @@
 ﻿@page
-@model Server.Pages.Admin.UserManagement.CreateModel
+@model Server.Pages.Admin.UserManager.CreateModel
 @{
 	var pageTitle =
 		Resources.PageTitles.CreateUser;
@@ -122,6 +122,24 @@
 					</div>
 
 					<div class="mb-3">
+						<label asp-for="ViewModel.RoleId" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
+							<select class="form-select" asp-for="ViewModel.RoleId">
+								<option selected>@(Resources.DataDictionary.NotSelected)</option>
+
+								@foreach (var item in Model.RolesViewModel)
+								{
+									<option value="@(item.Id)">@(item.Name)</option>
+								}
+							</select>
+						</div>
+
+						<span asp-validation-for="ViewModel.RoleId" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
 						<div class="form-check">
 							<input asp-for="ViewModel.IsActive" class="form-check-input" />
 							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
@@ -139,7 +157,7 @@
 				<div class="text-center">
 					<a href="/">@(Resources.ButtonCaptions.Home)</a>
 					|
-					<a href="/Admin/UserManagement">@(Resources.ButtonCaptions.Back)</a>
+					<a href="/Admin/UserManager">@(Resources.ButtonCaptions.Back)</a>
 				</div>
 			</div>
 		</div>

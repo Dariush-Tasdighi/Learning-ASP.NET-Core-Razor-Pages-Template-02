@@ -183,11 +183,20 @@
   <data name="IsCellPhoneNumberVerified" xml:space="preserve">
     <value>شماره تلفن همراه تایید شده است</value>
   </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>رکورد پیش فرض</value>
+  </data>
+  <data name="IsDeletable" xml:space="preserve">
+    <value>قابل حذف</value>
+  </data>
   <data name="IsDeleted" xml:space="preserve">
     <value>حذف شده</value>
   </data>
   <data name="IsEmailAddressVerified" xml:space="preserve">
     <value>پست الکترونیکی تایید شده است</value>
+  </data>
+  <data name="IsSystemic" xml:space="preserve">
+    <value>سیستمی</value>
   </data>
   <data name="IsVerified" xml:space="preserve">
     <value>تایید شده</value>
@@ -207,6 +216,9 @@
   <data name="ListOf" xml:space="preserve">
     <value>فهرست </value>
   </data>
+  <data name="ListOfItems" xml:space="preserve">
+    <value>فهرست {0}</value>
+  </data>
   <data name="Male" xml:space="preserve">
     <value>خانم</value>
   </data>
@@ -215,6 +227,9 @@
   </data>
   <data name="NationalCode" xml:space="preserve">
     <value>کد ملی</value>
+  </data>
+  <data name="NotSelected" xml:space="preserve">
+    <value>انتخاب نشده</value>
   </data>
   <data name="NotVerified" xml:space="preserve">
     <value>تایید نشده</value>
@@ -230,6 +245,12 @@
   </data>
   <data name="Resume" xml:space="preserve">
     <value>رزومه</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>نقش</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>نقش ها</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>تنظیمات</value>
@@ -258,8 +279,17 @@
   <data name="UpdateDateTime" xml:space="preserve">
     <value>زمان ویرایش</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>کاربر</value>
+  </data>
+  <data name="UserManager" xml:space="preserve">
+    <value>مدیریت کاربران</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>شناسه کاربری</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>کاربران</value>
   </data>
   <data name="VerificationKeyExpireDateTime" xml:space="preserve">
     <value>زمان انقضا کد تایید پست الکترونیکی</value>
