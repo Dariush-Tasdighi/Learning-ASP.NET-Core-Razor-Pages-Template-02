@@ -66,8 +66,6 @@ namespace Server.Pages.Admin.UserManager
 		{
 			if (ModelState.IsValid == false)
 			{
-				await SetAccessibleRole();
-
 				return Page();
 			}
 
@@ -115,8 +113,6 @@ namespace Server.Pages.Admin.UserManager
 
 					if (isUsernameFound || isEmailAddressFound)
 					{
-						await SetAccessibleRole();
-
 						return Page();
 					}
 
@@ -167,14 +163,14 @@ namespace Server.Pages.Admin.UserManager
 			}
 			catch (System.Exception ex)
 			{
-				await SetAccessibleRole();
-
 				Logger.LogError(message: ex.Message);
 
 				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
+				await SetAccessibleRole();
+
 				await DisposeDatabaseContextAsync();
 			}
 

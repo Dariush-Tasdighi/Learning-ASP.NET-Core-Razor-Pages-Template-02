@@ -141,6 +141,9 @@
   <data name="DeactivateAccount" xml:space="preserve">
     <value>غیرفعال کردن حساب کاربری</value>
   </data>
+  <data name="DeleteRole" xml:space="preserve">
+    <value>حذف نقش</value>
+  </data>
   <data name="Error500" xml:space="preserve">
     <value>خطای داخلی سرور!</value>
   </data>
