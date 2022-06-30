@@ -123,6 +123,9 @@
   <data name="Compare" xml:space="preserve">
     <value>{0} should be equql to {1}!</value>
   </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value />
+  </data>
   <data name="EmailAddress" xml:space="preserve">
     <value>Email address is not valid!</value>
   </data>

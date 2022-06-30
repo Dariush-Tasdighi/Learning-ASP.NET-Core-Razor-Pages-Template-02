@@ -79,6 +79,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure to delete this item?.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current password is not correct!.
         /// </summary>
         public static string CurrentPasswordIsNotCorrect {
@@ -111,6 +120,15 @@ namespace Resources.Messages {
         public static string NewPasswordCanNotBeSameAsCurrentPassword {
             get {
                 return ResourceManager.GetString("NewPasswordCanNotBeSameAsCurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are unable to {0} this {1}!.
+        /// </summary>
+        public static string UnableTo {
+            get {
+                return ResourceManager.GetString("UnableTo", resourceCulture);
             }
         }
         

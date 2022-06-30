@@ -144,6 +144,9 @@
   <data name="Deactive" xml:space="preserve">
     <value>غیر فعال</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
   <data name="Deleted" xml:space="preserve">
     <value>حذف شده</value>
   </data>

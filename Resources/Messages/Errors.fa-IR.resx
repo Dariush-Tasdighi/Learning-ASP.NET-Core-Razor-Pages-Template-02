@@ -123,6 +123,9 @@
   <data name="Captcha" xml:space="preserve">
     <value>شما باید عدد فوق را با دقت و با ارقام انگلیسی وارد نمایید!</value>
   </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>آیا از حذف این آیتم اطمینان دارید؟</value>
+  </data>
   <data name="CurrentPasswordIsNotCorrect" xml:space="preserve">
     <value>گذرواژه جاری صحیح نمی‌باشد!</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="NewPasswordCanNotBeSameAsCurrentPassword" xml:space="preserve">
     <value>گذرواژه جدید نمی‌تواند با گذرواژه جاری یکسان باشد!</value>
+  </data>
+  <data name="UnableTo" xml:space="preserve">
+    <value>در حال حاضر امکان {0} این {1} وجود ندارد!</value>
   </data>
   <data name="UnexpectedError" xml:space="preserve">
     <value>خطای ناشناخته‌ای صورت گرفته است! لطفا با تیم پشتیبانی تماس حاصل فرمایید.</value>

@@ -144,6 +144,9 @@
   <data name="Deactive" xml:space="preserve">
     <value>Deactive</value>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
   <data name="Deleted" xml:space="preserve">
     <value>Deleted</value>
   </data>

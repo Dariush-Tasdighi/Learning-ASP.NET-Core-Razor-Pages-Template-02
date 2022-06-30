@@ -123,6 +123,9 @@
   <data name="Captcha" xml:space="preserve">
     <value>You should just use digits!</value>
   </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Are you sure to delete this item?</value>
+  </data>
   <data name="CurrentPasswordIsNotCorrect" xml:space="preserve">
     <value>Current password is not correct!</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="NewPasswordCanNotBeSameAsCurrentPassword" xml:space="preserve">
     <value>New password can not be same as current password!</value>
+  </data>
+  <data name="UnableTo" xml:space="preserve">
+    <value>We are unable to {0} this {1}!</value>
   </data>
   <data name="UnexpectedError" xml:space="preserve">
     <value>Unexpected error!</value>
