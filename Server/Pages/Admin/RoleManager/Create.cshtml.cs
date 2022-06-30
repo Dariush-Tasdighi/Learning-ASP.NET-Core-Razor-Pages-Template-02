@@ -15,10 +15,14 @@ namespace Server.Pages.Admin.RoleManager
 			ViewModel = new();
 		}
 
+		// **********
 		private Microsoft.Extensions.Logging.ILogger<CreateModel> Logger { get; }
+		// **********
 
+		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.RoleManager.CreateRoleViewModel ViewModel { get; set; }
+		// **********
 
 		public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
 		{
