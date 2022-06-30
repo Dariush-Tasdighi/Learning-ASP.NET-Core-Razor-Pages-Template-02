@@ -148,22 +148,29 @@ namespace Server.Pages.Admin.UserManager
 						Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
 					};
 
-					await DatabaseContext.AddAsync(entity: user);
+					var entityEntry =
+						await DatabaseContext.AddAsync(entity: user);
 
-					await DatabaseContext.SaveChangesAsync();
+					int affectedRow =
+						await DatabaseContext.SaveChangesAsync();
 
 					// **************************************************
-					string successMessage = string.Format
-						(Resources.Messages.Successes.SuccessfullyCreated,
-						Resources.DataDictionary.User);
+					if (affectedRow > 0)
+					{
+						string successMessage = string.Format
+							(Resources.Messages.Successes.SuccessfullyCreated,
+							Resources.DataDictionary.User);
 
-					AddToastSuccess(message: successMessage);
+						AddToastSuccess(message: successMessage);
+					}
 					// **************************************************
 				}
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError(message: ex.Message);
+
+				//System.Console.WriteLine(value: ex.Message);
 
 				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
 			}

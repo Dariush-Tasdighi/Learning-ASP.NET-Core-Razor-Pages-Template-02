@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
+	//[Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public CreateModel
@@ -45,6 +46,7 @@ namespace Server.Pages.Admin.RoleManager
 
 				if (foundAny)
 				{
+					// **************************************************
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.Name);
@@ -52,9 +54,11 @@ namespace Server.Pages.Admin.RoleManager
 					AddToastError(message: errorMessage);
 
 					return Page();
+					// **************************************************
 				}
 				else
 				{
+					// **************************************************
 					Domain.Models.Account.Role role = new()
 					{
 						Name = fixedName,
@@ -62,6 +66,7 @@ namespace Server.Pages.Admin.RoleManager
 						IsDeletable = ViewModel.IsDeletable,
 						Description = Infrastructure.Utility.FixText(text: ViewModel.Description),
 					};
+					// **************************************************
 
 					var entityEntry =
 						await DatabaseContext.AddAsync(entity: role);
@@ -69,6 +74,7 @@ namespace Server.Pages.Admin.RoleManager
 					int affectedRows =
 						await DatabaseContext.SaveChangesAsync();
 
+					// **************************************************
 					if (affectedRows > 0)
 					{
 						string successMessage = string.Format
@@ -77,6 +83,7 @@ namespace Server.Pages.Admin.RoleManager
 
 						AddToastSuccess(message: successMessage);
 					}
+					// **************************************************
 
 					return RedirectToPage(pageName: "Index");
 				}
@@ -84,6 +91,8 @@ namespace Server.Pages.Admin.RoleManager
 			catch (System.Exception ex)
 			{
 				Logger.LogError(message: ex.Message);
+
+				//System.Console.WriteLine(value: ex.Message);
 
 				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
 

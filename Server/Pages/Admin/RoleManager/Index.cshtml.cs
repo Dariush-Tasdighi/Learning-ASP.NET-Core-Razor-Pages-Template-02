@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
+	//[Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public IndexModel
@@ -15,12 +16,16 @@ namespace Server.Pages.Admin.RoleManager
 			ViewModel = new();
 		}
 
+		// **********
 		private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
+		// **********
 
+		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Shared.PaginationWithDataViewModel
 			<ViewModels.Pages.Admin.RoleManager.GetRoleItemViewModel> ViewModel
 		{ get; set; }
+		// **********
 
 		public async
 			System.Threading.Tasks.Task
@@ -31,6 +36,7 @@ namespace Server.Pages.Admin.RoleManager
 			{
 				if (pageNumber > 0)
 				{
+					// **************************************************
 					ViewModel =
 						new ViewModels.Shared.PaginationWithDataViewModel
 						<ViewModels.Pages.Admin.RoleManager.GetRoleItemViewModel>
@@ -41,10 +47,12 @@ namespace Server.Pages.Admin.RoleManager
 								PageNumber = pageNumber,
 							},
 						};
+					// **************************************************
 
 					ViewModel.PageInformation.TotalCount =
 						await DatabaseContext.Roles.CountAsync();
 
+					// **************************************************
 					if (ViewModel.PageInformation.TotalCount > 0)
 					{
 						ViewModel.Data =
@@ -63,18 +71,19 @@ namespace Server.Pages.Admin.RoleManager
 							.ToListAsync()
 							;
 					}
+					// **************************************************
 				}
 
 				if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
 				{
-					return NotFound();
+					// To DO: Show an Error Message or Redirect to...!
 				}
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError(message: ex.Message);
 
-				System.Console.WriteLine(value: ex.Message);
+				//System.Console.WriteLine(value: ex.Message);
 
 				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
 			}

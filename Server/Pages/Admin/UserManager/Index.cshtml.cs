@@ -47,10 +47,10 @@ namespace Server.Pages.Admin.UserManager
 								},
 							};
 
-						// **************************************************
 						ViewModel.PageInformation.TotalCount =
 							await DatabaseContext.Users.CountAsync();
 
+						// **************************************************
 						if (ViewModel.PageInformation.TotalCount > 0)
 						{
 							ViewModel.Data =
@@ -71,13 +71,20 @@ namespace Server.Pages.Admin.UserManager
 								;
 						}
 						// **************************************************
+
+						if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
+						{
+							// To DO: Show an Error Message or Redirect to...!
+						}
 					}
 				}
 				catch (System.Exception ex)
 				{
-					AddToastError(message: ex.Message);
-
 					Logger.LogError(message: ex.Message);
+
+					//System.Console.WriteLine(value: ex.Message);
+
+					AddToastError(message: Resources.Messages.Errors.UnexpectedError);
 				}
 				finally
 				{
