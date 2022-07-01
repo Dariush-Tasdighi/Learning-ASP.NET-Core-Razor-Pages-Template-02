@@ -144,6 +144,9 @@
   <data name="DeleteRole" xml:space="preserve">
     <value>Delete Role</value>
   </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Delete User</value>
+  </data>
   <data name="Error500" xml:space="preserve">
     <value>Internal Server Error!</value>
   </data>

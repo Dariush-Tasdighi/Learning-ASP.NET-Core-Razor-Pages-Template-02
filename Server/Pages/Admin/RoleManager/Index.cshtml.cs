@@ -22,10 +22,9 @@ namespace Server.Pages.Admin.RoleManager
 		// **********
 
 		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Shared.PaginationWithDataViewModel
 			<ViewModels.Pages.Admin.RoleManager.GetRoleItemInfoViewModel> ViewModel
-		{ get; set; }
+		{ get; private set; }
 		// **********
 
 		public async
@@ -51,13 +50,16 @@ namespace Server.Pages.Admin.RoleManager
 					// **************************************************
 
 					ViewModel.PageInformation.TotalCount =
-						await DatabaseContext.Roles.CountAsync();
+						await DatabaseContext.Roles
+						.Where(current => current.IsDeleted == false)
+						.CountAsync();
 
 					// **************************************************
 					if (ViewModel.PageInformation.TotalCount > 0)
 					{
 						ViewModel.Data =
 							await DatabaseContext.Roles
+							.Where(current => current.IsDeleted == false)
 							.OrderBy(current => current.Ordering)
 							.Skip((pageNumber - 1) * pageSize)
 							.Take(pageSize)

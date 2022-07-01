@@ -22,7 +22,7 @@ namespace Server.Pages.Admin.UserManager
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel ViewModel { get; private set; }
 		// **********
 
 		public async

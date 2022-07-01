@@ -38,7 +38,7 @@ namespace Server.Pages.Admin.UserManager
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public System.Collections.Generic.IList
 			<ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel> RolesViewModel
-		{ get; set; }
+		{ get; private set; }
 		// **********
 
 		public async
@@ -181,9 +181,9 @@ namespace Server.Pages.Admin.UserManager
 				await DisposeDatabaseContextAsync();
 			}
 
-			if (string.IsNullOrWhiteSpace(ReturnUrl))
+			if (string.IsNullOrWhiteSpace(value: ReturnUrl))
 			{
-				return RedirectToPage(pageName: "/Index");
+				return RedirectToPage(pageName: "./Index");
 			}
 			else
 			{

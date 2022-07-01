@@ -21,8 +21,7 @@ namespace Server.Pages.Admin.RoleManager
 		// **********
 
 		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.RoleManager.GetRoleItemDetailsViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.RoleManager.GetRoleItemDetailsViewModel ViewModel { get; private set; }
 		// **********
 
 		public async

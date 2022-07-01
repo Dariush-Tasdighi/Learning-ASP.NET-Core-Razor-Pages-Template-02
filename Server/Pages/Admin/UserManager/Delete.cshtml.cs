@@ -1,11 +1,9 @@
-using System.Linq;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Linq;
 
-namespace Server.Pages.Admin.RoleManager
+namespace Server.Pages.Admin.UserManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DeleteModel
@@ -17,48 +15,48 @@ namespace Server.Pages.Admin.RoleManager
 			ViewModel = new();
 		}
 
-		// **********
 		private Microsoft.Extensions.Logging.ILogger<DeleteModel> Logger { get; }
-		// **********
 
-		// **********
-		public ViewModels.Pages.Admin.RoleManager.DeleteRoleRequestViewModel ViewModel { get; private set; }
-		// **********
+		[Microsoft.AspNetCore.Mvc.BindProperty]
+		public ViewModels.Pages.Admin.UserManager.DeleteUserViewModel ViewModel { get; set; }
 
-		public async System.Threading.Tasks.Task OnGetAsync(System.Guid? id)
+		public async
+			System.Threading.Tasks.Task OnGetAsync(System.Guid? id)
 		{
-			try
 			{
-				if (id.HasValue)
+				try
 				{
-					ViewModel =
-						await DatabaseContext.Roles
-						.Where(current => current.Id == id.Value)
-						//.Where(current => current.IsDeleted == false)
-						.Select(current => new ViewModels.Pages.Admin.RoleManager.DeleteRoleRequestViewModel
-						{
-							Id = current.Id,
-							Name = current.Name,
-							IsActive = current.IsActive,
-							IsSystemic = current.IsSystemic,
-							IsDeletable = current.IsDeletable,
-							InsertDateTime = current.InsertDateTime,
-						})
-						.FirstOrDefaultAsync();
+					if (id.HasValue)
+					{
+						ViewModel =
+							await DatabaseContext.Users
+							.Where(current => current.Id == id.Value)
+							//.Where(current => current.IsDeleted == false)
+							.Select(current => new ViewModels.Pages.Admin.UserManager.DeleteUserViewModel
+							{
+								Id = current.Id,
+								Role = current.Role.Name,
+								Username = current.Username,
+								IsActive = current.IsActive,
+								LastName = current.LastName,
+								FirstName = current.FirstName,
+								InsertDateTime = current.InsertDateTime,
+							})
+							.FirstOrDefaultAsync();
+					}
+				}
+				catch (System.Exception ex)
+				{
+					Logger.LogError(message: ex.Message);
+
+					AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+				}
+				finally
+				{
+					await DisposeDatabaseContextAsync();
 				}
 			}
-			catch (System.Exception ex)
-			{
-				Logger.LogError(message: ex.Message);
-
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
-			}
-			finally
-			{
-				await DisposeDatabaseContextAsync();
-			}
 		}
-
 
 		public async
 			System.Threading.Tasks.Task
@@ -70,7 +68,7 @@ namespace Server.Pages.Admin.RoleManager
 				if (id.HasValue)
 				{
 					var foundedItem =
-						await DatabaseContext.Roles
+						await DatabaseContext.Users
 						.Where(current => current.Id == id.Value)
 						.Where(current => current.IsDeleted == false)
 						.FirstOrDefaultAsync();
@@ -79,19 +77,18 @@ namespace Server.Pages.Admin.RoleManager
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.NotFound,
-							Resources.DataDictionary.Role);
+							Resources.DataDictionary.User);
 
 						AddToastError(message: errorMessage);
 
 						return RedirectToPage("./Index");
 					}
-					else if (foundedItem.IsDeletable == false)
-					//else if (foundedItem.IsSystemic || (foundedItem.IsDeletable == false))
+					else if (foundedItem.Role.Id != Domain.SeedWork.Constant.SystemicRole.UserRoleId)
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,
 							Resources.DataDictionary.Delete,
-							Resources.DataDictionary.Role);
+							Resources.DataDictionary.User);
 
 						AddPageError(message: errorMessage);
 
@@ -102,7 +99,7 @@ namespace Server.Pages.Admin.RoleManager
 						//foundedItem.IsActive = false;
 						foundedItem.IsDeleted = true;
 
-						DatabaseContext.Roles.Update(entity: foundedItem);
+						DatabaseContext.Users.Update(entity: foundedItem);
 
 						await DatabaseContext.SaveChangesAsync();
 

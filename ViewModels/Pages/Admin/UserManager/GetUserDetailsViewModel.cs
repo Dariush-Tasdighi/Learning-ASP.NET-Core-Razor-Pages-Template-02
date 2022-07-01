@@ -35,7 +35,6 @@
 		// **********
 
 		// **********
-		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.LastName),
 			ResourceType = typeof(Resources.DataDictionary))]

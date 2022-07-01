@@ -21,10 +21,9 @@ namespace Server.Pages.Admin.UserManager
 		// **********
 
 		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Shared.PaginationWithDataViewModel
 			<ViewModels.Pages.Admin.UserManager.GetUserItemViewModel> ViewModel
-		{ get; set; }
+		{ get; private set; }
 		// **********
 
 		public async
@@ -49,13 +48,16 @@ namespace Server.Pages.Admin.UserManager
 							};
 
 						ViewModel.PageInformation.TotalCount =
-							await DatabaseContext.Users.CountAsync();
+							await DatabaseContext.Users
+							.Where(current => current.IsDeleted == false)
+							.CountAsync();
 
 						// **************************************************
 						if (ViewModel.PageInformation.TotalCount > 0)
 						{
 							ViewModel.Data =
 								await DatabaseContext.Users
+								.Where(current => current.IsDeleted == false)
 								.Skip((pageNumber - 1) * pageSize)
 								.Take(pageSize)
 								.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserItemViewModel
