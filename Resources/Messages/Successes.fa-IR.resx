@@ -120,4 +120,7 @@
   <data name="SuccessfullyCreated" xml:space="preserve">
     <value>{0} با موفقیت ایجاد گردید...</value>
   </data>
+  <data name="SuccessfullyUpdated" xml:space="preserve">
+    <value>بروز رسانی {0} با موفقیت انجام شد...</value>
+  </data>
 </root>

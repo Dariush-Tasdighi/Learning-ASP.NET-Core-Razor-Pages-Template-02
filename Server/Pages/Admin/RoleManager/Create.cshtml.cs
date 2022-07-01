@@ -30,8 +30,7 @@ namespace Server.Pages.Admin.RoleManager
 			return Page();
 		}
 
-		public async
-			System.Threading.Tasks.Task
+		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 		{
 			if (ModelState.IsValid is false)

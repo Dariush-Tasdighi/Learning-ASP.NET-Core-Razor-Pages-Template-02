@@ -1,17 +1,10 @@
 ﻿namespace ViewModels.Pages.Admin.RoleManager
 {
-	public class DeleteRoleRequestViewModel : Base.RoleBaseViewModel
+	public class DeleteRoleRequestViewModel : Base.RoleExtendedViewModel
 	{
 		public DeleteRoleRequestViewModel() : base()
 		{
 		}
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.Id))]
-		public System.Guid? Id { get; set; }
-		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display

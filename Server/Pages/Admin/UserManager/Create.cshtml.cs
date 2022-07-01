@@ -60,7 +60,6 @@ namespace Server.Pages.Admin.UserManager
 			}
 		}
 
-
 		public async
 			System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()

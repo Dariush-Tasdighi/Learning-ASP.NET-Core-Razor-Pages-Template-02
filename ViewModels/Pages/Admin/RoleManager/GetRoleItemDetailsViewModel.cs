@@ -1,17 +1,10 @@
 ﻿namespace ViewModels.Pages.Admin.RoleManager
 {
-	public class GetRoleItemDetailsViewModel : Base.RoleBaseViewModel
+	public class GetRoleItemDetailsViewModel : Base.RoleExtendedViewModel
 	{
 		public GetRoleItemDetailsViewModel()
 		{
 		}
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Id),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public System.Guid? Id { get; set; }
-		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display

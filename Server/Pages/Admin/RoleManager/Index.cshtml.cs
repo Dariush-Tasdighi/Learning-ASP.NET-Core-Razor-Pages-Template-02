@@ -24,7 +24,7 @@ namespace Server.Pages.Admin.RoleManager
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Shared.PaginationWithDataViewModel
-			<ViewModels.Pages.Admin.RoleManager.GetRoleItemViewModel> ViewModel
+			<ViewModels.Pages.Admin.RoleManager.GetRoleItemInfoViewModel> ViewModel
 		{ get; set; }
 		// **********
 
@@ -40,7 +40,7 @@ namespace Server.Pages.Admin.RoleManager
 					// **************************************************
 					ViewModel =
 						new ViewModels.Shared.PaginationWithDataViewModel
-						<ViewModels.Pages.Admin.RoleManager.GetRoleItemViewModel>
+						<ViewModels.Pages.Admin.RoleManager.GetRoleItemInfoViewModel>
 						{
 							PageInformation = new()
 							{
@@ -61,7 +61,7 @@ namespace Server.Pages.Admin.RoleManager
 							.OrderBy(current => current.Ordering)
 							.Skip((pageNumber - 1) * pageSize)
 							.Take(pageSize)
-							.Select(current => new ViewModels.Pages.Admin.RoleManager.GetRoleItemViewModel
+							.Select(current => new ViewModels.Pages.Admin.RoleManager.GetRoleItemInfoViewModel
 							{
 								Id = current.Id,
 								Name = current.Name,

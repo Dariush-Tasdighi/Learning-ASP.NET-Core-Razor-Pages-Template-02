@@ -68,5 +68,14 @@ namespace Resources.Messages {
                 return ResourceManager.GetString("SuccessfullyCreated", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} successfully updated....
+        /// </summary>
+        public static string SuccessfullyUpdated {
+            get {
+                return ResourceManager.GetString("SuccessfullyUpdated", resourceCulture);
+            }
+        }
     }
 }

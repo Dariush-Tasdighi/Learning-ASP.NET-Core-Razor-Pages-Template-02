@@ -180,6 +180,9 @@
   <data name="UpdateProfile" xml:space="preserve">
     <value>ویرایش مشخصات</value>
   </data>
+  <data name="UpdateRole" xml:space="preserve">
+    <value>ویرایش نقش</value>
+  </data>
   <data name="UserManagement" xml:space="preserve">
     <value>مدیریت کاربران</value>
   </data>

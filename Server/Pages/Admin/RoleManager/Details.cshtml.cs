@@ -16,11 +16,14 @@ namespace Server.Pages.Admin.RoleManager
 			ViewModel = new();
 		}
 
+		// **********
 		private Microsoft.Extensions.Logging.ILogger<DetailsModel> Logger { get; }
+		// **********
 
-
+		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.RoleManager.GetRoleItemDetailsViewModel ViewModel { get; set; }
+		// **********
 
 		public async
 			System.Threading.Tasks.Task

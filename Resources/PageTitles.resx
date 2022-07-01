@@ -180,6 +180,9 @@
   <data name="UpdateProfile" xml:space="preserve">
     <value>Update Profile</value>
   </data>
+  <data name="UpdateRole" xml:space="preserve">
+    <value>Update Role</value>
+  </data>
   <data name="UserManagement" xml:space="preserve">
     <value>User Management</value>
   </data>

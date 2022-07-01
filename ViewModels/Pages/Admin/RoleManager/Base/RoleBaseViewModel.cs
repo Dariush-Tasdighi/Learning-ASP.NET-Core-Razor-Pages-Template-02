@@ -8,6 +8,13 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Id),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public System.Guid? Id { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Role),
 			ResourceType = typeof(Resources.DataDictionary))]
 
@@ -21,20 +28,6 @@
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Name { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsActive),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsActive { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeletable),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeletable { get; set; }
 		// **********
 	}
 }
