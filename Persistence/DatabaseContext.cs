@@ -1,4 +1,6 @@
-﻿namespace Persistence
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Persistence
 {
 	public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
 	{
@@ -18,6 +20,8 @@
 		protected override void OnConfiguring
 			(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
 		{
+			optionsBuilder.UseLazyLoadingProxies();
+
 			base.OnConfiguring(optionsBuilder);
 		}
 

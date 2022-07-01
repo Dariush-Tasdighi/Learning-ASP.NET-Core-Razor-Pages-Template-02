@@ -183,6 +183,9 @@
   <data name="UpdateRole" xml:space="preserve">
     <value>Update Role</value>
   </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>User Details</value>
+  </data>
   <data name="UserManagement" xml:space="preserve">
     <value>User Management</value>
   </data>
