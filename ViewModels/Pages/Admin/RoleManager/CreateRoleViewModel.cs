@@ -17,5 +17,12 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Description { get; set; }
 		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Ordering),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public int Ordering { get; set; }
+		// **********
 	}
 }

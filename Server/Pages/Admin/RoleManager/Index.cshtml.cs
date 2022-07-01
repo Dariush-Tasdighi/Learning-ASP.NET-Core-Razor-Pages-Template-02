@@ -58,6 +58,7 @@ namespace Server.Pages.Admin.RoleManager
 					{
 						ViewModel.Data =
 							await DatabaseContext.Roles
+							.OrderBy(current => current.Ordering)
 							.Skip((pageNumber - 1) * pageSize)
 							.Take(pageSize)
 							.Select(current => new ViewModels.Pages.Admin.RoleManager.GetRoleItemViewModel

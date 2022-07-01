@@ -8,6 +8,7 @@
 
 		public Role() : base()
 		{
+			//Ordering = 10000;
 			IsDeletable = true;
 			Users = new System.Collections.Generic.List<User>();
 		}
@@ -38,6 +39,13 @@
 			(Name = nameof(Resources.DataDictionary.IsDeleted),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsDeleted { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Ordering),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public int Ordering { get; set; }
 		// **********
 
 		// **********

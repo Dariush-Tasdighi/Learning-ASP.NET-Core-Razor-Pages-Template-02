@@ -67,6 +67,7 @@ namespace Server.Pages.Admin.RoleManager
 					Domain.Models.Account.Role role = new()
 					{
 						Name = fixedName,
+						Ordering = ViewModel.Ordering,
 						IsActive = ViewModel.IsActive,
 						IsDeletable = ViewModel.IsDeletable,
 						Description = Infrastructure.Utility.FixText(text: ViewModel.Description),

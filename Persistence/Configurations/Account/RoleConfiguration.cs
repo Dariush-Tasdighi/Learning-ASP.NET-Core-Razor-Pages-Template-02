@@ -49,6 +49,7 @@
 			(
 				new Domain.Models.Account.Role
 				{
+					Ordering = 1,
 					IsActive = true,
 					IsSystemic = true,
 					Name = Domain.SeedWork.Constant.SystemicRole.User,
@@ -56,6 +57,7 @@
 				},
 				new Domain.Models.Account.Role
 				{
+					Ordering = 2,
 					IsActive = true,
 					IsSystemic = true,
 					Name = Domain.SeedWork.Constant.SystemicRole.Admin,
@@ -63,6 +65,7 @@
 				},
 				new Domain.Models.Account.Role
 				{
+					Ordering = 3,
 					IsActive = true,
 					IsSystemic = true,
 					Name = Domain.SeedWork.Constant.SystemicRole.Owner,
@@ -70,6 +73,7 @@
 				},
 				new Domain.Models.Account.Role
 				{
+					Ordering = 4,
 					IsActive = true,
 					IsSystemic = true,
 					Name = Domain.SeedWork.Constant.SystemicRole.Programmer,

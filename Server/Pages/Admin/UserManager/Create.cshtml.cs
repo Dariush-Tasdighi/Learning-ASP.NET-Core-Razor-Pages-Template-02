@@ -198,6 +198,7 @@ namespace Server.Pages.Admin.UserManager
 			RolesViewModel =
 				await DatabaseContext.Roles
 				.Where(current => current.IsDeleted == false)
+				.OrderBy(current => current.Ordering)
 				.Select(current => new ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel
 				{
 					Id = current.Id,
