@@ -165,6 +165,9 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="RoleDetails" xml:space="preserve">
+    <value>Role Details</value>
+  </data>
   <data name="RoleManagement" xml:space="preserve">
     <value>Role Management</value>
   </data>

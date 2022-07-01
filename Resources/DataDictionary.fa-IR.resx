@@ -237,6 +237,9 @@
   <data name="NotVerified" xml:space="preserve">
     <value>تایید نشده</value>
   </data>
+  <data name="NumberOfUsersWithThisRole" xml:space="preserve">
+    <value>تعداد کاربران دارای این نقش</value>
+  </data>
   <data name="Ordering" xml:space="preserve">
     <value>چیدمان</value>
   </data>
@@ -251,6 +254,9 @@
   </data>
   <data name="Role" xml:space="preserve">
     <value>نقش</value>
+  </data>
+  <data name="RoleManager" xml:space="preserve">
+    <value>مدیریت نقش ها</value>
   </data>
   <data name="Roles" xml:space="preserve">
     <value>نقش ها</value>

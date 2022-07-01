@@ -205,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Details.
+        /// </summary>
+        public static string RoleDetails {
+            get {
+                return ResourceManager.GetString("RoleDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role Management.
         /// </summary>
         public static string RoleManagement {

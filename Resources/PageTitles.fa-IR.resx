@@ -165,6 +165,9 @@
   <data name="Register" xml:space="preserve">
     <value>ثبت‌نام</value>
   </data>
+  <data name="RoleDetails" xml:space="preserve">
+    <value>جزئیات نقش</value>
+  </data>
   <data name="RoleManagement" xml:space="preserve">
     <value>مدیریت نقش ها</value>
   </data>

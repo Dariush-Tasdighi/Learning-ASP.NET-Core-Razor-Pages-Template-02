@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize
+		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DeleteModel
@@ -73,7 +75,8 @@ namespace Server.Pages.Admin.RoleManager
 					{
 						return NotFound();
 					}
-					else if (foundedItem.IsSystemic || (foundedItem.IsDeletable == false))
+					else if (foundedItem.IsDeletable == false)
+					//else if (foundedItem.IsSystemic || (foundedItem.IsDeletable == false))
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,
@@ -84,7 +87,7 @@ namespace Server.Pages.Admin.RoleManager
 					}
 					else
 					{
-						foundedItem.IsActive = false;
+						//foundedItem.IsActive = false;
 						foundedItem.IsDeleted = true;
 
 						DatabaseContext.Roles.Update(entity: foundedItem);

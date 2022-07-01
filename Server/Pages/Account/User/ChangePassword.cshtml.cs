@@ -1,5 +1,6 @@
 namespace Server.Pages.Security.User
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	public class ChangePasswordModel : Infrastructure.BasePageModel
 	{
 		public ChangePasswordModel() : base()

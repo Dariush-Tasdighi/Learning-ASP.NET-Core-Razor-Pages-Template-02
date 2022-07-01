@@ -43,6 +43,40 @@
 				.IsUnique(unique: true)
 				;
 			// **************************************************
+
+			// **************************************************
+			builder.HasData
+			(
+				new Domain.Models.Account.Role
+				{
+					IsActive = true,
+					IsSystemic = true,
+					Name = Domain.SeedWork.Constant.SystemicRole.User,
+					Id = Domain.SeedWork.Constant.SystemicRole.UserRoleId,
+				},
+				new Domain.Models.Account.Role
+				{
+					IsActive = true,
+					IsSystemic = true,
+					Name = Domain.SeedWork.Constant.SystemicRole.Admin,
+					Id = Domain.SeedWork.Constant.SystemicRole.AdminRoleId,
+				},
+				new Domain.Models.Account.Role
+				{
+					IsActive = true,
+					IsSystemic = true,
+					Name = Domain.SeedWork.Constant.SystemicRole.Owner,
+					Id = Domain.SeedWork.Constant.SystemicRole.OwnerRoleId,
+				},
+				new Domain.Models.Account.Role
+				{
+					IsActive = true,
+					IsSystemic = true,
+					Name = Domain.SeedWork.Constant.SystemicRole.Programmer,
+					Id = Domain.SeedWork.Constant.SystemicRole.ProgrammerRoleId,
+				}
+			);
+			// **************************************************
 		}
 	}
 }

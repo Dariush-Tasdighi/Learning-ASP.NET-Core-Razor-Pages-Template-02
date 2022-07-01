@@ -4,7 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
-	//[Microsoft.AspNetCore.Authorization.Authorize(Roles = "Admin")]
+	[Microsoft.AspNetCore.Authorization.Authorize
+		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public CreateModel

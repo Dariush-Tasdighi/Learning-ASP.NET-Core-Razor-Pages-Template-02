@@ -430,6 +430,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of users with this role.
+        /// </summary>
+        public static string NumberOfUsersWithThisRole {
+            get {
+                return ResourceManager.GetString("NumberOfUsersWithThisRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ordering.
         /// </summary>
         public static string Ordering {
@@ -471,6 +480,15 @@ namespace Resources {
         public static string Role {
             get {
                 return ResourceManager.GetString("Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Manager.
+        /// </summary>
+        public static string RoleManager {
+            get {
+                return ResourceManager.GetString("RoleManager", resourceCulture);
             }
         }
         

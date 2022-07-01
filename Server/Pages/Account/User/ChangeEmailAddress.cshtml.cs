@@ -1,5 +1,6 @@
 namespace Server.Pages.Security.User
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	public class ChangeEmailAddressModel : Infrastructure.BasePageModel
 	{
 		public ChangeEmailAddressModel() : base()

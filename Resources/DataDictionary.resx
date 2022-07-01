@@ -240,6 +240,9 @@
   <data name="NotVerified" xml:space="preserve">
     <value>Not Verified</value>
   </data>
+  <data name="NumberOfUsersWithThisRole" xml:space="preserve">
+    <value>Number of users with this role</value>
+  </data>
   <data name="Ordering" xml:space="preserve">
     <value>Ordering</value>
   </data>
@@ -254,6 +257,9 @@
   </data>
   <data name="Role" xml:space="preserve">
     <value>Role</value>
+  </data>
+  <data name="RoleManager" xml:space="preserve">
+    <value>Role Manager</value>
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roles</value>
