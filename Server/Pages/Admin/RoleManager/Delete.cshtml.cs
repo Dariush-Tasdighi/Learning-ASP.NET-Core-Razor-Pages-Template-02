@@ -73,7 +73,13 @@ namespace Server.Pages.Admin.RoleManager
 
 					if (foundedItem == null)
 					{
-						return NotFound();
+						string errorMessage = string.Format
+							(Resources.Messages.Errors.NotFound,
+							Resources.DataDictionary.Role);
+
+						AddToastError(message: errorMessage);
+
+						return Page();
 					}
 					else if (foundedItem.IsDeletable == false)
 					//else if (foundedItem.IsSystemic || (foundedItem.IsDeletable == false))
@@ -84,6 +90,8 @@ namespace Server.Pages.Admin.RoleManager
 							Resources.DataDictionary.Role);
 
 						AddPageError(message: errorMessage);
+
+						return Page();
 					}
 					else
 					{
@@ -93,9 +101,9 @@ namespace Server.Pages.Admin.RoleManager
 						DatabaseContext.Roles.Update(entity: foundedItem);
 
 						await DatabaseContext.SaveChangesAsync();
-					}
 
-					return RedirectToPage("./Index");
+						return RedirectToPage("./Index");
+					}
 				}
 			}
 			catch (System.Exception ex)

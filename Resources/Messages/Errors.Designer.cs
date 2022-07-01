@@ -124,6 +124,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no {0} with this information!.
+        /// </summary>
+        public static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We are unable to {0} this {1}!.
         /// </summary>
         public static string UnableTo {

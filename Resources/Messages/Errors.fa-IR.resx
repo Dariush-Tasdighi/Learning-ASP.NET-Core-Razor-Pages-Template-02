@@ -138,6 +138,9 @@
   <data name="NewPasswordCanNotBeSameAsCurrentPassword" xml:space="preserve">
     <value>گذرواژه جدید نمی‌تواند با گذرواژه جاری یکسان باشد!</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>{0} مورد نظر یافت نشد!</value>
+  </data>
   <data name="UnableTo" xml:space="preserve">
     <value>در حال حاضر امکان {0} این {1} وجود ندارد!</value>
   </data>

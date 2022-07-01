@@ -138,6 +138,9 @@
   <data name="NewPasswordCanNotBeSameAsCurrentPassword" xml:space="preserve">
     <value>New password can not be same as current password!</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>There is no {0} with this information!</value>
+  </data>
   <data name="UnableTo" xml:space="preserve">
     <value>We are unable to {0} this {1}!</value>
   </data>

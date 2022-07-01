@@ -120,6 +120,8 @@ namespace Server.Pages.Admin.RoleManager
 					foundedItem.IsActive = ViewModel.IsActive;
 					foundedItem.IsDeletable = ViewModel.IsDeletable;
 					foundedItem.Description = Infrastructure.Utility.FixText(text: ViewModel.Description);
+
+					foundedItem.SetUpdateDateTime();
 					// **************************************************
 
 					var entityEntry =
