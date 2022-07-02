@@ -1,0 +1,120 @@
+﻿@page
+@model Server.Pages.Admin.RoleManager.DetailsModel
+@{
+	var pageTitle =
+		Resources.PageTitles.RoleDetails;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+	<div class="row">
+		<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+			<fieldset disabled readonly>
+				<legend>
+					@(pageTitle)
+				</legend>
+
+				<hr />
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.Name" class="form-label"></label>
+
+					<div class="input-group">
+						<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+						<input asp-for="ViewModel.Name" class="form-control" />
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.Description" class="form-label"></label>
+
+					<div class="input-group">
+						<div class="input-group-text"><i class="bi bi-card-text"></i></div>
+						<textarea asp-for="ViewModel.Description" class="form-control"> </textarea>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.NumberOfUserWithThisRole" class="form-label"></label>
+
+					<div class="input-group">
+						<div class="input-group-text"><i class="bi bi-graph-up-arrow"></i></div>
+						<input asp-for="ViewModel.NumberOfUserWithThisRole" class="form-control" />
+					</div>
+				</div>
+
+				@if (Model.ViewModel.InsertDateTime.HasValue)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.InsertDateTime" class="form-label"></label>
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
+							<input placeholder="@(Model.ViewModel.InsertDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
+						</div>
+					</div>
+				}
+
+				@if (Model.ViewModel.UpdateDateTime.HasValue)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.UpdateDateTime" class="form-label"></label>
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
+							<input placeholder="@(Model.ViewModel.UpdateDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
+						</div>
+					</div>
+				}
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsActive" class="form-check-input" />
+						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsSystemic" class="form-check-input" />
+						<label asp-for="ViewModel.IsSystemic" class="form-check-label"></label>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsDeletable" class="form-check-input" />
+						<label asp-for="ViewModel.IsDeletable" class="form-check-label"></label>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsDeleted" class="form-check-input" />
+						<label asp-for="ViewModel.IsDeleted" class="form-check-label"></label>
+					</div>
+				</div>
+			</fieldset>
+
+			<hr class="mt-4" />
+
+			<div class="text-center">
+				<a href="/">@(Resources.ButtonCaptions.Home)</a>
+				|
+				<a asp-page="Index">
+					@(Resources.ButtonCaptions.BackToList)
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

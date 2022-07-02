@@ -106,11 +106,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Role.
+        /// </summary>
+        public static string CreateRole {
+            get {
+                return ResourceManager.GetString("CreateRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create User.
+        /// </summary>
+        public static string CreateUser {
+            get {
+                return ResourceManager.GetString("CreateUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deactivate Account.
         /// </summary>
         public static string DeactivateAccount {
             get {
                 return ResourceManager.GetString("DeactivateAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Role.
+        /// </summary>
+        public static string DeleteRole {
+            get {
+                return ResourceManager.GetString("DeleteRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete User.
+        /// </summary>
+        public static string DeleteUser {
+            get {
+                return ResourceManager.GetString("DeleteUser", resourceCulture);
             }
         }
         
@@ -178,6 +214,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Details.
+        /// </summary>
+        public static string RoleDetails {
+            get {
+                return ResourceManager.GetString("RoleDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role Management.
+        /// </summary>
+        public static string RoleManagement {
+            get {
+                return ResourceManager.GetString("RoleManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terminate Account.
         /// </summary>
         public static string TerminateAccount {
@@ -201,6 +255,33 @@ namespace Resources {
         public static string UpdateProfile {
             get {
                 return ResourceManager.GetString("UpdateProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Role.
+        /// </summary>
+        public static string UpdateRole {
+            get {
+                return ResourceManager.GetString("UpdateRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Details.
+        /// </summary>
+        public static string UserDetails {
+            get {
+                return ResourceManager.GetString("UserDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Management.
+        /// </summary>
+        public static string UserManagement {
+            get {
+                return ResourceManager.GetString("UserManagement", resourceCulture);
             }
         }
         

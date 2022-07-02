@@ -1,0 +1,154 @@
+﻿@page
+@model Server.Pages.Admin.UserManager.DeleteModel
+@{
+	var pageTitle =
+		Resources.PageTitles.DeleteUser;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+	<div class="row">
+		<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+			<fieldset>
+				<legend>
+					@(pageTitle)
+				</legend>
+
+				<hr />
+
+				<partial name="PartialViews/_DisplayPageMessages" />
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.Username" class="form-label"></label>
+
+					<div class="input-group">
+						<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+						<input asp-for="ViewModel.Username" disabled readonly class="form-control" dir="ltr" />
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.Role" class="form-label"></label>
+
+					<div class="input-group">
+						<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
+						<input asp-for="ViewModel.Role" disabled readonly class="form-control" dir="ltr" />
+					</div>
+				</div>
+
+				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.FirstName) == false)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.FirstName" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+							<input asp-for="ViewModel.FirstName" disabled readonly class="form-control" />
+						</div>
+					</div>
+				}
+
+				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.LastName) == false)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.LastName" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+							<input asp-for="ViewModel.LastName" disabled readonly class="form-control" />
+						</div>
+					</div>
+				}
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsActive" disabled readonly class="form-check-input" />
+						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+					</div>
+				</div>
+
+				@if (Model.ViewModel.InsertDateTime.HasValue)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.InsertDateTime" class="form-label"></label>
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
+							<input placeholder="@(Model.ViewModel.InsertDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" disabled readonly class="form-control" dir="ltr" />
+						</div>
+					</div>
+				}
+
+				<div class="mb-3 d-flex">
+					<button type="button" class="btn btn-primary mx-1" onclick="openModal()">@(Resources.ButtonCaptions.Delete)</button>
+				</div>
+			</fieldset>
+
+			<hr class="mt-4" />
+
+			<div class="text-center">
+				<a href="/">@(Resources.ButtonCaptions.Home)</a>
+				|
+				<a asp-page="Index">
+					@(Resources.ButtonCaptions.BackToList)
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="delete-conformation" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteconformationLabel">
+	<div class="modal-dialog modal-dialog-centered w-100">
+		<div class="modal-content">
+			<div class="modal-header bg-danger">
+				<p class="modal-title fw-bold" id="delete-conformation">
+					@(Resources.PageTitles.DeleteRole)
+				</p>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="form-group">
+						<div class="col-sm-12">
+							<span>
+								@(Resources.Messages.Errors.ConfirmDelete)
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" onclick="closeModal()">
+						@(Resources.ButtonCaptions.Cancel)
+					</button>
+					<form asp-page-handler="Delete" asp-route-id="@(Model.ViewModel.Id)" method="post">
+						<input type="hidden" />
+						<button class="btn btn-danger">
+							@(Resources.ButtonCaptions.Delete)
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	function openModal() {
+		$('#delete-conformation').modal('show')
+	}
+	function closeModal() {
+		$('#delete-conformation').modal('hide')
+	}
+
+</script>

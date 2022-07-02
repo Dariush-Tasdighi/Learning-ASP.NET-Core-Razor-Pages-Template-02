@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyExists" xml:space="preserve">
+    <value>{0} تکراری است!</value>
+  </data>
   <data name="Captcha" xml:space="preserve">
     <value>شما باید عدد فوق را با دقت و با ارقام انگلیسی وارد نمایید!</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>آیا از حذف این آیتم اطمینان دارید؟</value>
   </data>
   <data name="CurrentPasswordIsNotCorrect" xml:space="preserve">
     <value>گذرواژه جاری صحیح نمی‌باشد!</value>
@@ -131,6 +137,15 @@
   </data>
   <data name="NewPasswordCanNotBeSameAsCurrentPassword" xml:space="preserve">
     <value>گذرواژه جدید نمی‌تواند با گذرواژه جاری یکسان باشد!</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>{0} مورد نظر یافت نشد!</value>
+  </data>
+  <data name="UnableTo" xml:space="preserve">
+    <value>در حال حاضر امکان {0} این {1} وجود ندارد!</value>
+  </data>
+  <data name="UnexpectedError" xml:space="preserve">
+    <value>خطای ناشناخته‌ای صورت گرفته است! لطفا با تیم پشتیبانی تماس حاصل فرمایید.</value>
   </data>
   <data name="UserAccountIsNotActive" xml:space="preserve">
     <value>دسترسی شما به سامانه تا اطلاع ثانوی مسدود می‌باشد!</value>

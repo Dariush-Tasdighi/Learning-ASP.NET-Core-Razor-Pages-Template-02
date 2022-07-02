@@ -14,6 +14,8 @@
 
 			FileManagerSettings =
 				new FileManagerSettings();
+
+			TablesDefaultSettings = new();
 		}
 
 		// **********
@@ -38,6 +40,10 @@
 
 		// **********
 		public FileManagerSettings FileManagerSettings { get; set; }
+		// **********
+
+		// **********
+		public TablesDefaultSettings TablesDefaultSettings { get; set; }
 		// **********
 	}
 }

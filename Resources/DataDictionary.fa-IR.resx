@@ -117,14 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>عملیات</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
   <data name="Blog" xml:space="preserve">
     <value>وبلاگ</value>
   </data>
   <data name="CellPhoneNumber" xml:space="preserve">
     <value>شماره تلفن همراه</value>
   </data>
+  <data name="CellPhoneNumberVerificationKey" xml:space="preserve">
+    <value>کد تایید شماره تلفن همراه</value>
+  </data>
+  <data name="CellPhoneNumberVerificationKeyExpireDateTime" xml:space="preserve">
+    <value>زمان انقضا کد تایید شماره تلفن همراه</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>تکرار گذرواژه</value>
+  </data>
+  <data name="Deactive" xml:space="preserve">
+    <value>غیر فعال</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>حذف شده</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>توضیحات</value>
@@ -132,11 +156,23 @@
   <data name="EmailAddress" xml:space="preserve">
     <value>نشانی پست الکترونیکی</value>
   </data>
+  <data name="EmailAddressVerificationKey" xml:space="preserve">
+    <value>کد تایید پست الکترونیکی</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>آقا</value>
+  </data>
   <data name="FileManager" xml:space="preserve">
     <value>مدیریت فایل‌ها</value>
   </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>نام و نام خانوادگی</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>جنسیت</value>
   </data>
   <data name="Id" xml:space="preserve">
     <value>شناسه</value>
@@ -147,11 +183,35 @@
   <data name="IsActive" xml:space="preserve">
     <value>فعال</value>
   </data>
+  <data name="IsCellPhoneNumberVerified" xml:space="preserve">
+    <value>شماره تلفن همراه تایید شده است</value>
+  </data>
+  <data name="IsDefault" xml:space="preserve">
+    <value>رکورد پیش فرض</value>
+  </data>
+  <data name="IsDeletable" xml:space="preserve">
+    <value>قابل حذف</value>
+  </data>
+  <data name="IsDeleted" xml:space="preserve">
+    <value>حذف شده</value>
+  </data>
+  <data name="IsEmailAddressVerified" xml:space="preserve">
+    <value>پست الکترونیکی تایید شده است</value>
+  </data>
+  <data name="IsSystemic" xml:space="preserve">
+    <value>سیستمی</value>
+  </data>
+  <data name="IsVerified" xml:space="preserve">
+    <value>تایید شده</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>زبان</value>
   </data>
   <data name="Languages" xml:space="preserve">
     <value>زبان‌ها</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
   </data>
   <data name="List" xml:space="preserve">
     <value>فهرست</value>
@@ -159,8 +219,26 @@
   <data name="ListOf" xml:space="preserve">
     <value>فهرست </value>
   </data>
+  <data name="ListOfItems" xml:space="preserve">
+    <value>فهرست {0}</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>خانم</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>کد ملی</value>
+  </data>
+  <data name="NotSelected" xml:space="preserve">
+    <value>انتخاب نشده</value>
+  </data>
+  <data name="NotVerified" xml:space="preserve">
+    <value>تایید نشده</value>
+  </data>
+  <data name="NumberOfUsersWithThisRole" xml:space="preserve">
+    <value>تعداد کاربران دارای این نقش</value>
   </data>
   <data name="Ordering" xml:space="preserve">
     <value>چیدمان</value>
@@ -173,6 +251,18 @@
   </data>
   <data name="Resume" xml:space="preserve">
     <value>رزومه</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>نقش</value>
+  </data>
+  <data name="RoleManager" xml:space="preserve">
+    <value>مدیریت نقش ها</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>نقش ها</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>تنظیمات</value>
   </data>
   <data name="SiteAuthor" xml:space="preserve">
     <value>داریوش تصدیقی</value>
@@ -192,11 +282,32 @@
   <data name="Title" xml:space="preserve">
     <value>عنوان</value>
   </data>
+  <data name="Unspecified" xml:space="preserve">
+    <value>مشخص نشده</value>
+  </data>
   <data name="UpdateDateTime" xml:space="preserve">
     <value>زمان ویرایش</value>
   </data>
+  <data name="User" xml:space="preserve">
+    <value>کاربر</value>
+  </data>
+  <data name="UserManager" xml:space="preserve">
+    <value>مدیریت کاربران</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>شناسه کاربری</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>کاربران</value>
+  </data>
+  <data name="VerificationKeyExpireDateTime" xml:space="preserve">
+    <value>زمان انقضا کد تایید پست الکترونیکی</value>
+  </data>
+  <data name="Verified" xml:space="preserve">
+    <value>تایید شده</value>
+  </data>
+  <data name="VerifyDateTime" xml:space="preserve">
+    <value>زمان تایید</value>
   </data>
   <data name="Version" xml:space="preserve">
     <value>نسخه</value>

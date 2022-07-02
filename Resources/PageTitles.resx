@@ -132,8 +132,20 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="CreateRole" xml:space="preserve">
+    <value>Create Role</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Create User</value>
+  </data>
   <data name="DeactivateAccount" xml:space="preserve">
     <value>Deactivate Account</value>
+  </data>
+  <data name="DeleteRole" xml:space="preserve">
+    <value>Delete Role</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Delete User</value>
   </data>
   <data name="Error500" xml:space="preserve">
     <value>Internal Server Error!</value>
@@ -156,6 +168,12 @@
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
+  <data name="RoleDetails" xml:space="preserve">
+    <value>Role Details</value>
+  </data>
+  <data name="RoleManagement" xml:space="preserve">
+    <value>Role Management</value>
+  </data>
   <data name="TerminateAccount" xml:space="preserve">
     <value>Terminate Account</value>
   </data>
@@ -164,6 +182,15 @@
   </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>Update Profile</value>
+  </data>
+  <data name="UpdateRole" xml:space="preserve">
+    <value>Update Role</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>User Details</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>User Management</value>
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>User Settings</value>

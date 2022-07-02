@@ -58,5 +58,38 @@
 			public const string Url =
 				@"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)";
 		}
+
+		public static class SystemicRole
+		{
+			static SystemicRole()
+			{
+			}
+
+			// **********
+			public const string User = "User";
+
+			public static readonly System.Guid UserRoleId = new(g: "5149D952-4078-47FF-AC82-E655975B669C");
+			// **********
+
+
+			// **********
+			public const string Admin = "Admin";
+
+			public static readonly System.Guid AdminRoleId = new(g: "E33AFE87-6435-42E5-9FB9-159BF656E4DF");
+			// **********
+
+
+			// **********
+			public const string Programmer = "Programmer";
+
+			public static readonly System.Guid ProgrammerRoleId = new(g: "95B1F405-6724-4DC6-B623-12770487F0F1");
+			// **********
+
+			// **********
+			public const string Owner = "Owner";
+
+			public static readonly System.Guid OwnerRoleId = new(g: "C55FA9F0-63CF-453A-A8AB-BE6613EBE0E2");
+			// **********
+		}
 	}
 }

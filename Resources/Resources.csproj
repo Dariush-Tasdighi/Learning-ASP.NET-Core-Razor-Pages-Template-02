@@ -32,6 +32,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>Errors.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Messages\Successes.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Successes.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Messages\Validations.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -64,6 +69,10 @@
 		<EmbeddedResource Update="Messages\Errors.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
 		  <LastGenOutput>Errors.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Messages\Successes.resx">
+		  <Generator>PublicResXFileCodeGenerator</Generator>
+		  <LastGenOutput>Successes.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Messages\Validations.resx">
 		  <Generator>PublicResXFileCodeGenerator</Generator>
