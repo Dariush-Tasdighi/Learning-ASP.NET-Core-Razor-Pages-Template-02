@@ -26,10 +26,8 @@ namespace Server.Pages.Admin.RoleManager
 		public ViewModels.Pages.Admin.RoleManager.UpdateRoleViewModel ViewModel { get; set; }
 		// **********
 
-		public async
-			System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnGetAsync(System.Guid? id)
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 		{
 			try
 			{

@@ -1,8 +1,8 @@
 ﻿@page
-@model Server.Pages.Admin.RoleManager.UpdateModel
+@model Server.Pages.Admin.UserManager.UpdateModel
 @{
 	var pageTitle =
-		Resources.PageTitles.UpdateRole;
+		Resources.PageTitles.UpdateUser;
 
 	ViewData["PageTitle"] = pageTitle;
 
@@ -33,33 +33,34 @@
 					<partial name="PartialViews/_DisplayPageMessages" />
 
 					<div class="mb-3">
-						<label asp-for="ViewModel.Name" class="form-label"></label>
+						<label asp-for="ViewModel.Username" class="form-label"></label>
+
+						<div class="input-group" readonly disabled>
+							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
+							<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<i class="mr-2">*</i>
+						<label asp-for="ViewModel.RoleId" class="form-label"></label>
 
 						<div class="input-group">
 							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
-							<input asp-for="ViewModel.Name" class="form-control" dir="ltr" />
+							<select class="form-select" asp-for="ViewModel.RoleId">
+								<option value="@(Model.ViewModel.RoleId)" selected>@(Model.ViewModel.Role)</option>
+
+								@foreach (var item in Model.RolesViewModel)
+								{
+									if (item.Id != Model.ViewModel.RoleId)
+									{
+										<option value="@(item.Id)">@(item.Name)</option>
+									}
+								}
+							</select>
 						</div>
 
-						<span asp-validation-for="ViewModel.Name" class="text-danger"></span>
-					</div>
-
-					<div class="mb-3">
-						<label asp-for="ViewModel.Ordering" class="form-label"></label>
-
-						<input type="number" asp-for="ViewModel.Ordering" class="form-control" min="1" dir="ltr" />
-
-						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
-					</div>
-
-					<div class="mb-3">
-						<label asp-for="ViewModel.Description" class="form-label"></label>
-
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-card-text"></i></div>
-							<textarea asp-for="ViewModel.Description" class="form-control"> </textarea>
-						</div>
-
-						<span asp-validation-for="ViewModel.Description" class="text-danger"></span>
+						<span asp-validation-for="ViewModel.RoleId" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
@@ -69,12 +70,24 @@
 						</div>
 					</div>
 
-					<div class="mb-3">
-						<div class="form-check">
-							<input asp-for="ViewModel.IsDeletable" class="form-check-input" />
-							<label asp-for="ViewModel.IsDeletable" class="form-check-label"></label>
+					@if (Model.ViewModel.IsVerified)
+					{
+						<div class="mb-3">
+							<div class="form-check">
+								<input asp-for="ViewModel.IsVerified" class="form-check-input" readonly disabled />
+								<label asp-for="ViewModel.IsVerified" class="form-check-label"></label>
+							</div>
 						</div>
-					</div>
+					}
+					else
+					{
+						<div class="mb-3">
+							<div class="form-check">
+								<input asp-for="ViewModel.IsVerified" class="form-check-input" />
+								<label asp-for="ViewModel.IsVerified" class="form-check-label"></label>
+							</div>
+						</div>
+					}
 
 					<div class="mb-3">
 						<button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Save)</button>

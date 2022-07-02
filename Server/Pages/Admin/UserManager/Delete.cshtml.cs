@@ -83,16 +83,16 @@ namespace Server.Pages.Admin.UserManager
 
 						return RedirectToPage("./Index");
 					}
-					else if (foundedItem.Role.Id != Domain.SeedWork.Constant.SystemicRole.UserRoleId)
+					else if (foundedItem.RoleId != Domain.SeedWork.Constant.SystemicRole.UserRoleId)
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,
 							Resources.DataDictionary.Delete,
 							Resources.DataDictionary.User);
 
-						AddPageError(message: errorMessage);
+						AddToastError(message: errorMessage);
 
-						return Page();
+						return RedirectToPage("./Index");
 					}
 					else
 					{

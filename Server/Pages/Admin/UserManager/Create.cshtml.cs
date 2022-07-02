@@ -60,9 +60,8 @@ namespace Server.Pages.Admin.UserManager
 			}
 		}
 
-		public async
-			System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
 		{
 			if (ModelState.IsValid == false)
 			{
@@ -79,92 +78,98 @@ namespace Server.Pages.Admin.UserManager
 
 			try
 			{
-				if (DatabaseContext is not null)
+				if (id == null)
 				{
-					bool isUsernameFound =
-						await DatabaseContext.Users
-						.Where(current => current.Username == fixedUsername)
-						.AnyAsync();
-
-					bool isEmailAddressFound =
-						await DatabaseContext.Users
-						.Where(current => current.EmailAddress == fixedEmailAddress)
-						.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
-						.Where(current => current.IsDeleted == false)
-						.AnyAsync();
-
-					// **************************************************
-					if (isUsernameFound)
-					{
-						string errorMessage = string.Format
-							(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.Username);
-
-						AddPageError(message: errorMessage);
-					}
-
-					if (isEmailAddressFound)
-					{
-						string errorMessage = string.Format
-							(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.EmailAddress);
-
-						AddPageError(message: errorMessage);
-					}
-					// **************************************************
-
-					if (isUsernameFound || isEmailAddressFound)
-					{
-						return Page();
-					}
-
-					// **************************************************
-					if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
-					{
-						ViewModel.IsEmailAddressVerified = true;
-					}
-
-					if (string.IsNullOrWhiteSpace(value: ViewModel.CellPhoneNumber) == false)
-					{
-						ViewModel.IsCellPhoneNumberVerified = true;
-					}
-					// **************************************************
-
-					Domain.Models.Account.User user = new()
-					{
-						RoleId = ViewModel.RoleId,
-
-						Gender = ViewModel.Gender,
-						IsActive = ViewModel.IsActive,
-
-						IsVerified = ViewModel.IsVerified,
-						VerifyDateTime = Domain.SeedWork.Utility.Now,
-						IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
-						IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
-
-						Username = fixedUsername,
-						EmailAddress = fixedEmailAddress,
-						CellPhoneNumber = ViewModel.CellPhoneNumber,
-						LastName = Infrastructure.Utility.FixText(text: ViewModel.LastName),
-						FirstName = Infrastructure.Utility.FixText(text: ViewModel.FirstName),
-						Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
-					};
-
-					var entityEntry =
-						await DatabaseContext.AddAsync(entity: user);
-
-					int affectedRow =
-						await DatabaseContext.SaveChangesAsync();
-
-					// **************************************************
-					if (affectedRow > 0)
-					{
-						string successMessage = string.Format
-							(Resources.Messages.Successes.SuccessfullyCreated,
-							Resources.DataDictionary.User);
-
-						AddToastSuccess(message: successMessage);
-					}
-					// **************************************************
+					return Page();
 				}
+				else if (ModelState.IsValid is false)
+				{
+					return Page();
+				}
+
+				bool isUsernameFound =
+					await DatabaseContext.Users
+					.Where(current => current.Username == fixedUsername)
+					.AnyAsync();
+
+				bool isEmailAddressFound =
+					await DatabaseContext.Users
+					.Where(current => current.EmailAddress == fixedEmailAddress)
+					.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
+					.Where(current => current.IsDeleted == false)
+					.AnyAsync();
+
+				// **************************************************
+				if (isUsernameFound)
+				{
+					string errorMessage = string.Format
+						(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.Username);
+
+					AddPageError(message: errorMessage);
+				}
+
+				if (isEmailAddressFound)
+				{
+					string errorMessage = string.Format
+						(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.EmailAddress);
+
+					AddPageError(message: errorMessage);
+				}
+				// **************************************************
+
+				if (isUsernameFound || isEmailAddressFound)
+				{
+					return Page();
+				}
+
+				// **************************************************
+				if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
+				{
+					ViewModel.IsEmailAddressVerified = true;
+				}
+
+				if (string.IsNullOrWhiteSpace(value: ViewModel.CellPhoneNumber) == false)
+				{
+					ViewModel.IsCellPhoneNumberVerified = true;
+				}
+				// **************************************************
+
+				Domain.Models.Account.User user = new()
+				{
+					RoleId = ViewModel.RoleId,
+
+					Gender = ViewModel.Gender,
+					IsActive = ViewModel.IsActive,
+
+					IsVerified = ViewModel.IsVerified,
+					VerifyDateTime = Domain.SeedWork.Utility.Now,
+					IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
+					IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
+
+					Username = fixedUsername,
+					EmailAddress = fixedEmailAddress,
+					CellPhoneNumber = ViewModel.CellPhoneNumber,
+					LastName = Infrastructure.Utility.FixText(text: ViewModel.LastName),
+					FirstName = Infrastructure.Utility.FixText(text: ViewModel.FirstName),
+					Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
+				};
+
+				var entityEntry =
+					await DatabaseContext.AddAsync(entity: user);
+
+				int affectedRow =
+					await DatabaseContext.SaveChangesAsync();
+
+				// **************************************************
+				if (affectedRow > 0)
+				{
+					string successMessage = string.Format
+						(Resources.Messages.Successes.SuccessfullyCreated,
+						Resources.DataDictionary.User);
+
+					AddToastSuccess(message: successMessage);
+				}
+				// **************************************************
 			}
 			catch (System.Exception ex)
 			{

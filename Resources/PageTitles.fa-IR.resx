@@ -186,6 +186,9 @@
   <data name="UpdateRole" xml:space="preserve">
     <value>ویرایش نقش</value>
   </data>
+  <data name="UpdateUser" xml:space="preserve">
+    <value>ویرایش کاربر</value>
+  </data>
   <data name="UserDetails" xml:space="preserve">
     <value>جزئیات کاربر</value>
   </data>

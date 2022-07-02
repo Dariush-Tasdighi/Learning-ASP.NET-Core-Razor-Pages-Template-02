@@ -1,40 +1,40 @@
-﻿//using System.Linq;
-//using Microsoft.EntityFrameworkCore;
-//using Microsoft.Extensions.Logging;
+﻿////using System.Linq;
+////using Microsoft.EntityFrameworkCore;
+////using Microsoft.Extensions.Logging;
 
-namespace Server.Pages.Security.User
-{
-	[Microsoft.AspNetCore.Authorization.Authorize]
-	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
-	{
-		public UpdateModel
-			(Persistence.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
-		{
-			Logger = logger;
+//namespace Server.Pages.Security.User
+//{
+//	[Microsoft.AspNetCore.Authorization.Authorize]
+//	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
+//	{
+//		public UpdateModel
+//			(Persistence.DatabaseContext databaseContext,
+//			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
+//		{
+//			Logger = logger;
 
-			ViewModel = new();
-		}
+//			ViewModel = new();
+//		}
 
-		private Microsoft.Extensions.Logging.ILogger<UpdateModel> Logger { get; }
+//		private Microsoft.Extensions.Logging.ILogger<UpdateModel> Logger { get; }
 
-		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManager.UpdateUserViewModel ViewModel { get; set; }
+//		[Microsoft.AspNetCore.Mvc.BindProperty]
+//		public ViewModels.Pages.Admin.UserManager.UpdateUserViewModel ViewModel { get; set; }
 
-		public async System.Threading.Tasks.Task OnGetAsync()
-		{
-			await System.Threading.Tasks.Task.CompletedTask;
-		}
+//		public async System.Threading.Tasks.Task OnGetAsync()
+//		{
+//			await System.Threading.Tasks.Task.CompletedTask;
+//		}
 
-		public async
-			System.Threading.Tasks.Task OnPostAsync()
-		{
-			if (ModelState.IsValid == false)
-			{
-				return;
-			}
+//		public async
+//			System.Threading.Tasks.Task OnPostAsync()
+//		{
+//			if (ModelState.IsValid == false)
+//			{
+//				return;
+//			}
 
-			await System.Threading.Tasks.Task.CompletedTask;
-		}
-	}
-}
+//			await System.Threading.Tasks.Task.CompletedTask;
+//		}
+//	}
+//}
