@@ -20,8 +20,7 @@ namespace Server.Pages.Admin.UserManager
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.UserManager.DeleteUserViewModel ViewModel { get; set; }
 
-		public async
-			System.Threading.Tasks.Task OnGetAsync(System.Guid? id)
+		public async System.Threading.Tasks.Task OnGetAsync(System.Guid? id)
 		{
 			{
 				try
@@ -58,10 +57,8 @@ namespace Server.Pages.Admin.UserManager
 			}
 		}
 
-		public async
-			System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnPostDeleteAsync(System.Guid? id)
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostDeleteAsync(System.Guid? id)
 		{
 			try
 			{
@@ -83,6 +80,7 @@ namespace Server.Pages.Admin.UserManager
 
 						return RedirectToPage("./Index");
 					}
+					// TO DO: Check User Id...
 					else if (foundedItem.RoleId != Domain.SeedWork.Constant.SystemicRole.UserRoleId)
 					{
 						string errorMessage = string.Format

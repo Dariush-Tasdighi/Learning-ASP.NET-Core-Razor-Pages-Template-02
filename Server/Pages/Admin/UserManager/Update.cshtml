@@ -37,7 +37,7 @@
 
 						<div class="input-group" readonly disabled>
 							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
-							<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
+							<input asp-for="ViewModel.Username" readonly disabled class="form-control" dir="ltr" />
 						</div>
 					</div>
 
@@ -48,11 +48,13 @@
 						<div class="input-group">
 							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
 							<select class="form-select" asp-for="ViewModel.RoleId">
-								<option value="@(Model.ViewModel.RoleId)" selected>@(Model.ViewModel.Role)</option>
-
 								@foreach (var item in Model.RolesViewModel)
 								{
-									if (item.Id != Model.ViewModel.RoleId)
+									@if (item.Id == Model.ViewModel.RoleId)
+									{
+										<option value="@(Model.ViewModel.RoleId)" selected>@(Model.ViewModel.Role)</option>
+									}
+									else
 									{
 										<option value="@(item.Id)">@(item.Name)</option>
 									}

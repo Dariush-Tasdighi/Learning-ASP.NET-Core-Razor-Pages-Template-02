@@ -60,10 +60,8 @@ namespace Server.Pages.Admin.RoleManager
 		}
 
 
-		public async
-			System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnPostDeleteAsync(System.Guid? id)
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostDeleteAsync(System.Guid? id)
 		{
 			try
 			{

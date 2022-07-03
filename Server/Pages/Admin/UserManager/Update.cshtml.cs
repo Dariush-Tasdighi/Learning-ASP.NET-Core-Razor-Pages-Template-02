@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize
+		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public UpdateModel
@@ -28,7 +30,6 @@ namespace Server.Pages.Admin.UserManager
 		// **********
 
 		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public System.Collections.Generic.IList
 			<ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel> RolesViewModel
 		{ get; private set; }
@@ -49,18 +50,19 @@ namespace Server.Pages.Admin.UserManager
 				}
 				else
 				{
-					await SetAccessibleRole();
-
 					ViewModel = await DatabaseContext.Users
 						.Where(current => current.Id == id.Value)
 						.Select(current => new ViewModels.Pages.Admin.UserManager.UpdateUserViewModel
 						{
 							Id = current.Id,
+							RoleId = current.RoleId,
 							Role = current.Role.Name,
 							Username = current.Username,
 							IsActive = current.IsActive,
 							IsVerified = current.IsVerified,
 						}).FirstOrDefaultAsync();
+
+					await SetAccessibleRole();
 				}
 			}
 			catch (System.Exception ex)
@@ -96,45 +98,45 @@ namespace Server.Pages.Admin.UserManager
 					.Where(current => current.Id == id.Value)
 					.FirstOrDefaultAsync();
 
-				// **************************************************
 				if (foundedItem == null)
 				{
+					// **************************************************
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.NotFound,
 						Resources.DataDictionary.User);
 
 					AddToastError(message: errorMessage);
-
-					return RedirectToPage(pageName: "Index");
+					// **************************************************
 				}
 				else
 				{
+					// **************************************************
 					foundedItem.RoleId = ViewModel.RoleId;
 					foundedItem.IsActive = ViewModel.IsActive;
 					foundedItem.IsVerified = foundedItem.IsVerified ? foundedItem.IsVerified : ViewModel.IsVerified;
 
 					foundedItem.SetUpdateDateTime();
+					// **************************************************
+
+					var entityEntry =
+						DatabaseContext.Update(entity: foundedItem);
+
+					int affectedRows =
+						await DatabaseContext.SaveChangesAsync();
+
+					// **************************************************
+					if (affectedRows > 0)
+					{
+						string successMessage = string.Format
+							(Resources.Messages.Successes.SuccessfullyUpdated,
+							Resources.DataDictionary.User);
+
+						AddToastSuccess(message: successMessage);
+					}
+					// **************************************************
 				}
-				// **************************************************
 
-				var entityEntry =
-					DatabaseContext.Update(entity: foundedItem);
-
-				int affectedRows =
-					await DatabaseContext.SaveChangesAsync();
-
-				// **************************************************
-				if (affectedRows > 0)
-				{
-					string successMessage = string.Format
-						(Resources.Messages.Successes.SuccessfullyUpdated,
-						Resources.DataDictionary.User);
-
-					AddToastSuccess(message: successMessage);
-				}
-				// **************************************************
-
-				return RedirectToPage(pageName: "Index");
+				return RedirectToPage("./Index");
 			}
 			catch (System.Exception ex)
 			{

@@ -25,10 +25,8 @@ namespace Server.Pages.Admin.UserManager
 		public ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel ViewModel { get; private set; }
 		// **********
 
-		public async
-			System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnGetAsync(System.Guid? id)
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 		{
 			try
 			{

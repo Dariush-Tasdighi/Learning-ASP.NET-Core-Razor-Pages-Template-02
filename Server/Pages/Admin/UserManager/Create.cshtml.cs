@@ -41,8 +41,7 @@ namespace Server.Pages.Admin.UserManager
 		{ get; private set; }
 		// **********
 
-		public async
-			System.Threading.Tasks.Task OnGetAsync(string? returnUrl)
+		public async System.Threading.Tasks.Task OnGetAsync(string? returnUrl)
 		{
 			ReturnUrl = returnUrl;
 
@@ -61,7 +60,7 @@ namespace Server.Pages.Admin.UserManager
 		}
 
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 		{
 			if (ModelState.IsValid == false)
 			{
@@ -78,11 +77,7 @@ namespace Server.Pages.Admin.UserManager
 
 			try
 			{
-				if (id == null)
-				{
-					return Page();
-				}
-				else if (ModelState.IsValid is false)
+				if (ModelState.IsValid is false)
 				{
 					return Page();
 				}
@@ -196,8 +191,7 @@ namespace Server.Pages.Admin.UserManager
 			}
 		}
 
-		private async
-			System.Threading.Tasks.Task SetAccessibleRole()
+		private async System.Threading.Tasks.Task SetAccessibleRole()
 		{
 			RolesViewModel =
 				await DatabaseContext.Roles

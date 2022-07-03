@@ -86,10 +86,14 @@
 									<i class="bi bi-pencil-fill"></i>
 								</a>
 								|
-								<a asp-page="./Delete" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
-									<i class="bi bi-trash-fill"></i>
-								</a>
-								|
+								@if (item.IsDeletable && (item.IsDeleted == false))
+								{
+									<a asp-page="./Delete" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+										<i class="bi bi-trash-fill"></i>
+									</a>
+
+									<text>|</text>
+								}
 								<a asp-page="./Details" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
 									<i class="bi bi-zoom-in"></i>
 								</a>
