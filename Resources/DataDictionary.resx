@@ -138,6 +138,9 @@
   <data name="CellPhoneNumberVerificationKeyExpireDateTime" xml:space="preserve">
     <value>Cell Phone Number Verification Key Expire Time</value>
   </data>
+  <data name="Children" xml:space="preserve">
+    <value>Children</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
   </data>
@@ -177,6 +180,12 @@
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
+  <data name="Icon" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="IconPosition" xml:space="preserve">
+    <value>Icon Position</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
@@ -201,6 +210,9 @@
   <data name="IsEmailAddressVerified" xml:space="preserve">
     <value>Is Email Address Verified</value>
   </data>
+  <data name="IsPublic" xml:space="preserve">
+    <value>Public</value>
+  </data>
   <data name="IsSystemic" xml:space="preserve">
     <value>Systemic</value>
   </data>
@@ -216,6 +228,9 @@
   <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
   </data>
+  <data name="Link" xml:space="preserve">
+    <value>Link</value>
+  </data>
   <data name="List" xml:space="preserve">
     <value>List</value>
   </data>
@@ -227,6 +242,9 @@
   </data>
   <data name="Male" xml:space="preserve">
     <value>Male</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Menu</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
@@ -248,6 +266,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>Remember Me</value>
@@ -278,6 +299,9 @@
   </data>
   <data name="SourceCode" xml:space="preserve">
     <value>Source Code</value>
+  </data>
+  <data name="SubMenus" xml:space="preserve">
+    <value>Sub Menus</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>

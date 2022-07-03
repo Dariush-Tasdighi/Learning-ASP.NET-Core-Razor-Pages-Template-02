@@ -138,6 +138,9 @@
   <data name="CellPhoneNumberVerificationKeyExpireDateTime" xml:space="preserve">
     <value>زمان انقضا کد تایید شماره تلفن همراه</value>
   </data>
+  <data name="Children" xml:space="preserve">
+    <value>فرزندان</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>تکرار گذرواژه</value>
   </data>
@@ -174,6 +177,12 @@
   <data name="Gender" xml:space="preserve">
     <value>جنسیت</value>
   </data>
+  <data name="Icon" xml:space="preserve">
+    <value>آیکون</value>
+  </data>
+  <data name="IconPosition" xml:space="preserve">
+    <value>موقعیت آیکون</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>شناسه</value>
   </data>
@@ -198,6 +207,9 @@
   <data name="IsEmailAddressVerified" xml:space="preserve">
     <value>پست الکترونیکی تایید شده است</value>
   </data>
+  <data name="IsPublic" xml:space="preserve">
+    <value>عمومی</value>
+  </data>
   <data name="IsSystemic" xml:space="preserve">
     <value>سیستمی</value>
   </data>
@@ -213,6 +225,9 @@
   <data name="LastName" xml:space="preserve">
     <value>نام خانوادگی</value>
   </data>
+  <data name="Link" xml:space="preserve">
+    <value>لینک</value>
+  </data>
   <data name="List" xml:space="preserve">
     <value>فهرست</value>
   </data>
@@ -224,6 +239,9 @@
   </data>
   <data name="Male" xml:space="preserve">
     <value>خانم</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>منو</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>
@@ -245,6 +263,9 @@
   </data>
   <data name="Password" xml:space="preserve">
     <value>گذرواژه</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>مسیر</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
     <value>مرا به خاطر داشته باش</value>
@@ -278,6 +299,9 @@
   </data>
   <data name="SourceCode" xml:space="preserve">
     <value>سورس‌کد</value>
+  </data>
+  <data name="SubMenus" xml:space="preserve">
+    <value>زیر منو (ها)</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>عنوان</value>

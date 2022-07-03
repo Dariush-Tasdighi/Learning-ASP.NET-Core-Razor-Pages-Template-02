@@ -3,19 +3,22 @@
 	public class User : SeedWork.Entity,
 		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime
 	{
+		#region Constructor(s)
 		public User() : base()
 		{
 			IsActive = false;
 			IsVerified = false;
-			// است false ها Boolean مقدار پیش فرض
-			// مقداردهی این دو متغیر در "سازنده ی پیش فرض کلاس"، صرفا برای تاکید بیشتر
-			// بر "غیر فعال" بودن و "تایید" نشدن کاربر در زمان درخواست "ثبت نام" است
 		}
+		#endregion /Constructor(s)
 
+		#region Property(ies)
 		// **********
 		// **********
 		// **********
 		// **********
+		/// <summary>
+		/// نقش
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Role),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -32,6 +35,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// نام کاربری
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Username),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -54,6 +60,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// گذرواژه
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Password),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -79,10 +88,16 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// جنسیت
+		/// </summary>
 		public Enumerations.Gender Gender { get; set; }
 		// **********
 
 		// **********
+		/// <summary>
+		/// نام
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.FirstName),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -95,7 +110,9 @@
 		// **********
 
 		// **********
-		// **********
+		/// <summary>
+		/// نام خانوادگی
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.LastName),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -108,6 +125,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// تاریخ تولد
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.BirthDate),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -115,6 +135,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// کد ملی
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.NationalCode),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -127,6 +150,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// آدرس پست الکترونیک
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.EmailAddress),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -149,6 +175,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// وضعیت (مورد تایید بودن/نبودن) آدرس پست الکترونیکی
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -156,6 +185,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// شماره تلفن همراه
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.CellPhoneNumber),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -173,6 +205,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// وضعیت (مورد تایید بودن/نبودن) شماره تلفن همراه
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -180,6 +215,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// توضیحات
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Description),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -187,6 +225,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// کد تایید ارسال شده به آدرس پست الکترونیکی
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.EmailAddressVerificationKey),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -199,6 +240,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// تاریخ-زمان انقضا کد تایید ارسال شده به آدرس پست الکترونیکی
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.EmailAddressVerificationKeyExpireDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -206,6 +250,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// کد تایید ارسال شده به شماره تلفن همراه
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.CellPhoneNumberVerificationKey),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -218,6 +265,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// تاریخ-زمان انقضا کد تایید ارسال شده به شماره تلفن همراه
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.CellPhoneNumberVerificationKeyExpireDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -225,6 +275,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// وضعیت (فعال/غیر فعال بودن) کاربر
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsActive),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -232,6 +285,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// کاربر تایید شده است
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsVerified),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -239,6 +295,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// کاربر حذف شده است
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsDeleted),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -246,6 +305,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// تاریخ-زمان تایید کاربر
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.VerifyDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
@@ -253,15 +315,21 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// تاریخ-زمان آخرین بروزرسانی
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public System.DateTime? UpdateDateTime { get; private set; }
 		// **********
+		#endregion /Property(ies)
 
+		#region Method(s)
 		public void SetUpdateDateTime()
 		{
 			UpdateDateTime = SeedWork.Utility.Now;
 		}
+		#endregion /Method(s)
 	}
 }

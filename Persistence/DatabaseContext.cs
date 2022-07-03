@@ -13,6 +13,8 @@ namespace Persistence
 			Database.EnsureCreated();
 		}
 
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Menus.Menu> Menus { get; set; }
+
 		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Account.User> Users { get; set; }
 
 		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Account.Role> Roles { get; set; }
