@@ -77,7 +77,7 @@ namespace Server.Pages.Admin.UserManager
 
 						if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
 						{
-							// To DO: Show an Error Message or Redirect to...!
+							// To DO: Show an Error Message and/or Redirect to...!
 						}
 					}
 				}

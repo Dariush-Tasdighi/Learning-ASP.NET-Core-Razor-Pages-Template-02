@@ -56,7 +56,6 @@ namespace Server.Pages.Admin.UserManager
 						{
 							Id = current.Id,
 							RoleId = current.RoleId,
-							Role = current.Role.Name,
 							Username = current.Username,
 							IsActive = current.IsActive,
 							IsVerified = current.IsVerified,

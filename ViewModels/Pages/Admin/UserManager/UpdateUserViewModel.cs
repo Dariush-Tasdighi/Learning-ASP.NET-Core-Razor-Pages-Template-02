@@ -35,10 +35,10 @@
 		// **********
 
 		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Role),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public string? Role { get; set; }
+		//[System.ComponentModel.DataAnnotations.Display
+		//	(Name = nameof(Resources.DataDictionary.Role),
+		//	ResourceType = typeof(Resources.DataDictionary))]
+		//public string? Role { get; set; }
 		// **********
 
 		// **********
