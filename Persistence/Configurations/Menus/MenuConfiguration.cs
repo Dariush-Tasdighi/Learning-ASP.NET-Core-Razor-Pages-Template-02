@@ -49,7 +49,7 @@
 
 			// **************************************************
 			//builder
-			//	.HasIndex(current => new { current.Title, current.ParentId  })
+			//	.HasIndex(current => new { current.Title, current.ParentId })
 			//	.IsUnique(unique: true)
 			//	;
 			// **************************************************

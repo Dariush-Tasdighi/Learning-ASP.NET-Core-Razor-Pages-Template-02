@@ -243,6 +243,12 @@
   <data name="Menu" xml:space="preserve">
     <value>منو</value>
   </data>
+  <data name="MenuManager" xml:space="preserve">
+    <value>مدیریت منوها</value>
+  </data>
+  <data name="Menus" xml:space="preserve">
+    <value>منوها</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>
   </data>

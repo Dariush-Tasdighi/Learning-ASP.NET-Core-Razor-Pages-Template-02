@@ -1,7 +1,7 @@
 ﻿namespace Domain.Models.Menus
 {
-	public class Menu :
-		Domain.SeedWork.Entity, SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable
+	public class Menu : Domain.SeedWork.Entity,
+		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable
 	{
 		#region Constant(s)
 		public const int LinkMaxLength = 500;
@@ -137,7 +137,6 @@
 			ResourceType = typeof(Resources.DataDictionary))]
 		public virtual System.Collections.Generic.IList<Menu> Children { get; set; }
 		// **********
-
 		#endregion Property(ies)
 
 		#region Method(s)

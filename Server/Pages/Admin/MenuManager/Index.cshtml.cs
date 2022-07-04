@@ -2,33 +2,38 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.UserManager
+namespace Server.Pages.Admin.MenuManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
+		#region Constructor(s)
 		public IndexModel
 			(Persistence.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
-			ViewModel = new();
-		}
 
+			ViewModel = new ViewModels.Shared.PaginationWithDataViewModel
+				<ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel>();
+		}
+		#endregion Constructor(s)
+
+		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
 		// **********
 
 		// **********
 		public ViewModels.Shared.PaginationWithDataViewModel
-			<ViewModels.Pages.Admin.UserManager.GetUserItemViewModel> ViewModel
+			<ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel> ViewModel
 		{ get; private set; }
 		// **********
+		#endregion Property(ies)
 
+		#region On Get
 		// TO DO: Let Users Select Page Size
 		public async System.Threading.Tasks.Task
-			OnGetAsync(int pageSize = 10, int pageNumber = 1)
+			OnGetAsync(int pageSize = 10, int pageNumber = 1, System.Guid? parentId = null)
 		{
 			try
 			{
@@ -36,7 +41,7 @@ namespace Server.Pages.Admin.UserManager
 				{
 					// **************************************************
 					ViewModel = new ViewModels.Shared.PaginationWithDataViewModel
-						<ViewModels.Pages.Admin.UserManager.GetUserItemViewModel>
+						<ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel>
 					{
 						PageInformation = new()
 						{
@@ -47,27 +52,42 @@ namespace Server.Pages.Admin.UserManager
 					// **************************************************
 
 					var data =
-						DatabaseContext.Users
+						DatabaseContext.Menus
 						.Where(current => current.IsDeleted == false)
 						.AsQueryable();
+
+					if (parentId.HasValue)
+					{
+						data = data
+							.Where(current => current.ParentId == parentId.Value)
+							;
+					}
+					else
+					{
+						data = data
+							.Where(current => current.ParentId == null)
+							;
+					}
 
 					// **************************************************
 					ViewModel.PageInformation.TotalCount = await data.CountAsync();
 
 					if (ViewModel.PageInformation.TotalCount > 0)
 					{
+
 						ViewModel.Data =
 							await data
 							.Skip((pageNumber - 1) * pageSize)
 							.Take(pageSize)
-							.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserItemViewModel
+							.Select(current => new ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel
 							{
 								Id = current.Id,
-								Username = current.Username,
+								Title = current.Title,
+								IsPublic = current.IsPublic,
 								IsActive = current.IsActive,
 								IsDeleted = current.IsDeleted,
-								IsVerified = current.IsVerified,
-								//EmailAddress = current.EmailAddress,
+								IsDeletable = current.IsDeletable,
+								UpdateDateTime = current.UpdateDateTime,
 								InsertDateTime = current.InsertDateTime,
 							})
 							.AsNoTracking()
@@ -95,5 +115,6 @@ namespace Server.Pages.Admin.UserManager
 				await DisposeDatabaseContextAsync();
 			}
 		}
+		#endregion /On Get
 	}
 }

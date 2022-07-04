@@ -1,0 +1,24 @@
+﻿@page
+@model Server.Pages.Admin.MenuManager.IndexModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+@{
+	var pageTitle =
+		Resources.PageTitles.MenuManagement;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<partial name="PartialViews/_DisplayPageMessages" />
+
+<partial name="PartialViews/_DisplayMenus" model="Model" />

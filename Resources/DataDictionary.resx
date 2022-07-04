@@ -246,6 +246,12 @@
   <data name="Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
+  <data name="MenuManager" xml:space="preserve">
+    <value>Menu Manager</value>
+  </data>
+  <data name="Menus" xml:space="preserve">
+    <value>Menus</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>

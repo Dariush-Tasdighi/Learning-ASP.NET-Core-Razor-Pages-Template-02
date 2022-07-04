@@ -448,6 +448,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu Manager.
+        /// </summary>
+        public static string MenuManager {
+            get {
+                return ResourceManager.GetString("MenuManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menus.
+        /// </summary>
+        public static string Menus {
+            get {
+                return ResourceManager.GetString("Menus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {

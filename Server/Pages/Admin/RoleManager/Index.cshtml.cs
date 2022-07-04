@@ -50,17 +50,18 @@ namespace Server.Pages.Admin.RoleManager
 						};
 					// **************************************************
 
-					ViewModel.PageInformation.TotalCount =
-						await DatabaseContext.Roles
+					var data =
+						DatabaseContext.Roles
 						.Where(current => current.IsDeleted == false)
-						.CountAsync();
+						.AsQueryable();
 
 					// **************************************************
+					ViewModel.PageInformation.TotalCount = await data.CountAsync();
+
 					if (ViewModel.PageInformation.TotalCount > 0)
 					{
 						ViewModel.Data =
-							await DatabaseContext.Roles
-							.Where(current => current.IsDeleted == false)
+							await data
 							.OrderBy(current => current.Ordering)
 							.Skip((pageNumber - 1) * pageSize)
 							.Take(pageSize)
@@ -73,6 +74,7 @@ namespace Server.Pages.Admin.RoleManager
 								IsSystemic = current.IsSystemic,
 								IsDeletable = current.IsDeletable,
 							})
+							.AsNoTracking()
 							.ToListAsync()
 							;
 					}
