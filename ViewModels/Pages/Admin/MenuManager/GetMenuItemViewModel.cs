@@ -58,5 +58,9 @@
 			Name = nameof(Resources.DataDictionary.InsertDateTime))]
 		public System.DateTime InsertDateTime { get; set; }
 		// **********
+
+		// **********
+		public bool HasAnySubMenu { get; set; }
+		// **********
 	}
 }

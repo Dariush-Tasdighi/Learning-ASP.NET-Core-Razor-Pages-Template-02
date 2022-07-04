@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.MenuManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize
+		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
@@ -33,7 +35,7 @@ namespace Server.Pages.Admin.MenuManager
 		#region On Get
 		// TO DO: Let Users Select Page Size
 		public async System.Threading.Tasks.Task
-			OnGetAsync(int pageSize = 10, int pageNumber = 1, System.Guid? parentId = null)
+			OnGetAsync(int pageSize = 10, int pageNumber = 1, System.Guid? id = null)
 		{
 			try
 			{
@@ -56,10 +58,10 @@ namespace Server.Pages.Admin.MenuManager
 						.Where(current => current.IsDeleted == false)
 						.AsQueryable();
 
-					if (parentId.HasValue)
+					if (id.HasValue)
 					{
 						data = data
-							.Where(current => current.ParentId == parentId.Value)
+							.Where(current => current.ParentId == id.Value)
 							;
 					}
 					else
@@ -74,7 +76,6 @@ namespace Server.Pages.Admin.MenuManager
 
 					if (ViewModel.PageInformation.TotalCount > 0)
 					{
-
 						ViewModel.Data =
 							await data
 							.Skip((pageNumber - 1) * pageSize)
@@ -87,6 +88,7 @@ namespace Server.Pages.Admin.MenuManager
 								IsActive = current.IsActive,
 								IsDeleted = current.IsDeleted,
 								IsDeletable = current.IsDeletable,
+								HasAnySubMenu = current.Children.Any(),
 								UpdateDateTime = current.UpdateDateTime,
 								InsertDateTime = current.InsertDateTime,
 							})

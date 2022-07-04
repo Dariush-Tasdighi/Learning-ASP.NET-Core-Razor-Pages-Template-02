@@ -66,10 +66,18 @@
 									<i class="bi bi-pencil-fill"></i>
 								</a>
 								|
-								@if (item.IsDeleted == false)
+								@if (item.IsDeletable && (item.IsDeleted == false))
 								{
 									<a asp-page="./Delete" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
 										<i class="bi bi-trash-fill"></i>
+									</a>
+
+									<text> | </text>
+								}
+								@if (item.HasAnySubMenu)
+								{
+									<a asp-page="./Index" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+										<i class="bi bi-diagram-3"></i>
 									</a>
 
 									<text> | </text>
