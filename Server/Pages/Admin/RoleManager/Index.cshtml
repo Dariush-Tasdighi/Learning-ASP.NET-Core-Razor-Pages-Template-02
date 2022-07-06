@@ -36,6 +36,9 @@
 				<thead class="@(applicationSettings.TablesDefaultSettings.TableHeaderStyle)">
 					<tr>
 						<th>
+							#
+						</th>
+						<th>
 							@Html.DisplayNameFor(model => model.ViewModel.Data[0].Name)
 						</th>
 						<th>
@@ -62,6 +65,9 @@
 						var item = Model.ViewModel.Data[index];
 
 						<tr>
+							<td>
+								@((Model.ViewModel.PageInformation.PageNumber - 1) * Model.ViewModel.PageInformation.PageSize + (index + 1))
+							</td>
 							<td>
 								@(item.Name)
 							</td>

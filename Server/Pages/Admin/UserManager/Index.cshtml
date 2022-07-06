@@ -50,7 +50,7 @@
 
 						<tr>
 							<td>
-								@(index + 1)
+								@((Model.ViewModel.PageInformation.PageNumber - 1) * Model.ViewModel.PageInformation.PageSize + (index + 1))
 							</td>
 
 							<td>
