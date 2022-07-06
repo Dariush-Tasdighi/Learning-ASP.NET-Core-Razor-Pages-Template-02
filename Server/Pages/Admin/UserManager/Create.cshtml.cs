@@ -129,7 +129,7 @@ namespace Server.Pages.Admin.UserManager
 				}
 				// **************************************************
 
-				Domain.Models.Account.User user = new()
+				Domain.Models.Users.User user = new()
 				{
 					RoleId = ViewModel.RoleId,
 

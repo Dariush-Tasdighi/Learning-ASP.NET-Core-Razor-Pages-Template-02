@@ -12,7 +12,7 @@
 			ResourceType = typeof(Resources.DataDictionary))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.Models.Account.Role.DescriptionMaxLength,
+			(length: Domain.Models.Users.Role.DescriptionMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Description { get; set; }

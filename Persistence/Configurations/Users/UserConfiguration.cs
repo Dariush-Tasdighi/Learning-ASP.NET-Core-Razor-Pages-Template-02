@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Configurations.Account
+namespace Persistence.Configurations.Users
 {
 	internal class UserConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.Account.User>
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.Users.User>
 	{
 		public UserConfiguration() : base()
 		{
@@ -11,7 +11,7 @@ namespace Persistence.Configurations.Account
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.Models.Account.User> builder)
+			.Builders.EntityTypeBuilder<Domain.Models.Users.User> builder)
 		{
 			// **************************************************
 			builder

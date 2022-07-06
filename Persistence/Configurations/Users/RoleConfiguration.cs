@@ -1,7 +1,7 @@
-﻿namespace Persistence.Configurations.Account
+﻿namespace Persistence.Configurations.Users
 {
 	public class RoleConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.Account.Role>
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.Users.Role>
 	{
 		public RoleConfiguration() : base()
 		{
@@ -9,12 +9,12 @@
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.Models.Account.Role> builder)
+			.Builders.EntityTypeBuilder<Domain.Models.Users.Role> builder)
 		{
 			// **************************************************
 			builder
 				.Property(current => current.Name)
-				.HasMaxLength(maxLength: Domain.Models.Account.Role.NameMaxLength)
+				.HasMaxLength(maxLength: Domain.Models.Users.Role.NameMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -23,7 +23,7 @@
 			// **************************************************
 			builder
 				.Property(current => current.Description)
-				.HasMaxLength(maxLength: Domain.Models.Account.Role.DescriptionMaxLength)
+				.HasMaxLength(maxLength: Domain.Models.Users.Role.DescriptionMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -47,7 +47,7 @@
 			// **************************************************
 			builder.HasData
 			(
-				new Domain.Models.Account.Role
+				new Domain.Models.Users.Role
 				{
 					Ordering = 1,
 					IsActive = true,
@@ -55,7 +55,7 @@
 					Name = Domain.SeedWork.Constant.SystemicRole.User,
 					Id = Domain.SeedWork.Constant.SystemicRole.UserRoleId,
 				},
-				new Domain.Models.Account.Role
+				new Domain.Models.Users.Role
 				{
 					Ordering = 2,
 					IsActive = true,
@@ -63,7 +63,7 @@
 					Name = Domain.SeedWork.Constant.SystemicRole.Admin,
 					Id = Domain.SeedWork.Constant.SystemicRole.AdminRoleId,
 				},
-				new Domain.Models.Account.Role
+				new Domain.Models.Users.Role
 				{
 					Ordering = 3,
 					IsActive = true,
@@ -71,7 +71,7 @@
 					Name = Domain.SeedWork.Constant.SystemicRole.Owner,
 					Id = Domain.SeedWork.Constant.SystemicRole.OwnerRoleId,
 				},
-				new Domain.Models.Account.Role
+				new Domain.Models.Users.Role
 				{
 					Ordering = 4,
 					IsActive = true,
