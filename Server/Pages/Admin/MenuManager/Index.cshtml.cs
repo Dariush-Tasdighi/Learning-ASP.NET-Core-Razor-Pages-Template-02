@@ -83,6 +83,7 @@ namespace Server.Pages.Admin.MenuManager
 							.Select(current => new ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel
 							{
 								Id = current.Id,
+								Icon = current.Icon,
 								Title = current.Title,
 								IsPublic = current.IsPublic,
 								IsActive = current.IsActive,

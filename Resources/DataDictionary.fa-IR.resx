@@ -129,6 +129,9 @@
   <data name="Blog" xml:space="preserve">
     <value>وبلاگ</value>
   </data>
+  <data name="Bottom" xml:space="preserve">
+    <value>پایین</value>
+  </data>
   <data name="CellPhoneNumber" xml:space="preserve">
     <value>شماره تلفن همراه</value>
   </data>
@@ -225,6 +228,9 @@
   <data name="LastName" xml:space="preserve">
     <value>نام خانوادگی</value>
   </data>
+  <data name="Left" xml:space="preserve">
+    <value>چپ</value>
+  </data>
   <data name="Link" xml:space="preserve">
     <value>لینک</value>
   </data>
@@ -255,6 +261,9 @@
   <data name="NationalCode" xml:space="preserve">
     <value>کد ملی</value>
   </data>
+  <data name="NoParent" xml:space="preserve">
+    <value>بدون والد</value>
+  </data>
   <data name="NotSelected" xml:space="preserve">
     <value>انتخاب نشده</value>
   </data>
@@ -279,6 +288,9 @@
   <data name="Resume" xml:space="preserve">
     <value>رزومه</value>
   </data>
+  <data name="Right" xml:space="preserve">
+    <value>راست</value>
+  </data>
   <data name="Role" xml:space="preserve">
     <value>نقش</value>
   </data>
@@ -287,6 +299,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>نقش ها</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>جستجو</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>تنظیمات</value>
@@ -311,6 +326,9 @@
   </data>
   <data name="Title" xml:space="preserve">
     <value>عنوان</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>بالا</value>
   </data>
   <data name="Unspecified" xml:space="preserve">
     <value>مشخص نشده</value>

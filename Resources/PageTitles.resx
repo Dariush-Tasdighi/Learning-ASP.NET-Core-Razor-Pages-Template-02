@@ -132,6 +132,9 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="CreateMenu" xml:space="preserve">
+    <value>Create Menu</value>
+  </data>
   <data name="CreateRole" xml:space="preserve">
     <value>Create Role</value>
   </data>

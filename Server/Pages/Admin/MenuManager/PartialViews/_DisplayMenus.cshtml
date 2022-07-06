@@ -18,6 +18,7 @@
 					<tr>
 						<th>#</th>
 						<th>@(Resources.DataDictionary.Title)</th>
+						<th>@(Resources.DataDictionary.Icon)</th>
 						<th>@(Resources.DataDictionary.Active)</th>
 						<th>@(Resources.DataDictionary.IsDeletable)</th>
 						<th>@(Resources.DataDictionary.Deleted)</th>
@@ -39,6 +40,10 @@
 
 							<td>
 								@(item.Title)
+							</td>
+
+							<td class="text-center align-content-x-center">
+								<i class="@(item.Icon)"></i>
 							</td>
 
 							<td>

@@ -13,7 +13,7 @@
 		public Menu() : base()
 		{
 			SetUpdateDateTime();
-
+			IconPosition = Enumerations.IconPosition.Left;
 			Children = new System.Collections.Generic.List<Menu>();
 		}
 		#endregion /Constructor(s)
@@ -121,7 +121,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IconPosition),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public int? IconPosition { get; set; }
+		public Enumerations.IconPosition? IconPosition { get; set; }
 		// **********
 
 		// **********

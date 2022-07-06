@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Menu.
+        /// </summary>
+        public static string CreateMenu {
+            get {
+                return ResourceManager.GetString("CreateMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Role.
         /// </summary>
         public static string CreateRole {
