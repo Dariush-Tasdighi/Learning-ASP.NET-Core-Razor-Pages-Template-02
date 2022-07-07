@@ -1,7 +1,7 @@
 ﻿namespace Domain.Models.Menus
 {
 	public class Menu : Domain.SeedWork.Entity,
-		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable
+		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete
 	{
 		#region Constant(s)
 		public const int LinkMaxLength = 500;
@@ -94,6 +94,9 @@
 		/// <summary>
 		/// قابل حذف بودن/نبودن
 		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsDeletable),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsDeletable { get; set; }
 		// **********
 
@@ -101,12 +104,15 @@
 		/// <summary>
 		/// حذف شده/نشده
 		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsDeleted),
+			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsDeleted { get; set; }
 		// **********
 
 		// **********
 		/// <summary>
-		/// آیکن
+		/// آیکون
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Icon),

@@ -48,6 +48,7 @@ namespace Server.Pages.Admin.RoleManager
 						{
 							Id = current.Id,
 							Name = current.Name,
+							Ordering = current.Ordering,
 							IsActive = current.IsActive,
 							IsDeleted = current.IsDeleted,
 							IsSystemic = current.IsSystemic,

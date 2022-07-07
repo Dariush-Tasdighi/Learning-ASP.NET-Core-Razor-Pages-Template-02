@@ -1,6 +1,11 @@
 ﻿@page
 @model Server.Pages.Admin.UserManager.UpdateModel
 @{
+	@if (Model.ViewModel == null)
+	{
+		return;
+	}
+
 	var pageTitle =
 		Resources.PageTitles.UpdateUser;
 

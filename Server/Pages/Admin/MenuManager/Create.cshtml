@@ -66,8 +66,12 @@
 
 					<div class="mb-3">
 						<label asp-for="ViewModel.Ordering" class="form-label"></label>
-						<input asp-for="ViewModel.Ordering" value="1" min="1" class="form-control" dir="ltr" />
-						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
+							<input asp-for="ViewModel.Ordering" value="1" min="1" class="form-control" dir="ltr" />
+							<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
+						</div>
 					</div>
 
 					<div class="mb-3">
@@ -120,6 +124,13 @@
 
 				</fieldset>
 
+				<hr class="mt-4" />
+
+				<div class="text-center">
+					<a href="/">@(Resources.ButtonCaptions.Home)</a>
+					|
+					<a asp-page="./Index">@(Resources.ButtonCaptions.BackToList)</a>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -127,36 +138,36 @@
 </form>
 
 @section Scripts {
+	<script src="/lib/bootstrap-icon-picker/js/bootstrapicon-iconpicker.min.js" ></script>
 
-<script src="/lib/bootstrap-icon-picker/js/bootstrapicon-iconpicker.min.js"></script>
-<script>
-	$('.iconpicker').iconpicker({
-		title: '@(Resources.DataDictionary.Icon)',
-		selected: false,
-		defaultValue: false,
-		placement: "bottom",
-		collision: "none",
-		animation: true,
-		hideOnSelect: true,
-		showFooter: false,
-		searchInFooter: false,
-		mustAccept: false,
-		selectedCustomClass: "bg-primary",
-		fullClassFormatter: function (e) {
-			return e;
-		},
-		input: "input,.iconpicker-input",
-		inputSearch: false,
-		container: false,
-		component: ".input-group-addon,.iconpicker-component",
-		templates: {
-			popover: '<div class="iconpicker-popover popover" role="tooltip"><div class="arrow"></div>' + '<div class="popover-title"></div><div class="popover-content"></div></div>',
-			footer: '<div class="popover-footer"></div>',
-			buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">@(Resources.ButtonCaptions.Back)</button>' + ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">@(Resources.ButtonCaptions.Save)</button>',
-			search: '<input type="search" class="form-control iconpicker-search" placeholder="@(Resources.DataDictionary.Search)" />',
-			iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
-			iconpickerItem: '<a role="button" href="javascript:;" class="iconpicker-item"><i></i></a>'
-		}
-	});
-</script>
+	<script>
+		$('.iconpicker').iconpicker({
+			title: '@(Resources.DataDictionary.Icon)',
+			selected: false,
+			defaultValue: false,
+			placement: "bottom",
+			collision: "none",
+			animation: true,
+			hideOnSelect: true,
+			showFooter: false,
+			searchInFooter: false,
+			mustAccept: false,
+			selectedCustomClass: "bg-primary",
+			fullClassFormatter: function (e) {
+				return e;
+			},
+			input: "input,.iconpicker-input",
+			inputSearch: false,
+			container: false,
+			component: ".input-group-addon,.iconpicker-component",
+			templates: {
+				popover: '<div class="iconpicker-popover popover" role="tooltip"><div class="arrow"></div>' + '<div class="popover-title"></div><div class="popover-content"></div></div>',
+				footer: '<div class="popover-footer"></div>',
+				buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">@(Resources.ButtonCaptions.Back)</button>' + ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">@(Resources.ButtonCaptions.Save)</button>',
+				search: '<input type="search" class="form-control iconpicker-search" placeholder="@(Resources.DataDictionary.Search)" />',
+				iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
+				iconpickerItem: '<a role="button" href="javascript:;" class="iconpicker-item"><i></i></a>'
+			}
+		});
+	</script>
 }

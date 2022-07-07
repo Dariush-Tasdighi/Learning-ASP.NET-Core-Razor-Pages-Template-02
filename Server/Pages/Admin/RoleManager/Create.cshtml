@@ -46,7 +46,10 @@
 					<div class="mb-3">
 						<label asp-for="ViewModel.Ordering" class="form-label"></label>
 
-						<input type="number" asp-for="ViewModel.Ordering" class="form-control" value="1" min="1" dir="ltr" />
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
+							<input type="number" asp-for="ViewModel.Ordering" class="form-control" value="1" min="1" dir="ltr" />
+						</div>
 
 						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
 					</div>

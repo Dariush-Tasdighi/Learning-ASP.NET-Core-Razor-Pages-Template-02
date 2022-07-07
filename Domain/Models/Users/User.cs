@@ -1,7 +1,7 @@
 ﻿namespace Domain.Models.Users
 {
 	public class User : SeedWork.Entity,
-		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime
+		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime, SeedWork.IEntityHasLogicalDelete
 	{
 		#region Constructor(s)
 		public User() : base()

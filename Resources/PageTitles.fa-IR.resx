@@ -150,6 +150,9 @@
   <data name="DeleteUser" xml:space="preserve">
     <value>حذف کاربر</value>
   </data>
+  <data name="Error404" xml:space="preserve">
+    <value>صفحه ی مورد نظر یافت نشد!</value>
+  </data>
   <data name="Error500" xml:space="preserve">
     <value>خطای داخلی سرور!</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="Logout" xml:space="preserve">
     <value>خروج</value>
+  </data>
+  <data name="MenuDetails" xml:space="preserve">
+    <value>جزئیات منو</value>
   </data>
   <data name="MenuManagement" xml:space="preserve">
     <value>مدیریت منوها</value>

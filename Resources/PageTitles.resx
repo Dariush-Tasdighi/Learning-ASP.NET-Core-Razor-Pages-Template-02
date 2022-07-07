@@ -150,6 +150,9 @@
   <data name="DeleteUser" xml:space="preserve">
     <value>Delete User</value>
   </data>
+  <data name="Error404" xml:space="preserve">
+    <value>Page Not Found!</value>
+  </data>
   <data name="Error500" xml:space="preserve">
     <value>Internal Server Error!</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
+  </data>
+  <data name="MenuDetails" xml:space="preserve">
+    <value>Menu Details</value>
   </data>
   <data name="MenuManagement" xml:space="preserve">
     <value>Menu Management</value>

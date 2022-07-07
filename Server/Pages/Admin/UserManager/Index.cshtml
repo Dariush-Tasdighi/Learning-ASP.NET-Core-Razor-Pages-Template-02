@@ -2,6 +2,11 @@
 @model Server.Pages.Admin.UserManager.IndexModel
 @inject Infrastructure.Settings.ApplicationSettings applicationSettings
 @{
+	@if (Model.ViewModel == null)
+	{
+		return;
+	}
+
 	var pageTitle =
 		Resources.PageTitles.UserManagement;
 

@@ -1,6 +1,11 @@
 ﻿@page
 @model Server.Pages.Admin.UserManager.DetailsModel
 @{
+	@if (Model.ViewModel == null)
+	{
+		return;
+	}
+
 	var pageTitle =
 		Resources.PageTitles.UserDetails;
 

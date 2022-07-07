@@ -2,6 +2,11 @@
 @model Server.Pages.Admin.MenuManager.IndexModel
 @inject Infrastructure.Settings.ApplicationSettings applicationSettings
 @{
+	@if (Model.ViewModel == null)
+	{
+		return;
+	}
+
 	var pageTitle =
 		Resources.PageTitles.MenuManagement;
 

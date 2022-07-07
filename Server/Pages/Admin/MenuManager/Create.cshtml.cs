@@ -131,7 +131,7 @@ namespace Server.Pages.Admin.MenuManager
 
 				//System.Console.WriteLine(value: ex.Message);
 
-				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
+				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{

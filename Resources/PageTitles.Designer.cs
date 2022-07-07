@@ -160,6 +160,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Not Found!.
+        /// </summary>
+        public static string Error404 {
+            get {
+                return ResourceManager.GetString("Error404", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Internal Server Error!.
         /// </summary>
         public static string Error500 {
@@ -201,6 +210,15 @@ namespace Resources {
         public static string Logout {
             get {
                 return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu Details.
+        /// </summary>
+        public static string MenuDetails {
+            get {
+                return ResourceManager.GetString("MenuDetails", resourceCulture);
             }
         }
         

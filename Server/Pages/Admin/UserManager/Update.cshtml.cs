@@ -17,7 +17,7 @@ namespace Server.Pages.Admin.UserManager
 			ViewModel = new();
 
 			RolesViewModel = new System.Collections.Generic.List
-				<ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel>();
+				<ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel>();
 		}
 
 		// **********
@@ -31,7 +31,7 @@ namespace Server.Pages.Admin.UserManager
 
 		// **********
 		public System.Collections.Generic.IList
-			<ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel> RolesViewModel
+			<ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel> RolesViewModel
 		{ get; private set; }
 		// **********
 
@@ -159,7 +159,7 @@ namespace Server.Pages.Admin.UserManager
 				await DatabaseContext.Roles
 				.Where(current => current.IsDeleted == false)
 				.OrderBy(current => current.Ordering)
-				.Select(current => new ViewModels.Pages.Admin.UserManager.GetAccessibleRoleViewModel
+				.Select(current => new ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel
 				{
 					Id = current.Id,
 					Name = current.Name,

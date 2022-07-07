@@ -21,7 +21,6 @@ namespace Server.Pages.Admin.UserManager
 		// **********
 
 		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel ViewModel { get; private set; }
 		// **********
 
