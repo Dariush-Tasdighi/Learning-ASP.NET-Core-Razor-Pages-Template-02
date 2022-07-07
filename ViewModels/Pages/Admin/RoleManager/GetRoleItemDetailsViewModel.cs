@@ -45,7 +45,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Ordering),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public int Ordering { get; set; }
+		public int Ordering { get; init; }
 		// **********
 
 		// **********

@@ -144,6 +144,9 @@
   <data name="DeactivateAccount" xml:space="preserve">
     <value>غیرفعال کردن حساب کاربری</value>
   </data>
+  <data name="DeleteMenu" xml:space="preserve">
+    <value>حذف منو</value>
+  </data>
   <data name="DeleteRole" xml:space="preserve">
     <value>حذف نقش</value>
   </data>

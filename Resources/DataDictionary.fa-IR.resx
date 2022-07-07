@@ -250,7 +250,7 @@
     <value>منو</value>
   </data>
   <data name="MenuManager" xml:space="preserve">
-    <value>مدیریت منوها</value>
+    <value>مدیریت منو ها</value>
   </data>
   <data name="Menus" xml:space="preserve">
     <value>منوها</value>
@@ -275,6 +275,9 @@
   </data>
   <data name="Ordering" xml:space="preserve">
     <value>چیدمان</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>والد</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>گذرواژه</value>

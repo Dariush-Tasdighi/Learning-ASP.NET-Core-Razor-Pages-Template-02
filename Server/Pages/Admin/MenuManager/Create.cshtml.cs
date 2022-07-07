@@ -23,7 +23,6 @@ namespace Server.Pages.Admin.MenuManager
 		// **********
 
 		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public string? ReturnUrl { get; set; }
 		// **********
 
@@ -33,7 +32,6 @@ namespace Server.Pages.Admin.MenuManager
 		// **********
 
 		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public System.Collections.Generic.IList
 			<ViewModels.Pages.Admin.MenuManager.GetAccessibleParentMenuViewModel> ParentsViewModel
 		{ get; private set; }
@@ -60,15 +58,10 @@ namespace Server.Pages.Admin.MenuManager
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 		{
-			if (ModelState.IsValid == false)
-			{
-				return Page();
-			}
-
 			try
 			{
 				// **************************************************
-				if (ModelState.IsValid is false)
+				if (ModelState.IsValid == false)
 				{
 					return Page();
 				}
@@ -155,6 +148,7 @@ namespace Server.Pages.Admin.MenuManager
 			ParentsViewModel =
 				await DatabaseContext.Menus
 				.Where(current => current.IsDeleted == false)
+				.Where(current => current.ParentId == null)
 				.OrderBy(current => current.Ordering)
 				.Select(current => new ViewModels.Pages.Admin.MenuManager.GetAccessibleParentMenuViewModel
 				{

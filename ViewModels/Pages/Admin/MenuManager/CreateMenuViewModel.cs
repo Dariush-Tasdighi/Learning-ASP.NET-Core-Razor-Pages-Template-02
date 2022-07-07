@@ -9,6 +9,13 @@
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.Parent))]
+		public System.Guid? ParentId { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Title))]
 
 		[System.ComponentModel.DataAnnotations.Required
@@ -17,17 +24,10 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.Username,
+			(length: Domain.Models.Menus.Menu.TitleMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Title { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.Menu))]
-		public System.Guid? ParentId { get; set; }
 		// **********
 
 		// **********
@@ -40,6 +40,11 @@
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
+		[System.ComponentModel.DataAnnotations.MaxLength
+			(length: Domain.Models.Menus.Menu.LinkMaxLength,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
 		//[System.ComponentModel.DataAnnotations.RegularExpression
 		//	(pattern: Domain.SeedWork.Constant.RegularExpression.Url,
 		//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
@@ -51,11 +56,6 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Ordering))]
-
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 		public int Ordering { get; set; }
 		// **********
 
@@ -63,11 +63,6 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Active))]
-
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 		public bool IsActive { get; set; }
 		// **********
 
@@ -79,11 +74,6 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IsPublic))]
-
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 		public bool IsPublic { get; set; }
 		// **********
 
@@ -91,6 +81,11 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Icon))]
+		
+		[System.ComponentModel.DataAnnotations.MaxLength
+			(length: Domain.Models.Menus.Menu.IconMaxLength,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Icon { get; set; }
 		// **********
 
@@ -98,7 +93,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IconPosition))]
-		public Domain.Models.Menus.Enumerations.IconPosition? IconPosition { get; set; }
+		public Domain.Models.Menus.Enumerations.IconPosition IconPosition { get; set; }
 		// **********
 	}
 }

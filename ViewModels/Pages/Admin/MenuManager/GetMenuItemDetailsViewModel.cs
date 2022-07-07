@@ -80,7 +80,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.SubMenus),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public int NumberOfChildren { get; init; }
+		public int NumberOfSubMenus { get; init; }
 		// **********
 
 		// **********
