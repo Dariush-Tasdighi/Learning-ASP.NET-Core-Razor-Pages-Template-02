@@ -13,6 +13,7 @@ namespace Server.Pages.Admin.UserManager
 			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
+
 			ViewModel = new();
 		}
 
@@ -28,6 +29,7 @@ namespace Server.Pages.Admin.UserManager
 
 		// TO DO: Let Users Select Page Size
 		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult>
 			OnGetAsync(int pageSize = 10, int pageNumber = 1)
 		{
 			try
@@ -75,11 +77,11 @@ namespace Server.Pages.Admin.UserManager
 							;
 					}
 					// **************************************************
+				}
 
-					if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
-					{
-						// To DO: Show an Error Message and/or Redirect to...!
-					}
+				if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
+				{
+					return RedirectToPage(pageName: "/admin/usermanager/create");
 				}
 			}
 			catch (System.Exception ex)
@@ -94,6 +96,8 @@ namespace Server.Pages.Admin.UserManager
 			{
 				await DisposeDatabaseContextAsync();
 			}
+
+			return Page();
 		}
 	}
 }

@@ -83,7 +83,7 @@ namespace Server.Pages.Admin.RoleManager
 
 				if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
 				{
-					// To DO: Show an Error Message or Redirect to...!
+					return RedirectToPage(pageName: "/admin/rolemanager/create");
 				}
 			}
 			catch (System.Exception ex)
