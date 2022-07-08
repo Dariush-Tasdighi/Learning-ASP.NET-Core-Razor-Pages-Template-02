@@ -27,33 +27,22 @@ namespace Server.Pages.Admin.RoleManager
 		// **********
 
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid id)
 		{
 			try
 			{
-				if (id == null)
-				{
-					string errorMessage = string.Format
-						(Resources.Messages.Validations.Required,
-						Resources.DataDictionary.Id);
-
-					AddPageError(message: errorMessage);
-				}
-				else
-				{
-					ViewModel =
-						await DatabaseContext.Roles
-						.Where(current => current.Id == id.Value)
-						.Select(current => new ViewModels.Pages.Admin.RoleManager.UpdateRoleViewModel
-						{
-							Id = current.Id,
-							Name = current.Name,
-							IsActive = current.IsActive,
-							Ordering = current.Ordering,
-							Description = current.Description,
-							IsDeletable = current.IsDeletable,
-						}).FirstOrDefaultAsync();
-				}
+				ViewModel =
+					await DatabaseContext.Roles
+					.Where(current => current.Id == id)
+					.Select(current => new ViewModels.Pages.Admin.RoleManager.UpdateRoleViewModel
+					{
+						Id = current.Id,
+						Name = current.Name,
+						IsActive = current.IsActive,
+						Ordering = current.Ordering,
+						Description = current.Description,
+						IsDeletable = current.IsDeletable,
+					}).FirstOrDefaultAsync();
 			}
 			catch (System.Exception ex)
 			{
@@ -70,13 +59,9 @@ namespace Server.Pages.Admin.RoleManager
 		}
 
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid id)
 		{
-			if (id == null)
-			{
-				return Page();
-			}
-			else if (ModelState.IsValid is false)
+			if (ModelState.IsValid is false)
 			{
 				return Page();
 			}
@@ -89,7 +74,7 @@ namespace Server.Pages.Admin.RoleManager
 				bool foundAny =
 					await DatabaseContext.Roles
 					.Where(current => current.Name.ToLower() == fixedName.ToLower())
-					.Where(current => current.Id != id.Value)
+					.Where(current => current.Id != id)
 					.Where(current => current.IsDeleted == false)
 					.AnyAsync();
 
@@ -99,17 +84,17 @@ namespace Server.Pages.Admin.RoleManager
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.Name);
+					// **************************************************
 
 					AddToastError(message: errorMessage);
 
 					return Page();
-					// **************************************************
 				}
 				else
 				{
 					var foundedItem =
 						await DatabaseContext.Roles
-						.Where(current => current.Id == id.Value)
+						.Where(current => current.Id == id)
 						.FirstOrDefaultAsync();
 
 					// **************************************************

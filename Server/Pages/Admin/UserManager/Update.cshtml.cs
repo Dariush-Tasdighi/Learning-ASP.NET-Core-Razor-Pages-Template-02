@@ -36,33 +36,21 @@ namespace Server.Pages.Admin.UserManager
 		// **********
 
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid id)
 		{
 			try
 			{
-				if (id == null)
-				{
-					string errorMessage = string.Format
-						(Resources.Messages.Validations.Required,
-						Resources.DataDictionary.Id);
+				ViewModel = await DatabaseContext.Users
+					.Where(current => current.Id == id)
+					.Select(current => new ViewModels.Pages.Admin.UserManager.UpdateUserViewModel
+					{
+						Id = current.Id,
+						RoleId = current.RoleId,
+						Username = current.Username,
+						IsActive = current.IsActive,
+						IsVerified = current.IsVerified,
+					}).FirstOrDefaultAsync();
 
-					AddPageError(message: errorMessage);
-				}
-				else
-				{
-					ViewModel = await DatabaseContext.Users
-						.Where(current => current.Id == id.Value)
-						.Select(current => new ViewModels.Pages.Admin.UserManager.UpdateUserViewModel
-						{
-							Id = current.Id,
-							RoleId = current.RoleId,
-							Username = current.Username,
-							IsActive = current.IsActive,
-							IsVerified = current.IsVerified,
-						}).FirstOrDefaultAsync();
-
-					await SetAccessibleRole();
-				}
 			}
 			catch (System.Exception ex)
 			{
@@ -79,13 +67,9 @@ namespace Server.Pages.Admin.UserManager
 		}
 
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid id)
 		{
-			if (id == null)
-			{
-				return Page();
-			}
-			else if (ModelState.IsValid is false)
+			if (ModelState.IsValid is false)
 			{
 				return Page();
 			}
@@ -94,7 +78,7 @@ namespace Server.Pages.Admin.UserManager
 			{
 				var foundedItem =
 					await DatabaseContext.Users
-					.Where(current => current.Id == id.Value)
+					.Where(current => current.Id == id)
 					.FirstOrDefaultAsync();
 
 				if (foundedItem == null)
@@ -103,9 +87,11 @@ namespace Server.Pages.Admin.UserManager
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.NotFound,
 						Resources.DataDictionary.User);
+					// **************************************************
 
 					AddToastError(message: errorMessage);
-					// **************************************************
+
+					return RedirectToPage("./Index");
 				}
 				else
 				{
@@ -133,9 +119,9 @@ namespace Server.Pages.Admin.UserManager
 						AddToastSuccess(message: successMessage);
 					}
 					// **************************************************
-				}
 
-				return RedirectToPage("./Index");
+					return RedirectToPage("./Index");
+				}
 			}
 			catch (System.Exception ex)
 			{
