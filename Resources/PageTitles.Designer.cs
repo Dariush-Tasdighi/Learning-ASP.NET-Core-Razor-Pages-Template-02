@@ -295,6 +295,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update Menu.
+        /// </summary>
+        public static string UpdateMenu {
+            get {
+                return ResourceManager.GetString("UpdateMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update Profile.
         /// </summary>
         public static string UpdateProfile {

@@ -22,7 +22,7 @@ namespace Server.Pages.Admin.RoleManager
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.RoleManager.DeleteRoleRequestViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.RoleManager.DeleteRoleViewModel ViewModel { get; private set; }
 		// **********
 
 		public async System.Threading.Tasks.Task OnGetAsync(System.Guid? id)
@@ -35,7 +35,7 @@ namespace Server.Pages.Admin.RoleManager
 						await DatabaseContext.Roles
 						.Where(current => current.Id == id.Value)
 						//.Where(current => current.IsDeleted == false)
-						.Select(current => new ViewModels.Pages.Admin.RoleManager.DeleteRoleRequestViewModel
+						.Select(current => new ViewModels.Pages.Admin.RoleManager.DeleteRoleViewModel
 						{
 							Id = current.Id,
 							Name = current.Name,

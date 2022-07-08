@@ -20,6 +20,7 @@
 
 @section StyleSheets {
 <link href="/lib/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css" rel="stylesheet">
+
 <style>
 	.popover-title-text, .iconpicker-btn {
 		font-family: IRANSansX
@@ -115,6 +116,13 @@
 						<div class="form-check">
 							<input asp-for="ViewModel.IsActive" class="form-check-input" />
 							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+						</div>
+					</div>
+					
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsDeletable" class="form-check-input" />
+							<label asp-for="ViewModel.IsDeletable" class="form-check-label"></label>
 						</div>
 					</div>
 

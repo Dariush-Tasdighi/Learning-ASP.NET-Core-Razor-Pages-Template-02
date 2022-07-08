@@ -22,7 +22,7 @@ namespace Server.Pages.Admin.MenuManager
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.MenuManager.DeleteMenuRequestViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.MenuManager.DeleteMenuItemViewModel ViewModel { get; private set; }
 		// **********
 
 		public async System.Threading.Tasks.Task OnGetAsync(System.Guid? id)
@@ -35,7 +35,7 @@ namespace Server.Pages.Admin.MenuManager
 						await DatabaseContext.Menus
 						.Where(current => current.Id == id.Value)
 						//.Where(current => current.IsDeleted == false)
-						.Select(current => new ViewModels.Pages.Admin.MenuManager.DeleteMenuRequestViewModel
+						.Select(current => new ViewModels.Pages.Admin.MenuManager.DeleteMenuItemViewModel
 						{
 							Id = current.Id,
 							Link = current.Link,

@@ -142,6 +142,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unable to update parent!.
+        /// </summary>
+        public static string UnableToUpdateParent {
+            get {
+                return ResourceManager.GetString("UnableToUpdateParent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unexpected error!.
         /// </summary>
         public static string UnexpectedError {

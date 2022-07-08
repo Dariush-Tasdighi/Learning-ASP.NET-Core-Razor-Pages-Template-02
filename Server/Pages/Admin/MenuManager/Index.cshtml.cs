@@ -20,14 +20,15 @@ namespace Server.Pages.Admin.MenuManager
 		}
 		#endregion Constructor(s)
 
-		#region Property(ies)
-		// **********
-		private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
-		// **********
 
+		#region Property(ies)
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public System.Guid? ParentId { get; set; }
+		// **********
+
+		// **********
+		private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
 		// **********
 
 		// **********

@@ -1,8 +1,8 @@
 ﻿namespace ViewModels.Pages.Admin.RoleManager
 {
-	public class DeleteRoleRequestViewModel : Base.RoleExtendedViewModel
+	public class DeleteRoleViewModel : Base.RoleExtendedViewModel
 	{
-		public DeleteRoleRequestViewModel() : base()
+		public DeleteRoleViewModel() : base()
 		{
 		}
 

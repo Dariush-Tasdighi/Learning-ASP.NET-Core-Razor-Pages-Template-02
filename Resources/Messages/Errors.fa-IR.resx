@@ -144,6 +144,9 @@
   <data name="UnableTo" xml:space="preserve">
     <value>در حال حاضر امکان {0} این {1} وجود ندارد!</value>
   </data>
+  <data name="UnableToUpdateParent" xml:space="preserve">
+    <value>امکان تعریف والد برای این آیتم، به علت وجود زیر مجموعه وجود ندارد!</value>
+  </data>
   <data name="UnexpectedError" xml:space="preserve">
     <value>خطای ناشناخته‌ای صورت گرفته است! لطفا با تیم پشتیبانی تماس حاصل فرمایید.</value>
   </data>

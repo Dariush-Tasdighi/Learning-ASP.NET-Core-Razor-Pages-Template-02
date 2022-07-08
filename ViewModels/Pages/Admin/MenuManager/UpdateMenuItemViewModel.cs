@@ -1,16 +1,30 @@
 ﻿namespace ViewModels.Pages.Admin.MenuManager
 {
-	public class CreateMenuViewModel : object
+	public class UpdateMenuItemViewModel : object
 	{
-		public CreateMenuViewModel() : base()
+		public UpdateMenuItemViewModel() : base()
 		{
 		}
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.Id))]
+		public System.Guid? Id { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Parent))]
 		public System.Guid? ParentId { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.Parent))]
+		public string? Parent { get; set; }
 		// **********
 
 		// **********
@@ -67,6 +81,9 @@
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.IsDeletable))]
 		public bool IsDeletable { get; set; }
 		// **********
 
@@ -81,7 +98,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Icon))]
-		
+
 		[System.ComponentModel.DataAnnotations.MaxLength
 			(length: Domain.Models.Menus.Menu.IconMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
@@ -93,7 +110,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IconPosition))]
-		public Domain.Models.Menus.Enumerations.IconPosition IconPosition { get; set; }
+		public Domain.Models.Menus.Enumerations.IconPosition? IconPosition { get; set; }
 		// **********
 	}
 }

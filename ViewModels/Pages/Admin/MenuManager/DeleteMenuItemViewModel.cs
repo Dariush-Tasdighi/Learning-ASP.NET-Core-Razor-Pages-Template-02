@@ -1,8 +1,8 @@
 ﻿namespace ViewModels.Pages.Admin.MenuManager
 {
-	public class DeleteMenuRequestViewModel : object
+	public class DeleteMenuItemViewModel : object
 	{
-		public DeleteMenuRequestViewModel() : base()
+		public DeleteMenuItemViewModel() : base()
 		{
 		}
 

@@ -144,6 +144,9 @@
   <data name="UnableTo" xml:space="preserve">
     <value>We are unable to {0} this {1}!</value>
   </data>
+  <data name="UnableToUpdateParent" xml:space="preserve">
+    <value>Unable to update parent!</value>
+  </data>
   <data name="UnexpectedError" xml:space="preserve">
     <value>Unexpected error!</value>
   </data>

@@ -195,6 +195,9 @@
   <data name="UnexpectedError" xml:space="preserve">
     <value>Unexpected Error!</value>
   </data>
+  <data name="UpdateMenu" xml:space="preserve">
+    <value>Update Menu</value>
+  </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>Update Profile</value>
   </data>

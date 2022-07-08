@@ -28,7 +28,7 @@ namespace Server.Pages.Admin.MenuManager
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.MenuManager.CreateMenuViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.MenuManager.CreateMenuItemViewModel ViewModel { get; set; }
 		// **********
 
 		// **********

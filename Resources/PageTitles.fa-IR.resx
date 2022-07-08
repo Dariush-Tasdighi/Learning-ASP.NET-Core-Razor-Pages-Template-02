@@ -195,6 +195,9 @@
   <data name="UnexpectedError" xml:space="preserve">
     <value>خطای ناشناخته!</value>
   </data>
+  <data name="UpdateMenu" xml:space="preserve">
+    <value>ویرایش منو</value>
+  </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>ویرایش مشخصات</value>
   </data>
