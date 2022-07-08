@@ -63,7 +63,7 @@ namespace Server.Pages.Admin.MenuManager
 
 					var data =
 						DatabaseContext.Menus
-						.Where(current => current.IsDeleted == false)
+						//.Where(current => current.IsDeleted == false)
 						.Where(current => current.ParentId == ParentId)
 						;
 
