@@ -1,4 +1,6 @@
-﻿namespace Persistence.Configurations
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Persistence.Configurations
 {
 	public class RoleConfiguration :
 		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.Role>
@@ -41,6 +43,14 @@
 			builder
 				.HasIndex(user => new { user.Name })
 				.IsUnique(unique: true)
+				;
+			// **************************************************
+
+			// **************************************************
+			builder
+				.HasIndex(user => new { user.Ordering })
+				.IsClustered(clustered: false)
+				.IsUnique(unique: false)
 				;
 			// **************************************************
 
