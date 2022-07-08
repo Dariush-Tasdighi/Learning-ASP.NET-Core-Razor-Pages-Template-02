@@ -8,8 +8,14 @@
 	{
 		#region Constant(s)
 		public const byte TitleMaxLength = 100;
+		public const byte AuthorMaxLength = 200;
+		public const byte CategoryMaxLength = 200;
 		public const byte DescriptionMaxLength = 100;
 
+		public const int ImageUrlMaxLength = 2000;
+		public const int CopyrightMaxLength = 1000;
+		public const int IntroductionMaxLength = 2000;
+		public const int ClassificationMaxLength = 1000;
 		#endregion /Constant(s)
 
 		public Page() : base()
@@ -94,7 +100,7 @@
 
 		// **********
 		/// <summary>
-		///  مقدمه
+		/// مقدمه
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
@@ -204,6 +210,16 @@
 
 		// **********
 		/// <summary>
+		/// آیدی کاربر سازنده صفحه
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.CreatorUserId))]
+		public System.Guid CreatorUserId { get; set; }
+		// **********
+
+		// **********
+		/// <summary>
 		/// تاریخ و زمان شروع انتشار
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
@@ -234,36 +250,6 @@
 
 		// **********
 		/// <summary>
-		/// آیدی کاربر سازنده صفحه
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.CreatorUserId))]
-		public System.Guid CreatorUserId { get; set; }
-		// **********
-
-		// **********
-		/// <summary>
-		/// آیدی کاربر ویرایش کننده صفحه
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.UpdaterUserId))]
-		public System.Guid? UpdaterUserId { get; private set; }
-		// **********
-
-		// **********
-		/// <summary>
-		/// آیدی کاربر حدف کننده صفحه
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.RemoverUserId))]
-		public System.Guid? RemoverUserId { get; set; }
-		// **********
-
-		// **********
-		/// <summary>
 		/// آیا صفحه مورد نظر قابل ویرایش است؟
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
@@ -280,6 +266,16 @@
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.UpdateDateTime))]
 		public System.DateTime? UpdateDateTime { get; private set; }
+
+		// **********
+		/// <summary>
+		/// آیدی کاربر ویرایش کننده صفحه
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.UpdaterUserId))]
+		public System.Guid? UpdaterUserId { get; private set; }
+		// **********
 		// **********
 
 		// **********
@@ -314,9 +310,18 @@
 
 		// **********
 		/// <summary>
+		/// آیدی کاربر حدف کننده صفحه
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.RemoverUserId))]
+		public System.Guid? RemoverUserId { get; set; }
+		// **********
+
+		// **********
+		/// <summary>
 		/// سیستمی است؟
 		/// </summary>
-
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IsSystemic))]
