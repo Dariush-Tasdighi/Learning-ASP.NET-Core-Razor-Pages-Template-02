@@ -109,20 +109,21 @@ namespace Server.Pages.Admin.MenuManager
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.AlreadyExists,
 							Resources.DataDictionary.Title);
+						// **************************************************
 
 						AddPageError(message: errorMessage);
 
 						return Page();
-						// **************************************************
 					}
-
 
 					if (ViewModel.ParentId.HasValue)
 					{
+						// **************************************************
 						bool isParent =
 							await DatabaseContext.Menus
 							.Where(current => current.ParentId == foundedItem.Id)
 							.AnyAsync();
+						// **************************************************
 
 						if (isParent)
 						{
