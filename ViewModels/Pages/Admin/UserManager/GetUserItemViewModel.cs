@@ -52,7 +52,14 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.InsertDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public System.DateTime? InsertDateTime { get; set; }
+		public System.DateTime InsertDateTime { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public System.DateTime? UpdateDateTime { get; set; }
 		// **********
 	}
 }

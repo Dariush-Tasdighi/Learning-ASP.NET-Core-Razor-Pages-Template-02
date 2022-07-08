@@ -48,18 +48,14 @@ namespace Server.Pages.Admin.UserManager
 					};
 					// **************************************************
 
-					var data =
-						DatabaseContext.Users
-						.Where(current => current.IsDeleted == false)
-						.AsQueryable();
-
 					// **************************************************
-					ViewModel.PageInformation.TotalCount = await data.CountAsync();
+					ViewModel.PageInformation.TotalCount =
+						await DatabaseContext.Users.CountAsync();
 
 					if (ViewModel.PageInformation.TotalCount > 0)
 					{
 						ViewModel.Data =
-							await data
+							await DatabaseContext.Users
 							.Skip((pageNumber - 1) * pageSize)
 							.Take(pageSize)
 							.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserItemViewModel
@@ -71,6 +67,7 @@ namespace Server.Pages.Admin.UserManager
 								IsVerified = current.IsVerified,
 								//EmailAddress = current.EmailAddress,
 								InsertDateTime = current.InsertDateTime,
+								UpdateDateTime = current.UpdateDateTime,
 							})
 							.AsNoTracking()
 							.ToListAsync()

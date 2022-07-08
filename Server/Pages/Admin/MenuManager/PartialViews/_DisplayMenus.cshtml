@@ -62,9 +62,18 @@
 								@(item.InsertDateTime)
 							</td>
 
-							<td>
-								@(item.UpdateDateTime)
-							</td>
+							@if (item.UpdateDateTime.HasValue)
+							{
+								<td>
+									@(item.UpdateDateTime)
+								</td>
+							}
+							else
+							{
+								<td>
+									<i class="bi bi-dash"></i>
+								</td>
+							}
 
 							@if (item.IsDeleted == false)
 							{
@@ -97,7 +106,7 @@
 							else
 							{
 								<td>
-									<i class="bi bi-file-earmark-x"></i>
+									<i class="bi bi-dash"></i>
 								</td>
 							}
 						</tr>
