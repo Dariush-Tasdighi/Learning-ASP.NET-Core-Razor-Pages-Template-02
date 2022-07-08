@@ -26,6 +26,11 @@ namespace Server.Pages.Admin.MenuManager
 		// **********
 
 		// **********
+		[Microsoft.AspNetCore.Mvc.BindProperty]
+		public System.Guid? ParentId { get; set; }
+		// **********
+
+		// **********
 		public ViewModels.Shared.PaginationWithDataViewModel
 			<ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel> ViewModel
 		{ get; private set; }
@@ -39,6 +44,8 @@ namespace Server.Pages.Admin.MenuManager
 		{
 			try
 			{
+				ParentId = id;
+
 				if (pageNumber > 0)
 				{
 					// **************************************************
@@ -56,20 +63,9 @@ namespace Server.Pages.Admin.MenuManager
 					var data =
 						DatabaseContext.Menus
 						.Where(current => current.IsDeleted == false)
-						.AsQueryable();
+						.Where(current => current.ParentId == ParentId)
+						;
 
-					if (id.HasValue)
-					{
-						data = data
-							.Where(current => current.ParentId == id.Value)
-							;
-					}
-					else
-					{
-						data = data
-							.Where(current => current.ParentId == null)
-							;
-					}
 
 					// **************************************************
 					ViewModel.PageInformation.TotalCount = await data.CountAsync();
