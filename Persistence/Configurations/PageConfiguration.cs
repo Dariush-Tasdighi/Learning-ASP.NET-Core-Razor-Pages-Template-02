@@ -50,39 +50,39 @@ namespace Persistence.Configurations
 			// **************************************************
 
 			// **************************************************
-			//builder
-			//	.Property(current => current.ImageUrl)
-			//	.HasMaxLength(maxLength: Domain.Models.Page.ImageUrlMaxLength)
-			//	.IsRequired(required: false)
-			//	.IsUnicode(unicode: true)
-			//	;
+			builder
+				.Property(current => current.Copyright)
+				.HasMaxLength(maxLength: Domain.Models.Page.CopyrightMaxLength)
+				.IsRequired(required: false)
+				.IsUnicode(unicode: true)
+				;
 			// **************************************************
 
 			// **************************************************
-			//builder
-			//	.Property(current => current.Copyright)
-			//	.HasMaxLength(maxLength: Domain.Models.Page.CopyrightMaxLength)
-			//	.IsRequired(required: false)
-			//	.IsUnicode(unicode: true)
-			//	;
+			builder
+				.Property(current => current.Classification)
+				.HasMaxLength(maxLength: Domain.Models.Page.ClassificationMaxLength)
+				.IsRequired(required: false)
+				.IsUnicode(unicode: true)
+				;
 			// **************************************************
 
 			// **************************************************
-			//builder
-			//	.Property(current => current.Classification)
-			//	.HasMaxLength(maxLength: Domain.Models.Page.ClassificationMaxLength)
-			//	.IsRequired(required: false)
-			//	.IsUnicode(unicode: true)
-			//	;
+			builder
+				.Property(current => current.Introduction)
+				.HasMaxLength(maxLength: Domain.Models.Page.IntroductionMaxLength)
+				.IsRequired(required: false)
+				.IsUnicode(unicode: true)
+				;
 			// **************************************************
 
 			// **************************************************
-			//builder
-			//	.Property(current => current.Introduction)
-			//	.HasMaxLength(maxLength: Domain.Models.Page.IntroductionMaxLength)
-			//	.IsRequired(required: false)
-			//	.IsUnicode(unicode: true)
-			//	;
+			builder
+				.Property(current => current.ImageUrl)
+				.HasMaxLength(maxLength: Domain.Models.Page.ImageUrlMaxLength)
+				.IsRequired(required: false)
+				.IsUnicode(unicode: true)
+				;
 			// **************************************************
 
 			// **************************************************

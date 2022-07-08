@@ -12,9 +12,9 @@
 		public const byte CategoryMaxLength = 200;
 		public const byte DescriptionMaxLength = 100;
 
-		public const int ImageUrlMaxLength = 2000;
+		public const int ImageUrlMaxLength = 4000;
 		public const int CopyrightMaxLength = 1000;
-		public const int IntroductionMaxLength = 2000;
+		public const int IntroductionMaxLength = 4000;
 		public const int ClassificationMaxLength = 1000;
 		#endregion /Constant(s)
 
