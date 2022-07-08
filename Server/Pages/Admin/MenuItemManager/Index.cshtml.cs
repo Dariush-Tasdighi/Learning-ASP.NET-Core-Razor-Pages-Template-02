@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.MenuManager
+namespace Server.Pages.Admin.MenuItemManager
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
@@ -16,10 +16,9 @@ namespace Server.Pages.Admin.MenuManager
 			Logger = logger;
 
 			ViewModel = new ViewModels.Shared.PaginationWithDataViewModel
-				<ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel>();
+				<ViewModels.Pages.Admin.MenuItemManager.GetMenuItemViewModel>();
 		}
 		#endregion Constructor(s)
-
 
 		#region Property(ies)
 		// **********
@@ -33,7 +32,7 @@ namespace Server.Pages.Admin.MenuManager
 
 		// **********
 		public ViewModels.Shared.PaginationWithDataViewModel
-			<ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel> ViewModel
+			<ViewModels.Pages.Admin.MenuItemManager.GetMenuItemViewModel> ViewModel
 		{ get; private set; }
 		// **********
 		#endregion Property(ies)
@@ -41,6 +40,7 @@ namespace Server.Pages.Admin.MenuManager
 		#region On Get
 		// TO DO: Let Users Select Page Size
 		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult>
 			OnGetAsync(int pageSize = 10, int pageNumber = 1, System.Guid? id = null)
 		{
 			try
@@ -51,7 +51,7 @@ namespace Server.Pages.Admin.MenuManager
 				{
 					// **************************************************
 					ViewModel = new ViewModels.Shared.PaginationWithDataViewModel
-						<ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel>
+						<ViewModels.Pages.Admin.MenuItemManager.GetMenuItemViewModel>
 					{
 						PageInformation = new()
 						{
@@ -62,7 +62,7 @@ namespace Server.Pages.Admin.MenuManager
 					// **************************************************
 
 					var data =
-						DatabaseContext.Menus
+						DatabaseContext.MenuItems
 						//.Where(current => current.IsDeleted == false)
 						.Where(current => current.ParentId == ParentId)
 						;
@@ -77,7 +77,7 @@ namespace Server.Pages.Admin.MenuManager
 							await data
 							.Skip((pageNumber - 1) * pageSize)
 							.Take(pageSize)
-							.Select(current => new ViewModels.Pages.Admin.MenuManager.GetMenuItemViewModel
+							.Select(current => new ViewModels.Pages.Admin.MenuItemManager.GetMenuItemViewModel
 							{
 								Id = current.Id,
 								Icon = current.Icon,
@@ -98,7 +98,7 @@ namespace Server.Pages.Admin.MenuManager
 
 					if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
 					{
-						// To DO: Show an Error Message and/or Redirect to...!
+						return RedirectToPage(pageName: "/admin/menuitemmanager/create");
 					}
 				}
 			}
@@ -114,6 +114,8 @@ namespace Server.Pages.Admin.MenuManager
 			{
 				await DisposeDatabaseContextAsync();
 			}
+
+			return Page();
 		}
 		#endregion /On Get
 	}

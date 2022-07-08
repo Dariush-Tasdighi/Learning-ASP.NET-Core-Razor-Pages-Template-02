@@ -1,4 +1,4 @@
-﻿namespace ViewModels.Pages.Admin.MenuManager
+﻿namespace ViewModels.Pages.Admin.MenuItemManager
 {
 	public class DeleteMenuItemViewModel : object
 	{
@@ -43,7 +43,7 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.SubMenus),
+			(Name = nameof(Resources.DataDictionary.SubMenuItems),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public int NumberOfSubMenus { get; init; }
 		// **********

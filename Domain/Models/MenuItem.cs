@@ -1,7 +1,8 @@
 ﻿namespace Domain.Models
 {
-	public class Menu : Domain.SeedWork.Entity,
-		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete
+	public class MenuItem : Domain.SeedWork.Entity,
+		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasOrdering,
+		SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete
 	{
 		#region Constant(s)
 		public const int LinkMaxLength = 500;
@@ -10,10 +11,10 @@
 		#endregion /Constant(s)
 
 		#region Constructor
-		public Menu() : base()
+		public MenuItem() : base()
 		{
 			IconPosition = Enumerations.IconPosition.Left;
-			Children = new System.Collections.Generic.List<Menu>();
+			Children = new System.Collections.Generic.List<MenuItem>();
 		}
 		#endregion /Constructor(s)
 
@@ -25,14 +26,14 @@
 		/// والد
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Menu),
+			(Name = nameof(Resources.DataDictionary.MenuItem),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public virtual Menu? Parent { get; set; }
+		public virtual MenuItem? Parent { get; set; }
 		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Menu),
+			(Name = nameof(Resources.DataDictionary.MenuItem),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public System.Guid? ParentId { get; set; }
 		// **********
@@ -138,9 +139,9 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.SubMenus),
+			(Name = nameof(Resources.DataDictionary.SubMenuItems),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public virtual System.Collections.Generic.IList<Menu> Children { get; set; }
+		public virtual System.Collections.Generic.IList<MenuItem> Children { get; set; }
 		// **********
 		#endregion Property(ies)
 

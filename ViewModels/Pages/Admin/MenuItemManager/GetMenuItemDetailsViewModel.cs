@@ -1,4 +1,4 @@
-﻿namespace ViewModels.Pages.Admin.MenuManager
+﻿namespace ViewModels.Pages.Admin.MenuItemManager
 {
 	public class GetMenuItemDetailsViewModel : object
 	{
@@ -8,7 +8,7 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Menu),
+			(Name = nameof(Resources.DataDictionary.MenuItem),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public string? Parent { get; init; }
 		// **********
@@ -78,7 +78,7 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.SubMenus),
+			(Name = nameof(Resources.DataDictionary.SubMenuItems),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public int NumberOfSubMenus { get; init; }
 		// **********

@@ -106,11 +106,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create Menu.
+        ///   Looks up a localized string similar to Create Menu Item.
         /// </summary>
-        public static string CreateMenu {
+        public static string CreateMenuItem {
             get {
-                return ResourceManager.GetString("CreateMenu", resourceCulture);
+                return ResourceManager.GetString("CreateMenuItem", resourceCulture);
             }
         }
         
@@ -142,11 +142,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Menu.
+        ///   Looks up a localized string similar to Delete Menu Item.
         /// </summary>
-        public static string DeleteMenu {
+        public static string DeleteMenuItem {
             get {
-                return ResourceManager.GetString("DeleteMenu", resourceCulture);
+                return ResourceManager.GetString("DeleteMenuItem", resourceCulture);
             }
         }
         
@@ -223,20 +223,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Menu Details.
+        ///   Looks up a localized string similar to Menu Item Details.
         /// </summary>
-        public static string MenuDetails {
+        public static string MenuItemDetails {
             get {
-                return ResourceManager.GetString("MenuDetails", resourceCulture);
+                return ResourceManager.GetString("MenuItemDetails", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Menu Management.
+        ///   Looks up a localized string similar to Menu Item Management.
         /// </summary>
-        public static string MenuManagement {
+        public static string MenuItemManagement {
             get {
-                return ResourceManager.GetString("MenuManagement", resourceCulture);
+                return ResourceManager.GetString("MenuItemManagement", resourceCulture);
             }
         }
         
@@ -295,11 +295,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update Menu.
+        ///   Looks up a localized string similar to Update Menu Item.
         /// </summary>
-        public static string UpdateMenu {
+        public static string UpdateMenuItem {
             get {
-                return ResourceManager.GetString("UpdateMenu", resourceCulture);
+                return ResourceManager.GetString("UpdateMenuItem", resourceCulture);
             }
         }
         

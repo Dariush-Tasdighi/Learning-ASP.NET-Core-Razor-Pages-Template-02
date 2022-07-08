@@ -132,8 +132,8 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
-  <data name="CreateMenu" xml:space="preserve">
-    <value>Create Menu</value>
+  <data name="CreateMenuItem" xml:space="preserve">
+    <value>Create Menu Item</value>
   </data>
   <data name="CreateRole" xml:space="preserve">
     <value>Create Role</value>
@@ -144,8 +144,8 @@
   <data name="DeactivateAccount" xml:space="preserve">
     <value>Deactivate Account</value>
   </data>
-  <data name="DeleteMenu" xml:space="preserve">
-    <value>Delete Menu</value>
+  <data name="DeleteMenuItem" xml:space="preserve">
+    <value>Delete Menu Item</value>
   </data>
   <data name="DeleteRole" xml:space="preserve">
     <value>Delete Role</value>
@@ -171,11 +171,11 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
-  <data name="MenuDetails" xml:space="preserve">
-    <value>Menu Details</value>
+  <data name="MenuItemDetails" xml:space="preserve">
+    <value>Menu Item Details</value>
   </data>
-  <data name="MenuManagement" xml:space="preserve">
-    <value>Menu Management</value>
+  <data name="MenuItemManagement" xml:space="preserve">
+    <value>Menu Item Management</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
@@ -195,8 +195,8 @@
   <data name="UnexpectedError" xml:space="preserve">
     <value>Unexpected Error!</value>
   </data>
-  <data name="UpdateMenu" xml:space="preserve">
-    <value>Update Menu</value>
+  <data name="UpdateMenuItem" xml:space="preserve">
+    <value>Update Menu Item</value>
   </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>Update Profile</value>

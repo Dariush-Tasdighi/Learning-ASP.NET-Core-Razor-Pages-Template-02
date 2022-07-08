@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.MenuManager
+namespace Server.Pages.Admin.MenuItemManager
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
@@ -22,7 +22,7 @@ namespace Server.Pages.Admin.MenuManager
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.MenuManager.DeleteMenuItemViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.MenuItemManager.DeleteMenuItemViewModel ViewModel { get; private set; }
 		// **********
 
 		public async System.Threading.Tasks.Task OnGetAsync(System.Guid? id)
@@ -32,10 +32,10 @@ namespace Server.Pages.Admin.MenuManager
 				if (id.HasValue)
 				{
 					ViewModel =
-						await DatabaseContext.Menus
+						await DatabaseContext.MenuItems
 						.Where(current => current.Id == id.Value)
 						//.Where(current => current.IsDeleted == false)
-						.Select(current => new ViewModels.Pages.Admin.MenuManager.DeleteMenuItemViewModel
+						.Select(current => new ViewModels.Pages.Admin.MenuItemManager.DeleteMenuItemViewModel
 						{
 							Id = current.Id,
 							Link = current.Link,
@@ -69,7 +69,7 @@ namespace Server.Pages.Admin.MenuManager
 				if (id.HasValue)
 				{
 					var foundedItem =
-						await DatabaseContext.Menus
+						await DatabaseContext.MenuItems
 						.Where(current => current.Id == id.Value)
 						.Where(current => current.IsDeleted == false)
 						.FirstOrDefaultAsync();
@@ -89,7 +89,7 @@ namespace Server.Pages.Admin.MenuManager
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,
 							Resources.DataDictionary.Delete,
-							Resources.DataDictionary.Menu);
+							Resources.DataDictionary.MenuItem);
 
 						AddPageError(message: errorMessage);
 
@@ -100,7 +100,7 @@ namespace Server.Pages.Admin.MenuManager
 						//foundedItem.IsActive = false;
 						foundedItem.IsDeleted = true;
 
-						DatabaseContext.Menus.Update(entity: foundedItem);
+						DatabaseContext.MenuItems.Update(entity: foundedItem);
 
 						await DatabaseContext.SaveChangesAsync();
 

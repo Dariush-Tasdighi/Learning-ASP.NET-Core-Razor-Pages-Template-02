@@ -1,18 +1,18 @@
-﻿@model Server.Pages.Admin.MenuManager.IndexModel
+﻿@model Server.Pages.Admin.MenuItemManager.IndexModel
 @inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
 <div class="container my-0 my-sm-1 my-md-3 my-lg-5">
 
-	<a asp-page="/Admin/MenuManager/create" asp-route-returnurl="/Admin/MenuManager" class="btn btn-primary btn-sm w-25 my-4" role="button" aria-pressed="true">
+	<a asp-page="/Admin/MenuItemManager/create" asp-route-returnurl="/Admin/MenuItemManager" class="btn btn-primary btn-sm w-25 my-4" role="button" aria-pressed="true">
 		<i class="bi bi bi-menu-button-fill"></i>
-		@(string.Format(Resources.ButtonCaptions.CreateNew, Resources.DataDictionary.Menu))
+		@(string.Format(Resources.ButtonCaptions.CreateNew, Resources.DataDictionary.MenuItem))
 	</a>
 
 	<div class="row">
 		<div class="col table-responsive">
 			<table class="@(applicationSettings.TablesDefaultSettings.TableStyle)">
 
-				<caption>@(string.Format(Resources.DataDictionary.ListOfItems, Resources.DataDictionary.Menus))</caption>
+				<caption>@(string.Format(Resources.DataDictionary.ListOfItems, Resources.DataDictionary.MenuItems))</caption>
 
 				<thead class="@(applicationSettings.TablesDefaultSettings.TableHeaderStyle)">
 					<tr>

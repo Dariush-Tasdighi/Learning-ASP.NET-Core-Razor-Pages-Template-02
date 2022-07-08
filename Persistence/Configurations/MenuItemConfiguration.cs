@@ -1,20 +1,20 @@
 ﻿namespace Persistence.Configurations
 {
-	public class MenuConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.Menu>
+	public class MenuItemConfiguration :
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.MenuItem>
 	{
-		public MenuConfiguration() : base()
+		public MenuItemConfiguration() : base()
 		{
 		}
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.Models.Menu> builder)
+			.Builders.EntityTypeBuilder<Domain.Models.MenuItem> builder)
 		{
 			// **************************************************
 			builder
 				.Property(current => current.Title)
-				.HasMaxLength(maxLength: Domain.Models.Menu.TitleMaxLength)
+				.HasMaxLength(maxLength: Domain.Models.MenuItem.TitleMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -23,7 +23,7 @@
 			// **************************************************
 			builder
 				.Property(current => current.Icon)
-				.HasMaxLength(maxLength: Domain.Models.Menu.IconMaxLength)
+				.HasMaxLength(maxLength: Domain.Models.MenuItem.IconMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
@@ -32,7 +32,7 @@
 			// **************************************************
 			builder
 				.Property(current => current.Link)
-				.HasMaxLength(maxLength: Domain.Models.Menu.LinkMaxLength)
+				.HasMaxLength(maxLength: Domain.Models.MenuItem.LinkMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;

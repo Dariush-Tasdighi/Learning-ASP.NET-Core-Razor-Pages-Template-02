@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.MenuManager
+namespace Server.Pages.Admin.MenuItemManager
 {
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
@@ -15,7 +15,7 @@ namespace Server.Pages.Admin.MenuManager
 			ViewModel = new();
 
 			ParentsViewModel = new System.Collections.Generic.List
-				<ViewModels.Pages.Admin.MenuManager.GetAccessibleParentMenuViewModel>();
+				<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel>();
 		}
 
 		// **********
@@ -28,12 +28,12 @@ namespace Server.Pages.Admin.MenuManager
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.MenuManager.CreateMenuItemViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.MenuItemManager.CreateMenuItemViewModel ViewModel { get; set; }
 		// **********
 
 		// **********
 		public System.Collections.Generic.IList
-			<ViewModels.Pages.Admin.MenuManager.GetAccessibleParentMenuViewModel> ParentsViewModel
+			<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel> ParentsViewModel
 		{ get; private set; }
 		// **********
 
@@ -71,7 +71,7 @@ namespace Server.Pages.Admin.MenuManager
 
 				// **************************************************
 				bool hasAny =
-					await DatabaseContext.Menus
+					await DatabaseContext.MenuItems
 					.Where(current => current.Title.ToLower() == fixedTitle.ToLower())
 					.Where(current => current.ParentId == ViewModel.ParentId)
 					.Where(current => current.IsDeleted == false)
@@ -88,7 +88,7 @@ namespace Server.Pages.Admin.MenuManager
 				}
 				// **************************************************
 
-				Domain.Models.Menu menu = new()
+				Domain.Models.MenuItem menu = new()
 				{
 					Title = fixedTitle,
 					Icon = ViewModel.Icon,
@@ -112,7 +112,7 @@ namespace Server.Pages.Admin.MenuManager
 				{
 					string successMessage = string.Format
 						(Resources.Messages.Successes.SuccessfullyCreated,
-						Resources.DataDictionary.Menu);
+						Resources.DataDictionary.MenuItem);
 
 					AddToastSuccess(message: successMessage);
 				}
@@ -146,11 +146,11 @@ namespace Server.Pages.Admin.MenuManager
 		private async System.Threading.Tasks.Task SetAccessibleParent()
 		{
 			ParentsViewModel =
-				await DatabaseContext.Menus
+				await DatabaseContext.MenuItems
 				.Where(current => current.IsDeleted == false)
 				.Where(current => current.ParentId == null)
 				.OrderBy(current => current.Ordering)
-				.Select(current => new ViewModels.Pages.Admin.MenuManager.GetAccessibleParentMenuViewModel
+				.Select(current => new ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel
 				{
 					Id = current.Id,
 					Title = current.Title,

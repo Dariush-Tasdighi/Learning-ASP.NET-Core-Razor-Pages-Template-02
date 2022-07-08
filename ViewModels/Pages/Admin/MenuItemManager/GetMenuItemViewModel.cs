@@ -1,4 +1,4 @@
-﻿namespace ViewModels.Pages.Admin.MenuManager
+﻿namespace ViewModels.Pages.Admin.MenuItemManager
 {
 	public class GetMenuItemViewModel : object
 	{

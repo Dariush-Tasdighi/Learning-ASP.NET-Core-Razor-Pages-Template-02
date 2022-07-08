@@ -13,11 +13,11 @@ namespace Persistence
 			Database.EnsureCreated();
 		}
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Menu> Menus { get; set; }
-
 		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.User> Users { get; set; }
 
 		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Role> Roles { get; set; }
+
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.MenuItem> MenuItems { get; set; }
 
 		protected override void OnConfiguring
 			(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)

@@ -1,7 +1,9 @@
 ﻿namespace Domain.Models
 {
-	public class Role : SeedWork.Entity, SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable,
-		SeedWork.IEntityHasUpdateDateTime, SeedWork.IEntityHasIsSystemic, SeedWork.IEntityHasLogicalDelete
+	public class Role : SeedWork.Entity,
+		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsSystemic,
+		SeedWork.IEntityHasUpdateDateTime, SeedWork.IEntityHasOrdering,
+		SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete
 	{
 		#region Constant(s)
 		public const byte NameMaxLength = 50;

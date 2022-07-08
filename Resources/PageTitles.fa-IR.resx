@@ -132,8 +132,8 @@
   <data name="Contact" xml:space="preserve">
     <value>تماس با ما</value>
   </data>
-  <data name="CreateMenu" xml:space="preserve">
-    <value>ایجاد منو</value>
+  <data name="CreateMenuItem" xml:space="preserve">
+    <value>ایجاد آیتم منو</value>
   </data>
   <data name="CreateRole" xml:space="preserve">
     <value>ایجاد نقش</value>
@@ -144,8 +144,8 @@
   <data name="DeactivateAccount" xml:space="preserve">
     <value>غیرفعال کردن حساب کاربری</value>
   </data>
-  <data name="DeleteMenu" xml:space="preserve">
-    <value>حذف منو</value>
+  <data name="DeleteMenuItem" xml:space="preserve">
+    <value>حذف آیتم منو</value>
   </data>
   <data name="DeleteRole" xml:space="preserve">
     <value>حذف نقش</value>
@@ -171,11 +171,11 @@
   <data name="Logout" xml:space="preserve">
     <value>خروج</value>
   </data>
-  <data name="MenuDetails" xml:space="preserve">
-    <value>جزئیات منو</value>
+  <data name="MenuItemDetails" xml:space="preserve">
+    <value>جزئیات آیتم منو</value>
   </data>
-  <data name="MenuManagement" xml:space="preserve">
-    <value>مدیریت منوها</value>
+  <data name="MenuItemManagement" xml:space="preserve">
+    <value>مدیریت آیتم های منو</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>پروفایل</value>
@@ -195,8 +195,8 @@
   <data name="UnexpectedError" xml:space="preserve">
     <value>خطای ناشناخته!</value>
   </data>
-  <data name="UpdateMenu" xml:space="preserve">
-    <value>ویرایش منو</value>
+  <data name="UpdateMenuItem" xml:space="preserve">
+    <value>ویرایش آیتم منو</value>
   </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>ویرایش مشخصات</value>

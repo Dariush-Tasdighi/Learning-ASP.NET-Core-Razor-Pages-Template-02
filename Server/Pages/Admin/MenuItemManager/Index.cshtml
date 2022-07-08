@@ -1,6 +1,7 @@
 ﻿@page
-@model Server.Pages.Admin.MenuManager.IndexModel
+@model Server.Pages.Admin.MenuItemManager.IndexModel
 @inject Infrastructure.Settings.ApplicationSettings applicationSettings
+
 @{
 	@if (Model.ViewModel == null)
 	{
@@ -8,7 +9,7 @@
 	}
 
 	var pageTitle =
-		Resources.PageTitles.MenuManagement;
+		Resources.PageTitles.MenuItemManagement;
 
 	ViewData["PageTitle"] = pageTitle;
 
@@ -26,4 +27,4 @@
 
 <partial name="PartialViews/_DisplayPageMessages" />
 
-<partial name="PartialViews/_DisplayMenus" model="Model" />
+<partial name="PartialViews/_DisplayMenuItems" model="Model" />

@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.MenuManager
+namespace Server.Pages.Admin.MenuItemManager
 {
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
@@ -21,12 +21,12 @@ namespace Server.Pages.Admin.MenuManager
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.MenuManager.UpdateMenuItemViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.MenuItemManager.UpdateMenuItemViewModel ViewModel { get; set; }
 		// **********
 
 		// **********
 		public System.Collections.Generic.IList
-			<ViewModels.Pages.Admin.MenuManager.GetAccessibleParentMenuViewModel>? ParentsViewModel
+			<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel>? ParentsViewModel
 		{ get; private set; }
 		// **********
 
@@ -36,9 +36,9 @@ namespace Server.Pages.Admin.MenuManager
 			try
 			{
 				ViewModel =
-					await DatabaseContext.Menus
+					await DatabaseContext.MenuItems
 					.Where(current => current.Id == id)
-					.Select(current => new ViewModels.Pages.Admin.MenuManager.UpdateMenuItemViewModel
+					.Select(current => new ViewModels.Pages.Admin.MenuItemManager.UpdateMenuItemViewModel
 					{
 						Id = current.Id,
 						Icon = current.Icon,
@@ -80,7 +80,7 @@ namespace Server.Pages.Admin.MenuManager
 			try
 			{
 				var foundedItem =
-					await DatabaseContext.Menus
+					await DatabaseContext.MenuItems
 					.Where(current => current.Id == id)
 					.FirstOrDefaultAsync();
 
@@ -88,7 +88,7 @@ namespace Server.Pages.Admin.MenuManager
 				{
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.NotFound,
-						Resources.DataDictionary.Menu);
+						Resources.DataDictionary.MenuItem);
 
 					AddToastError(message: errorMessage);
 				}
@@ -98,9 +98,10 @@ namespace Server.Pages.Admin.MenuManager
 						Infrastructure.Utility.FixText(text: foundedItem.Title);
 
 					bool hasAny =
-						await DatabaseContext.Menus
+						await DatabaseContext.MenuItems
 						.Where(current => current.Title.ToLower() == ViewModel.Title.ToLower())
-						.Where(current => current.Id != id)
+						.Where(current => current.Id != foundedItem.Id)
+						.Where(current => current.ParentId == foundedItem.ParentId)
 						.AnyAsync();
 
 					if (hasAny)
@@ -120,7 +121,7 @@ namespace Server.Pages.Admin.MenuManager
 					{
 						// **************************************************
 						bool isParent =
-							await DatabaseContext.Menus
+							await DatabaseContext.MenuItems
 							.Where(current => current.ParentId == foundedItem.Id)
 							.AnyAsync();
 						// **************************************************
@@ -160,7 +161,7 @@ namespace Server.Pages.Admin.MenuManager
 					{
 						string successMessage = string.Format
 							(Resources.Messages.Successes.SuccessfullyUpdated,
-							Resources.DataDictionary.Menu);
+							Resources.DataDictionary.MenuItem);
 
 						AddToastSuccess(message: successMessage);
 					}
@@ -190,12 +191,12 @@ namespace Server.Pages.Admin.MenuManager
 		private async System.Threading.Tasks.Task SetAccessibleParent(System.Guid id)
 		{
 			ParentsViewModel =
-				await DatabaseContext.Menus
+				await DatabaseContext.MenuItems
 				.Where(current => current.IsDeleted == false)
 				.Where(current => current.ParentId == null)
 				.Where(current => current.Id != id)
 				.OrderBy(current => current.Ordering)
-				.Select(current => new ViewModels.Pages.Admin.MenuManager.GetAccessibleParentMenuViewModel
+				.Select(current => new ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel
 				{
 					Id = current.Id,
 					Title = current.Title,

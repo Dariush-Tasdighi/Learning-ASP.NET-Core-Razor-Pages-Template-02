@@ -246,14 +246,14 @@
   <data name="Male" xml:space="preserve">
     <value>خانم</value>
   </data>
-  <data name="Menu" xml:space="preserve">
-    <value>منو</value>
+  <data name="MenuItem" xml:space="preserve">
+    <value>آیتم منو</value>
   </data>
-  <data name="MenuManager" xml:space="preserve">
-    <value>مدیریت منو ها</value>
+  <data name="MenuItemManager" xml:space="preserve">
+    <value>مدیریت آیتم های منو</value>
   </data>
-  <data name="Menus" xml:space="preserve">
-    <value>منوها</value>
+  <data name="MenuItems" xml:space="preserve">
+    <value>آیتم های منو</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>نام</value>
@@ -324,8 +324,8 @@
   <data name="SourceCode" xml:space="preserve">
     <value>سورس‌کد</value>
   </data>
-  <data name="SubMenus" xml:space="preserve">
-    <value>زیر منو (ها)</value>
+  <data name="SubMenuItems" xml:space="preserve">
+    <value>زیر منوها</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>عنوان</value>

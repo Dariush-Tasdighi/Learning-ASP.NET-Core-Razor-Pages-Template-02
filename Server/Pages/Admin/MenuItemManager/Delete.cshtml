@@ -1,5 +1,5 @@
 ﻿@page
-@model Server.Pages.Admin.MenuManager.DeleteModel
+@model Server.Pages.Admin.MenuItemManager.DeleteModel
 
 @{
 	@if (Model.ViewModel == null)
@@ -8,7 +8,7 @@
 	}
 
 	var pageTitle =
-		Resources.PageTitles.DeleteMenu;
+		Resources.PageTitles.DeleteMenuItem;
 
 	ViewData["PageTitle"] = pageTitle;
 
@@ -108,7 +108,7 @@
 		<div class="modal-content">
 			<div class="modal-header bg-danger">
 				<p class="modal-title fw-bold" id="delete-conformation">
-					@(Resources.PageTitles.DeleteMenu)
+					@(Resources.PageTitles.DeleteMenuItem)
 				</p>
 			</div>
 			<div class="modal-body">
