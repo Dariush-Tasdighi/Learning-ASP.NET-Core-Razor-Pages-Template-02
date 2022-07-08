@@ -88,7 +88,7 @@ namespace Server.Pages.Admin.MenuManager
 				}
 				// **************************************************
 
-				Domain.Models.Menus.Menu menu = new()
+				Domain.Models.Menu menu = new()
 				{
 					Title = fixedTitle,
 					Icon = ViewModel.Icon,

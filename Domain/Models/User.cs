@@ -1,4 +1,4 @@
-﻿namespace Domain.Models.Users
+﻿namespace Domain.Models
 {
 	public class User : SeedWork.Entity,
 		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime, SeedWork.IEntityHasLogicalDelete

@@ -1,4 +1,4 @@
-﻿namespace Domain.Models.Menus
+﻿namespace Domain.Models
 {
 	public class Menu : Domain.SeedWork.Entity,
 		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete

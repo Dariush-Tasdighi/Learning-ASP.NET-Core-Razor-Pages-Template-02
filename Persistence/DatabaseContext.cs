@@ -13,11 +13,11 @@ namespace Persistence
 			Database.EnsureCreated();
 		}
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Menus.Menu> Menus { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Menu> Menus { get; set; }
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Users.User> Users { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.User> Users { get; set; }
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Users.Role> Roles { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Role> Roles { get; set; }
 
 		protected override void OnConfiguring
 			(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
@@ -31,7 +31,7 @@ namespace Persistence
 			(Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfigurationsFromAssembly
-				(typeof(Configurations.Users.UserConfiguration).Assembly);
+				(typeof(Configurations.UserConfiguration).Assembly);
 		}
 	}
 }

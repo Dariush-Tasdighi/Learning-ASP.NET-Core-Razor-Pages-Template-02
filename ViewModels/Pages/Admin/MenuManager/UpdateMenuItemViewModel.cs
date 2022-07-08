@@ -38,7 +38,7 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.Models.Menus.Menu.TitleMaxLength,
+			(length: Domain.Models.Menu.TitleMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Title { get; set; }
@@ -55,7 +55,7 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.Models.Menus.Menu.LinkMaxLength,
+			(length: Domain.Models.Menu.LinkMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
@@ -100,7 +100,7 @@
 			Name = nameof(Resources.DataDictionary.Icon))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.Models.Menus.Menu.IconMaxLength,
+			(length: Domain.Models.Menu.IconMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Icon { get; set; }
@@ -110,7 +110,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IconPosition))]
-		public Domain.Models.Menus.Enumerations.IconPosition? IconPosition { get; set; }
+		public Domain.Models.Enumerations.IconPosition? IconPosition { get; set; }
 		// **********
 	}
 }

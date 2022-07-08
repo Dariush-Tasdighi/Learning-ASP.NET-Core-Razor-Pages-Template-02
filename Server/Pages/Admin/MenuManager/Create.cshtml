@@ -98,15 +98,15 @@
 
 							<select asp-for="ViewModel.IconPosition" class="form-select">
 
-								<option value="@(Domain.Models.Menus.Enumerations.IconPosition.Left)" selected>@(Resources.DataDictionary.Left)</option>
+								<option value="@(Domain.Models.Enumerations.IconPosition.Left)" selected>@(Resources.DataDictionary.Left)</option>
 
-								<option value="@(Domain.Models.Menus.Enumerations.IconPosition.Right)">@(Resources.DataDictionary.Right)</option>
+								<option value="@(Domain.Models.Enumerations.IconPosition.Right)">@(Resources.DataDictionary.Right)</option>
 
 								@if (Model?.ViewModel?.ParentId == null)
 								{
-									<option value="@(Domain.Models.Menus.Enumerations.IconPosition.Top)">@(Resources.DataDictionary.Top)</option>
+									<option value="@(Domain.Models.Enumerations.IconPosition.Top)">@(Resources.DataDictionary.Top)</option>
 
-									<option value="@(Domain.Models.Menus.Enumerations.IconPosition.Bottom)">@(Resources.DataDictionary.Bottom)</option>
+									<option value="@(Domain.Models.Enumerations.IconPosition.Bottom)">@(Resources.DataDictionary.Bottom)</option>
 								}
 							</select>
 						</div>

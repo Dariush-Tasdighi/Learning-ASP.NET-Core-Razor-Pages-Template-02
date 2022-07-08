@@ -6,7 +6,7 @@
 		{
 			IsVerified = true;
 
-			Gender = Domain.Models.Users.Enumerations.Gender.Unspecified;
+			Gender = Domain.Models.Enumerations.Gender.Unspecified;
 		}
 
 		// **********
@@ -182,7 +182,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Gender),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Models.Users.Enumerations.Gender Gender { get; set; }
+		public Domain.Models.Enumerations.Gender Gender { get; set; }
 		// **********
 	}
 }

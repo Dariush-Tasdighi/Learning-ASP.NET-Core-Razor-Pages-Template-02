@@ -1,4 +1,4 @@
-﻿namespace Domain.Models.Users
+﻿namespace Domain.Models
 {
 	public class Role : SeedWork.Entity, SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable,
 		SeedWork.IEntityHasUpdateDateTime, SeedWork.IEntityHasIsSystemic, SeedWork.IEntityHasLogicalDelete

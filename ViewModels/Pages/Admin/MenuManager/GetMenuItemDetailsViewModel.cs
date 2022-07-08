@@ -94,7 +94,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IconPosition),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Models.Menus.Enumerations.IconPosition? IconPosition { get; init; }
+		public Domain.Models.Enumerations.IconPosition? IconPosition { get; init; }
 		// **********
 	}
 }

@@ -1,4 +1,4 @@
-﻿namespace Domain.Models.Menus.Enumerations
+﻿namespace Domain.Models.Enumerations
 {
 	public enum IconPosition : int
 	{

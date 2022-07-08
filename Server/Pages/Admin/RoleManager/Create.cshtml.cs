@@ -63,7 +63,7 @@ namespace Server.Pages.Admin.RoleManager
 				else
 				{
 					// **************************************************
-					Domain.Models.Users.Role role = new()
+					Domain.Models.Role role = new()
 					{
 						Name = fixedName,
 						Ordering = ViewModel.Ordering,
