@@ -12,7 +12,6 @@
 		#region Constructor
 		public Menu() : base()
 		{
-			SetUpdateDateTime();
 			IconPosition = Enumerations.IconPosition.Left;
 			Children = new System.Collections.Generic.List<Menu>();
 		}
