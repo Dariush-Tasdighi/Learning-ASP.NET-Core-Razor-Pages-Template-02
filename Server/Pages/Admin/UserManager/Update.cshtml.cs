@@ -50,7 +50,6 @@ namespace Server.Pages.Admin.UserManager
 						IsActive = current.IsActive,
 						IsVerified = current.IsVerified,
 					}).FirstOrDefaultAsync();
-
 			}
 			catch (System.Exception ex)
 			{
@@ -60,6 +59,8 @@ namespace Server.Pages.Admin.UserManager
 			}
 			finally
 			{
+				await SetAccessibleRole();
+
 				await DisposeDatabaseContextAsync();
 			}
 
@@ -135,6 +136,8 @@ namespace Server.Pages.Admin.UserManager
 			}
 			finally
 			{
+				await SetAccessibleRole();
+
 				await DisposeDatabaseContextAsync();
 			}
 		}
