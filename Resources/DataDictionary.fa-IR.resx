@@ -123,11 +123,17 @@
   <data name="Active" xml:space="preserve">
     <value>فعال</value>
   </data>
+  <data name="Author" xml:space="preserve">
+    <value>نویسنده</value>
+  </data>
   <data name="BirthDate" xml:space="preserve">
     <value>تاریخ تولد</value>
   </data>
   <data name="Blog" xml:space="preserve">
     <value>وبلاگ</value>
+  </data>
+  <data name="Body" xml:space="preserve">
+    <value>بدنه</value>
   </data>
   <data name="Bottom" xml:space="preserve">
     <value>پایین</value>
@@ -144,8 +150,17 @@
   <data name="Children" xml:space="preserve">
     <value>فرزندان</value>
   </data>
+  <data name="Classification" xml:space="preserve">
+    <value>طبقه بندی</value>
+  </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>تکرار گذرواژه</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>حق نشر</value>
+  </data>
+  <data name="CreatorUserId" xml:space="preserve">
+    <value>کاربر ایجاد کننده</value>
   </data>
   <data name="Deactive" xml:space="preserve">
     <value>غیر فعال</value>
@@ -156,8 +171,23 @@
   <data name="Deleted" xml:space="preserve">
     <value>حذف شده</value>
   </data>
+  <data name="DeleteDateTime" xml:space="preserve">
+    <value>تاریخ و زمان حذف</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>توضیحات</value>
+  </data>
+  <data name="DisplayCreatorUser" xml:space="preserve">
+    <value>نمایش کاربر خالق</value>
+  </data>
+  <data name="DoesSearchEnginesFollowIt" xml:space="preserve">
+    <value>آیا موتورهای جستجو از آن پیروی می کنند؟</value>
+  </data>
+  <data name="DoesSearchEnginesIndexIt" xml:space="preserve">
+    <value>آیا موتورهای جستجو آن را فهرست می کنند؟</value>
+  </data>
+  <data name="DownloadCount" xml:space="preserve">
+    <value>تعداد دانلود</value>
   </data>
   <data name="EmailAddress" xml:space="preserve">
     <value>نشانی پست الکترونیکی</value>
@@ -180,6 +210,12 @@
   <data name="Gender" xml:space="preserve">
     <value>جنسیت</value>
   </data>
+  <data name="HasAttachment" xml:space="preserve">
+    <value>پیوست داشتن</value>
+  </data>
+  <data name="Hits" xml:space="preserve">
+    <value>تعداد بازدید</value>
+  </data>
   <data name="Icon" xml:space="preserve">
     <value>آیکون</value>
   </data>
@@ -189,14 +225,23 @@
   <data name="Id" xml:space="preserve">
     <value>شناسه</value>
   </data>
+  <data name="ImageUrl" xml:space="preserve">
+    <value>آدرس تصویر</value>
+  </data>
   <data name="InsertDateTime" xml:space="preserve">
     <value>زمان درج</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>مقدمه</value>
   </data>
   <data name="IsActive" xml:space="preserve">
     <value>فعال</value>
   </data>
   <data name="IsCellPhoneNumberVerified" xml:space="preserve">
     <value>شماره تلفن همراه تایید شده است</value>
+  </data>
+  <data name="IsCommentingEnabled" xml:space="preserve">
+    <value>فعال بودن اظهار نظر در صفحه</value>
   </data>
   <data name="IsDefault" xml:space="preserve">
     <value>رکورد پیش فرض</value>
@@ -210,14 +255,23 @@
   <data name="IsEmailAddressVerified" xml:space="preserve">
     <value>پست الکترونیکی تایید شده است</value>
   </data>
+  <data name="IsFeatured" xml:space="preserve">
+    <value>ویژه بودن صفحه</value>
+  </data>
   <data name="IsPublic" xml:space="preserve">
     <value>عمومی</value>
   </data>
   <data name="IsSystemic" xml:space="preserve">
     <value>سیستمی</value>
   </data>
+  <data name="IsUpdatable" xml:space="preserve">
+    <value>قابل ویرایش</value>
+  </data>
   <data name="IsVerified" xml:space="preserve">
     <value>تایید شده</value>
+  </data>
+  <data name="Keywords" xml:space="preserve">
+    <value>کلیدواژه ها</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>زبان</value>
@@ -227,6 +281,9 @@
   </data>
   <data name="LastName" xml:space="preserve">
     <value>نام خانوادگی</value>
+  </data>
+  <data name="Layout" xml:space="preserve">
+    <value>طرح زمینه</value>
   </data>
   <data name="Left" xml:space="preserve">
     <value>چپ</value>
@@ -285,8 +342,17 @@
   <data name="Path" xml:space="preserve">
     <value>مسیر</value>
   </data>
+  <data name="PublishFinishDateTime" xml:space="preserve">
+    <value>تاریخ و زمان پایان انتشار</value>
+  </data>
+  <data name="PublishStartDateTime" xml:space="preserve">
+    <value>تاریخ و زمان شروع انتشار</value>
+  </data>
   <data name="RememberMe" xml:space="preserve">
     <value>مرا به خاطر داشته باش</value>
+  </data>
+  <data name="RemoverUserId" xml:space="preserve">
+    <value>کاربر حذف کننده</value>
   </data>
   <data name="Resume" xml:space="preserve">
     <value>رزومه</value>
@@ -338,6 +404,9 @@
   </data>
   <data name="UpdateDateTime" xml:space="preserve">
     <value>زمان ویرایش</value>
+  </data>
+  <data name="UpdaterUserId" xml:space="preserve">
+    <value>کاربر ویرایش کننده</value>
   </data>
   <data name="User" xml:space="preserve">
     <value>کاربر</value>
