@@ -146,16 +146,6 @@
 		#endregion Property(ies)
 
 		#region Method(s)
-		public void Active()
-		{
-			IsActive = true;
-		}
-
-		public void Deactive()
-		{
-			IsActive = false;
-		}
-
 		public void SetUpdateDateTime()
 		{
 			UpdateDateTime = Domain.SeedWork.Utility.Now;
