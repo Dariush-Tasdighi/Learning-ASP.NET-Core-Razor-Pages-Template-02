@@ -25,6 +25,11 @@
 		/// <summary>
 		/// نام
 		/// </summary>
+		[System.ComponentModel.DataAnnotations.Required
+			(AllowEmptyStrings = false,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Name),
 			ResourceType = typeof(Resources.DataDictionary))]

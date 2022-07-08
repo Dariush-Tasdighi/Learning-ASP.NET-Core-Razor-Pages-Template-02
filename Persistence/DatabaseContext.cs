@@ -17,6 +17,8 @@ namespace Persistence
 
 		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Role> Roles { get; set; }
 
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Page> Pages { get; set; }
+
 		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.MenuItem> MenuItems { get; set; }
 
 		protected override void OnConfiguring

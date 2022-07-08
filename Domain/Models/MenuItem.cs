@@ -42,8 +42,13 @@
 
 		// **********
 		/// <summary>
-		/// عنوان منو
+		/// عنوان آیتم منو
 		/// </summary>
+		[System.ComponentModel.DataAnnotations.Required
+			(AllowEmptyStrings = false,
+			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Title),
 			ResourceType = typeof(Resources.DataDictionary))]
