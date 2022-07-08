@@ -333,6 +333,12 @@
   <data name="Ordering" xml:space="preserve">
     <value>چیدمان</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>صفحه</value>
+  </data>
+  <data name="PageManager" xml:space="preserve">
+    <value>مدیریت صفحات</value>
+  </data>
   <data name="Parent" xml:space="preserve">
     <value>والد</value>
   </data>

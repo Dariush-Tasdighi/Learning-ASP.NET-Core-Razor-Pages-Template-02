@@ -27,45 +27,34 @@ namespace Server.Pages.Admin.RoleManager
 		public async
 			System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnGetAsync(System.Guid? id)
+			OnGetAsync(System.Guid id)
 		{
 			try
 			{
-				if (id == null)
-				{
-					string errorMessage = string.Format
-						(Resources.Messages.Validations.Required,
-						Resources.DataDictionary.Id);
-
-					AddPageError(message: errorMessage);
-				}
-				else
-				{
-					ViewModel =
-						await DatabaseContext.Roles
-						.Where(current => current.Id == id.Value)
-						.Select(current => new ViewModels.Pages.Admin.RoleManager.GetRoleItemDetailsViewModel
-						{
-							Id = current.Id,
-							Name = current.Name,
-							Ordering = current.Ordering,
-							IsActive = current.IsActive,
-							IsDeleted = current.IsDeleted,
-							IsSystemic = current.IsSystemic,
-							Description = current.Description,
-							IsDeletable = current.IsDeletable,
-							InsertDateTime = current.InsertDateTime,
-							UpdateDateTime = current.UpdateDateTime,
-						}).FirstOrDefaultAsync();
-
-					if (ViewModel.Id.HasValue)
+				ViewModel =
+					await DatabaseContext.Roles
+					.Where(current => current.Id == id)
+					.Select(current => new ViewModels.Pages.Admin.RoleManager.GetRoleItemDetailsViewModel
 					{
-						// Might Not Be Used
-						ViewModel.NumberOfUserWithThisRole =
-							await DatabaseContext.Users
-							.Where(current => current.RoleId == ViewModel.Id)
-							.CountAsync();
-					}
+						Id = current.Id,
+						Name = current.Name,
+						Ordering = current.Ordering,
+						IsActive = current.IsActive,
+						IsDeleted = current.IsDeleted,
+						IsSystemic = current.IsSystemic,
+						Description = current.Description,
+						IsDeletable = current.IsDeletable,
+						InsertDateTime = current.InsertDateTime,
+						UpdateDateTime = current.UpdateDateTime,
+					}).FirstOrDefaultAsync();
+
+				if (ViewModel.Id.HasValue)
+				{
+					// Might Not Be Used
+					ViewModel.NumberOfUserWithThisRole =
+						await DatabaseContext.Users
+						.Where(current => current.RoleId == ViewModel.Id)
+						.CountAsync();
 				}
 			}
 			catch (System.Exception ex)

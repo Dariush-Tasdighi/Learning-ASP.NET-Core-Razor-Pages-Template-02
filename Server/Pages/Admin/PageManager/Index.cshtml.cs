@@ -1,0 +1,46 @@
+using System.Linq;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+
+namespace Server.Pages.Admin.PageManager
+{
+	[Microsoft.AspNetCore.Authorization.Authorize
+		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	public class IndexModel : Infrastructure.BasePageModelWithDatabase
+	{
+		public IndexModel
+			(Persistence.DatabaseContext databaseContext,
+			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
+		{
+			Logger = logger;
+		}
+
+		// **********
+		private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
+		// **********
+
+		// TO DO: Let Users Select Page Size
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult>
+			OnGetAsync(int pageSize = 10, int pageNumber = 1)
+		{
+			try
+			{
+			}
+			catch (System.Exception ex)
+			{
+				Logger.LogError(message: ex.Message);
+
+				//System.Console.WriteLine(value: ex.Message);
+
+				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+			}
+			finally
+			{
+				await DisposeDatabaseContextAsync();
+			}
+
+			return Page();
+		}
+	}
+}

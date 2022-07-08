@@ -1,0 +1,36 @@
+﻿@page
+@model Server.Pages.Admin.PageManager.IndexModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+
+@{
+	//@if (Model.ViewModel == null)
+	//{
+	//	return;
+	//}
+
+	var pageTitle =
+		Resources.PageTitles.PageManagement;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+
+	<a asp-page="/Admin/PageManager/create" asp-route-returnurl="/Admin/PageManager" class="btn btn-primary btn-sm w-25 my-4" role="button" aria-pressed="true">
+		<i class="bi bi-person-plus-fill"></i>
+		@(string.Format(Resources.ButtonCaptions.CreateNew, Resources.DataDictionary.Page))
+	</a>
+
+	<div class="row">
+	</div>
+</div>

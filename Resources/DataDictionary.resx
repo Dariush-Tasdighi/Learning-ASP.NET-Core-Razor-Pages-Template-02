@@ -336,6 +336,12 @@
   <data name="Ordering" xml:space="preserve">
     <value>Ordering</value>
   </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="PageManager" xml:space="preserve">
+    <value>Page Manager</value>
+  </data>
   <data name="Parent" xml:space="preserve">
     <value>Parent</value>
   </data>

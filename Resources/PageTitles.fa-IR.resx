@@ -135,6 +135,9 @@
   <data name="CreateMenuItem" xml:space="preserve">
     <value>ایجاد آیتم منو</value>
   </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>ایجاد صفحه</value>
+  </data>
   <data name="CreateRole" xml:space="preserve">
     <value>ایجاد نقش</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="DeleteMenuItem" xml:space="preserve">
     <value>حذف آیتم منو</value>
+  </data>
+  <data name="DeletePage" xml:space="preserve">
+    <value>حذف صفحه</value>
   </data>
   <data name="DeleteRole" xml:space="preserve">
     <value>حذف نقش</value>
@@ -177,6 +183,12 @@
   <data name="MenuItemManagement" xml:space="preserve">
     <value>مدیریت آیتم های منو</value>
   </data>
+  <data name="PageDetails" xml:space="preserve">
+    <value>چزئیات صفحه</value>
+  </data>
+  <data name="PageManagement" xml:space="preserve">
+    <value>مدیریت صفحات</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>پروفایل</value>
   </data>
@@ -197,6 +209,9 @@
   </data>
   <data name="UpdateMenuItem" xml:space="preserve">
     <value>ویرایش آیتم منو</value>
+  </data>
+  <data name="UpdatePage" xml:space="preserve">
+    <value>ویرایش صفحه</value>
   </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>ویرایش مشخصات</value>

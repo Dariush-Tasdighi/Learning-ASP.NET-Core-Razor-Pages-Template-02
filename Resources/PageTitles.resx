@@ -135,6 +135,9 @@
   <data name="CreateMenuItem" xml:space="preserve">
     <value>Create Menu Item</value>
   </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Create Page</value>
+  </data>
   <data name="CreateRole" xml:space="preserve">
     <value>Create Role</value>
   </data>
@@ -146,6 +149,9 @@
   </data>
   <data name="DeleteMenuItem" xml:space="preserve">
     <value>Delete Menu Item</value>
+  </data>
+  <data name="DeletePage" xml:space="preserve">
+    <value>Delete Page</value>
   </data>
   <data name="DeleteRole" xml:space="preserve">
     <value>Delete Role</value>
@@ -177,6 +183,12 @@
   <data name="MenuItemManagement" xml:space="preserve">
     <value>Menu Item Management</value>
   </data>
+  <data name="PageDetails" xml:space="preserve">
+    <value>Page Details</value>
+  </data>
+  <data name="PageManagement" xml:space="preserve">
+    <value>Page Management</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
   </data>
@@ -197,6 +209,9 @@
   </data>
   <data name="UpdateMenuItem" xml:space="preserve">
     <value>Update Menu Item</value>
+  </data>
+  <data name="UpdatePage" xml:space="preserve">
+    <value>Update Page</value>
   </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>Update Profile</value>

@@ -115,6 +115,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Page.
+        /// </summary>
+        public static string CreatePage {
+            get {
+                return ResourceManager.GetString("CreatePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Role.
         /// </summary>
         public static string CreateRole {
@@ -147,6 +156,15 @@ namespace Resources {
         public static string DeleteMenuItem {
             get {
                 return ResourceManager.GetString("DeleteMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Page.
+        /// </summary>
+        public static string DeletePage {
+            get {
+                return ResourceManager.GetString("DeletePage", resourceCulture);
             }
         }
         
@@ -241,6 +259,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Details.
+        /// </summary>
+        public static string PageDetails {
+            get {
+                return ResourceManager.GetString("PageDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Management.
+        /// </summary>
+        public static string PageManagement {
+            get {
+                return ResourceManager.GetString("PageManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string Profile {
@@ -300,6 +336,15 @@ namespace Resources {
         public static string UpdateMenuItem {
             get {
                 return ResourceManager.GetString("UpdateMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Page.
+        /// </summary>
+        public static string UpdatePage {
+            get {
+                return ResourceManager.GetString("UpdatePage", resourceCulture);
             }
         }
         
