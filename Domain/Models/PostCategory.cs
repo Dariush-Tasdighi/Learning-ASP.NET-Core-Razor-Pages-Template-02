@@ -1,6 +1,7 @@
 ﻿namespace Domain.Models
 {
-	public class PostCategory : SeedWork.Entity,
+	public class PostCategory :
+		SeedWork.Entity, SeedWork.IEntityHasUpdateDateTime,
 		SeedWork.IEntityHasOrdering, SeedWork.IEntityHasIsActive,
 		SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete
 	{
@@ -85,6 +86,16 @@
 
 		// **********
 		/// <summary>
+		/// تاریخ و زمان آخرین بروزرسانی
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public System.DateTime? UpdateDateTime { get; private set; }
+		// **********
+
+		// **********
+		/// <summary>
 		/// قابل حذف بودن/نبودن
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
@@ -110,6 +121,13 @@
 		// **********
 		//public virtual System.Collections.Generic.IList<Post> Posts { get; set; }
 		// **********
-		#endregion /Property(ies)
+		#endregion Property(ies)
+
+		#region Method(s)
+		public void SetUpdateDateTime()
+		{
+			UpdateDateTime = Domain.SeedWork.Utility.Now;
+		}
+		#endregion /Method(s)
 	}
 }

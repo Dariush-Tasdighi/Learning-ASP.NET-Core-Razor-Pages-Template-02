@@ -1,6 +1,7 @@
 ﻿namespace Domain.Models
 {
-	public class MenuItem : Domain.SeedWork.Entity,
+	public class MenuItem :
+		Domain.SeedWork.Entity, SeedWork.IEntityHasUpdateDateTime,
 		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasOrdering,
 		SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete
 	{
