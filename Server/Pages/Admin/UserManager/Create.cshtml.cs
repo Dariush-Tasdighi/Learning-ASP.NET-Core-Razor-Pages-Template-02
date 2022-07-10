@@ -43,7 +43,7 @@ namespace Server.Pages.Admin.UserManager
 
 		public async System.Threading.Tasks.Task OnGetAsync(string? returnUrl)
 		{
-			ReturnUrl = returnUrl;
+			ReturnUrl = SetReturnUrl(returnUrl: returnUrl);
 
 			try
 			{
@@ -77,11 +77,6 @@ namespace Server.Pages.Admin.UserManager
 
 			try
 			{
-				if (ModelState.IsValid is false)
-				{
-					return Page();
-				}
-
 				bool isUsernameFound =
 					await DatabaseContext.Users
 					.Where(current => current.Username == fixedUsername)
@@ -181,14 +176,9 @@ namespace Server.Pages.Admin.UserManager
 				await DisposeDatabaseContextAsync();
 			}
 
-			if (string.IsNullOrWhiteSpace(value: ReturnUrl))
-			{
-				return RedirectToPage(pageName: "./Index");
-			}
-			else
-			{
-				return Redirect(url: ReturnUrl);
-			}
+			ReturnUrl = SetReturnUrl(returnUrl: ReturnUrl);
+
+			return Redirect(url: ReturnUrl);
 		}
 
 		private async System.Threading.Tasks.Task SetAccessibleRole()

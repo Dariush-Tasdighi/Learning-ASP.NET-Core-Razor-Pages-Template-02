@@ -49,7 +49,10 @@
 
 						<div class="input-group">
 							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
-							<input type="number" asp-for="ViewModel.Ordering" class="form-control" value="1" min="1" dir="ltr" />
+
+							<input type="number" asp-for="ViewModel.Ordering"
+								   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
+								   value="@(Domain.SeedWork.Constant.Minimum.Ordering)" class="form-control" dir="ltr" />
 						</div>
 
 						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>

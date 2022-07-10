@@ -1,6 +1,6 @@
 ﻿namespace Domain.Models.Enumerations
 {
-	public enum IconPosition : int
+	public enum IconPosition : byte
 	{
 		Left = 0,
 		Right = 1,

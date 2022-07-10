@@ -20,6 +20,16 @@ namespace Persistence.Configurations
 				.IsRequired(required: true)
 				.IsUnicode(unicode: true)
 				;
+
+			// **************************************************
+
+			// **************************************************
+			builder
+				.Property(current => current.Password)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.PasswordInDatabase)
+				.IsRequired(required: true)
+				.IsUnicode(unicode: false)
+				;
 			// **************************************************
 
 			// **************************************************

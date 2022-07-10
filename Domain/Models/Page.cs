@@ -20,6 +20,7 @@
 
 		public Page() : base()
 		{
+			Ordering = SeedWork.Constant.Default.Ordering;
 		}
 
 		// **********
@@ -56,6 +57,16 @@
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Title))]
 		public string? Title { get; set; }
+		// **********
+
+		// **********
+		/// <summary>
+		/// رمز عبور
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.Password))]
+		public string? Password { get; set; }
 		// **********
 
 		// **********
@@ -276,7 +287,6 @@
 			Name = nameof(Resources.DataDictionary.UpdaterUserId))]
 		public System.Guid? UpdaterUserId { get; private set; }
 		// **********
-		// **********
 
 		// **********
 		/// <summary>
@@ -329,10 +339,6 @@
 		// **********
 
 		// **********
-		public System.Guid? ParentId { get; set; }
-		// **********
-
-		// **********
 		public string? Category { get; set; }
 		// **********
 
@@ -343,7 +349,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Ordering))]
-		public int Ordering { get; set; }
+		public uint Ordering { get; set; }
 		// **********
 
 		public void SetUpdateDateTime()

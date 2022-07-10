@@ -104,8 +104,8 @@ namespace Server.Pages.Admin.UserManager
 					foundedItem.SetUpdateDateTime();
 					// **************************************************
 
-					var entityEntry =
-						DatabaseContext.Update(entity: foundedItem);
+					//var entityEntry =
+					//	DatabaseContext.Update(entity: foundedItem);
 
 					int affectedRows =
 						await DatabaseContext.SaveChangesAsync();

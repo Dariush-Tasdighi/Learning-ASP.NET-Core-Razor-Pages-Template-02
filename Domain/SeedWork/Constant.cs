@@ -28,6 +28,33 @@
 			public const int CellPhoneNumberVerificationKey = 10;
 		}
 
+		public static class Maximum
+		{
+			static Maximum()
+			{
+			}
+
+			public const uint Ordering = 1000000000;
+		}
+
+		public static class Minimum
+		{
+			static Minimum()
+			{
+			}
+
+			public const uint Ordering = 1;
+		}
+
+		public static class Default
+		{
+			static Default()
+			{
+			}
+
+			public const uint Ordering = 10000;
+		}
+
 		/// <summary>
 		/// https://regex101.com/
 		/// </summary>

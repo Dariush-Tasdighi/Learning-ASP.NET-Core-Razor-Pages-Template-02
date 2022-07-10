@@ -14,7 +14,7 @@
 		#region Constructor(s)
 		public Role() : base()
 		{
-			//Ordering = 10000;
+			Ordering = 10000;
 			IsDeletable = true;
 			Users = new System.Collections.Generic.List<User>();
 		}
@@ -73,7 +73,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Ordering),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public int Ordering { get; set; }
+		public uint Ordering { get; set; }
 		// **********
 
 		// **********

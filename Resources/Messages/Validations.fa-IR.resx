@@ -141,6 +141,9 @@
   <data name="Password" xml:space="preserve">
     <value>گذرواژه باید از هشت تا بیست کاراکتر تشکیل شود. شما می‌توانید از حروف a تا z بزرگ یا کوچک، اعداد از 0 تا 9 انگلیسی و زیرخط استفاده نمایید!</value>
   </data>
+  <data name="Range" xml:space="preserve">
+    <value>مقدار فیلد {0} باید بزرگ‌تر یا مساوی {1} و کوچک‌تر یا مساوی {2} باشد.</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>تکمیل فیلد {0} الزامی است!</value>
   </data>

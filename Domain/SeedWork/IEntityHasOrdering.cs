@@ -2,6 +2,6 @@
 {
 	public interface IEntityHasOrdering
 	{
-		int Ordering { get; set; }
+		uint Ordering { get; set; }
 	}
 }

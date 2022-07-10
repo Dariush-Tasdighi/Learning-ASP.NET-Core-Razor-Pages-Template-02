@@ -144,6 +144,9 @@
   <data name="Password" xml:space="preserve">
     <value>{0} is not valid!</value>
   </data>
+  <data name="Range" xml:space="preserve">
+    <value>{0} should be greater than or equal to {1} and less than or equal to {2}!</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>{0} is required!</value>
   </data>

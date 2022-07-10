@@ -1,6 +1,6 @@
 ﻿namespace Domain.Models.Enumerations
 {
-	public enum Gender : int
+	public enum Gender : byte
 	{
 		Unspecified = 0,
 		Male = 1,

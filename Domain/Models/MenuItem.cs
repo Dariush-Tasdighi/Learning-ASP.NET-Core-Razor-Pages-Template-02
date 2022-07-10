@@ -13,6 +13,7 @@
 		#region Constructor
 		public MenuItem() : base()
 		{
+			Ordering = 10000;
 			IconPosition = Enumerations.IconPosition.Left;
 			Children = new System.Collections.Generic.List<MenuItem>();
 		}
@@ -72,7 +73,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Ordering),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public int Ordering { get; set; }
+		public uint Ordering { get; set; }
 		// **********
 
 		// **********
@@ -136,6 +137,9 @@
 		// **********
 
 		// **********
+		/// <summary>
+		/// تاریخ و زمان آخرین بروزرسانی
+		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
