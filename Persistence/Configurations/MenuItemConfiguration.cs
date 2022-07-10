@@ -60,7 +60,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.HasIndex(current => new { current.ParentId, current.Title })
-				.HasDatabaseName(name: $"IX_{ nameof(Domain.Models.MenuItem.ParentId) }_{ nameof(Domain.Models.MenuItem.Title) }")
+				//.HasDatabaseName(name: $"IX_{ nameof(Domain.Models.MenuItem.ParentId) }_{ nameof(Domain.Models.MenuItem.Title) }")
 				.IsUnique(unique: true)
 				;
 			// **************************************************
