@@ -59,32 +59,35 @@ namespace Persistence.Configurations
 			(
 				new Domain.Models.Role
 				{
-					Ordering = 1,
+					Ordering = 10000,
 					IsActive = true,
 					IsSystemic = true,
+					IsDeletable = false,
 					Name = Domain.SeedWork.Constant.SystemicRole.User,
 					Id = Domain.SeedWork.Constant.SystemicRole.UserRoleId,
 				},
 				new Domain.Models.Role
 				{
-					Ordering = 2,
+					Ordering = 10001,
 					IsActive = true,
 					IsSystemic = true,
+					IsDeletable = false,
 					Name = Domain.SeedWork.Constant.SystemicRole.Admin,
 					Id = Domain.SeedWork.Constant.SystemicRole.AdminRoleId,
 				},
 				new Domain.Models.Role
 				{
-					Ordering = 3,
-					IsActive = true,
+					Ordering = 10002,
+					IsActive = false,
 					IsSystemic = true,
+					IsDeletable = false,
 					Name = Domain.SeedWork.Constant.SystemicRole.Owner,
 					Id = Domain.SeedWork.Constant.SystemicRole.OwnerRoleId,
 				},
 				new Domain.Models.Role
 				{
-					Ordering = 4,
-					IsActive = true,
+					Ordering = 10003,
+					IsActive = false,
 					IsSystemic = true,
 					Name = Domain.SeedWork.Constant.SystemicRole.Programmer,
 					Id = Domain.SeedWork.Constant.SystemicRole.ProgrammerRoleId,

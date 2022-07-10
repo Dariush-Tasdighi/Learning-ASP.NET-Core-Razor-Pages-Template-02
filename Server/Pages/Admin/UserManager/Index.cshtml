@@ -65,15 +65,15 @@
 							</td>
 
 							<td>
-								<i class="@(item.IsActive ? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
+								<i class="@(item.IsActive ? applicationSettings.IconSettings.TableIcons.True : applicationSettings.IconSettings.TableIcons.False)"></i>
 							</td>
 
 							<td>
-								<i class="@(item.IsVerified? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
+								<i class="@(item.IsVerified? applicationSettings.IconSettings.TableIcons.True : applicationSettings.IconSettings.TableIcons.False)"></i>
 							</td>
 
 							<td>
-								<i class="@(item.IsDeleted ? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
+								<i class="@(item.IsDeleted ? applicationSettings.IconSettings.TableIcons.True : applicationSettings.IconSettings.TableIcons.False)"></i>
 							</td>
 
 							<td>
@@ -89,7 +89,7 @@
 							else
 							{
 								<td>
-									<i class="bi bi-dash"></i>
+									<i class="@(applicationSettings.IconSettings.TableIcons.None)"></i>
 								</td>
 							}
 
@@ -97,22 +97,22 @@
 							{
 								<td>
 									<a asp-page="./Update" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
-										<i class="bi bi-pencil-fill"></i>
+										<i class="@(applicationSettings.IconSettings.TableIcons.Update)"></i>
 									</a>
 									|
 									<a asp-page="./Delete" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
-										<i class="bi bi-trash-fill"></i>
+										<i class="@(applicationSettings.IconSettings.TableIcons.Delete)"></i>
 									</a>
 									|
 									<a asp-page="./Details" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
-										<i class="bi bi-zoom-in"></i>
+										<i class="@(applicationSettings.IconSettings.TableIcons.Details)"></i>
 									</a>
 								</td>
 							}
 							else
 							{
 								<td>
-									<i class="bi bi-dash"></i>
+									<i class="@(applicationSettings.IconSettings.TableIcons.None)"></i>
 								</td>
 							}
 						</tr>
@@ -133,12 +133,12 @@
 
 								<li class="page-item">
 									<a class="page-link" asp-page="./Index" asp-route-PageNumber=@(Model.ViewModel.PageInformation.PageNumber)
-									asp-route-PageSize="@(Model.ViewModel.PageInformation.PageSize)">@(Model.ViewModel.PageInformation.PageNumber)</a>
+									   asp-route-PageSize="@(Model.ViewModel.PageInformation.PageSize)">@(Model.ViewModel.PageInformation.PageNumber)</a>
 								</li>
 
 								<li class="page-item @(Model.ViewModel.PageInformation.PageNumber >= Model.ViewModel.PageInformation.PageCount ? "disabled" : null )">
 									<a class="page-link" asp-page="./Index" asp-route-PageNumber=@(Model.ViewModel.PageInformation.PageNumber + 1)
-									asp-route-PageSize="@(Model.ViewModel.PageInformation.PageSize)"><i class="@(applicationSettings.TablesDefaultSettings.NextPageIcon)"></i></a>
+									   asp-route-PageSize="@(Model.ViewModel.PageInformation.PageSize)"><i class="@(applicationSettings.TablesDefaultSettings.NextPageIcon)"></i></a>
 								</li>
 							</ul>
 						</td>

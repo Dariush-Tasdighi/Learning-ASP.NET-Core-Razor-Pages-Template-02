@@ -6,6 +6,9 @@
 
 		public ApplicationSettings() : base()
 		{
+			IconSettings =
+				new IconSettings();
+
 			ToastSettings =
 				new ToastSettings();
 
@@ -15,7 +18,8 @@
 			FileManagerSettings =
 				new FileManagerSettings();
 
-			TablesDefaultSettings = new();
+			TablesDefaultSettings =
+				new TablesDefaultSettings();
 		}
 
 		// **********
@@ -28,6 +32,10 @@
 
 		// **********
 		public string[]? ActivationKeys { get; set; }
+		// **********
+
+		// **********
+		public IconSettings IconSettings { get; set; }
 		// **********
 
 		// **********

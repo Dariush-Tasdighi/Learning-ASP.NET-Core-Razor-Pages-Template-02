@@ -1,5 +1,6 @@
 ﻿@page
 @model Server.Pages.Admin.UserManager.DetailsModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
 @{
 	@if (Model.ViewModel == null)
@@ -34,17 +35,20 @@
 
 				<hr />
 
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Username) == false)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.Username" class="form-label"></label>
+				<div class="mb-3">
+					<label asp-for="ViewModel.Username" class="form-label"></label>
 
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-							<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
-						</div>
+					<div class="input-group">
+						@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Username) == false)
+						{
+							<div class="input-group-text">
+								<i class="@(applicationSettings.IconSettings.UserIcons.Username)"></i>
+							</div>
+						}
+
+						<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
 					</div>
-				}
+				</div>
 
 				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.FirstName) == false)
 				{
@@ -52,7 +56,13 @@
 						<label asp-for="ViewModel.FirstName" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.FirstName) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.FirstName)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.FirstName" class="form-control" />
 						</div>
 					</div>
@@ -64,7 +74,13 @@
 						<label asp-for="ViewModel.LastName" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.LastName) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.LastName)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.LastName" class="form-control" />
 						</div>
 					</div>
@@ -76,7 +92,13 @@
 						<label asp-for="ViewModel.CellPhoneNumber" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-telephone-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.CellPhoneNumber) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.CellPhoneNumber)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.CellPhoneNumber" class="form-control" dir="ltr" />
 						</div>
 					</div>
@@ -98,7 +120,13 @@
 						<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.EmailAddress) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.EmailAddress)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.EmailAddress" class="form-control" dir="ltr" />
 						</div>
 					</div>
@@ -114,51 +142,47 @@
 					}
 				}
 
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Role) == false)
-				{
-
-					<div class="mb-3">
-						<label asp-for="ViewModel.Role" class="form-label"></label>
-
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
-							<input asp-for="ViewModel.Role" class="form-control" dir="ltr" />
-						</div>
-					</div>
-				}
-
-				@*
-					@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Description) == false)
-					{
-
-					<div class="mb-3">
-					<label asp-for="ViewModel.Description" class="form-label"></label>
+				<div class="mb-3">
+					<label asp-for="ViewModel.Role" class="form-label"></label>
 
 					<div class="input-group">
-					<div class="input-group-text"><i class="bi bi-card-text"></i></div>
-					<textarea asp-for="ViewModel.Description" class="form-control"> </textarea>
-					</div>
-					</div>
-					}
-				*@
+						@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Role) == false)
+						{
+							<div class="input-group-text">
+								<i class="@(applicationSettings.IconSettings.UserIcons.Role)"></i>
+							</div>
+						}
 
-				@if (Model.ViewModel.InsertDateTime.HasValue)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.InsertDateTime" class="form-label"></label>
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
-							<input placeholder="@(Model.ViewModel.InsertDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
-						</div>
+						<input asp-for="ViewModel.Role" class="form-control" dir="ltr" />
 					</div>
-				}
+				</div>
+
+				<div class="mb-3">
+					<label asp-for="ViewModel.InsertDateTime" class="form-label"></label>
+					<div class="input-group">
+						@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.SharedIcons.DateTime) == false)
+						{
+							<div class="input-group-text">
+								<i class="@(applicationSettings.IconSettings.SharedIcons.DateTime)"></i>
+							</div>
+						}
+
+						<input placeholder="@(Model.ViewModel.InsertDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
+					</div>
+				</div>
 
 				@if (Model.ViewModel.UpdateDateTime.HasValue)
 				{
 					<div class="mb-3">
 						<label asp-for="ViewModel.UpdateDateTime" class="form-label"></label>
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.SharedIcons.DateTime) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.SharedIcons.DateTime)"></i>
+								</div>
+							}
+
 							<input placeholder="@(Model.ViewModel.UpdateDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
 						</div>
 					</div>
@@ -169,7 +193,13 @@
 					<div class="mb-3">
 						<label asp-for="ViewModel.VerifyDateTime" class="form-label"></label>
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.SharedIcons.DateTime) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.SharedIcons.DateTime)"></i>
+								</div>
+							}
+
 							<input placeholder="@(Model.ViewModel.VerifyDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
 						</div>
 					</div>

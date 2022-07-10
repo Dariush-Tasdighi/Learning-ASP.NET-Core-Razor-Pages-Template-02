@@ -1,5 +1,6 @@
 ﻿@page
 @model Server.Pages.Admin.UserManager.CreateModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
 @{
 	var pageTitle =
@@ -33,15 +34,19 @@
 
 					<partial name="PartialViews/_DisplayPageMessages" />
 
-
 					<div class="row">
 						<div class="col-6">
-
 							<div class="mb-3">
 								<label asp-for="ViewModel.FirstName" class="form-label"></label>
 
 								<div class="input-group">
-									<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+									@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.FirstName) == false)
+									{
+										<div class="input-group-text">
+											<i class="@(applicationSettings.IconSettings.UserIcons.FirstName)"></i>
+										</div>
+									}
+
 									<input asp-for="ViewModel.FirstName" class="form-control" />
 								</div>
 
@@ -54,7 +59,13 @@
 								<label asp-for="ViewModel.LastName" class="form-label"></label>
 
 								<div class="input-group">
-									<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+									@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.LastName) == false)
+									{
+										<div class="input-group-text">
+											<i class="@(applicationSettings.IconSettings.UserIcons.LastName)"></i>
+										</div>
+									}
+
 									<input asp-for="ViewModel.LastName" class="form-control" />
 								</div>
 
@@ -68,7 +79,13 @@
 						<label asp-for="ViewModel.Username" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Username) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Username)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
 						</div>
 
@@ -80,7 +97,13 @@
 						<label asp-for="ViewModel.Password" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Password) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Password)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.Password" class="form-control" dir="ltr" />
 						</div>
 
@@ -92,7 +115,13 @@
 						<label asp-for="ViewModel.ConfirmPassword" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Password) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Password)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.ConfirmPassword" class="form-control" dir="ltr" />
 						</div>
 
@@ -104,7 +133,13 @@
 						<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.EmailAddress) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.EmailAddress)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.EmailAddress" class="form-control" dir="ltr" />
 						</div>
 
@@ -115,7 +150,13 @@
 						<label asp-for="ViewModel.CellPhoneNumber" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-telephone-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.CellPhoneNumber) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.CellPhoneNumber)"></i>
+								</div>
+							}
+
 							<input asp-for="ViewModel.CellPhoneNumber" class="form-control" dir="ltr" />
 						</div>
 
@@ -127,7 +168,13 @@
 						<label asp-for="ViewModel.RoleId" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Role) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Role)"></i>
+								</div>
+							}
+
 							<select class="form-select" asp-for="ViewModel.RoleId">
 								<option value="@(null)" selected>@(Resources.DataDictionary.NotSelected)</option>
 
@@ -145,7 +192,13 @@
 						<label asp-for="ViewModel.Gender" class="form-label"></label>
 
 						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-people-fill"></i></div>
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Gender) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Gender)"></i>
+								</div>
+							}
+
 							<select class="form-select" asp-for="ViewModel.Gender">
 								<option selected value="@(Domain.Models.Enumerations.Gender.Unspecified)">@(Resources.DataDictionary.Unspecified)</option>
 								<option value="@(Domain.Models.Enumerations.Gender.Female)">@(Resources.DataDictionary.Female)</option>
