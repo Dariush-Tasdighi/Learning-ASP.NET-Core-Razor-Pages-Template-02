@@ -86,7 +86,7 @@ namespace Server.Pages.Admin.MenuItemManager
 								IsActive = current.IsActive,
 								IsDeleted = current.IsDeleted,
 								IsDeletable = current.IsDeletable,
-								HasAnySubMenu = current.Children.Any(),
+								HasAnySubMenu = current.SubMenus.Any(),
 								UpdateDateTime = current.UpdateDateTime,
 								InsertDateTime = current.InsertDateTime,
 							})

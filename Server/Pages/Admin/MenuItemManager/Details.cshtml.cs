@@ -56,7 +56,7 @@ namespace Server.Pages.Admin.MenuItemManager
 							IconPosition = current.IconPosition,
 							UpdateDateTime = current.UpdateDateTime,
 							InsertDateTime = current.InsertDateTime,
-							NumberOfSubMenus = current.Children.Count,
+							NumberOfSubMenus = current.SubMenus.Count,
 						}).FirstOrDefaultAsync();
 				}
 			}

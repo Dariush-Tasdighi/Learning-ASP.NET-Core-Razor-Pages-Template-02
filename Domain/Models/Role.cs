@@ -14,8 +14,8 @@
 		#region Constructor(s)
 		public Role() : base()
 		{
-			Ordering = 10000;
 			IsDeletable = true;
+			Ordering = SeedWork.Constant.Default.Ordering;
 			Users = new System.Collections.Generic.List<User>();
 		}
 		#endregion /Constructor(s)

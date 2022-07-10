@@ -43,7 +43,7 @@ namespace Server.Pages.Admin.MenuItemManager
 							IsActive = current.IsActive,
 							IsPublic = current.IsPublic,
 							InsertDateTime = current.InsertDateTime,
-							NumberOfSubMenus = current.Children.Count(),
+							NumberOfSubMenus = current.SubMenus.Count(),
 						})
 						.FirstOrDefaultAsync();
 				}

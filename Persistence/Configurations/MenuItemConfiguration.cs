@@ -1,4 +1,6 @@
-﻿namespace Persistence.Configurations
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Persistence.Configurations
 {
 	public class MenuItemConfiguration :
 		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.MenuItem>
@@ -41,9 +43,17 @@
 			// **************************************************
 			builder
 				.HasOne(current => current.Parent)
-				.WithMany(other => other.Children)
+				.WithMany(other => other.SubMenus)
 				.HasForeignKey(current => current.ParentId)
 				.OnDelete(deleteBehavior: Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
+				;
+			// **************************************************
+
+			// **************************************************
+			builder
+				.HasIndex(current => new { current.Ordering })
+				.IsClustered(clustered: false)
+				.IsUnique(unique: false)
 				;
 			// **************************************************
 

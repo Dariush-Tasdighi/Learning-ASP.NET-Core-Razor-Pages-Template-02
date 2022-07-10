@@ -1,13 +1,14 @@
 ﻿namespace Domain.Models
 {
 	public class User : SeedWork.Entity,
-		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime, SeedWork.IEntityHasLogicalDelete
+		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime, SeedWork.IEntityHasLogicalDelete//, SeedWork.IEntityHasIsDeletable
 	{
 		#region Constructor(s)
 		public User() : base()
 		{
 			IsActive = false;
 			IsVerified = false;
+			//Ordering = SeedWork.Constant.Default.Ordering;
 		}
 		#endregion /Constructor(s)
 
@@ -322,6 +323,16 @@
 			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public System.DateTime? UpdateDateTime { get; private set; }
+		// **********
+
+		// **********
+		///// <summary>
+		///// ترتیب نمایش
+		///// </summary>
+		//[System.ComponentModel.DataAnnotations.Display
+		//	(Name = nameof(Resources.DataDictionary.Ordering),
+		//	ResourceType = typeof(Resources.DataDictionary))]
+		//public uint Ordering { get; set; }
 		// **********
 		#endregion /Property(ies)
 

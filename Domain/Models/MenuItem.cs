@@ -13,9 +13,9 @@
 		#region Constructor
 		public MenuItem() : base()
 		{
-			Ordering = 10000;
+			Ordering = SeedWork.Constant.Default.Ordering;
 			IconPosition = Enumerations.IconPosition.Left;
-			Children = new System.Collections.Generic.List<MenuItem>();
+			SubMenus = new System.Collections.Generic.List<MenuItem>();
 		}
 		#endregion /Constructor(s)
 
@@ -150,7 +150,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.SubMenuItems),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public virtual System.Collections.Generic.IList<MenuItem> Children { get; set; }
+		public virtual System.Collections.Generic.IList<MenuItem> SubMenus { get; set; }
 		// **********
 		#endregion Property(ies)
 

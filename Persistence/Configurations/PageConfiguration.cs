@@ -97,7 +97,7 @@ namespace Persistence.Configurations
 
 			// **************************************************
 			builder
-				.HasIndex(user => new { user.Ordering })
+				.HasIndex(current => new { current.Ordering })
 				.IsClustered(clustered: false)
 				.IsUnique(unique: false)
 				;

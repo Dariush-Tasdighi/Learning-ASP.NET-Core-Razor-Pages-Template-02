@@ -32,7 +32,8 @@ namespace Persistence.Configurations
 			// **************************************************
 
 			// **************************************************
-			builder.HasMany(current => current.Users)
+			builder
+				.HasMany(current => current.Users)
 				.WithOne(other => other.Role)
 				.HasForeignKey(other => other.RoleId)
 				.OnDelete(deleteBehavior: Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
@@ -41,14 +42,14 @@ namespace Persistence.Configurations
 
 			// **************************************************
 			builder
-				.HasIndex(user => new { user.Name })
+				.HasIndex(current => new { current.Name })
 				.IsUnique(unique: true)
 				;
 			// **************************************************
 
 			// **************************************************
 			builder
-				.HasIndex(user => new { user.Ordering })
+				.HasIndex(current => new { current.Ordering })
 				.IsClustered(clustered: false)
 				.IsUnique(unique: false)
 				;
