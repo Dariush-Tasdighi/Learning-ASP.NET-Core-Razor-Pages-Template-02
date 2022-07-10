@@ -50,7 +50,8 @@ namespace Persistence.Configurations
 
 			//**************************************************
 			builder
-				.HasIndex(current => new { current.Title, current.ParentId })
+				.HasIndex(current => new { current.ParentId, current.Title })
+				.HasDatabaseName(name: $"IX_{ nameof(Domain.Models.PostCategory.ParentId) }_{ nameof(Domain.Models.PostCategory.Title) }")
 				.IsUnique(unique: true)
 				;
 			//**************************************************

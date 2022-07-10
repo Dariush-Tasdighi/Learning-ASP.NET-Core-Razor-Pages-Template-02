@@ -35,5 +35,19 @@ namespace Persistence
 			modelBuilder.ApplyConfigurationsFromAssembly
 				(typeof(Configurations.UserConfiguration).Assembly);
 		}
+
+		//protected override void ConfigureConventions
+		//	(Microsoft.EntityFrameworkCore.ModelConfigurationBuilder builder)
+		//{
+		//	builder
+		//		.Properties<System.DateOnly>()
+		//		.HaveConversion<System.DateTime>()
+		//		;
+
+		//	builder
+		//		.Properties<System.DateOnly?>()
+		//		.HaveConversion<System.DateTime?>()
+		//		;
+		//}
 	}
 }

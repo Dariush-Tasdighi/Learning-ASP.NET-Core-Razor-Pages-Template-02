@@ -1,4 +1,6 @@
-﻿namespace Persistence.Configurations
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace Persistence.Configurations
 {
 	internal class UserConfiguration :
 		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.User>
@@ -48,6 +50,13 @@
 				.Property(current => current.Description)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
+				;
+			// **************************************************
+
+			// **************************************************
+			builder
+				.Property(current => current.BirthDate)
+				.HasColumnType(typeName: nameof(System.DateTime.Date))
 				;
 			// **************************************************
 

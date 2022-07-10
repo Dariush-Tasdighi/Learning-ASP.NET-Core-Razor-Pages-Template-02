@@ -46,6 +46,7 @@
 			(Name = nameof(Resources.DataDictionary.BirthDate),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public System.DateTime? BirthDate { get; init; }
+		//public System.DateOnly? BirthDate { get; init; }
 		// **********
 
 		// **********
