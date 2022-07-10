@@ -1,7 +1,11 @@
 ﻿namespace Persistence.Conventions
 {
-	internal static class DateTimeConventions
+	internal static class DateTimeConventions : object
 	{
+		static DateTimeConventions()
+		{
+		}
+
 		/// <summary>
 		/// Converts <see cref="System.DDateOnly" /> to <see cref="System.DDateTime"/> and vice versa.
 		/// </summary>

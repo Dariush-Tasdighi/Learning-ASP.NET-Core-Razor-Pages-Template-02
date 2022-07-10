@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Persistence.Configurations
+﻿namespace Persistence.Configurations
 {
 	internal class UserConfiguration :
 		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.User>
