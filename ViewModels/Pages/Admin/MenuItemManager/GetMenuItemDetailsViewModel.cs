@@ -8,7 +8,7 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.MenuItem),
+			(Name = nameof(Resources.DataDictionary.Parent),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public string? Parent { get; init; }
 		// **********
