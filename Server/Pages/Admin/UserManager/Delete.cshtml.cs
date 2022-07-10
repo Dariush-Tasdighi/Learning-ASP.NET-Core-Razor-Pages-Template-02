@@ -6,53 +6,62 @@ namespace Server.Pages.Admin.UserManager
 {
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
+		#region Constructor(s)
 		public DeleteModel
 			(Persistence.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
+
 			ViewModel = new();
 		}
+		#endregion /Constructor(s)
 
+		#region Porperty(ies)
+		// **********
 		private Microsoft.Extensions.Logging.ILogger<DeleteModel> Logger { get; }
+		// **********
 
-		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManager.DeleteUserViewModel ViewModel { get; set; }
+		// **********
+		public ViewModels.Pages.Admin.UserManager.DeleteUserViewModel ViewModel { get; private set; }
+		// **********
+		#endregion /Porperty(ies)
 
+		#region OnGet
 		public async System.Threading.Tasks.Task OnGetAsync(System.Guid id)
 		{
+			try
 			{
-				try
-				{
-					ViewModel =
-						await DatabaseContext.Users
-						.Where(current => current.Id == id)
-						//.Where(current => current.IsDeleted == false)
-						.Select(current => new ViewModels.Pages.Admin.UserManager.DeleteUserViewModel
-						{
-							Id = current.Id,
-							Role = current.Role.Name,
-							Username = current.Username,
-							IsActive = current.IsActive,
-							LastName = current.LastName,
-							FirstName = current.FirstName,
-							InsertDateTime = current.InsertDateTime,
-						})
-						.FirstOrDefaultAsync();
-				}
-				catch (System.Exception ex)
-				{
-					Logger.LogError(message: ex.Message);
+				ViewModel =
+					await DatabaseContext.Users
+					.Where(current => current.Id == id)
+					//.Where(current => current.IsDeleted == false)
+					.Select(current => new ViewModels.Pages.Admin.UserManager.DeleteUserViewModel
+					{
+						Id = current.Id,
+						Role = current.Role.Name,
+						Username = current.Username,
+						IsActive = current.IsActive,
+						LastName = current.LastName,
+						FirstName = current.FirstName,
+						InsertDateTime = current.InsertDateTime,
+					})
+					.FirstOrDefaultAsync();
+			}
+			catch (System.Exception ex)
+			{
+				Logger.LogError(message: ex.Message);
 
-					AddToastError(message: Resources.Messages.Errors.UnexpectedError);
-				}
-				finally
-				{
-					await DisposeDatabaseContextAsync();
-				}
+				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+			}
+			finally
+			{
+				await DisposeDatabaseContextAsync();
 			}
 		}
+		#endregion /OnGet
 
+		#region OnPost
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostDeleteAsync(System.Guid id)
 		{
@@ -111,5 +120,6 @@ namespace Server.Pages.Admin.UserManager
 
 			return Page();
 		}
+		#endregion /OnPost
 	}
 }

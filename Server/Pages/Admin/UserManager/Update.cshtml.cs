@@ -8,6 +8,7 @@ namespace Server.Pages.Admin.UserManager
 		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
+		#region Constructor(s)
 		public UpdateModel
 			(Persistence.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
@@ -19,14 +20,11 @@ namespace Server.Pages.Admin.UserManager
 			RolesViewModel = new System.Collections.Generic.List
 				<ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel>();
 		}
+		#endregion /Constructor(s)
 
+		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<UpdateModel> Logger { get; }
-		// **********
-
-		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManager.UpdateUserViewModel ViewModel { get; set; }
 		// **********
 
 		// **********
@@ -34,7 +32,16 @@ namespace Server.Pages.Admin.UserManager
 			<ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel> RolesViewModel
 		{ get; private set; }
 		// **********
+		#endregion /Property(ies)
 
+		#region BindProperty(ies)
+		// **********
+		[Microsoft.AspNetCore.Mvc.BindProperty]
+		public ViewModels.Pages.Admin.UserManager.UpdateUserViewModel ViewModel { get; set; }
+		// **********
+		#endregion /BindProperty(ies)
+
+		#region OnGet
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid id)
 		{
@@ -66,7 +73,9 @@ namespace Server.Pages.Admin.UserManager
 
 			return Page();
 		}
+		#endregion /OnGet
 
+		#region OnPost
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid id)
 		{
@@ -141,7 +150,9 @@ namespace Server.Pages.Admin.UserManager
 				await DisposeDatabaseContextAsync();
 			}
 		}
+		#endregion /OnPost
 
+		#region SetAccessibleRole
 		private async System.Threading.Tasks.Task SetAccessibleRole()
 		{
 			RolesViewModel =
@@ -156,5 +167,6 @@ namespace Server.Pages.Admin.UserManager
 				.ToListAsync()
 				;
 		}
+		#endregion /SetAccessibleRole
 	}
 }

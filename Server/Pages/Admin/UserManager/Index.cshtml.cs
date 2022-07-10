@@ -8,6 +8,7 @@ namespace Server.Pages.Admin.UserManager
 		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
+		#region Constructor(s)
 		public IndexModel
 			(Persistence.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
@@ -16,7 +17,9 @@ namespace Server.Pages.Admin.UserManager
 
 			ViewModel = new();
 		}
+		#endregion /Constructor(s)
 
+		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
 		// **********
@@ -26,8 +29,10 @@ namespace Server.Pages.Admin.UserManager
 			<ViewModels.Pages.Admin.UserManager.GetUserItemViewModel> ViewModel
 		{ get; private set; }
 		// **********
+		#endregion /Property(ies)
 
 		// TO DO: Let Users Select Page Size
+		#region OnGet
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult>
 			OnGetAsync(int pageSize = 10, int pageNumber = 1)
@@ -96,5 +101,6 @@ namespace Server.Pages.Admin.UserManager
 
 			return Page();
 		}
+		#endregion /OnGet
 	}
 }

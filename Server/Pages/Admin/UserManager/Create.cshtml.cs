@@ -8,6 +8,7 @@ namespace Server.Pages.Admin.UserManager
 		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
+		#region Constructor(s)
 		public CreateModel
 			(Persistence.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) : base(databaseContext: databaseContext)
@@ -19,11 +20,21 @@ namespace Server.Pages.Admin.UserManager
 			RolesViewModel = new System.Collections.Generic.List
 				<ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel>();
 		}
+		#endregion /Constructor(s)
 
+		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<CreateModel> Logger { get; }
 		// **********
 
+		// **********
+		public System.Collections.Generic.IList
+			<ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel> RolesViewModel
+		{ get; private set; }
+		// **********
+		#endregion /Property(ies)
+
+		#region BindProperty(ies)
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public string? ReturnUrl { get; set; }
@@ -33,14 +44,9 @@ namespace Server.Pages.Admin.UserManager
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.UserManager.CreateUserViewModel ViewModel { get; set; }
 		// **********
+		#endregion /BindProperty(ies)
 
-		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public System.Collections.Generic.IList
-			<ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel> RolesViewModel
-		{ get; private set; }
-		// **********
-
+		#region OnGet
 		public async System.Threading.Tasks.Task OnGetAsync(string? returnUrl)
 		{
 			ReturnUrl = SetReturnUrl(returnUrl: returnUrl);
@@ -58,7 +64,9 @@ namespace Server.Pages.Admin.UserManager
 				await DisposeDatabaseContextAsync();
 			}
 		}
+		#endregion /OnGet
 
+		#region OnPost
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 		{
@@ -180,7 +188,9 @@ namespace Server.Pages.Admin.UserManager
 
 			return Redirect(url: ReturnUrl);
 		}
+		#endregion OnPost
 
+		#region SetAccessibleRole
 		private async System.Threading.Tasks.Task SetAccessibleRole()
 		{
 			RolesViewModel =
@@ -195,5 +205,6 @@ namespace Server.Pages.Admin.UserManager
 				.ToListAsync()
 				;
 		}
+		#endregion /SetAccessibleRole
 	}
 }

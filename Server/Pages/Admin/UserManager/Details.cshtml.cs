@@ -8,14 +8,18 @@ namespace Server.Pages.Admin.UserManager
 		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class DetailsModel : Infrastructure.BasePageModelWithDatabase
 	{
+		#region Constructor(s)
 		public DetailsModel
 			(Persistence.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
+
 			ViewModel = new();
 		}
+		#endregion /Constructor(s)
 
+		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<DetailsModel> Logger { get; }
 		// **********
@@ -23,7 +27,9 @@ namespace Server.Pages.Admin.UserManager
 		// **********
 		public ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel ViewModel { get; private set; }
 		// **********
+		#endregion /Property(ies)
 
+		#region OnGet
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 		{
@@ -82,5 +88,6 @@ namespace Server.Pages.Admin.UserManager
 
 			return Page();
 		}
+		#endregion /OnGet
 	}
 }
