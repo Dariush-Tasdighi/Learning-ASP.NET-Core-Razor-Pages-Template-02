@@ -20,21 +20,5 @@
 				DatabaseContext = null;
 			}
 		}
-
-		protected string SetReturnUrl(string? returnUrl)
-		{
-			string returnValue;
-
-			if (string.IsNullOrWhiteSpace(value: returnUrl))
-			{
-				returnValue = "./Index";
-			}
-			else
-			{
-				returnValue = returnUrl;
-			}
-
-			return returnValue;
-		}
 	}
 }

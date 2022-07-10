@@ -51,5 +51,15 @@
 			return Messages.Utility.AddMessage
 				(tempData: TempData, type: type, message: message);
 		}
+
+		protected string SetReturnUrl(string? returnUrl)
+		{
+			if (string.IsNullOrWhiteSpace(value: returnUrl))
+			{
+				returnUrl = "./Index";
+			}
+
+			return returnUrl;
+		}
 	}
 }
