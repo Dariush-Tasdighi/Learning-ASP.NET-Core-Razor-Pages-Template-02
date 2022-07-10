@@ -55,13 +55,6 @@ namespace Persistence.Configurations
 
 			// **************************************************
 			builder
-				.Property(current => current.BirthDate)
-				.HasColumnType(typeName: nameof(System.DateTime.Date))
-				;
-			// **************************************************
-
-			// **************************************************
-			builder
 				.Property(current => current.EmailAddress)
 				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.EmailAddress)
 				.IsRequired(required: false)

@@ -132,8 +132,8 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.BirthDate),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public System.DateTime? BirthDate { get; set; }
-		//public System.DateOnly? BirthDate { get; set; }
+		public System.DateOnly? BirthDate { get; set; }
+		//public System.DateTime? BirthDate { get; set; }
 		// **********
 
 		// **********

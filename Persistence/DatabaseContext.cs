@@ -36,18 +36,18 @@ namespace Persistence
 				(typeof(Configurations.UserConfiguration).Assembly);
 		}
 
-		//protected override void ConfigureConventions
-		//	(Microsoft.EntityFrameworkCore.ModelConfigurationBuilder builder)
-		//{
-		//	builder
-		//		.Properties<System.DateOnly>()
-		//		.HaveConversion<System.DateTime>()
-		//		;
+		protected override void ConfigureConventions
+			(Microsoft.EntityFrameworkCore.ModelConfigurationBuilder builder)
+		{
+			builder.Properties<System.DateOnly>()
+				.HaveConversion<Conventions.DateTimeConventions.DateOnlyConverter>()
+				.HaveColumnType(typeName: nameof(System.DateTime.Date))
+				;
 
-		//	builder
-		//		.Properties<System.DateOnly?>()
-		//		.HaveConversion<System.DateTime?>()
-		//		;
-		//}
+			builder.Properties<System.DateOnly?>()
+				.HaveConversion<Conventions.DateTimeConventions.NullableDateOnlyConverter>()
+				.HaveColumnType(typeName: nameof(System.DateTime.Date))
+				;
+		}
 	}
 }

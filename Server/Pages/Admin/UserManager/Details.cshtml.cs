@@ -31,49 +31,38 @@ namespace Server.Pages.Admin.UserManager
 
 		#region OnGet
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid id)
 		{
 			try
 			{
-				if (id == null)
-				{
-					string errorMessage = string.Format
-						(Resources.Messages.Validations.Required,
-						Resources.DataDictionary.Id);
+				ViewModel =
+					await DatabaseContext.Users
+					.Where(current => current.Id == id)
+					.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel
+					{
+						//Id = current.Id,
+						Gender = current.Gender,
 
-					AddPageError(message: errorMessage);
-				}
-				else
-				{
-					ViewModel =
-						await DatabaseContext.Users
-						.Where(current => current.Id == id.Value)
-						.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel
-						{
-							//Id = current.Id,
-							Gender = current.Gender,
+						Role = current.Role.Name,
+						Username = current.Username,
+						LastName = current.LastName,
+						FirstName = current.FirstName,
+						BirthDate = current.BirthDate,
+						Description = current.Description,
+						NationalCode = current.NationalCode,
+						EmailAddress = current.EmailAddress,
+						CellPhoneNumber = current.CellPhoneNumber,
 
-							Role = current.Role.Name,
-							Username = current.Username,
-							LastName = current.LastName,
-							FirstName = current.FirstName,
-							BirthDate = current.BirthDate,
-							Description = current.Description,
-							NationalCode = current.NationalCode,
-							EmailAddress = current.EmailAddress,
-							CellPhoneNumber = current.CellPhoneNumber,
+						IsActive = current.IsActive,
+						IsDeleted = current.IsDeleted,
+						IsVerified = current.IsVerified,
+						InsertDateTime = current.InsertDateTime,
+						UpdateDateTime = current.UpdateDateTime,
+						VerifyDateTime = current.VerifyDateTime,
 
-							IsActive = current.IsActive,
-							IsDeleted = current.IsDeleted,
-							IsVerified = current.IsVerified,
-							InsertDateTime = current.InsertDateTime,
-							UpdateDateTime = current.UpdateDateTime,
-							VerifyDateTime = current.VerifyDateTime,
-
-							IsEmailAddressVerified = current.IsEmailAddressVerified,
-							IsCellPhoneNumberVerified = current.IsCellPhoneNumberVerified,
-						}).FirstOrDefaultAsync();
-				}
+						IsEmailAddressVerified = current.IsEmailAddressVerified,
+						IsCellPhoneNumberVerified = current.IsCellPhoneNumberVerified,
+					}).FirstOrDefaultAsync();
 			}
 			catch (System.Exception ex)
 			{

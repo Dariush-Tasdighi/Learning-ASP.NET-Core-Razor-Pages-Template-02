@@ -86,6 +86,23 @@
 					</div>
 				}
 
+				@if (Model.ViewModel.BirthDate.HasValue)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.BirthDate" class="form-label"></label>
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.SharedIcons.DateTime) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.SharedIcons.DateTime)"></i>
+								</div>
+							}
+
+							<input placeholder="@(Model.ViewModel.BirthDate.Value)" class="form-control" dir="ltr" />
+						</div>
+					</div>
+				}
+
 				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.CellPhoneNumber) == false)
 				{
 					<div class="mb-3">
