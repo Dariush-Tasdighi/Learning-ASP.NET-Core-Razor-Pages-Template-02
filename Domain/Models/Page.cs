@@ -8,13 +8,19 @@
 	{
 		#region Constant(s)
 		public const byte TitleMaxLength = 100;
+
 		public const byte AuthorMaxLength = 200;
+
 		public const byte CategoryMaxLength = 200;
+
 		public const byte DescriptionMaxLength = 100;
 
 		public const int ImageUrlMaxLength = 4000;
+
 		public const int CopyrightMaxLength = 1000;
+
 		public const int IntroductionMaxLength = 4000;
+
 		public const int ClassificationMaxLength = 1000;
 		#endregion /Constant(s)
 
@@ -352,6 +358,7 @@
 		public uint Ordering { get; set; }
 		// **********
 
+		#region Method(s)
 		public void SetUpdateDateTime()
 		{
 			UpdateDateTime = SeedWork.Utility.Now;
@@ -361,5 +368,6 @@
 		{
 			DeleteDateTime = SeedWork.Utility.Now;
 		}
+		#endregion /Method(s)
 	}
 }

@@ -79,7 +79,7 @@ namespace Persistence.Configurations
 				new Domain.Models.Role
 				{
 					Ordering = 10002,
-					IsActive = false,
+					IsActive = true,
 					IsSystemic = true,
 					IsDeletable = false,
 					Name = Domain.SeedWork.Constant.SystemicRole.Owner,
@@ -88,8 +88,9 @@ namespace Persistence.Configurations
 				new Domain.Models.Role
 				{
 					Ordering = 10003,
-					IsActive = false,
+					IsActive = true,
 					IsSystemic = true,
+					IsDeletable = false,
 					Name = Domain.SeedWork.Constant.SystemicRole.Programmer,
 					Id = Domain.SeedWork.Constant.SystemicRole.ProgrammerRoleId,
 				}
