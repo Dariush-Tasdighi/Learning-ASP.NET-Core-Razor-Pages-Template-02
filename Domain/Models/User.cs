@@ -4,10 +4,10 @@
 		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasUpdateDateTime, SeedWork.IEntityHasLogicalDelete//, SeedWork.IEntityHasIsDeletable
 	{
 		#region Constructor(s)
-		public User() : base()
+		public User(string username) : base()
 		{
-			IsActive = false;
-			IsVerified = false;
+			Username = username;
+
 			//Ordering = SeedWork.Constant.Default.Ordering;
 		}
 		#endregion /Constructor(s)

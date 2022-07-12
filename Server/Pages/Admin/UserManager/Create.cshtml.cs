@@ -132,19 +132,19 @@ namespace Server.Pages.Admin.UserManager
 				}
 				// **************************************************
 
-				Domain.Models.User user = new()
+				Domain.Models.User user = new(username: fixedUsername)
 				{
 					RoleId = ViewModel.RoleId,
 
 					Gender = ViewModel.Gender,
-					IsActive = ViewModel.IsActive,
 
-					IsVerified = ViewModel.IsVerified,
 					VerifyDateTime = Domain.SeedWork.Utility.Now,
+
+					IsActive = ViewModel.IsActive,
+					IsVerified = ViewModel.IsVerified,
 					IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
 					IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
 
-					Username = fixedUsername,
 					EmailAddress = fixedEmailAddress,
 					CellPhoneNumber = ViewModel.CellPhoneNumber,
 					LastName = Infrastructure.Utility.FixText(text: ViewModel.LastName),
