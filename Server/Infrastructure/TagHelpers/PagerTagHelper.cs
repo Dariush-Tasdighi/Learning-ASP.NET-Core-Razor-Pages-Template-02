@@ -38,6 +38,7 @@ namespace Infrastructure.TagHelpers
 		protected Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory UrlHelperFactory { get; }
 		#endregion /Property(ies)
 
+		#region Process
 		// Development in progress...
 		public override
 			void
@@ -57,7 +58,7 @@ namespace Infrastructure.TagHelpers
 			ulTag.AddCssClass(value: "pagination");
 
 			// **************************************************
-			var liTag = BuildLiTag();
+			var liTag = BuildListItemTag();
 
 			var aTag =
 				BuildAnchorTag(urlHelper: urlHelper,
@@ -83,7 +84,7 @@ namespace Infrastructure.TagHelpers
 					(index == PageInformationViewModel.PageNumber - 1) ||
 					(index == PageInformationViewModel.PageNumber + 1))
 				{
-					liTag = BuildLiTag();
+					liTag = BuildListItemTag();
 
 					aTag = BuildAnchorTag
 						(urlHelper: urlHelper, caption: index.ToString(), pageNumber: index);
@@ -95,7 +96,7 @@ namespace Infrastructure.TagHelpers
 			}
 
 			// **************************************************
-			liTag = BuildLiTag();
+			liTag = BuildListItemTag();
 
 			aTag = BuildAnchorTag(urlHelper: urlHelper,
 				caption: Resources.ButtonCaptions.Next,
@@ -116,8 +117,10 @@ namespace Infrastructure.TagHelpers
 
 			output.Content.AppendHtml(htmlContent: result.InnerHtml);
 		}
+		#endregion /Process
 
-		private static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder BuildLiTag()
+		#region Build List Item Tag
+		private static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder BuildListItemTag()
 		{
 			var tag =
 				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.ListItem);
@@ -126,7 +129,9 @@ namespace Infrastructure.TagHelpers
 
 			return tag;
 		}
+		#endregion /Build List Item Tag
 
+		#region Build Anchor Tag
 		private
 			Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
 			BuildAnchorTag(string caption, int pageNumber, Microsoft.AspNetCore.Mvc.IUrlHelper urlHelper)
@@ -151,5 +156,6 @@ namespace Infrastructure.TagHelpers
 
 			return tag;
 		}
+		#endregion /Build Anchor Tag
 	}
 }
