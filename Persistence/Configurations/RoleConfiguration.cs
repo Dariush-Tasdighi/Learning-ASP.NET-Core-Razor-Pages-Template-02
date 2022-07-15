@@ -60,7 +60,7 @@ namespace Persistence.Configurations
 			(
 				new Domain.Models.Role
 				{
-					Ordering = 10000,
+					Ordering = 0,
 					IsActive = true,
 					IsSystemic = true,
 					IsDeletable = false,
