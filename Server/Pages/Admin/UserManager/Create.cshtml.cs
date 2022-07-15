@@ -135,8 +135,8 @@ namespace Server.Pages.Admin.UserManager
 				Domain.Models.User user = new(username: fixedUsername)
 				{
 					RoleId = ViewModel.RoleId,
-
 					Gender = ViewModel.Gender,
+					Ordering = ViewModel.Ordering,
 
 					VerifyDateTime = Domain.SeedWork.Utility.Now,
 

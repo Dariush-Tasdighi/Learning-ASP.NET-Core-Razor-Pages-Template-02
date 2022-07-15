@@ -84,6 +84,16 @@
 					</div>
 
 					<div class="mb-3">
+						<label asp-for="ViewModel.Ordering" class="form-label"></label>
+
+						<input type="number" asp-for="ViewModel.Ordering"
+							   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
+							   value="@(Model.ViewModel.Ordering)" class="form-control" dir="ltr" />
+
+						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
 						<div class="form-check">
 							<input asp-for="ViewModel.IsActive" class="form-check-input" />
 							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>

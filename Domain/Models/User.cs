@@ -8,7 +8,7 @@
 		{
 			Username = username;
 
-			//Ordering = SeedWork.Constant.Default.Ordering;
+			Ordering = SeedWork.Constant.Default.Ordering;
 		}
 		#endregion /Constructor(s)
 
@@ -327,13 +327,13 @@
 		// **********
 
 		// **********
-		///// <summary>
-		///// ترتیب نمایش
-		///// </summary>
-		//[System.ComponentModel.DataAnnotations.Display
-		//	(Name = nameof(Resources.DataDictionary.Ordering),
-		//	ResourceType = typeof(Resources.DataDictionary))]
-		//public uint Ordering { get; set; }
+		/// <summary>
+		/// ترتیب نمایش
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Ordering),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public uint Ordering { get; set; }
 		// **********
 		#endregion /Property(ies)
 

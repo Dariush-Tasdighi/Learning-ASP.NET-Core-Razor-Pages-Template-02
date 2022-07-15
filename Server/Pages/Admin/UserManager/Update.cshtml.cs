@@ -53,6 +53,7 @@ namespace Server.Pages.Admin.UserManager
 					{
 						Id = current.Id,
 						RoleId = current.RoleId,
+						Ordering = current.Ordering,
 						Username = current.Username,
 						IsActive = current.IsActive,
 						IsVerified = current.IsVerified,
@@ -107,6 +108,7 @@ namespace Server.Pages.Admin.UserManager
 				{
 					// **************************************************
 					foundedItem.RoleId = ViewModel.RoleId;
+					foundedItem.Ordering = ViewModel.Ordering;
 					foundedItem.IsActive = ViewModel.IsActive;
 					foundedItem.IsVerified = foundedItem.IsVerified ? foundedItem.IsVerified : ViewModel.IsVerified;
 

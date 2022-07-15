@@ -61,6 +61,7 @@ namespace Server.Pages.Admin.UserManager
 					{
 						ViewModel.Data =
 							await DatabaseContext.Users
+							.OrderBy(current => current.Ordering)
 							.Skip((pageNumber - 1) * pageSize)
 							.Take(pageSize)
 							.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserItemViewModel

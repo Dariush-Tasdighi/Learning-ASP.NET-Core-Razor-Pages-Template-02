@@ -34,7 +34,7 @@
 			{
 			}
 
-			public const uint Ordering = 1000000000;
+			public const uint Ordering = 1_000_000_000;
 		}
 
 		public static class Minimum
@@ -52,7 +52,7 @@
 			{
 			}
 
-			public const uint Ordering = 10000;
+			public const uint Ordering = 10_000;
 		}
 
 		/// <summary>
