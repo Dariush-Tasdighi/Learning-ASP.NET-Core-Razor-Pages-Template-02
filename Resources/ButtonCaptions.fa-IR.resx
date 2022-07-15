@@ -156,8 +156,14 @@
   <data name="LoginWithGoogle" xml:space="preserve">
     <value>ورود از طریق گوگل</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>بعدی</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>خیر</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>قبلی</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>ثبت‌نام</value>

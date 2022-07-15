@@ -125,6 +125,14 @@
 		// **********
 		public string? Children { get; set; }
 		// **********
+
+		// **********
+		public string? NextPage { get; set; }
+		// **********
+
+		// **********
+		public string? PreviousPage { get; set; }
+		// **********
 	}
 
 	public class UserIcons : object

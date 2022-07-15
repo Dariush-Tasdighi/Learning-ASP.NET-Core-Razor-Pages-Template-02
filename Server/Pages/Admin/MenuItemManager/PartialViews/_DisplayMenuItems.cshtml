@@ -115,31 +115,11 @@
 
 				<tfoot class="@(applicationSettings.TablesDefaultSettings.TableFooterStyle)">
 					<tr>
-						<td colspan="9">
-							<ul class="pagination">
-								<li class="page-item @(Model.ViewModel.PageInformation.PageNumber <= 1 ? "disabled" : null )">
-									<a class="page-link" asp-page="./Index"
-									   asp-route-id="@(Model.ParentId)"
-									   asp-route-PageNumber=@(Model.ViewModel.PageInformation.PageNumber - 1)
-									   asp-route-PageSize="@(Model.ViewModel.PageInformation.PageSize)">
-										<i class="@(applicationSettings.TablesDefaultSettings.PreviousPageIcon)"></i>
-									</a>
-								</li>
-
-								<li class="page-item">
-									<a class="page-link" asp-page="./Index"
-									   asp-route-id="@(Model.ParentId)"
-									   asp-route-PageNumber=@(Model.ViewModel.PageInformation.PageNumber)
-									   asp-route-PageSize="@(Model.ViewModel.PageInformation.PageSize)">@(Model.ViewModel.PageInformation.PageNumber)</a>
-								</li>
-
-								<li class="page-item @(Model.ViewModel.PageInformation.PageNumber >= Model.ViewModel.PageInformation.PageCount ? "disabled" : null )">
-									<a class="page-link" asp-page="./Index"
-									   asp-route-id="@(Model.ParentId)"
-									   asp-route-PageNumber=@(Model.ViewModel.PageInformation.PageNumber + 1)
-									   asp-route-PageSize="@(Model.ViewModel.PageInformation.PageSize)"><i class="@(applicationSettings.TablesDefaultSettings.NextPageIcon)"></i></a>
-								</li>
-							</ul>
+						<td colspan="9"
+							page-class="page-link"
+							page-classes-enabled="true"
+							page-default-class="text-dark text-decoration-none btn"
+							page-information-view-model="@(Model.ViewModel.PageInformation)" asp-page="./Index">
 						</td>
 					</tr>
 				</tfoot>

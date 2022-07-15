@@ -156,8 +156,14 @@
   <data name="LoginWithGoogle" xml:space="preserve">
     <value>Login with Google</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
   <data name="No" xml:space="preserve">
     <value>No</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>

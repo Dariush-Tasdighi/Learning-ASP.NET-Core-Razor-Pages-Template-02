@@ -3,9 +3,10 @@
 namespace Infrastructure.TagHelpers
 {
 	// TO DO:
-	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement(tag: "td", Attributes = "page-information-view-model")]
+	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement(tag: Constant.HtmlTag.TableData, Attributes = "page-information-view-model")]
 	public class PagerTagHelper : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
+		#region Constructor(s)
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 		public PagerTagHelper
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -13,26 +14,27 @@ namespace Infrastructure.TagHelpers
 		{
 			UrlHelperFactory = urlHelperFactory;
 		}
+		#endregion /Constructor(s)
+
+		#region Property(ies)
+		public string PageClass { get; set; }
 
 		public string? PageAction { get; set; }
 
-		public ViewModels.Shared.PaginationViewModel PageInformationViewModel { get; set; }
+		public string PageDefaultClass { get; set; }
+
+		public string PageSelectedClass { get; set; }
+
+		public bool PageClassesEnabled { get; set; }
 
 		[Microsoft.AspNetCore.Mvc.ViewFeatures.ViewContext]
 		[Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeNotBound]
 		public Microsoft.AspNetCore.Mvc.Rendering.ViewContext ViewContext { get; set; }
 
+		public ViewModels.Shared.PaginationViewModel PageInformationViewModel { get; set; }
+
 		protected Microsoft.AspNetCore.Mvc.Routing.IUrlHelperFactory UrlHelperFactory { get; }
-
-		#region Css
-		public string PageClass { get; set; }
-
-		public string PageClassNormal { get; set; }
-
-		public bool PageClassesEnabled { get; set; }
-
-		public string PageClassSelected { get; set; }
-		#endregion /Css
+		#endregion /Property(ies)
 
 		// Development in progress...
 		public override
@@ -44,49 +46,108 @@ namespace Infrastructure.TagHelpers
 			Microsoft.AspNetCore.Mvc.IUrlHelper urlHelper =
 				UrlHelperFactory.GetUrlHelper(context: ViewContext);
 
-			Microsoft.AspNetCore.Mvc.Rendering.TagBuilder result = new("td");
+			var result =
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.TableData);
 
-			Microsoft.AspNetCore.Mvc.Rendering.TagBuilder ulTag = new("ul");
+			var ulTag =
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.Unorderedlist);
 
-			ulTag.AddCssClass("pagination");
+			ulTag.AddCssClass(value: "pagination");
+
+			// **************************************************
+			var liTag = BuildLiTag();
+
+			var aTag =
+				BuildAnchorTag(urlHelper: urlHelper,
+				caption: Resources.ButtonCaptions.Previous,
+				pageNumber: PageInformationViewModel.PageNumber - 1);
+
+			if (PageInformationViewModel.PageNumber <= 1)
+			{
+				aTag.AddCssClass(value: Constant.CssClass.Disabled);
+			}
+			// **************************************************
+
+
+			// **************************************************
+			liTag.InnerHtml.AppendHtml(content: aTag);
+
+			ulTag.InnerHtml.AppendHtml(content: liTag);
+			// **************************************************
 
 			for (int index = 1; index <= PageInformationViewModel.PageCount; index++)
 			{
-				// **************************************************
-				Microsoft.AspNetCore.Mvc.Rendering.TagBuilder liTag = new("li");
-
-				liTag.AddCssClass(value: $"page-item");
-				// **************************************************
-
-
-				// **************************************************
-				Microsoft.AspNetCore.Mvc.Rendering.TagBuilder aTag = new("a");
-
-				aTag.Attributes["href"] =
-					// .Action -> using Microsoft.AspNetCore.Mvc
-					urlHelper.Action(PageAction, new { PageNumber = index, PageSize = PageInformationViewModel.PageSize });
-				// **************************************************
-
-				if (PageClassesEnabled)
+				if ((index == PageInformationViewModel.PageNumber) ||
+					(index == PageInformationViewModel.PageNumber - 1) ||
+					(index == PageInformationViewModel.PageNumber + 1))
 				{
-					aTag.AddCssClass(PageClass);
+					liTag = BuildLiTag();
 
-					aTag.AddCssClass(index == PageInformationViewModel.PageNumber ? PageClassSelected : PageClassNormal);
+					aTag = BuildAnchorTag
+						(urlHelper: urlHelper, caption: index.ToString(), pageNumber: index);
+
+					liTag.InnerHtml.AppendHtml(content: aTag);
+
+					ulTag.InnerHtml.AppendHtml(content: liTag);
 				}
-
-				// **************************************************
-				aTag.InnerHtml.AppendHtml(encoded: "&nbsp;");
-				aTag.InnerHtml.Append(unencoded: $"{index}");
-				aTag.InnerHtml.AppendHtml(encoded: "&nbsp;");
-
-				liTag.InnerHtml.AppendHtml(content: aTag);
-				ulTag.InnerHtml.AppendHtml(content: liTag);
-				// **************************************************
 			}
+
+			// **************************************************
+			liTag = BuildLiTag();
+
+			aTag = BuildAnchorTag(urlHelper: urlHelper,
+				caption: Resources.ButtonCaptions.Next,
+				pageNumber: PageInformationViewModel.PageNumber + 1);
+
+			if (PageInformationViewModel.PageNumber >= PageInformationViewModel.PageCount)
+			{
+				aTag.AddCssClass(value: Constant.CssClass.Disabled);
+			}
+			// **************************************************
+
+			// **************************************************
+			liTag.InnerHtml.AppendHtml(content: aTag);
+			ulTag.InnerHtml.AppendHtml(content: liTag);
+			// **************************************************
 
 			result.InnerHtml.AppendHtml(content: ulTag);
 
 			output.Content.AppendHtml(htmlContent: result.InnerHtml);
+		}
+
+		private static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder BuildLiTag()
+		{
+			var tag =
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.ListItem);
+
+			tag.AddCssClass(value: "page-item");
+
+			return tag;
+		}
+
+		private
+			Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
+			BuildAnchorTag(string caption, int pageNumber, Microsoft.AspNetCore.Mvc.IUrlHelper urlHelper)
+		{
+			var tag =
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.Anchor);
+
+			tag.Attributes["href"] =
+				// .Action -> using Microsoft.AspNetCore.Mvc
+				urlHelper.Action
+				(action: PageAction, values: new { PageNumber = pageNumber, PageSize = PageInformationViewModel.PageSize });
+
+			if (PageClassesEnabled)
+			{
+				string cssClass =
+					$"{PageClass} {(pageNumber == PageInformationViewModel.PageNumber ? PageSelectedClass : PageDefaultClass)}";
+
+				tag.AddCssClass(value: cssClass);
+			}
+
+			tag.InnerHtml.Append(unencoded: caption);
+
+			return tag;
 		}
 	}
 }
