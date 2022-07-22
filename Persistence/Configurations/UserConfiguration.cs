@@ -1,9 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Persistence.Configurations
+﻿namespace Persistence.Configurations
 {
 	internal class UserConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.User>
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.User>
 	{
 		public UserConfiguration() : base()
 		{
@@ -11,112 +9,127 @@ namespace Persistence.Configurations
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.Models.User> builder)
+			.Builders.EntityTypeBuilder<Domain.User> builder)
 		{
+			// **************************************************
+			builder
+				.Property(current => current.EmailAddress)
+				.IsUnicode(unicode: false)
+				;
+
+			builder
+				.HasIndex(current => new { current.EmailAddress })
+				//.IsUnique(unique: true)
+				.IsUnique(unique: false)
+				;
+			// **************************************************
+
+			// **************************************************
+			builder
+				.HasIndex(current => new { current.EmailAddressVerificationKey })
+				.IsUnique(unique: true)
+				;
+			// **************************************************
 
 			// **************************************************
 			builder
 				.Property(current => current.Username)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.Username)
-				.IsRequired(required: true)
 				.IsUnicode(unicode: false)
 				;
 
 			builder
-				.HasIndex(user => new { user.Username })
-				.IsUnique(unique: true)
-				;
-			// **************************************************
-
-			// **************************************************
-			builder
-				.Property(current => current.EmailAddress)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.EmailAddress)
-				.IsRequired(required: false)
-				.IsUnicode(unicode: false)
+				.HasIndex(current => new { current.Username })
+				.IsUnique(unique: false)
+				//.IsUnique(unique: true)
 				;
 
-			builder
-				.HasIndex(user => new { user.EmailAddress })
-				.IsUnique(unique: true)
-				;
+			//builder.HasIndex(current => current.Username)
+			//	.IsUnique(unique: true)
+			//	// HasFilter -> using Microsoft.EntityFrameworkCore;
+			//	.HasFilter("[Username] IS NOT NULL");
 			// **************************************************
-
-			// **************************************************
-			builder
-				.Property(current => current.EmailAddressVerificationKey)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.EmailAddressVerificationKey)
-				.IsUnicode(unicode: false)
-				.IsRequired(required: false)
-				// IsFixedLength -> using Microsoft.EntityFrameworkCore;
-				.IsFixedLength(fixedLength: true)
-				;
-			// **************************************************
-
 
 			// **************************************************
 			builder
 				.Property(current => current.CellPhoneNumber)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.CellPhoneNumber)
-				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
 
 			builder
-				.HasIndex(user => new { user.CellPhoneNumber })
-				.IsUnique(unique: false)
-				// از آنجا که وارد کردن شماره تلفن همراه الزامی نیست
-				// true برابر با IsUnique در صورت قرار دادن مقدار فیلد
-				// Cannot insert duplicate key row in object 'dbo.Users' with unique index
-				// روبرو خواهیم شد
+				.HasIndex(current => new { current.CellPhoneNumber })
 				//.IsUnique(unique: true)
+				.IsUnique(unique: false)
 				;
+
+			//builder.HasIndex(current => current.CellPhoneNumber)
+			//	.IsUnique(unique: true)
+			//	// HasFilter -> using Microsoft.EntityFrameworkCore;
+			//	.HasFilter("[CellPhoneNumber] IS NOT NULL");
 			// **************************************************
 
 			// **************************************************
 			builder
 				.Property(current => current.CellPhoneNumberVerificationKey)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.CellPhoneNumberVerificationKey)
 				.IsUnicode(unicode: false)
-				.IsRequired(required: false)
-				// IsFixedLength -> using Microsoft.EntityFrameworkCore;
-				.IsFixedLength(fixedLength: true)
 				;
+
+			builder
+				.HasIndex(current => new { current.CellPhoneNumberVerificationKey })
+				.IsUnique(unique: true)
+				;
+
+			//builder.HasIndex(current => current.CellPhoneNumberVerificationKey)
+			//	.IsUnique(unique: true)
+			//	// HasFilter -> using Microsoft.EntityFrameworkCore;
+			//	.HasFilter("[CellPhoneNumberVerificationKey] IS NOT NULL");
 			// **************************************************
 
 			// **************************************************
 			builder
 				.Property(current => current.Password)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.PasswordInDatabase)
-				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
 			// **************************************************
 
 			// **************************************************
-			builder
-				.Property(current => current.FirstName)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.FirstName)
-				.IsRequired(required: false)
-				.IsUnicode(unicode: true)
-				;
 			// **************************************************
+			// **************************************************
+			var user =
+				new Domain.User(emailAddress: "DariushT@GMail.com", roleId: Domain.Role.UserRoleId)
+				{
+					//Id,
+					//Role,
+					//RoleId,
+					//EmailAddress,
+					//InsertDateTime,
+					//UpdateDateTime,
+					//EmailAddressVerificationKey
+					//CellPhoneNumberVerificationKey,
 
-			// **************************************************
-			builder
-				.Property(current => current.LastName)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.LastName)
-				.IsRequired(required: false)
-				.IsUnicode(unicode: true)
-				;
-			// **************************************************
+					Ordering = 0,
 
+					IsActive = true,
+					IsSystemic = true,
+					IsUndeletable = true,
+					IsProfilePublic = true,
+					IsEmailAddressVerified = true,
+					IsCellPhoneNumberVerified = true,
+
+					Description = null,
+					AdminDescription = null,
+
+					Username = "Dariush",
+					FullName = "داریوش تصدیقی",
+					CellPhoneNumber = "09121087461",
+					Password =
+						Dtat.Security.Cryptography.GetSha256(text: "1234512345"),
+				};
+
+			user.SetId(id: Domain.User.SuperUserId);
+
+			builder.HasData(data: user);
 			// **************************************************
-			builder
-				.Property(current => current.Description)
-				.IsRequired(required: false)
-				.IsUnicode(unicode: true)
-				;
+			// **************************************************
 			// **************************************************
 		}
 	}

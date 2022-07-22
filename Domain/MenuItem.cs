@@ -1,22 +1,29 @@
-﻿namespace Domain.Models
+﻿namespace Domain
 {
 	public class MenuItem :
-		Domain.SeedWork.Entity, SeedWork.IEntityHasUpdateDateTime,
-		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasOrdering,
-		SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete
+		SeedWork.Entity,
+		SeedWork.IEntityHasIsActive,
+		SeedWork.IEntityHasIsUndeletable,
+		SeedWork.IEntityHasLogicalDelete,
+		SeedWork.IEntityHasUpdateDateTime
 	{
 		#region Constant(s)
 		public const int LinkMaxLength = 500;
-		public const byte TitleMaxLength = 50;
 		public const byte IconMaxLength = 100;
 		#endregion /Constant(s)
 
 		#region Constructor
-		public MenuItem() : base()
+		public MenuItem(string title) : base()
 		{
-			Ordering = SeedWork.Constant.Default.Ordering;
-			IconPosition = Enumerations.IconPosition.Left;
-			SubMenus = new System.Collections.Generic.List<MenuItem>();
+			Title = title;
+
+			SetUpdateDateTime();
+
+			IconPosition =
+				Enumerations.IconPosition.Left;
+
+			SubMenus =
+				new System.Collections.Generic.List<MenuItem>();
 		}
 		#endregion /Constructor(s)
 
@@ -69,16 +76,6 @@
 
 		// **********
 		/// <summary>
-		/// ترتیب نمایش
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Ordering),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public uint Ordering { get; set; }
-		// **********
-
-		// **********
-		/// <summary>
 		/// فعال/غیر فعال بودن منو
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
@@ -102,9 +99,9 @@
 		/// قابل حذف بودن/نبودن
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeletable),
+			(Name = nameof(Resources.DataDictionary.IsUndeletable),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeletable { get; set; }
+		public bool IsUndeletable { get; set; }
 		// **********
 
 		// **********
@@ -144,7 +141,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public System.DateTime? UpdateDateTime { get; private set; }
+		public System.DateTime UpdateDateTime { get; private set; }
 		// **********
 
 		// **********
@@ -158,7 +155,7 @@
 		#region Method(s)
 		public void SetUpdateDateTime()
 		{
-			UpdateDateTime = Domain.SeedWork.Utility.Now;
+			UpdateDateTime = SeedWork.Utility.Now;
 		}
 		#endregion /Method(s)
 	}

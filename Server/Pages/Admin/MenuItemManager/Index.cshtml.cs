@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
@@ -85,7 +85,7 @@ namespace Server.Pages.Admin.MenuItemManager
 								IsPublic = current.IsPublic,
 								IsActive = current.IsActive,
 								IsDeleted = current.IsDeleted,
-								IsDeletable = current.IsDeletable,
+								IsUndeletable = current.IsUndeletable,
 								HasAnySubMenu = current.SubMenus.Any(),
 								UpdateDateTime = current.UpdateDateTime,
 								InsertDateTime = current.InsertDateTime,

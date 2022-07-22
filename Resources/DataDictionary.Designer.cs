@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Admin Description.
+        /// </summary>
+        public static string AdminDescription {
+            get {
+                return ResourceManager.GetString("AdminDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Author.
         /// </summary>
         public static string Author {
@@ -457,15 +466,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is Deletable.
-        /// </summary>
-        public static string IsDeletable {
-            get {
-                return ResourceManager.GetString("IsDeletable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Is Deleted.
         /// </summary>
         public static string IsDeleted {
@@ -493,6 +493,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile is Public.
+        /// </summary>
+        public static string IsProfilePublic {
+            get {
+                return ResourceManager.GetString("IsProfilePublic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programmer.
+        /// </summary>
+        public static string IsProgrammer {
+            get {
+                return ResourceManager.GetString("IsProgrammer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Public.
         /// </summary>
         public static string IsPublic {
@@ -507,6 +525,15 @@ namespace Resources {
         public static string IsSystemic {
             get {
                 return ResourceManager.GetString("IsSystemic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Undeletable.
+        /// </summary>
+        public static string IsUndeletable {
+            get {
+                return ResourceManager.GetString("IsUndeletable", resourceCulture);
             }
         }
         

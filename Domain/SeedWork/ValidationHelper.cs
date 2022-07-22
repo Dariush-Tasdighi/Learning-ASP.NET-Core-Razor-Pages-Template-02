@@ -12,7 +12,8 @@
 				new System.ComponentModel.DataAnnotations.ValidationContext(instance: entity);
 
 			var validationResults =
-				new System.Collections.Generic.List<System.ComponentModel.DataAnnotations.ValidationResult>();
+				new System.Collections.Generic.List
+				<System.ComponentModel.DataAnnotations.ValidationResult>();
 
 			var isValid =
 				System.ComponentModel.DataAnnotations.Validator
@@ -29,12 +30,12 @@
 				new System.ComponentModel.DataAnnotations.ValidationContext(instance: entity);
 
 			var validationResults =
-				new System.Collections.Generic.List<System.ComponentModel.DataAnnotations.ValidationResult>();
+				new System.Collections.Generic.List
+				<System.ComponentModel.DataAnnotations.ValidationResult>();
 
-			//var isValid =
 			System.ComponentModel.DataAnnotations.Validator
-			.TryValidateObject(instance: entity, validationContext: validationContext,
-			validationResults: validationResults, validateAllProperties: true);
+				.TryValidateObject(instance: entity, validationContext: validationContext,
+				validationResults: validationResults, validateAllProperties: true);
 
 			return validationResults;
 		}

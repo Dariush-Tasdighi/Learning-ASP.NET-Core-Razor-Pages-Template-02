@@ -100,25 +100,6 @@
 						</div>
 					</div>
 
-					@if (Model.ViewModel.IsVerified)
-					{
-						<div class="mb-3">
-							<div class="form-check">
-								<input asp-for="ViewModel.IsVerified" class="form-check-input" readonly disabled />
-								<label asp-for="ViewModel.IsVerified" class="form-check-label"></label>
-							</div>
-						</div>
-					}
-					else
-					{
-						<div class="mb-3">
-							<div class="form-check">
-								<input asp-for="ViewModel.IsVerified" class="form-check-input" />
-								<label asp-for="ViewModel.IsVerified" class="form-check-label"></label>
-							</div>
-						</div>
-					}
-
 					<div class="mb-3">
 						<button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Save)</button>
 						<button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>

@@ -4,20 +4,13 @@
 	{
 		public CreateUserViewModel() : base()
 		{
-			IsVerified = true;
-
-			Gender = Domain.Models.Enumerations.Gender.Unspecified;
+			Gender = Domain.Enumerations.Gender.Unspecified;
 		}
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Username),
 			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.Required
-			(AllowEmptyStrings = false,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
 			(length: Domain.SeedWork.Constant.MaxLength.Username,
@@ -33,26 +26,14 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.FirstName),
+			(Name = nameof(Resources.DataDictionary.FullName),
 			ResourceType = typeof(Resources.DataDictionary))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.FirstName,
+			(length: Domain.SeedWork.Constant.MaxLength.FullName,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-		public string? FirstName { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.LastName),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.LastName,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-		public string? LastName { get; set; }
+		public string? FullName { get; set; }
 		// **********
 
 		// **********
@@ -159,13 +140,6 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsVerified),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsVerified { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool? IsEmailAddressVerified { get; set; }
@@ -182,7 +156,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Gender),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Models.Enumerations.Gender Gender { get; set; }
+		public Domain.Enumerations.Gender Gender { get; set; }
 		// **********
 
 		// **********

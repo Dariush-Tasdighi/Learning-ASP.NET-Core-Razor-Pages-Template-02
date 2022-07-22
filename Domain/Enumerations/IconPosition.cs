@@ -1,4 +1,4 @@
-﻿namespace Domain.Models.Enumerations
+﻿namespace Domain.Enumerations
 {
 	public enum IconPosition : byte
 	{

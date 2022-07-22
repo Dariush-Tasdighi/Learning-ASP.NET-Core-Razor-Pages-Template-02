@@ -1,6 +1,7 @@
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Domain;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
@@ -88,15 +89,14 @@ namespace Server.Pages.Admin.MenuItemManager
 				}
 				// **************************************************
 
-				Domain.Models.MenuItem menu = new()
+				MenuItem menu = new(title: fixedTitle)
 				{
-					Title = fixedTitle,
 					Icon = ViewModel.Icon,
 					IsPublic = ViewModel.IsPublic,
 					IsActive = ViewModel.IsActive,
 					Ordering = ViewModel.Ordering,
 					ParentId = ViewModel.ParentId,
-					IsDeletable = ViewModel.IsDeletable,
+					IsUndeletable = ViewModel.IsUndeletable,
 					IconPosition = ViewModel.IconPosition,
 					Link = Infrastructure.Utility.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.Link),
 				};

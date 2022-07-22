@@ -49,7 +49,7 @@ namespace Server.Pages.Admin.MenuItemManager
 						IsActive = current.IsActive,
 						ParentId = current.ParentId,
 						Parent = current.Parent.Title,
-						IsDeletable = current.IsDeletable,
+						IsUndeletable = current.IsUndeletable,
 						IconPosition = current.IconPosition,
 					}).FirstOrDefaultAsync();
 			}
@@ -144,7 +144,7 @@ namespace Server.Pages.Admin.MenuItemManager
 					foundedItem.IsPublic = ViewModel.IsPublic;
 					foundedItem.IsActive = ViewModel.IsActive;
 					foundedItem.Ordering = ViewModel.Ordering;
-					foundedItem.IsDeletable = ViewModel.IsDeletable;
+					foundedItem.IsUndeletable = ViewModel.IsUndeletable;
 					foundedItem.IconPosition = ViewModel.IconPosition;
 
 					foundedItem.SetUpdateDateTime();

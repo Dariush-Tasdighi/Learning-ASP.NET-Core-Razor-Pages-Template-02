@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class DetailsModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
@@ -45,8 +45,7 @@ namespace Server.Pages.Admin.UserManager
 
 						Role = current.Role.Name,
 						Username = current.Username,
-						LastName = current.LastName,
-						FirstName = current.FirstName,
+						FullName = current.FullName,
 						BirthDate = current.BirthDate,
 						Description = current.Description,
 						NationalCode = current.NationalCode,
@@ -55,10 +54,8 @@ namespace Server.Pages.Admin.UserManager
 
 						IsActive = current.IsActive,
 						IsDeleted = current.IsDeleted,
-						IsVerified = current.IsVerified,
 						InsertDateTime = current.InsertDateTime,
 						UpdateDateTime = current.UpdateDateTime,
-						VerifyDateTime = current.VerifyDateTime,
 
 						IsEmailAddressVerified = current.IsEmailAddressVerified,
 						IsCellPhoneNumberVerified = current.IsCellPhoneNumberVerified,

@@ -1,4 +1,6 @@
-﻿namespace ViewModels.Pages.Admin.MenuItemManager
+﻿using Domain;
+
+namespace ViewModels.Pages.Admin.MenuItemManager
 {
 	public class CreateMenuItemViewModel : object
 	{
@@ -24,7 +26,7 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.Models.MenuItem.TitleMaxLength,
+			(length: Domain.SeedWork.Constant.MaxLength.Title,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Title { get; set; }
@@ -41,7 +43,7 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.Models.MenuItem.LinkMaxLength,
+			(length: MenuItem.LinkMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
@@ -75,8 +77,8 @@
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.IsDeletable))]
-		public bool IsDeletable { get; set; }
+			Name = nameof(Resources.DataDictionary.IsUndeletable))]
+		public bool IsUndeletable { get; set; }
 		// **********
 
 		// **********
@@ -92,7 +94,7 @@
 			Name = nameof(Resources.DataDictionary.Icon))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.Models.MenuItem.IconMaxLength,
+			(length: MenuItem.IconMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Icon { get; set; }
@@ -102,7 +104,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IconPosition))]
-		public Domain.Models.Enumerations.IconPosition IconPosition { get; set; }
+		public Domain.Enumerations.IconPosition IconPosition { get; set; }
 		// **********
 	}
 }

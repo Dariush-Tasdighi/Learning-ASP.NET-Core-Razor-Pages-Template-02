@@ -24,21 +24,14 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Gender),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Models.Enumerations.Gender? Gender { get; init; }
+		public Domain.Enumerations.Gender? Gender { get; init; }
 		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.FirstName),
+			(Name = nameof(Resources.DataDictionary.FullName),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public string? FirstName { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.LastName),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public string? LastName { get; init; }
+		public string? FullName { get; init; }
 		// **********
 
 		// **********
@@ -46,7 +39,6 @@
 			(Name = nameof(Resources.DataDictionary.BirthDate),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public System.DateOnly? BirthDate { get; init; }
-		//public System.DateTime? BirthDate { get; init; }
 		// **********
 
 		// **********
@@ -100,23 +92,9 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsVerified),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsVerified { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsDeleted),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsDeleted { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.VerifyDateTime),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public System.DateTime? VerifyDateTime { get; init; }
 		// **********
 
 		// **********

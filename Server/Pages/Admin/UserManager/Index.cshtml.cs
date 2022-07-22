@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
@@ -70,8 +70,7 @@ namespace Server.Pages.Admin.UserManager
 								Username = current.Username,
 								IsActive = current.IsActive,
 								IsDeleted = current.IsDeleted,
-								IsVerified = current.IsVerified,
-								//EmailAddress = current.EmailAddress,
+								EmailAddress = current.EmailAddress,
 								InsertDateTime = current.InsertDateTime,
 								UpdateDateTime = current.UpdateDateTime,
 							})

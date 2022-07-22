@@ -15,9 +15,9 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeletable),
+			(Name = nameof(Resources.DataDictionary.IsUndeletable),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeletable { get; set; }
+		public bool IsUndeletable { get; set; }
 		// **********
 	}
 }

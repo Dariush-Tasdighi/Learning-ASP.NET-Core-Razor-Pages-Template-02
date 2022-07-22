@@ -102,15 +102,15 @@
 
 							<select asp-for="ViewModel.IconPosition" class="form-select">
 
-								<option value="@(Domain.Models.Enumerations.IconPosition.Left)" selected>@(Resources.DataDictionary.Left)</option>
+								<option value="@(Domain.Enumerations.IconPosition.Left)" selected>@(Resources.DataDictionary.Left)</option>
 
-								<option value="@(Domain.Models.Enumerations.IconPosition.Right)">@(Resources.DataDictionary.Right)</option>
+								<option value="@(Domain.Enumerations.IconPosition.Right)">@(Resources.DataDictionary.Right)</option>
 
 								@if (Model?.ViewModel?.ParentId == null)
 								{
-									<option value="@(Domain.Models.Enumerations.IconPosition.Top)">@(Resources.DataDictionary.Top)</option>
+									<option value="@(Domain.Enumerations.IconPosition.Top)">@(Resources.DataDictionary.Top)</option>
 
-									<option value="@(Domain.Models.Enumerations.IconPosition.Bottom)">@(Resources.DataDictionary.Bottom)</option>
+									<option value="@(Domain.Enumerations.IconPosition.Bottom)">@(Resources.DataDictionary.Bottom)</option>
 								}
 							</select>
 						</div>
@@ -125,8 +125,8 @@
 
 					<div class="mb-3">
 						<div class="form-check">
-							<input asp-for="ViewModel.IsDeletable" class="form-check-input" />
-							<label asp-for="ViewModel.IsDeletable" class="form-check-label"></label>
+							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
+							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
 						</div>
 					</div>
 

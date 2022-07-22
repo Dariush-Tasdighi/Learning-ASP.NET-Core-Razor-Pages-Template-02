@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Configurations
 {
 	internal class PostCategoryConfiguration :
-		Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.PostCategory>
+		Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<PostCategory>
 	{
 		public PostCategoryConfiguration() : base()
 		{
@@ -11,30 +12,23 @@ namespace Persistence.Configurations
 
 
 		public void Configure
-			(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.Models.PostCategory> builder)
+			(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PostCategory> builder)
 		{
 			// **************************************************
 			builder
 				.Property(current => current.Title)
-				.HasMaxLength(Domain.Models.PostCategory.TitleMaxLength)
+				.HasMaxLength(Domain.SeedWork.Constant.MaxLength.Title)
 				.IsRequired()
 				.IsUnicode(true)
 				;
 			// **************************************************
 
-			// **************************************************
-			builder
-				.Property(current => current.Description)
-				.HasMaxLength(Domain.Models.PostCategory.DescriptionMaxLength)
-				.IsRequired(false)
-				.IsUnicode(true)
-				;
-			// **************************************************
 
 			// **************************************************
 			builder
 				.HasMany(current => current.SubCategories)
 				.WithOne(other => other.Parent)
+				.IsRequired(required: false)
 				.HasForeignKey(other => other.ParentId)
 				.OnDelete(deleteBehavior: Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
 				;
@@ -51,7 +45,7 @@ namespace Persistence.Configurations
 			//**************************************************
 			builder
 				.HasIndex(current => new { current.ParentId, current.Title })
-				//.HasDatabaseName(name: $"IX_{ nameof(Domain.Models.PostCategory.ParentId) }_{ nameof(Domain.Models.PostCategory.Title) }")
+				//.HasDatabaseName(name: $"IX_{ nameof(Domain.PostCategory.ParentId) }_{ nameof(Domain.PostCategory.Title) }")
 				.IsUnique(unique: true)
 				;
 			//**************************************************

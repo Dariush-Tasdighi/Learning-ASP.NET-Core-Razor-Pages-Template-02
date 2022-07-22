@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
@@ -75,27 +75,30 @@ namespace Server.Pages.Admin.UserManager
 				return Page();
 			}
 
-			// **************************************************
-			string? fixedUsername = Infrastructure.Utility
-				.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.Username);
-
-			string? fixedEmailAddress = Infrastructure.Utility
-				.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.EmailAddress);
-			// **************************************************
-
 			try
 			{
-				bool isUsernameFound =
-					await DatabaseContext.Users
-					.Where(current => current.Username == fixedUsername)
-					.AnyAsync();
+				bool isUsernameFound = false;
+				bool isEmailAddressFound = false;
 
-				bool isEmailAddressFound =
-					await DatabaseContext.Users
-					.Where(current => current.EmailAddress == fixedEmailAddress)
-					.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
-					.Where(current => current.IsDeleted == false)
-					.AnyAsync();
+				if (string.IsNullOrWhiteSpace(value: ViewModel.Username) == false)
+				{
+					isUsernameFound =
+						await DatabaseContext.Users
+						.Where(current => current.Username != null)
+						.Where(current => current.Username.ToLower().Trim() == ViewModel.Username.ToLower().Trim())
+						.AnyAsync();
+				}
+
+				if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
+				{
+					isEmailAddressFound =
+						await DatabaseContext.Users
+						.Where(current => current.EmailAddress != null)
+						.Where(current => current.EmailAddress.ToLower() == ViewModel.EmailAddress.Trim().ToLower())
+						.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
+						.Where(current => current.IsDeleted == false)
+						.AnyAsync();
+				}
 
 				// **************************************************
 				if (isUsernameFound)
@@ -132,42 +135,44 @@ namespace Server.Pages.Admin.UserManager
 				}
 				// **************************************************
 
-				Domain.Models.User user = new(username: fixedUsername)
-				{
-					RoleId = ViewModel.RoleId,
-					Gender = ViewModel.Gender,
-					Ordering = ViewModel.Ordering,
+				Domain.User user =
+					new(emailAddress: ViewModel.EmailAddress, roleId: ViewModel.RoleId.Value)
+					{
+						Gender = ViewModel.Gender,
+						Ordering = ViewModel.Ordering,
 
-					VerifyDateTime = Domain.SeedWork.Utility.Now,
+						IsActive = ViewModel.IsActive,
+						IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
+						IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
 
-					IsActive = ViewModel.IsActive,
-					IsVerified = ViewModel.IsVerified,
-					IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
-					IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
-
-					EmailAddress = fixedEmailAddress,
-					CellPhoneNumber = ViewModel.CellPhoneNumber,
-					LastName = Infrastructure.Utility.FixText(text: ViewModel.LastName),
-					FirstName = Infrastructure.Utility.FixText(text: ViewModel.FirstName),
-					Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
-				};
-
-				var entityEntry =
-					await DatabaseContext.AddAsync(entity: user);
-
-				int affectedRow =
-					await DatabaseContext.SaveChangesAsync();
+						Username = ViewModel.Username,
+						CellPhoneNumber = ViewModel.CellPhoneNumber,
+						FullName = Infrastructure.Utility.FixText(text: ViewModel.FullName),
+						Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
+					};
 
 				// **************************************************
-				if (affectedRow > 0)
+				var isValid =
+						Domain.SeedWork.ValidationHelper.IsValid(entity: user);
+
+				var results =
+					Domain.SeedWork.ValidationHelper.GetValidationResults(entity: user);
+				// **************************************************
+
+				if (isValid)
 				{
+					var entityEntry =
+						await DatabaseContext.AddAsync(entity: user);
+
+					int affectedRow =
+						await DatabaseContext.SaveChangesAsync();
+
 					string successMessage = string.Format
 						(Resources.Messages.Successes.SuccessfullyCreated,
 						Resources.DataDictionary.User);
 
 					AddToastSuccess(message: successMessage);
 				}
-				// **************************************************
 			}
 			catch (System.Exception ex)
 			{
@@ -195,7 +200,7 @@ namespace Server.Pages.Admin.UserManager
 		{
 			RolesViewModel =
 				await DatabaseContext.Roles
-				.Where(current => current.IsDeleted == false)
+				//.Where(current => current.IsDeleted == false)
 				.OrderBy(current => current.Ordering)
 				.Select(current => new ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel
 				{

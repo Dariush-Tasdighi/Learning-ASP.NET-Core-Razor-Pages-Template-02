@@ -28,13 +28,6 @@
 		// **********
 
 		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsVerified),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsVerified { get; set; }
-		// **********
-
-		// **********
 		//[System.ComponentModel.DataAnnotations.Display
 		//	(Name = nameof(Resources.DataDictionary.Role),
 		//	ResourceType = typeof(Resources.DataDictionary))]

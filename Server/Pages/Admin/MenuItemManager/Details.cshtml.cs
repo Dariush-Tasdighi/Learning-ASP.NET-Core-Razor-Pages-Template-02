@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class DetailsModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DetailsModel
@@ -52,8 +52,8 @@ namespace Server.Pages.Admin.MenuItemManager
 							IsActive = current.IsActive,
 							Parent = current.Parent.Title,
 							IsDeleted = current.IsDeleted,
-							IsDeletable = current.IsDeletable,
 							IconPosition = current.IconPosition,
+							IsUndeletable = current.IsUndeletable,
 							UpdateDateTime = current.UpdateDateTime,
 							InsertDateTime = current.InsertDateTime,
 							NumberOfSubMenus = current.SubMenus.Count,

@@ -34,48 +34,24 @@
 
 					<partial name="PartialViews/_DisplayPageMessages" />
 
-					<div class="row">
-						<div class="col-6">
-							<div class="mb-3">
-								<label asp-for="ViewModel.FirstName" class="form-label"></label>
+					<div class="mb-3">
+						<label asp-for="ViewModel.FullName" class="form-label"></label>
 
-								<div class="input-group">
-									@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.FirstName) == false)
-									{
-										<div class="input-group-text">
-											<i class="@(applicationSettings.IconSettings.UserIcons.FirstName)"></i>
-										</div>
-									}
-
-									<input asp-for="ViewModel.FirstName" class="form-control" />
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.FullName) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.FullName)"></i>
 								</div>
+							}
 
-								<span asp-validation-for="ViewModel.FirstName" class="text-danger"></span>
-							</div>
+							<input asp-for="ViewModel.FullName" class="form-control" dir="ltr" />
 						</div>
 
-						<div class="col-6">
-							<div class="mb-3">
-								<label asp-for="ViewModel.LastName" class="form-label"></label>
-
-								<div class="input-group">
-									@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.LastName) == false)
-									{
-										<div class="input-group-text">
-											<i class="@(applicationSettings.IconSettings.UserIcons.LastName)"></i>
-										</div>
-									}
-
-									<input asp-for="ViewModel.LastName" class="form-control" />
-								</div>
-
-								<span asp-validation-for="ViewModel.LastName" class="text-danger"></span>
-							</div>
-						</div>
+						<span asp-validation-for="ViewModel.FullName" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
-						<i class="mr-2">*</i>
 						<label asp-for="ViewModel.Username" class="form-label"></label>
 
 						<div class="input-group">
@@ -126,20 +102,6 @@
 						</div>
 
 						<span asp-validation-for="ViewModel.ConfirmPassword" class="text-danger"></span>
-					</div>
-
-					<div class="mb-3">
-						<label asp-for="ViewModel.Ordering" class="form-label"></label>
-
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
-
-							<input type="number" asp-for="ViewModel.Ordering"
-									min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
-									value="@(Domain.SeedWork.Constant.Default.Ordering)" class="form-control" dir="ltr" />
-						</div>
-
-						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
@@ -214,13 +176,27 @@
 							}
 
 							<select class="form-select" asp-for="ViewModel.Gender">
-								<option selected value="@(Domain.Models.Enumerations.Gender.Unspecified)">@(Resources.DataDictionary.Unspecified)</option>
-								<option value="@(Domain.Models.Enumerations.Gender.Female)">@(Resources.DataDictionary.Female)</option>
-								<option value="@(Domain.Models.Enumerations.Gender.Male)">@(Resources.DataDictionary.Male)</option>
+								<option selected value="@(Domain.Enumerations.Gender.Unspecified)">@(Resources.DataDictionary.Unspecified)</option>
+								<option value="@(Domain.Enumerations.Gender.Female)">@(Resources.DataDictionary.Female)</option>
+								<option value="@(Domain.Enumerations.Gender.Male)">@(Resources.DataDictionary.Male)</option>
 							</select>
 						</div>
 
 						<span asp-validation-for="ViewModel.Gender" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Ordering" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
+
+							<input type="number" asp-for="ViewModel.Ordering"
+								   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
+								   value="@(Domain.SeedWork.Constant.Default.Ordering)" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">

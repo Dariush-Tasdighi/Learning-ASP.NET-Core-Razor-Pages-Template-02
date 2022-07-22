@@ -1,11 +1,12 @@
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Domain;
 
 namespace Server.Pages.Admin.RoleManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public CreateModel
@@ -63,12 +64,11 @@ namespace Server.Pages.Admin.RoleManager
 				else
 				{
 					// **************************************************
-					Domain.Models.Role role = new()
+					Role role = new(name: fixedName)
 					{
-						Name = fixedName,
 						Ordering = ViewModel.Ordering,
 						IsActive = ViewModel.IsActive,
-						IsDeletable = ViewModel.IsDeletable,
+						IsUndeletable = ViewModel.IsUndeletable,
 						Description = Infrastructure.Utility.FixText(text: ViewModel.Description),
 					};
 					// **************************************************

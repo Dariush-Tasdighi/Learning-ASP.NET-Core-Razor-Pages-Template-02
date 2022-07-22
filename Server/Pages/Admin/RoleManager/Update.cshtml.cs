@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public UpdateModel
@@ -41,7 +41,7 @@ namespace Server.Pages.Admin.RoleManager
 						IsActive = current.IsActive,
 						Ordering = current.Ordering,
 						Description = current.Description,
-						IsDeletable = current.IsDeletable,
+						IsUndeletable = current.IsUndeletable,
 					}).FirstOrDefaultAsync();
 			}
 			catch (System.Exception ex)
@@ -75,7 +75,7 @@ namespace Server.Pages.Admin.RoleManager
 					await DatabaseContext.Roles
 					.Where(current => current.Name.ToLower() == fixedName.ToLower())
 					.Where(current => current.Id != id)
-					.Where(current => current.IsDeleted == false)
+					//.Where(current => current.IsDeleted == false)
 					.AnyAsync();
 
 				if (foundAny)
@@ -98,13 +98,13 @@ namespace Server.Pages.Admin.RoleManager
 						.FirstOrDefaultAsync();
 
 					// **************************************************
+					foundedItem.SetUpdateDateTime();
+
 					foundedItem.Name = fixedName;
 					foundedItem.Ordering = ViewModel.Ordering;
 					foundedItem.IsActive = ViewModel.IsActive;
-					foundedItem.IsDeletable = ViewModel.IsDeletable;
+					foundedItem.IsUndeletable = ViewModel.IsUndeletable;
 					foundedItem.Description = Infrastructure.Utility.FixText(text: ViewModel.Description);
-
-					foundedItem.SetUpdateDateTime();
 					// **************************************************
 
 					//var entityEntry =
@@ -114,14 +114,11 @@ namespace Server.Pages.Admin.RoleManager
 						await DatabaseContext.SaveChangesAsync();
 
 					// **************************************************
-					if (affectedRows > 0)
-					{
-						string successMessage = string.Format
-							(Resources.Messages.Successes.SuccessfullyUpdated,
-							Resources.DataDictionary.Role);
+					string successMessage = string.Format
+						(Resources.Messages.Successes.SuccessfullyUpdated,
+						Resources.DataDictionary.Role);
 
-						AddToastSuccess(message: successMessage);
-					}
+					AddToastSuccess(message: successMessage);
 					// **************************************************
 
 					return RedirectToPage(pageName: "Index");

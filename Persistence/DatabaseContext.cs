@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
@@ -13,13 +14,13 @@ namespace Persistence
 			Database.EnsureCreated();
 		}
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.User> Users { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<User> Users { get; set; }
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Role> Roles { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Role> Roles { get; set; }
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.Page> Pages { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Page> Pages { get; set; }
 
-		public Microsoft.EntityFrameworkCore.DbSet<Domain.Models.MenuItem> MenuItems { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<MenuItem> MenuItems { get; set; }
 
 		protected override void OnConfiguring
 			(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)

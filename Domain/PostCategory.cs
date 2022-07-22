@@ -1,19 +1,19 @@
-﻿namespace Domain.Models
+﻿namespace Domain
 {
 	public class PostCategory :
-		SeedWork.Entity, SeedWork.IEntityHasUpdateDateTime,
-		SeedWork.IEntityHasOrdering, SeedWork.IEntityHasIsActive,
-		SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete
+		SeedWork.Entity,
+		SeedWork.IEntityHasIsActive,
+		SeedWork.IEntityHasIsUndeletable,
+		SeedWork.IEntityHasLogicalDelete,
+		SeedWork.IEntityHasUpdateDateTime
 	{
-		#region Constant(s)
-		public const byte TitleMaxLength = 25;
-
-		public const byte DescriptionMaxLength = 100;
-		#endregion /Constant(s)
-
 		#region Constructor
-		public PostCategory() : base()
+		public PostCategory(string title) : base()
 		{
+			Title = title;
+
+			SetUpdateDateTime();
+
 			//Posts =
 			//	new System.Collections.Generic.List<Posts>();
 
@@ -76,22 +76,12 @@
 
 		// **********
 		/// <summary>
-		/// اولویت بندی دسته بندی
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.Ordering))]
-		public uint Ordering { get; set; }
-		// **********
-
-		// **********
-		/// <summary>
 		/// تاریخ و زمان آخرین بروزرسانی
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public System.DateTime? UpdateDateTime { get; private set; }
+		public System.DateTime UpdateDateTime { get; private set; }
 		// **********
 
 		// **********
@@ -99,9 +89,9 @@
 		/// قابل حذف بودن/نبودن
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeletable),
+			(Name = nameof(Resources.DataDictionary.IsUndeletable),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeletable { get; set; }
+		public bool IsUndeletable { get; set; }
 		// **********
 
 		// **********
@@ -126,7 +116,7 @@
 		#region Method(s)
 		public void SetUpdateDateTime()
 		{
-			UpdateDateTime = Domain.SeedWork.Utility.Now;
+			UpdateDateTime = SeedWork.Utility.Now;
 		}
 		#endregion /Method(s)
 	}

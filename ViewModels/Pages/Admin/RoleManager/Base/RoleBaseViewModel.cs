@@ -24,7 +24,7 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.Models.Role.NameMaxLength,
+			(length: Domain.SeedWork.Constant.MaxLength.Title,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Name { get; set; }

@@ -123,6 +123,9 @@
   <data name="Active" xml:space="preserve">
     <value>فعال</value>
   </data>
+  <data name="AdminDescription" xml:space="preserve">
+    <value>توضیحات ادمین</value>
+  </data>
   <data name="Author" xml:space="preserve">
     <value>نویسنده</value>
   </data>
@@ -246,8 +249,8 @@
   <data name="IsDefault" xml:space="preserve">
     <value>رکورد پیش فرض</value>
   </data>
-  <data name="IsDeletable" xml:space="preserve">
-    <value>قابل حذف</value>
+  <data name="IsUndeletable" xml:space="preserve">
+    <value>غیر قابل حذف</value>
   </data>
   <data name="IsDeleted" xml:space="preserve">
     <value>حذف شده</value>
@@ -257,6 +260,12 @@
   </data>
   <data name="IsFeatured" xml:space="preserve">
     <value>ویژه بودن صفحه</value>
+  </data>
+  <data name="IsProfilePublic" xml:space="preserve">
+    <value>پروفایل عمومی است</value>
+  </data>
+  <data name="IsProgrammer" xml:space="preserve">
+    <value>برنامه‌نویس</value>
   </data>
   <data name="IsPublic" xml:space="preserve">
     <value>عمومی</value>

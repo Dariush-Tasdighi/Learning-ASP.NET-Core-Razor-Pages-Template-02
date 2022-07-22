@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public IndexModel
@@ -66,9 +66,9 @@ namespace Server.Pages.Admin.RoleManager
 								Id = current.Id,
 								Name = current.Name,
 								IsActive = current.IsActive,
-								IsDeleted = current.IsDeleted,
+								//IsDeleted = current.IsDeleted,
 								IsSystemic = current.IsSystemic,
-								IsDeletable = current.IsDeletable,
+								IsUndeletable = current.IsUndeletable,
 								InsertDateTime = current.InsertDateTime,
 								UpdateDateTime = current.UpdateDateTime,
 							})

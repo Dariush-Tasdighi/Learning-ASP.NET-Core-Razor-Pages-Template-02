@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
@@ -56,7 +56,6 @@ namespace Server.Pages.Admin.UserManager
 						Ordering = current.Ordering,
 						Username = current.Username,
 						IsActive = current.IsActive,
-						IsVerified = current.IsVerified,
 					}).FirstOrDefaultAsync();
 			}
 			catch (System.Exception ex)
@@ -94,11 +93,9 @@ namespace Server.Pages.Admin.UserManager
 
 				if (foundedItem == null)
 				{
-					// **************************************************
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.NotFound,
 						Resources.DataDictionary.User);
-					// **************************************************
 
 					AddToastError(message: errorMessage);
 
@@ -106,31 +103,30 @@ namespace Server.Pages.Admin.UserManager
 				}
 				else
 				{
-					// **************************************************
-					foundedItem.RoleId = ViewModel.RoleId;
+					foundedItem.SetUpdateDateTime();
 					foundedItem.Ordering = ViewModel.Ordering;
 					foundedItem.IsActive = ViewModel.IsActive;
-					foundedItem.IsVerified = foundedItem.IsVerified ? foundedItem.IsVerified : ViewModel.IsVerified;
-
-					foundedItem.SetUpdateDateTime();
-					// **************************************************
-
-					//var entityEntry =
-					//	DatabaseContext.Update(entity: foundedItem);
-
-					int affectedRows =
-						await DatabaseContext.SaveChangesAsync();
+					foundedItem.RoleId = ViewModel.RoleId.Value;
 
 					// **************************************************
-					if (affectedRows > 0)
+					var isValid =
+						Domain.SeedWork.ValidationHelper.IsValid(entity: foundedItem);
+
+					var results =
+						Domain.SeedWork.ValidationHelper.GetValidationResults(entity: foundedItem);
+					// **************************************************
+
+					if (isValid)
 					{
+						int affectedRows =
+							await DatabaseContext.SaveChangesAsync();
+
 						string successMessage = string.Format
 							(Resources.Messages.Successes.SuccessfullyUpdated,
 							Resources.DataDictionary.User);
 
 						AddToastSuccess(message: successMessage);
 					}
-					// **************************************************
 
 					return RedirectToPage("./Index");
 				}
@@ -159,7 +155,7 @@ namespace Server.Pages.Admin.UserManager
 		{
 			RolesViewModel =
 				await DatabaseContext.Roles
-				.Where(current => current.IsDeleted == false)
+				//.Where(current => current.IsDeleted == false)
 				.OrderBy(current => current.Ordering)
 				.Select(current => new ViewModels.Pages.Admin.UserManager.GetAccessibleRolesViewModel
 				{

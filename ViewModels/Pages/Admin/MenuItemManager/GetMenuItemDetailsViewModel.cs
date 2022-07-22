@@ -50,9 +50,9 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeletable),
+			(Name = nameof(Resources.DataDictionary.IsUndeletable),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeletable { get; init; }
+		public bool IsUndeletable { get; init; }
 		// **********
 
 		// **********
@@ -94,7 +94,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IconPosition),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Models.Enumerations.IconPosition? IconPosition { get; init; }
+		public Domain.Enumerations.IconPosition? IconPosition { get; init; }
 		// **********
 	}
 }

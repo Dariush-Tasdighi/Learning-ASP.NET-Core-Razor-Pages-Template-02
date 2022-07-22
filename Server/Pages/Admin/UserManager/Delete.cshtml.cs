@@ -42,8 +42,7 @@ namespace Server.Pages.Admin.UserManager
 						Role = current.Role.Name,
 						Username = current.Username,
 						IsActive = current.IsActive,
-						LastName = current.LastName,
-						FirstName = current.FirstName,
+						FullName = current.FullName,
 						InsertDateTime = current.InsertDateTime,
 					})
 					.FirstOrDefaultAsync();
@@ -84,17 +83,17 @@ namespace Server.Pages.Admin.UserManager
 					return RedirectToPage("./Index");
 				}
 				// TO DO: Check User Id...
-				else if (foundedItem.RoleId != Domain.SeedWork.Constant.SystemicRole.UserRoleId)
-				{
-					string errorMessage = string.Format
-						(Resources.Messages.Errors.UnableTo,
-						Resources.DataDictionary.Delete,
-						Resources.DataDictionary.User);
+				//else if (foundedItem.RoleId != Domain.Role.UserRoleId)
+				//{
+				//	string errorMessage = string.Format
+				//		(Resources.Messages.Errors.UnableTo,
+				//		Resources.DataDictionary.Delete,
+				//		Resources.DataDictionary.User);
 
-					AddToastError(message: errorMessage);
+				//	AddToastError(message: errorMessage);
 
-					return RedirectToPage("./Index");
-				}
+				//	return RedirectToPage("./Index");
+				//}
 				else
 				{
 					//foundedItem.IsActive = false;

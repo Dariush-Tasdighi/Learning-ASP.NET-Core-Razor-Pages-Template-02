@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Configurations
 {
 	public class MenuItemConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.MenuItem>
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<MenuItem>
 	{
 		public MenuItemConfiguration() : base()
 		{
@@ -11,12 +12,12 @@ namespace Persistence.Configurations
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.Models.MenuItem> builder)
+			.Builders.EntityTypeBuilder<MenuItem> builder)
 		{
 			// **************************************************
 			builder
 				.Property(current => current.Title)
-				.HasMaxLength(maxLength: Domain.Models.MenuItem.TitleMaxLength)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.Title)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -25,7 +26,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Icon)
-				.HasMaxLength(maxLength: Domain.Models.MenuItem.IconMaxLength)
+				.HasMaxLength(maxLength: MenuItem.IconMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
@@ -34,7 +35,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Link)
-				.HasMaxLength(maxLength: Domain.Models.MenuItem.LinkMaxLength)
+				.HasMaxLength(maxLength: MenuItem.LinkMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -45,6 +46,7 @@ namespace Persistence.Configurations
 				.HasOne(current => current.Parent)
 				.WithMany(other => other.SubMenus)
 				.HasForeignKey(current => current.ParentId)
+				.IsRequired(required: false)
 				.OnDelete(deleteBehavior: Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
 				;
 			// **************************************************
@@ -60,7 +62,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.HasIndex(current => new { current.ParentId, current.Title })
-				//.HasDatabaseName(name: $"IX_{ nameof(Domain.Models.MenuItem.ParentId) }_{ nameof(Domain.Models.MenuItem.Title) }")
+				//.HasDatabaseName(name: $"IX_{ nameof(Domain.MenuItem.ParentId) }_{ nameof(Domain.MenuItem.Title) }")
 				.IsUnique(unique: true)
 				;
 			// **************************************************

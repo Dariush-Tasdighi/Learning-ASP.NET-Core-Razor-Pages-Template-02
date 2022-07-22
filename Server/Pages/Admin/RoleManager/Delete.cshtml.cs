@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DeleteModel
@@ -25,27 +25,24 @@ namespace Server.Pages.Admin.RoleManager
 		public ViewModels.Pages.Admin.RoleManager.DeleteRoleViewModel ViewModel { get; private set; }
 		// **********
 
-		public async System.Threading.Tasks.Task OnGetAsync(System.Guid? id)
+		public async System.Threading.Tasks.Task OnGetAsync(System.Guid id)
 		{
 			try
 			{
-				if (id.HasValue)
-				{
-					ViewModel =
-						await DatabaseContext.Roles
-						.Where(current => current.Id == id.Value)
-						//.Where(current => current.IsDeleted == false)
-						.Select(current => new ViewModels.Pages.Admin.RoleManager.DeleteRoleViewModel
-						{
-							Id = current.Id,
-							Name = current.Name,
-							IsActive = current.IsActive,
-							IsSystemic = current.IsSystemic,
-							IsDeletable = current.IsDeletable,
-							InsertDateTime = current.InsertDateTime,
-						})
-						.FirstOrDefaultAsync();
-				}
+				ViewModel =
+					await DatabaseContext.Roles
+					.Where(current => current.Id == id)
+					//.Where(current => current.IsDeleted == false)
+					.Select(current => new ViewModels.Pages.Admin.RoleManager.DeleteRoleViewModel
+					{
+						Id = current.Id,
+						Name = current.Name,
+						IsActive = current.IsActive,
+						IsSystemic = current.IsSystemic,
+						IsUndeletable = current.IsUndeletable,
+						InsertDateTime = current.InsertDateTime,
+					})
+					.FirstOrDefaultAsync();
 			}
 			catch (System.Exception ex)
 			{
@@ -70,7 +67,7 @@ namespace Server.Pages.Admin.RoleManager
 					var foundedItem =
 						await DatabaseContext.Roles
 						.Where(current => current.Id == id.Value)
-						.Where(current => current.IsDeleted == false)
+						//.Where(current => current.IsDeleted == false)
 						.FirstOrDefaultAsync();
 
 					if (foundedItem == null)
@@ -83,24 +80,20 @@ namespace Server.Pages.Admin.RoleManager
 
 						return RedirectToPage("./Index");
 					}
-					else if (foundedItem.IsDeletable == false)
-					//else if (foundedItem.IsSystemic || (foundedItem.IsDeletable == false))
+					else if (foundedItem.IsUndeletable)
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,
 							Resources.DataDictionary.Delete,
 							Resources.DataDictionary.Role);
 
-						AddPageError(message: errorMessage);
+						AddToastError(message: errorMessage);
 
-						return Page();
+						return RedirectToPage("./Index");
 					}
 					else
 					{
-						//foundedItem.IsActive = false;
-						foundedItem.IsDeleted = true;
-
-						DatabaseContext.Roles.Update(entity: foundedItem);
+						DatabaseContext.Remove(entity: foundedItem);
 
 						await DatabaseContext.SaveChangesAsync();
 

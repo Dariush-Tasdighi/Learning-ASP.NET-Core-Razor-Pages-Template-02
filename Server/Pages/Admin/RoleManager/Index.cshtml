@@ -53,7 +53,7 @@
 							@Html.DisplayNameFor(model => model.ViewModel.Data[0].IsSystemic)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.ViewModel.Data[0].IsDeletable)
+							@Html.DisplayNameFor(model => model.ViewModel.Data[0].IsUndeletable)
 						</th>
 						<th>
 							@Html.DisplayNameFor(model => model.ViewModel.Data[0].IsDeleted)
@@ -91,7 +91,7 @@
 							</td>
 
 							<td>
-								<i class="@(item.IsDeletable ? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
+								<i class="@(item.IsUndeletable ? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
 							</td>
 
 							<td>
@@ -123,7 +123,7 @@
 										<i class="@(applicationSettings.IconSettings.TableIcons.Update)"></i>
 									</a>
 									|
-									@if (item.IsDeletable)
+									@if (item.IsUndeletable == false)
 									{
 										<a asp-page="./Delete" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
 											<i class="@(applicationSettings.IconSettings.TableIcons.Delete)"></i>

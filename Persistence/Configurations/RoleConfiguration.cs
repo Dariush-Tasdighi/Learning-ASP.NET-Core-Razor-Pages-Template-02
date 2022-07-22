@@ -1,46 +1,36 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace Persistence.Configurations
+﻿namespace Data.Configurations
 {
-	public class RoleConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.Role>
+	internal class RoleConfiguration : object,
+		Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Role>
 	{
 		public RoleConfiguration() : base()
 		{
 		}
 
 		public void Configure
-			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.Models.Role> builder)
+			(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.Role> builder)
 		{
 			// **************************************************
-			builder
-				.Property(current => current.Name)
-				.HasMaxLength(maxLength: Domain.Models.Role.NameMaxLength)
-				.IsRequired(required: false)
-				.IsUnicode(unicode: true)
-				;
-			// **************************************************
+			//builder
+			//	.HasIndex(propertyNames: "Name")
+			//	.IsUnique(unique: true)
+			//	;
 
-			// **************************************************
-			builder
-				.Property(current => current.Description)
-				.HasMaxLength(maxLength: Domain.Models.Role.DescriptionMaxLength)
-				.IsRequired(required: false)
-				.IsUnicode(unicode: true)
-				;
-			// **************************************************
+			//builder
+			//	.HasIndex(propertyNames: nameof(Domain.Role.Name))
+			//	.IsUnique(unique: true)
+			//	;
 
-			// **************************************************
-			builder
-				.HasMany(current => current.Users)
-				.WithOne(other => other.Role)
-				.HasForeignKey(other => other.RoleId)
-				.OnDelete(deleteBehavior: Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
-				;
-			// **************************************************
+			//builder
+			//	.HasIndex(indexExpression: current => current.Name)
+			//	.IsUnique(unique: true)
+			//	;
 
-			// **************************************************
+			//builder
+			//	.HasIndex(indexExpression: current => new { current.Name })
+			//	.IsUnique(unique: true)
+			//	;
+
 			builder
 				.HasIndex(current => new { current.Name })
 				.IsUnique(unique: true)
@@ -49,52 +39,41 @@ namespace Persistence.Configurations
 
 			// **************************************************
 			builder
-				.HasIndex(current => new { current.Ordering })
-				.IsClustered(clustered: false)
-				.IsUnique(unique: false)
+				.HasMany(current => current.Users)
+				.WithOne(other => other.Role)
+				.IsRequired(required: true)
+				.HasForeignKey(other => other.RoleId)
+				.OnDelete(deleteBehavior:
+					Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
 				;
 			// **************************************************
 
 			// **************************************************
-			builder.HasData
-			(
-				new Domain.Models.Role
+			// **************************************************
+			// **************************************************
+			var role =
+				new Domain.Role(name: "کاربر معمولی")
 				{
+					//Id,
+					//Name,
+					//Users
+					//InsertDateTime,
+					//UpdateDateTime,
+
 					Ordering = 0,
+
 					IsActive = true,
 					IsSystemic = true,
-					IsDeletable = false,
-					Name = Domain.SeedWork.Constant.SystemicRole.User,
-					Id = Domain.SeedWork.Constant.SystemicRole.UserRoleId,
-				},
-				new Domain.Models.Role
-				{
-					Ordering = 10001,
-					IsActive = true,
-					IsSystemic = true,
-					IsDeletable = false,
-					Name = Domain.SeedWork.Constant.SystemicRole.Admin,
-					Id = Domain.SeedWork.Constant.SystemicRole.AdminRoleId,
-				},
-				new Domain.Models.Role
-				{
-					Ordering = 10002,
-					IsActive = true,
-					IsSystemic = true,
-					IsDeletable = false,
-					Name = Domain.SeedWork.Constant.SystemicRole.Owner,
-					Id = Domain.SeedWork.Constant.SystemicRole.OwnerRoleId,
-				},
-				new Domain.Models.Role
-				{
-					Ordering = 10003,
-					IsActive = true,
-					IsSystemic = true,
-					IsDeletable = false,
-					Name = Domain.SeedWork.Constant.SystemicRole.Programmer,
-					Id = Domain.SeedWork.Constant.SystemicRole.ProgrammerRoleId,
-				}
-			);
+					IsUndeletable = true,
+
+					Description = null,
+				};
+
+			role.SetId(id: Domain.Role.UserRoleId);
+
+			builder.HasData(data: role);
+			// **************************************************
+			// **************************************************
 			// **************************************************
 		}
 	}

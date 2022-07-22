@@ -123,6 +123,9 @@
   <data name="Active" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="AdminDescription" xml:space="preserve">
+    <value>Admin Description</value>
+  </data>
   <data name="Author" xml:space="preserve">
     <value>Author</value>
   </data>
@@ -249,8 +252,8 @@
   <data name="IsDefault" xml:space="preserve">
     <value>Is Default</value>
   </data>
-  <data name="IsDeletable" xml:space="preserve">
-    <value>Is Deletable</value>
+  <data name="IsUndeletable" xml:space="preserve">
+    <value>Undeletable</value>
   </data>
   <data name="IsDeleted" xml:space="preserve">
     <value>Is Deleted</value>
@@ -260,6 +263,12 @@
   </data>
   <data name="IsFeatured" xml:space="preserve">
     <value>Is Featured</value>
+  </data>
+  <data name="IsProfilePublic" xml:space="preserve">
+    <value>Profile is Public</value>
+  </data>
+  <data name="IsProgrammer" xml:space="preserve">
+    <value>Programmer</value>
   </data>
   <data name="IsPublic" xml:space="preserve">
     <value>Public</value>

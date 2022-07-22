@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DeleteModel
@@ -84,7 +84,7 @@ namespace Server.Pages.Admin.MenuItemManager
 
 						return RedirectToPage("./Index");
 					}
-					else if (foundedItem.IsDeletable == false)
+					else if (foundedItem.IsUndeletable == false)
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,

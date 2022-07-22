@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence.Configurations
 {
 	public class PageConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Models.Page>
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Page>
 	{
 		public PageConfiguration() : base()
 		{
@@ -11,12 +12,12 @@ namespace Persistence.Configurations
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.Models.Page> builder)
+			.Builders.EntityTypeBuilder<Page> builder)
 		{
 			// **************************************************
 			builder
 				.Property(current => current.Title)
-				.HasMaxLength(maxLength: Domain.Models.Page.TitleMaxLength)
+				.HasMaxLength(maxLength: Page.TitleMaxLength)
 				.IsRequired(required: true)
 				.IsUnicode(unicode: true)
 				;
@@ -26,7 +27,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Password)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.PasswordInDatabase)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.Password)
 				.IsRequired(required: true)
 				.IsUnicode(unicode: false)
 				;
@@ -35,7 +36,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Author)
-				.HasMaxLength(maxLength: Domain.Models.Page.AuthorMaxLength)
+				.HasMaxLength(maxLength: Page.AuthorMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -44,7 +45,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Description)
-				.HasMaxLength(maxLength: Domain.Models.Page.DescriptionMaxLength)
+				.HasMaxLength(maxLength: Page.DescriptionMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -53,7 +54,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Category)
-				.HasMaxLength(maxLength: Domain.Models.Page.CategoryMaxLength)
+				.HasMaxLength(maxLength: Page.CategoryMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -62,7 +63,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Copyright)
-				.HasMaxLength(maxLength: Domain.Models.Page.CopyrightMaxLength)
+				.HasMaxLength(maxLength: Page.CopyrightMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -71,7 +72,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Classification)
-				.HasMaxLength(maxLength: Domain.Models.Page.ClassificationMaxLength)
+				.HasMaxLength(maxLength: Page.ClassificationMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -80,7 +81,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Introduction)
-				.HasMaxLength(maxLength: Domain.Models.Page.IntroductionMaxLength)
+				.HasMaxLength(maxLength: Page.IntroductionMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -89,7 +90,7 @@ namespace Persistence.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.ImageUrl)
-				.HasMaxLength(maxLength: Domain.Models.Page.ImageUrlMaxLength)
+				.HasMaxLength(maxLength: Page.ImageUrlMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;

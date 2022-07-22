@@ -1,10 +1,14 @@
-﻿namespace Domain.Models
+﻿namespace Domain
 {
-	public class Page : SeedWork.Entity,
-		SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsSystemic,
-		SeedWork.IEntityHasIsUpdatable, SeedWork.IEntityHasOrdering,
-		SeedWork.IEntityHasIsDeletable, SeedWork.IEntityHasLogicalDelete,
-		SeedWork.IEntityHasCreatorUserId, SeedWork.IEntityHasRemoverUserId
+	public class Page :
+		SeedWork.Entity,
+		SeedWork.IEntityHasIsActive,
+		SeedWork.IEntityHasIsSystemic,
+		SeedWork.IEntityHasIsUnupdatable,
+		SeedWork.IEntityHasIsUndeletable,
+		SeedWork.IEntityHasUpdateDateTime,
+		SeedWork.IEntityHasDeleteDateTime,
+		SeedWork.IEntityHasLogicalDelete
 	{
 		#region Constant(s)
 		public const byte TitleMaxLength = 100;
@@ -24,9 +28,11 @@
 		public const int ClassificationMaxLength = 1000;
 		#endregion /Constant(s)
 
-		public Page() : base()
+		public Page(string title) : base()
 		{
-			Ordering = SeedWork.Constant.Default.Ordering;
+			Title = title;
+
+			SetUpdateDateTime();
 		}
 
 		// **********
@@ -227,16 +233,6 @@
 
 		// **********
 		/// <summary>
-		/// آیدی کاربر سازنده صفحه
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.CreatorUserId))]
-		public System.Guid CreatorUserId { get; set; }
-		// **********
-
-		// **********
-		/// <summary>
 		/// تاریخ و زمان شروع انتشار
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
@@ -272,7 +268,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IsUpdatable))]
-		public bool IsUpdatable { get; set; }
+		public bool IsUnupdatable { get; set; }
 		// **********
 
 		// **********
@@ -282,16 +278,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.UpdateDateTime))]
-		public System.DateTime? UpdateDateTime { get; private set; }
-
-		// **********
-		/// <summary>
-		/// آیدی کاربر ویرایش کننده صفحه
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.UpdaterUserId))]
-		public System.Guid? UpdaterUserId { get; private set; }
+		public System.DateTime UpdateDateTime { get; private set; }
 		// **********
 
 		// **********
@@ -300,8 +287,8 @@
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.IsDeletable))]
-		public bool IsDeletable { get; set; }
+			Name = nameof(Resources.DataDictionary.IsUndeletable))]
+		public bool IsUndeletable { get; set; }
 		// **********
 
 		// **********
@@ -326,16 +313,6 @@
 
 		// **********
 		/// <summary>
-		/// آیدی کاربر حدف کننده صفحه
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.RemoverUserId))]
-		public System.Guid? RemoverUserId { get; set; }
-		// **********
-
-		// **********
-		/// <summary>
 		/// سیستمی است؟
 		/// </summary>
 		[System.ComponentModel.DataAnnotations.Display
@@ -348,16 +325,6 @@
 		public string? Category { get; set; }
 		// **********
 
-		// **********
-		/// <summary>
-		/// مرتب سازی
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.Ordering))]
-		public uint Ordering { get; set; }
-		// **********
-
 		#region Method(s)
 		public void SetUpdateDateTime()
 		{
@@ -366,6 +333,11 @@
 
 		public void SetDeleteDateTime()
 		{
+			//if (IsDeleted)
+			//{
+			//	DeleteDateTime = SeedWork.Utility.Now;
+			//}
+
 			DeleteDateTime = SeedWork.Utility.Now;
 		}
 		#endregion /Method(s)

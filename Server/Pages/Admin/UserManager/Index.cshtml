@@ -40,9 +40,8 @@
 				<thead class="@(applicationSettings.TablesDefaultSettings.TableHeaderStyle)">
 					<tr>
 						<th>#</th>
-						<th>@(Resources.DataDictionary.Username)</th>
+						<th>@(Resources.DataDictionary.EmailAddress)</th>
 						<th>@(Resources.DataDictionary.Active)</th>
-						<th>@(Resources.DataDictionary.Verified)</th>
 						<th>@(Resources.DataDictionary.Deleted)</th>
 						<th>@(Resources.DataDictionary.InsertDateTime)</th>
 						<th>@(Resources.DataDictionary.UpdateDateTime)</th>
@@ -61,15 +60,11 @@
 							</td>
 
 							<td>
-								@(item.Username)
+								@(item.EmailAddress)
 							</td>
 
 							<td>
 								<i class="@(item.IsActive ? applicationSettings.IconSettings.TableIcons.True : applicationSettings.IconSettings.TableIcons.False)"></i>
-							</td>
-
-							<td>
-								<i class="@(item.IsVerified? applicationSettings.IconSettings.TableIcons.True : applicationSettings.IconSettings.TableIcons.False)"></i>
 							</td>
 
 							<td>
