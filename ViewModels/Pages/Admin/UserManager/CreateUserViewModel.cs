@@ -140,6 +140,13 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsUndeletable),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public bool IsUndeletable { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool? IsEmailAddressVerified { get; set; }

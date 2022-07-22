@@ -53,9 +53,10 @@ namespace Server.Pages.Admin.UserManager
 					{
 						Id = current.Id,
 						RoleId = current.RoleId,
-						Ordering = current.Ordering,
 						Username = current.Username,
+						Ordering = current.Ordering,
 						IsActive = current.IsActive,
+						IsUndeletable = current.IsUndeletable,
 					}).FirstOrDefaultAsync();
 			}
 			catch (System.Exception ex)
@@ -107,6 +108,7 @@ namespace Server.Pages.Admin.UserManager
 					foundedItem.Ordering = ViewModel.Ordering;
 					foundedItem.IsActive = ViewModel.IsActive;
 					foundedItem.RoleId = ViewModel.RoleId.Value;
+					foundedItem.IsUndeletable = ViewModel.IsUndeletable;
 
 					// **************************************************
 					var isValid =

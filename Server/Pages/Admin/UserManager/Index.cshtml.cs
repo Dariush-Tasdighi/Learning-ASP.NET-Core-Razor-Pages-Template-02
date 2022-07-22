@@ -67,10 +67,14 @@ namespace Server.Pages.Admin.UserManager
 							.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserItemViewModel
 							{
 								Id = current.Id,
+
 								Username = current.Username,
+								EmailAddress = current.EmailAddress,
+
 								IsActive = current.IsActive,
 								IsDeleted = current.IsDeleted,
-								EmailAddress = current.EmailAddress,
+								IsUndeletable = current.IsUndeletable,
+
 								InsertDateTime = current.InsertDateTime,
 								UpdateDateTime = current.UpdateDateTime,
 							})

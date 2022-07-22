@@ -92,6 +92,13 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsUndeletable),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public bool IsUndeletable { get; init; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsDeleted),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsDeleted { get; init; }

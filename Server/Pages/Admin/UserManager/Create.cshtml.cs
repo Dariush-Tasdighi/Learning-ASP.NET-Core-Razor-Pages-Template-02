@@ -142,6 +142,7 @@ namespace Server.Pages.Admin.UserManager
 						Ordering = ViewModel.Ordering,
 
 						IsActive = ViewModel.IsActive,
+						IsUndeletable = ViewModel.IsUndeletable,
 						IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
 						IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
 

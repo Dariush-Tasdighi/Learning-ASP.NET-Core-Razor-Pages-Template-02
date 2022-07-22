@@ -54,6 +54,8 @@ namespace Server.Pages.Admin.UserManager
 
 						IsActive = current.IsActive,
 						IsDeleted = current.IsDeleted,
+						IsUndeletable = current.IsUndeletable,
+
 						InsertDateTime = current.InsertDateTime,
 						UpdateDateTime = current.UpdateDateTime,
 

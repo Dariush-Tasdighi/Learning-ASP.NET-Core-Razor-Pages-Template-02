@@ -206,6 +206,13 @@
 						</div>
 					</div>
 
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
+							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
+						</div>
+					</div>
+
 					<div class="mb-3 d-flex justify-content-center">
 						<button type="submit" class="btn btn-primary mx-1">@(Resources.ButtonCaptions.Register)</button>
 						<button type="reset" class="btn btn-secondary mx-1">@(Resources.ButtonCaptions.Reset)</button>
