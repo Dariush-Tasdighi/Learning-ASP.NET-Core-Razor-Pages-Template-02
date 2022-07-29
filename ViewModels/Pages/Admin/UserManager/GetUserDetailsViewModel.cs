@@ -108,7 +108,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.AdminDescription),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public string AdminDescription { get; set; }
+		public string? AdminDescription { get; set; }
 		// **********
 	}
 }
