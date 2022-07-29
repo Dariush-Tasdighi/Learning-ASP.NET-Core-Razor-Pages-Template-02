@@ -69,7 +69,8 @@ namespace Server.Pages.Admin.MenuItemManager
 				}
 				// **************************************************
 
-				string? fixedTitle = Infrastructure.Utility.FixText(text: ViewModel.Title);
+				string? fixedTitle =
+					Dtat.Utility.FixText(text: ViewModel.Title);
 
 				// **************************************************
 				bool hasAny =
@@ -99,7 +100,7 @@ namespace Server.Pages.Admin.MenuItemManager
 					ParentId = ViewModel.ParentId,
 					IsUndeletable = ViewModel.IsUndeletable,
 					IconPosition = ViewModel.IconPosition,
-					Link = Infrastructure.Utility.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.Link),
+					Link = Dtat.Utility.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.Link),
 				};
 
 				var entityEntry =

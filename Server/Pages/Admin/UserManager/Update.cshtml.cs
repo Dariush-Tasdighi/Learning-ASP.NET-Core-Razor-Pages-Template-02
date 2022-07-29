@@ -53,11 +53,15 @@ namespace Server.Pages.Admin.UserManager
 					{
 						Id = current.Id,
 						RoleId = current.RoleId,
-						Username = current.Username,
+
 						Ordering = current.Ordering,
 						IsActive = current.IsActive,
 						IsProgrammer = current.IsProgrammer,
 						IsUndeletable = current.IsUndeletable,
+
+						//Username = current.Username,
+						EmailAddress = current.EmailAddress,
+						AdminDescription = current.AdminDescription,
 					}).FirstOrDefaultAsync();
 			}
 			catch (System.Exception ex)
@@ -111,6 +115,7 @@ namespace Server.Pages.Admin.UserManager
 					foundedItem.Ordering = ViewModel.Ordering;
 					foundedItem.IsProgrammer = ViewModel.IsProgrammer;
 					foundedItem.IsUndeletable = ViewModel.IsUndeletable;
+					foundedItem.AdminDescription = Dtat.Utility.FixText(text: ViewModel.AdminDescription);
 
 					// **************************************************
 					var isValid =

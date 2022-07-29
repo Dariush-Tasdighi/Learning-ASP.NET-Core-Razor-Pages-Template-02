@@ -22,6 +22,13 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.EmailAddress),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public string? EmailAddress { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsActive),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsActive { get; set; }
@@ -66,6 +73,13 @@
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
 		public int Ordering { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.AdminDescription),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public string? AdminDescription { get; set; }
 		// **********
 	}
 }

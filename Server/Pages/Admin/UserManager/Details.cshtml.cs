@@ -46,6 +46,7 @@ namespace Server.Pages.Admin.UserManager
 						Description = current.Description,
 						EmailAddress = current.EmailAddress,
 						CellPhoneNumber = current.CellPhoneNumber,
+						AdminDescription = current.AdminDescription,
 
 						IsSystemic = current.IsSystemic,
 						IsProgrammer = current.IsProgrammer,

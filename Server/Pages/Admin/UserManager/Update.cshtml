@@ -39,19 +39,39 @@
 
 					<partial name="PartialViews/_DisplayPageMessages" />
 
-					<div class="mb-3">
-						<label asp-for="ViewModel.Username" class="form-label"></label>
+					@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.EmailAddress) == false)
+					{
+						<div class="mb-3">
+							<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
 
-						<div class="input-group" readonly disabled>
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Username) == false)
+							<div class="input-group" readonly disabled>
+								@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.EmailAddress) == false)
+								{
+									<div class="input-group-text">
+										<i class="@(applicationSettings.IconSettings.UserIcons.EmailAddress)"></i>
+									</div>
+								}
+
+								<input asp-for="ViewModel.EmailAddress" readonly disabled class="form-control" dir="ltr" />
+							</div>
+						</div>
+					}
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.AdminDescription" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Description) == false)
 							{
 								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.UserIcons.Username)"></i>
+									<i class="@(applicationSettings.IconSettings.UserIcons.Description)"></i>
 								</div>
 							}
 
-							<input asp-for="ViewModel.Username" readonly disabled class="form-control" dir="ltr" />
+							<textarea asp-for="ViewModel.AdminDescription" class="form-control"> </textarea>
 						</div>
+
+						<span asp-validation-for="ViewModel.AdminDescription" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">

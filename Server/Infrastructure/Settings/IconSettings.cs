@@ -184,5 +184,9 @@
 		// **********
 		public string? CellPhoneNumber { get; set; }
 		// **********
+
+		// **********
+		public string? Description { get; set; }
+		// **********
 	}
 }

@@ -69,7 +69,7 @@ namespace Server.Pages.Admin.RoleManager
 			try
 			{
 				string? fixedName =
-					Infrastructure.Utility.FixText(text: ViewModel.Name);
+					Dtat.Utility.FixText(text: ViewModel.Name);
 
 				bool foundAny =
 					await DatabaseContext.Roles
@@ -104,7 +104,7 @@ namespace Server.Pages.Admin.RoleManager
 					foundedItem.Ordering = ViewModel.Ordering;
 					foundedItem.IsActive = ViewModel.IsActive;
 					foundedItem.IsUndeletable = ViewModel.IsUndeletable;
-					foundedItem.Description = Infrastructure.Utility.FixText(text: ViewModel.Description);
+					foundedItem.Description = Dtat.Utility.FixText(text: ViewModel.Description);
 					// **************************************************
 
 					//var entityEntry =

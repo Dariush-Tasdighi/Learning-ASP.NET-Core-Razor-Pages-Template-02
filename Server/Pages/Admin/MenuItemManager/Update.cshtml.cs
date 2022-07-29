@@ -97,7 +97,7 @@ namespace Server.Pages.Admin.MenuItemManager
 				else
 				{
 					string? fixedTitle =
-						Infrastructure.Utility.FixText(text: foundedItem.Title);
+						Dtat.Utility.FixText(text: foundedItem.Title);
 
 					bool hasAny =
 						await DatabaseContext.MenuItems
