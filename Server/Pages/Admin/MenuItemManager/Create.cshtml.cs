@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize
+		(Roles = Infrastructure.Constant.Role.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public CreateModel

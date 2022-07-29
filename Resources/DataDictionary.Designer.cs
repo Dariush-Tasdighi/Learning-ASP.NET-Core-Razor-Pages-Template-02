@@ -1058,5 +1058,14 @@ namespace Resources {
                 return ResourceManager.GetString("Websites", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Without Role.
+        /// </summary>
+        public static string WithoutRole {
+            get {
+                return ResourceManager.GetString("WithoutRole", resourceCulture);
+            }
+        }
     }
 }

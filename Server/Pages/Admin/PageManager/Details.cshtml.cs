@@ -4,9 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Server.Pages.Admin.PageManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize]
-	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Infrastructure.Constant.Role.Admin)]
+	[Microsoft.AspNetCore.Authorization.Authorize
+		(Roles = Infrastructure.Constant.Role.Admin)]
 	public class DetailsModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DetailsModel

@@ -4,9 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
-	[Microsoft.AspNetCore.Authorization.Authorize]
-	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Infrastructure.Constant.Role.Admin)]
+	[Microsoft.AspNetCore.Authorization.Authorize
+		(Roles = Infrastructure.Constant.Role.Admin)]
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)

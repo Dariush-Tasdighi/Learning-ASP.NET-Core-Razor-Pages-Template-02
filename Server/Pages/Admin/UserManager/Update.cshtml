@@ -68,11 +68,11 @@
 							<select class="form-select" asp-for="ViewModel.RoleId">
 								@if (Model.ViewModel.RoleId == null)
 								{
-									<option value="@(null)" selected>@(Resources.DataDictionary.NotSelected)</option>
+									<option value="@(null)" selected>@(Resources.DataDictionary.WithoutRole)</option>
 								}
 								else
 								{
-									<option value="@(null)">@(Resources.DataDictionary.NotSelected)</option>
+									<option value="@(null)">@(Resources.DataDictionary.WithoutRole)</option>
 								}
 
 								@foreach (var item in Model?.RolesViewModel)

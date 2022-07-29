@@ -37,20 +37,23 @@
 
 				<partial name="PartialViews/_DisplayPageMessages" />
 
-				<div class="mb-3">
-					<label asp-for="ViewModel.Username" class="form-label"></label>
+				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Username) == false)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.Username" class="form-label"></label>
 
-					<div class="input-group">
-						@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Username) == false)
-						{
-							<div class="input-group-text">
-								<i class="@(applicationSettings.IconSettings.UserIcons.Username)"></i>
-							</div>
-						}
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Username) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Username)"></i>
+								</div>
+							}
 
-						<input asp-for="ViewModel.Username" disabled readonly class="form-control" dir="ltr" />
+							<input asp-for="ViewModel.Username" disabled readonly class="form-control" dir="ltr" />
+						</div>
 					</div>
-				</div>
+				}
 
 
 				@if (Model.ViewModel.Role != null)

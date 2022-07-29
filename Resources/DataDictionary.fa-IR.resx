@@ -453,4 +453,7 @@
   <data name="IP" xml:space="preserve">
     <value>آی‌پی</value>
   </data>
+  <data name="WithoutRole" xml:space="preserve">
+    <value>بدون نقش</value>
+  </data>
 </root>
