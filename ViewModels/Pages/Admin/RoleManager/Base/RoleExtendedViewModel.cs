@@ -1,6 +1,6 @@
 ﻿namespace ViewModels.Pages.Admin.RoleManager.Base
 {
-	public abstract class RoleExtendedViewModel : RoleBaseViewModel
+	public class RoleExtendedViewModel : RoleBaseViewModel
 	{
 		public RoleExtendedViewModel() : base()
 		{
