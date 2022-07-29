@@ -45,7 +45,9 @@ namespace Server.Pages.Admin.UserManager
 						Username = current.Username,
 						IsActive = current.IsActive,
 						FullName = current.FullName,
+						EmailAddress = current.EmailAddress,
 						InsertDateTime = current.InsertDateTime,
+						IsEmailAddressVerified = current.IsEmailAddressVerified,
 					})
 					.FirstOrDefaultAsync();
 

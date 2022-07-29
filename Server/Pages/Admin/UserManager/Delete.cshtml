@@ -37,7 +37,32 @@
 
 				<partial name="PartialViews/_DisplayPageMessages" />
 
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Username) == false)
+				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.EmailAddress) == false)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.EmailAddress) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.EmailAddress)"></i>
+								</div>
+							}
+
+							<input asp-for="ViewModel.EmailAddress" disabled readonly class="form-control" dir="ltr" />
+						</div>
+					</div>
+
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsEmailAddressVerified" disabled readonly class="form-check-input" />
+							<label asp-for="ViewModel.IsEmailAddressVerified" class="form-check-label"></label>
+						</div>
+					</div>
+				}
+				else if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Username) == false)
 				{
 					<div class="mb-3">
 						<label asp-for="ViewModel.Username" class="form-label"></label>
@@ -51,25 +76,6 @@
 							}
 
 							<input asp-for="ViewModel.Username" disabled readonly class="form-control" dir="ltr" />
-						</div>
-					</div>
-				}
-
-
-				@if (Model.ViewModel.Role != null)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.Role" class="form-label"></label>
-
-						<div class="input-group">
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Role) == false)
-							{
-								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.UserIcons.Role)"></i>
-								</div>
-							}
-
-							<input asp-for="ViewModel.Role" disabled readonly class="form-control" dir="ltr" />
 						</div>
 					</div>
 				}
@@ -92,12 +98,23 @@
 					</div>
 				}
 
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsActive" disabled readonly class="form-check-input" />
-						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+				@if (Model.ViewModel.Role != null)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.Role" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Role) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Role)"></i>
+								</div>
+							}
+
+							<input asp-for="ViewModel.Role" disabled readonly class="form-control" dir="ltr" />
+						</div>
 					</div>
-				</div>
+				}
 
 				<div class="mb-3">
 					<label asp-for="ViewModel.InsertDateTime" class="form-label"></label>
@@ -110,6 +127,13 @@
 						}
 
 						<input placeholder="@(Model.ViewModel.InsertDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" disabled readonly class="form-control" dir="ltr" />
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsActive" disabled readonly class="form-check-input" />
+						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
 					</div>
 				</div>
 

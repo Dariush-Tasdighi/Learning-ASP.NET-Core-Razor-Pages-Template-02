@@ -72,6 +72,26 @@
 					</div>
 				}
 
+				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.AdminDescription) == false)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.AdminDescription" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Description) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Description)"></i>
+								</div>
+							}
+
+							<textarea asp-for="ViewModel.AdminDescription" class="form-control"> </textarea>
+						</div>
+
+						<span asp-validation-for="ViewModel.AdminDescription" class="text-danger"></span>
+					</div>
+				}
+
 				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.CellPhoneNumber) == false)
 				{
 					<div class="mb-3">
@@ -152,37 +172,10 @@
 
 				<div class="mb-3">
 					<div class="form-check">
-						<input asp-for="ViewModel.IsSystemic" class="form-check-input" />
-						<label asp-for="ViewModel.IsSystemic" class="form-check-label"></label>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<div class="form-check">
 						<input asp-for="ViewModel.IsProgrammer" class="form-check-input" />
 						<label asp-for="ViewModel.IsProgrammer" class="form-check-label"></label>
 					</div>
 				</div>
-
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.AdminDescription) == false)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.AdminDescription" class="form-label"></label>
-
-						<div class="input-group">
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Description) == false)
-							{
-								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.UserIcons.Description)"></i>
-								</div>
-							}
-
-							<textarea asp-for="ViewModel.AdminDescription" class="form-control"> </textarea>
-						</div>
-
-						<span asp-validation-for="ViewModel.AdminDescription" class="text-danger"></span>
-					</div>
-				}
 
 				<div class="mb-3">
 					<label asp-for="ViewModel.InsertDateTime" class="form-label"></label>
@@ -219,6 +212,13 @@
 					<div class="form-check">
 						<input asp-for="ViewModel.IsActive" class="form-check-input" />
 						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsSystemic" class="form-check-input" />
+						<label asp-for="ViewModel.IsSystemic" class="form-check-label"></label>
 					</div>
 				</div>
 

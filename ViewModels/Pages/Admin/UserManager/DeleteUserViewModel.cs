@@ -34,9 +34,16 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.LastName),
+			(Name = nameof(Resources.DataDictionary.FullName),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public string? FullName { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.EmailAddress),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public string? EmailAddress { get; set; }
 		// **********
 
 		// **********
@@ -51,6 +58,13 @@
 			(Name = nameof(Resources.DataDictionary.IsActive),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsActive { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public bool IsEmailAddressVerified { get; set; }
 		// **********
 
 		// **********
