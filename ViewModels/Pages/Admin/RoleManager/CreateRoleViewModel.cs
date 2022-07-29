@@ -1,6 +1,4 @@
-﻿using Domain;
-
-namespace ViewModels.Pages.Admin.RoleManager
+﻿namespace ViewModels.Pages.Admin.RoleManager
 {
 	public class CreateRoleViewModel : Base.RoleExtendedViewModel
 	{

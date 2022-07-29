@@ -1,6 +1,4 @@
-﻿using Domain;
-
-namespace ViewModels.Pages.Admin.MenuItemManager
+﻿namespace ViewModels.Pages.Admin.MenuItemManager
 {
 	public class CreateMenuItemViewModel : object
 	{
@@ -43,7 +41,7 @@ namespace ViewModels.Pages.Admin.MenuItemManager
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: MenuItem.LinkMaxLength,
+			(length: Domain.MenuItem.LinkMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
@@ -94,7 +92,7 @@ namespace ViewModels.Pages.Admin.MenuItemManager
 			Name = nameof(Resources.DataDictionary.Icon))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: MenuItem.IconMaxLength,
+			(length: Domain.MenuItem.IconMaxLength,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Icon { get; set; }

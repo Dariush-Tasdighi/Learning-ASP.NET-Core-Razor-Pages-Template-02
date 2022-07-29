@@ -1,7 +1,6 @@
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using Domain;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
@@ -89,7 +88,7 @@ namespace Server.Pages.Admin.MenuItemManager
 				}
 				// **************************************************
 
-				MenuItem menu = new(title: fixedTitle)
+				Domain.MenuItem menu = new(title: fixedTitle)
 				{
 					Icon = ViewModel.Icon,
 					IsPublic = ViewModel.IsPublic,

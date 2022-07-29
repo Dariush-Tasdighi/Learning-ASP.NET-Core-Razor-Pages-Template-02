@@ -1,10 +1,9 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Data.Configurations
 {
 	internal class PostCategoryConfiguration :
-		Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<PostCategory>
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.PostCategory>
 	{
 		public PostCategoryConfiguration() : base()
 		{
@@ -12,7 +11,7 @@ namespace Data.Configurations
 
 
 		public void Configure
-			(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PostCategory> builder)
+			(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.PostCategory> builder)
 		{
 			// **************************************************
 			builder

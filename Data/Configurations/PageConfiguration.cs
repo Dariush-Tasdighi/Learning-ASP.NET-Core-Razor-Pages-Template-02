@@ -1,10 +1,9 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Data.Configurations
 {
-	public class PageConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Page>
+	internal class PageConfiguration :
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Page>
 	{
 		public PageConfiguration() : base()
 		{
@@ -12,12 +11,12 @@ namespace Data.Configurations
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Page> builder)
+			.Builders.EntityTypeBuilder<Domain.Page> builder)
 		{
 			// **************************************************
 			builder
 				.Property(current => current.Title)
-				.HasMaxLength(maxLength: Page.TitleMaxLength)
+				.HasMaxLength(maxLength: Domain.Page.TitleMaxLength)
 				.IsRequired(required: true)
 				.IsUnicode(unicode: true)
 				;
@@ -36,7 +35,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Author)
-				.HasMaxLength(maxLength: Page.AuthorMaxLength)
+				.HasMaxLength(maxLength: Domain.Page.AuthorMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -45,7 +44,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Description)
-				.HasMaxLength(maxLength: Page.DescriptionMaxLength)
+				.HasMaxLength(maxLength: Domain.Page.DescriptionMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -54,7 +53,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Category)
-				.HasMaxLength(maxLength: Page.CategoryMaxLength)
+				.HasMaxLength(maxLength: Domain.Page.CategoryMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -63,7 +62,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Copyright)
-				.HasMaxLength(maxLength: Page.CopyrightMaxLength)
+				.HasMaxLength(maxLength: Domain.Page.CopyrightMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -72,7 +71,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Classification)
-				.HasMaxLength(maxLength: Page.ClassificationMaxLength)
+				.HasMaxLength(maxLength: Domain.Page.ClassificationMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -81,7 +80,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Introduction)
-				.HasMaxLength(maxLength: Page.IntroductionMaxLength)
+				.HasMaxLength(maxLength: Domain.Page.IntroductionMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
@@ -90,7 +89,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.ImageUrl)
-				.HasMaxLength(maxLength: Page.ImageUrlMaxLength)
+				.HasMaxLength(maxLength: Domain.Page.ImageUrlMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;

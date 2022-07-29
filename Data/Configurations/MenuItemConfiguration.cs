@@ -1,10 +1,9 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Data.Configurations
 {
-	public class MenuItemConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<MenuItem>
+	internal class MenuItemConfiguration :
+		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.MenuItem>
 	{
 		public MenuItemConfiguration() : base()
 		{
@@ -12,7 +11,7 @@ namespace Data.Configurations
 
 		public void Configure
 			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<MenuItem> builder)
+			.Builders.EntityTypeBuilder<Domain.MenuItem> builder)
 		{
 			// **************************************************
 			builder
@@ -26,7 +25,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Icon)
-				.HasMaxLength(maxLength: MenuItem.IconMaxLength)
+				.HasMaxLength(maxLength: Domain.MenuItem.IconMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: false)
 				;
@@ -35,7 +34,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Link)
-				.HasMaxLength(maxLength: MenuItem.LinkMaxLength)
+				.HasMaxLength(maxLength: Domain.MenuItem.LinkMaxLength)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;
