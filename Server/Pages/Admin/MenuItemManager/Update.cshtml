@@ -20,45 +20,49 @@
 }
 
 @section StyleSheets {
-<link href="/lib/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css" rel="stylesheet">
 
-<style>
-	.popover-title-text, .iconpicker-btn {
-		font-family: IRANSansX
-	}
-</style>
+	<link href="/lib/bootstrap-icon-picker/css/bootstrapicons-iconpicker.min.css" rel="stylesheet">
+
+	<style>
+
+		.popover-title-text, .iconpicker-btn {
+			font-family: IRANSansX
+		}
+
+	</style>
+
 }
 
-<form method="post">
+	<form method="post">
 
-	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
-		<div class="row">
-			<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
-				<fieldset>
+		<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+			<div class="row">
+				<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+					<fieldset>
 
-					<legend>
-						@(pageTitle)
-					</legend>
+						<legend>
+							@(pageTitle)
+						</legend>
 
-					<hr />
+						<hr />
 
-					<partial name="PartialViews/_DisplayPageMessages" />
+						<partial name="PartialViews/_DisplayPageMessages" />
 
-					<div class="mb-3">
-						<label asp-for="ViewModel.Title" class="form-label"></label>
+						<div class="mb-3">
+							<label asp-for="ViewModel.Title" class="form-label"></label>
 
-						<input asp-for="ViewModel.Title" class="form-control" dir="ltr" />
+							<input asp-for="ViewModel.Title" class="form-control" dir="ltr" />
 
-						<span asp-validation-for="ViewModel.Title" class="text-danger"></span>
-					</div>
+							<span asp-validation-for="ViewModel.Title" class="text-danger"></span>
+						</div>
 
-					<div class="mb-3">
-						<label asp-for="ViewModel.ParentId" class="form-label"></label>
+						<div class="mb-3">
+							<label asp-for="ViewModel.ParentId" class="form-label"></label>
 
-						<select asp-for="ViewModel.ParentId" class="form-select">
-							<option value="@(null)">@(Resources.DataDictionary.NoParent)</option>
+							<select asp-for="ViewModel.ParentId" class="form-select">
+								<option value="@(null)">@(Resources.DataDictionary.NoParent)</option>
 
-							@foreach (var item in Model?.ParentsViewModel)
+								@foreach (var item in Model?.ParentsViewModel)
 							{
 								<option value="@(item.Id)">@(item.Title)</option>
 							}
@@ -125,16 +129,16 @@
 
 					<div class="mb-3">
 						<div class="form-check">
-							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
-							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
+							<input asp-for="ViewModel.IsPublic" class="form-check-input" />
+
+							<label asp-for="ViewModel.IsPublic" class="form-check-label"></label>
 						</div>
 					</div>
 
 					<div class="mb-3">
 						<div class="form-check">
-							<input asp-for="ViewModel.IsPublic" class="form-check-input" />
-
-							<label asp-for="ViewModel.IsPublic" class="form-check-label"></label>
+							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
+							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
 						</div>
 					</div>
 
@@ -160,35 +164,35 @@
 
 @section Scripts {
 
-<script src="/lib/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js"></script>
-<script>
-	$('.iconpicker').iconpicker({
-		title: '@(Resources.DataDictionary.Icon)',
-		selected: false,
-		defaultValue: false,
-		placement: "bottom",
-		collision: "none",
-		animation: true,
-		hideOnSelect: true,
-		showFooter: false,
-		searchInFooter: false,
-		mustAccept: false,
-		selectedCustomClass: "bg-primary",
-		fullClassFormatter: function (e) {
-			return e;
-		},
-		input: "input,.iconpicker-input",
-		inputSearch: false,
-		container: false,
-		component: ".input-group-addon,.iconpicker-component",
-		templates: {
-			footer: '<div class="popover-footer"></div>',
-			iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
-			iconpickerItem: '<a role="button" href="javascript:;" class="iconpicker-item"><i></i></a>',
-			search: '<input type="search" class="form-control iconpicker-search" placeholder="@(Resources.DataDictionary.Search)" />',
-			popover: '<div class="iconpicker-popover popover" role="tooltip"><div class="arrow"></div>' + '<div class="popover-title"></div><div class="popover-content"></div></div>',
-			buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">@(Resources.ButtonCaptions.Back)</button>' + ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">@(Resources.ButtonCaptions.Save)</button>',
-		}
-	});
-</script>
+	<script src="/lib/bootstrap-icon-picker/js/bootstrapicon-iconpicker.min.js"></script>
+	<script>
+		$('.iconpicker').iconpicker({
+			title: '@(Resources.DataDictionary.Icon)',
+			selected: false,
+			defaultValue: false,
+			placement: "bottom",
+			collision: "none",
+			animation: true,
+			hideOnSelect: true,
+			showFooter: false,
+			searchInFooter: false,
+			mustAccept: false,
+			selectedCustomClass: "bg-primary",
+			fullClassFormatter: function(e) {
+				return e;
+			},
+			input: "input,.iconpicker-input",
+			inputSearch: false,
+			container: false,
+			component: ".input-group-addon,.iconpicker-component",
+			templates: {
+				footer: '<div class="popover-footer"></div>',
+				iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
+				iconpickerItem: '<a role="button" href="javascript:;" class="iconpicker-item"><i></i></a>',
+				search: '<input type="search" class="form-control iconpicker-search" placeholder="@(Resources.DataDictionary.Search)" />',
+				popover: '<div class="iconpicker-popover popover" role="tooltip"><div class="arrow"></div>' + '<div class="popover-title"></div><div class="popover-content"></div></div>',
+				buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">@(Resources.ButtonCaptions.Back)</button>' + ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">@(Resources.ButtonCaptions.Save)</button>',
+			}
+		});
+	</script>
 }

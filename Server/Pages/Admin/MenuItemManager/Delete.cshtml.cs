@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DeleteModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -84,7 +85,7 @@ namespace Server.Pages.Admin.MenuItemManager
 
 						return RedirectToPage("./Index");
 					}
-					else if (foundedItem.IsUndeletable == false)
+					else if (foundedItem.IsUndeletable)
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,
@@ -97,10 +98,8 @@ namespace Server.Pages.Admin.MenuItemManager
 					}
 					else
 					{
-						//foundedItem.IsActive = false;
 						foundedItem.IsDeleted = true;
-
-						DatabaseContext.MenuItems.Update(entity: foundedItem);
+						foundedItem.SetUpdateDateTime();
 
 						await DatabaseContext.SaveChangesAsync();
 

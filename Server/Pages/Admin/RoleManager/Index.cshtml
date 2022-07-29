@@ -56,9 +56,6 @@
 							@Html.DisplayNameFor(model => model.ViewModel.Data[0].IsUndeletable)
 						</th>
 						<th>
-							@Html.DisplayNameFor(model => model.ViewModel.Data[0].IsDeleted)
-						</th>
-						<th>
 							@Html.DisplayNameFor(model => model.ViewModel.Data[0].InsertDateTime)
 						</th>
 						<th>
@@ -95,10 +92,6 @@
 							</td>
 
 							<td>
-								<i class="@(item.IsDeleted ? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
-							</td>
-
-							<td>
 								@(item.InsertDateTime)
 							</td>
 
@@ -115,9 +108,6 @@
 								</td>
 							}
 
-
-							@if (item.IsDeleted == false)
-							{
 								<td>
 									<a asp-page="./Update" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
 										<i class="@(applicationSettings.IconSettings.TableIcons.Update)"></i>
@@ -135,13 +125,6 @@
 										<i class="@(applicationSettings.IconSettings.TableIcons.Details)"></i>
 									</a>
 								</td>
-							}
-							else
-							{
-								<td>
-									<i class="@(applicationSettings.IconSettings.TableIcons.None)"></i>
-								</td>
-							}
 						</tr>
 					}
 				</tbody>

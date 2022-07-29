@@ -43,7 +43,10 @@
 							</td>
 
 							<td class="text-center align-content-x-center">
-								<i class="@(item.Icon)"></i>
+								@if (string.IsNullOrWhiteSpace(value: item.Icon) == false)
+								{
+									<i class="@(item.Icon)"></i>
+								}
 							</td>
 
 							<td>

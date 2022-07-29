@@ -19,9 +19,6 @@
 
 			SetUpdateDateTime();
 
-			IconPosition =
-				Enumerations.IconPosition.Left;
-
 			SubMenus =
 				new System.Collections.Generic.List<MenuItem>();
 		}

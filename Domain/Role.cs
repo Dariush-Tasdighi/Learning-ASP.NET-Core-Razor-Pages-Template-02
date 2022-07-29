@@ -5,22 +5,24 @@
 	//	(propertyNames: nameof(Name), IsUnique = true)]
 	public class Role :
 		SeedWork.Entity,
-		SeedWork.IEntityCanSetId,
+		//SeedWork.IEntityCanSetId,
 		SeedWork.IEntityHasIsActive,
 		SeedWork.IEntityHasIsSystemic,
 		SeedWork.IEntityHasIsUndeletable,
 		SeedWork.IEntityHasUpdateDateTime
 	{
-		#region Static(s)
-		public static readonly System.Guid UserRoleId = new(g: "2A533503-E7E1-4E08-98DD-33973A69AE15");
-		#endregion /Static(s)
+		//#region Static(s)
+		//public static readonly System.Guid
+		//	DefaultRoleId = new(g: "2A533503-E7E1-4E08-98DD-33973A69AE15");
+		//#endregion /Static(s)
 
 		#region Constructor
 		public Role(string name) : base()
 		{
 			Name = name;
 
-			SetUpdateDateTime();
+			//SetUpdateDateTime();
+			UpdateDateTime = InsertDateTime;
 
 			Users =
 				new System.Collections.Generic.List<User>();
@@ -88,10 +90,10 @@
 				Dtat.Utility.Now;
 		}
 
-		public void SetId(System.Guid id)
-		{
-			Id = id;
-		}
+		//public void SetId(System.Guid id)
+		//{
+		//	Id = id;
+		//}
 
 		// **********
 		public virtual System.Collections.Generic.IList<User> Users { get; private set; }

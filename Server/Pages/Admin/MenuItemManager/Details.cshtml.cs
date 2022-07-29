@@ -4,12 +4,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class DetailsModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DetailsModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;

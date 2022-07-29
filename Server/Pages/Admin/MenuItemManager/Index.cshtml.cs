@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.MenuItemManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
 		public IndexModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -96,10 +97,10 @@ namespace Server.Pages.Admin.MenuItemManager
 					}
 					// **************************************************
 
-					if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
-					{
-						return RedirectToPage(pageName: "/admin/menuitemmanager/create");
-					}
+					//if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
+					//{
+					//	return RedirectToPage(pageName: "/admin/menuitemmanager/create");
+					//}
 				}
 			}
 			catch (System.Exception ex)

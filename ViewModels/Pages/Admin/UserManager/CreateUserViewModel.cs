@@ -4,37 +4,7 @@
 	{
 		public CreateUserViewModel() : base()
 		{
-			Gender = Domain.Enumerations.Gender.Unspecified;
 		}
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Username),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.Username,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-
-		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.Constant.RegularExpression.Username,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
-		public string? Username { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.FullName),
-			ResourceType = typeof(Resources.DataDictionary))]
-
-		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.FullName,
-			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-		public string? FullName { get; set; }
-		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
@@ -64,7 +34,7 @@
 			ResourceType = typeof(Resources.DataDictionary))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.CellPhoneNumber,
+			(length: Domain.SeedWork.Constant.FixedLength.CellPhoneNumber,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
@@ -125,9 +95,9 @@
 			(Name = nameof(Resources.DataDictionary.Role),
 			ResourceType = typeof(Resources.DataDictionary))]
 
-		[System.ComponentModel.DataAnnotations.Required
-			(ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+		//[System.ComponentModel.DataAnnotations.Required
+		//	(ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 		public System.Guid? RoleId { get; set; }
 		// **********
 
@@ -147,23 +117,23 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsProgrammer),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public bool IsProgrammer { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public bool? IsEmailAddressVerified { get; set; }
+		public bool IsEmailAddressVerified { get; set; }
 		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public bool? IsCellPhoneNumberVerified { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Gender),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Enumerations.Gender Gender { get; set; }
+		public bool IsCellPhoneNumberVerified { get; set; }
 		// **********
 
 		// **********
@@ -176,7 +146,7 @@
 			maximum: Domain.SeedWork.Constant.Maximum.Ordering,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
-		public uint Ordering { get; set; }
+		public int Ordering { get; set; }
 		// **********
 	}
 }

@@ -66,7 +66,16 @@
 							}
 
 							<select class="form-select" asp-for="ViewModel.RoleId">
-								@foreach (var item in Model.RolesViewModel)
+								@if (Model.ViewModel.RoleId == null)
+								{
+									<option value="@(null)" selected>@(Resources.DataDictionary.NotSelected)</option>
+								}
+								else
+								{
+									<option value="@(null)">@(Resources.DataDictionary.NotSelected)</option>
+								}
+
+								@foreach (var item in Model?.RolesViewModel)
 								{
 									@if (item.Id == Model.ViewModel.RoleId)
 									{
@@ -81,6 +90,13 @@
 						</div>
 
 						<span asp-validation-for="ViewModel.RoleId" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsProgrammer" class="form-check-input" />
+							<label asp-for="ViewModel.IsProgrammer" class="form-check-label"></label>
+						</div>
 					</div>
 
 					<div class="mb-3">
@@ -99,6 +115,15 @@
 							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
 						</div>
 					</div>
+
+					@*
+					<div class="mb-3">
+					<div class="form-check">
+					<input asp-for="ViewModel.IsProgrammer" class="form-check-input" />
+					<label asp-for="ViewModel.IsProgrammer" class="form-check-label"></label>
+					</div>
+					</div>
+					*@
 
 					<div class="mb-3">
 						<div class="form-check">

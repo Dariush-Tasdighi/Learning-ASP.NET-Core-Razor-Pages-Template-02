@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class DetailsModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DetailsModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -55,7 +56,6 @@ namespace Server.Pages.Admin.RoleManager
 					ViewModel.NumberOfUserWithThisRole =
 						await DatabaseContext.Users
 						.Where(current => current.RoleId == ViewModel.Id)
-						.Where(current => current.IsDeleted == false)
 						.CountAsync();
 				}
 			}

@@ -34,38 +34,40 @@
 
 					<partial name="PartialViews/_DisplayPageMessages" />
 
+
 					<div class="mb-3">
-						<label asp-for="ViewModel.FullName" class="form-label"></label>
+						<i class="mr-2">*</i>
+						<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
 
 						<div class="input-group">
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.FullName) == false)
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.EmailAddress) == false)
 							{
 								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.UserIcons.FullName)"></i>
+									<i class="@(applicationSettings.IconSettings.UserIcons.EmailAddress)"></i>
 								</div>
 							}
 
-							<input asp-for="ViewModel.FullName" class="form-control" dir="ltr" />
+							<input asp-for="ViewModel.EmailAddress" class="form-control" dir="ltr" />
 						</div>
 
-						<span asp-validation-for="ViewModel.FullName" class="text-danger"></span>
+						<span asp-validation-for="ViewModel.EmailAddress" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
-						<label asp-for="ViewModel.Username" class="form-label"></label>
+						<label asp-for="ViewModel.CellPhoneNumber" class="form-label"></label>
 
 						<div class="input-group">
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Username) == false)
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.CellPhoneNumber) == false)
 							{
 								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.UserIcons.Username)"></i>
+									<i class="@(applicationSettings.IconSettings.UserIcons.CellPhoneNumber)"></i>
 								</div>
 							}
 
-							<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
+							<input asp-for="ViewModel.CellPhoneNumber" class="form-control" dir="ltr" />
 						</div>
 
-						<span asp-validation-for="ViewModel.Username" class="text-danger"></span>
+						<span asp-validation-for="ViewModel.CellPhoneNumber" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
@@ -105,42 +107,6 @@
 					</div>
 
 					<div class="mb-3">
-						<i class="mr-2">*</i>
-						<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
-
-						<div class="input-group">
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.EmailAddress) == false)
-							{
-								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.UserIcons.EmailAddress)"></i>
-								</div>
-							}
-
-							<input asp-for="ViewModel.EmailAddress" class="form-control" dir="ltr" />
-						</div>
-
-						<span asp-validation-for="ViewModel.EmailAddress" class="text-danger"></span>
-					</div>
-
-					<div class="mb-3">
-						<label asp-for="ViewModel.CellPhoneNumber" class="form-label"></label>
-
-						<div class="input-group">
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.CellPhoneNumber) == false)
-							{
-								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.UserIcons.CellPhoneNumber)"></i>
-								</div>
-							}
-
-							<input asp-for="ViewModel.CellPhoneNumber" class="form-control" dir="ltr" />
-						</div>
-
-						<span asp-validation-for="ViewModel.CellPhoneNumber" class="text-danger"></span>
-					</div>
-
-					<div class="mb-3">
-						<i class="mr-2">*</i>
 						<label asp-for="ViewModel.RoleId" class="form-label"></label>
 
 						<div class="input-group">
@@ -154,7 +120,7 @@
 							<select class="form-select" asp-for="ViewModel.RoleId">
 								<option value="@(null)" selected>@(Resources.DataDictionary.NotSelected)</option>
 
-								@foreach (var item in Model.RolesViewModel)
+								@foreach (var item in Model?.RolesViewModel)
 								{
 									<option value="@(item.Id)">@(item.Name)</option>
 								}
@@ -165,24 +131,10 @@
 					</div>
 
 					<div class="mb-3">
-						<label asp-for="ViewModel.Gender" class="form-label"></label>
-
-						<div class="input-group">
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Gender) == false)
-							{
-								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.UserIcons.Gender)"></i>
-								</div>
-							}
-
-							<select class="form-select" asp-for="ViewModel.Gender">
-								<option selected value="@(Domain.Enumerations.Gender.Unspecified)">@(Resources.DataDictionary.Unspecified)</option>
-								<option value="@(Domain.Enumerations.Gender.Female)">@(Resources.DataDictionary.Female)</option>
-								<option value="@(Domain.Enumerations.Gender.Male)">@(Resources.DataDictionary.Male)</option>
-							</select>
+						<div class="form-check">
+							<input asp-for="ViewModel.IsProgrammer" class="form-check-input" />
+							<label asp-for="ViewModel.IsProgrammer" class="form-check-label"></label>
 						</div>
-
-						<span asp-validation-for="ViewModel.Gender" class="text-danger"></span>
 					</div>
 
 					<div class="mb-3">
@@ -193,7 +145,7 @@
 
 							<input type="number" asp-for="ViewModel.Ordering"
 								   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
-								   value="@(Domain.SeedWork.Constant.Default.Ordering)" class="form-control" dir="ltr" />
+								   value="@(Domain.SeedWork.Constant.Minimum.Ordering)" class="form-control" dir="ltr" />
 						</div>
 
 						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
@@ -205,6 +157,15 @@
 							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
 						</div>
 					</div>
+
+					@*
+					<div class="mb-3">
+					<div class="form-check">
+					<input asp-for="ViewModel.IsProgrammer" class="form-check-input" />
+					<label asp-for="ViewModel.IsProgrammer" class="form-check-label"></label>
+					</div>
+					</div>
+					*@
 
 					<div class="mb-3">
 						<div class="form-check">

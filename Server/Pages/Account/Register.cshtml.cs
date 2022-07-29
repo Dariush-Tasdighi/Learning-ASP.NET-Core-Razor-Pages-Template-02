@@ -7,7 +7,7 @@ namespace Server.Pages.Security
 	public class RegisterModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public RegisterModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<RegisterModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;

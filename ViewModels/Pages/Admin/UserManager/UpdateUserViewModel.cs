@@ -35,6 +35,13 @@
 		// **********
 
 		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.IsProgrammer),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public bool IsProgrammer { get; set; }
+		// **********
+
+		// **********
 		//[System.ComponentModel.DataAnnotations.Display
 		//	(Name = nameof(Resources.DataDictionary.Role),
 		//	ResourceType = typeof(Resources.DataDictionary))]
@@ -58,7 +65,7 @@
 			maximum: Domain.SeedWork.Constant.Maximum.Ordering,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
-		public uint Ordering { get; set; }
+		public int Ordering { get; set; }
 		// **********
 	}
 }

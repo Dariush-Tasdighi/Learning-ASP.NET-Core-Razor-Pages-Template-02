@@ -1,16 +1,16 @@
 using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using Domain;
 
 namespace Server.Pages.Admin.RoleManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public CreateModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -64,7 +64,7 @@ namespace Server.Pages.Admin.RoleManager
 				else
 				{
 					// **************************************************
-					Role role = new(name: fixedName)
+					Domain.Role role = new(name: fixedName)
 					{
 						Ordering = ViewModel.Ordering,
 						IsActive = ViewModel.IsActive,

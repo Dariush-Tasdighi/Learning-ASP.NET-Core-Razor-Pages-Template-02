@@ -20,13 +20,16 @@
 }
 
 @section StyleSheets {
-<link href="/lib/bootstrap-iconpicker/css/bootstrap-iconpicker.min.css" rel="stylesheet">
 
-<style>
-	.popover-title-text, .iconpicker-btn {
-		font-family: IRANSansX
-	}
-</style>
+<link href="/lib/bootstrap-icon-picker/css/bootstrapicons-iconpicker.min.css" rel="stylesheet">
+
+	<style>
+
+		.popover-title-text, .iconpicker-btn {
+			font-family: IRANSansX
+		}
+
+	</style>
 }
 
 <form method="post">
@@ -124,16 +127,16 @@
 
 					<div class="mb-3">
 						<div class="form-check">
-							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
-							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
+							<input asp-for="ViewModel.IsPublic" class="form-check-input" />
+
+							<label asp-for="ViewModel.IsPublic" class="form-check-label"></label>
 						</div>
 					</div>
 
 					<div class="mb-3">
 						<div class="form-check">
-							<input asp-for="ViewModel.IsPublic" class="form-check-input" />
-
-							<label asp-for="ViewModel.IsPublic" class="form-check-label"></label>
+							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
+							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
 						</div>
 					</div>
 
@@ -159,7 +162,7 @@
 
 @section Scripts {
 
-<script src="/lib/bootstrap-iconpicker/js/bootstrap-iconpicker.min.js"></script>
+<script src="/lib/bootstrap-icon-picker/js/bootstrapicon-iconpicker.min.js"></script>
 <script>
 	$('.iconpicker').iconpicker({
 		title: '@(Resources.DataDictionary.Icon)',

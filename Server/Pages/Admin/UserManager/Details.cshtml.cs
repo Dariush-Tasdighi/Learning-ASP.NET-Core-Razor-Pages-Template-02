@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class DetailsModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
 		public DetailsModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -40,20 +41,17 @@ namespace Server.Pages.Admin.UserManager
 					.Where(current => current.Id == id)
 					.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel
 					{
-						//Id = current.Id,
-						Gender = current.Gender,
-
 						Role = current.Role.Name,
 						Username = current.Username,
 						FullName = current.FullName,
-						BirthDate = current.BirthDate,
 						Description = current.Description,
-						NationalCode = current.NationalCode,
 						EmailAddress = current.EmailAddress,
 						CellPhoneNumber = current.CellPhoneNumber,
 
+						IsSystemic = current.IsSystemic,
+						IsProgrammer = current.IsProgrammer,
+
 						IsActive = current.IsActive,
-						IsDeleted = current.IsDeleted,
 						IsUndeletable = current.IsUndeletable,
 
 						InsertDateTime = current.InsertDateTime,

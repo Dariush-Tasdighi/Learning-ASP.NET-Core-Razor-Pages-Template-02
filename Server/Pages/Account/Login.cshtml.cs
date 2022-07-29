@@ -53,7 +53,7 @@ namespace Server.Pages.Security
 			}
 
 			string? passwordHash =
-				Dtat.Security.Cryptography
+				Dtat.Security.Hashing
 				.GetSha256(text: ViewModel.Password);
 
 			if (string.IsNullOrWhiteSpace(value: passwordHash))

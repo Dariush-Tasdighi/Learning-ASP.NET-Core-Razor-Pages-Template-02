@@ -31,5 +31,14 @@
 
 			public const string Unorderedlist = "ul";
 		}
+
+		public static class Role
+		{
+			static Role()
+			{
+			}
+
+			public const string Admin = "Admin";
+		}
 	}
 }

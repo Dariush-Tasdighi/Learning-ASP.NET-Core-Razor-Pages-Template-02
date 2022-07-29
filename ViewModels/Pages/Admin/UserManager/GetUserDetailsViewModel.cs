@@ -22,13 +22,6 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Gender),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public Domain.Enumerations.Gender? Gender { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.FullName),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public string? FullName { get; init; }
@@ -36,16 +29,16 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.BirthDate),
+			(Name = nameof(Resources.DataDictionary.IsProgrammer),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public System.DateOnly? BirthDate { get; init; }
+		public bool IsProgrammer { get; init; }
 		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.NationalCode),
+			(Name = nameof(Resources.DataDictionary.IsSystemic),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public string? NationalCode { get; init; }
+		public bool IsSystemic { get; init; }
 		// **********
 
 		// **********
@@ -95,13 +88,6 @@
 			(Name = nameof(Resources.DataDictionary.IsUndeletable),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsUndeletable { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeleted),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeleted { get; init; }
 		// **********
 
 		// **********

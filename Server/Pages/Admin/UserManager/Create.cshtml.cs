@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
 		public CreateModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -77,17 +78,7 @@ namespace Server.Pages.Admin.UserManager
 
 			try
 			{
-				bool isUsernameFound = false;
 				bool isEmailAddressFound = false;
-
-				if (string.IsNullOrWhiteSpace(value: ViewModel.Username) == false)
-				{
-					isUsernameFound =
-						await DatabaseContext.Users
-						.Where(current => current.Username != null)
-						.Where(current => current.Username.ToLower().Trim() == ViewModel.Username.ToLower().Trim())
-						.AnyAsync();
-				}
 
 				if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
 				{
@@ -95,35 +86,22 @@ namespace Server.Pages.Admin.UserManager
 						await DatabaseContext.Users
 						.Where(current => current.EmailAddress != null)
 						.Where(current => current.EmailAddress.ToLower() == ViewModel.EmailAddress.Trim().ToLower())
-						.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
-						.Where(current => current.IsDeleted == false)
+						.Where(current => current.IsEmailAddressVerified)
 						.AnyAsync();
 				}
 
 				// **************************************************
-				if (isUsernameFound)
-				{
-					string errorMessage = string.Format
-						(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.Username);
-
-					AddPageError(message: errorMessage);
-				}
-
 				if (isEmailAddressFound)
 				{
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.EmailAddress);
 
 					AddPageError(message: errorMessage);
-				}
-				// **************************************************
 
-				if (isUsernameFound || isEmailAddressFound)
-				{
 					return Page();
 				}
-
 				// **************************************************
+
 				if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
 				{
 					ViewModel.IsEmailAddressVerified = true;
@@ -133,33 +111,31 @@ namespace Server.Pages.Admin.UserManager
 				{
 					ViewModel.IsCellPhoneNumberVerified = true;
 				}
-				// **************************************************
 
+				// **************************************************
 				Domain.User user =
-					new(emailAddress: ViewModel.EmailAddress, roleId: ViewModel.RoleId.Value)
+					new(emailAddress: ViewModel.EmailAddress)
 					{
-						Gender = ViewModel.Gender,
 						Ordering = ViewModel.Ordering,
 
 						IsActive = ViewModel.IsActive,
+ 						IsProgrammer = ViewModel.IsProgrammer,
 						IsUndeletable = ViewModel.IsUndeletable,
 						IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
 						IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
 
-						Username = ViewModel.Username,
 						CellPhoneNumber = ViewModel.CellPhoneNumber,
-						FullName = Infrastructure.Utility.FixText(text: ViewModel.FullName),
-						Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
+						Password = Dtat.Security.Hashing.GetSha256(text: ViewModel.Password),
 					};
-
 				// **************************************************
+
 				var isValid =
 						Domain.SeedWork.ValidationHelper.IsValid(entity: user);
 
 				var results =
 					Domain.SeedWork.ValidationHelper.GetValidationResults(entity: user);
-				// **************************************************
 
+				// **************************************************
 				if (isValid)
 				{
 					var entityEntry =
@@ -174,6 +150,7 @@ namespace Server.Pages.Admin.UserManager
 
 					AddToastSuccess(message: successMessage);
 				}
+				// **************************************************
 			}
 			catch (System.Exception ex)
 			{

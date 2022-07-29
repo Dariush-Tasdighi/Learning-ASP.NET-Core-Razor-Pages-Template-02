@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
 		public IndexModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -72,7 +73,6 @@ namespace Server.Pages.Admin.UserManager
 								EmailAddress = current.EmailAddress,
 
 								IsActive = current.IsActive,
-								IsDeleted = current.IsDeleted,
 								IsUndeletable = current.IsUndeletable,
 
 								InsertDateTime = current.InsertDateTime,
@@ -85,10 +85,10 @@ namespace Server.Pages.Admin.UserManager
 					// **************************************************
 				}
 
-				if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
-				{
-					return RedirectToPage(pageName: "/admin/usermanager/create");
-				}
+				//if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
+				//{
+				//	return RedirectToPage(pageName: "/admin/usermanager/create");
+				//}
 			}
 			catch (System.Exception ex)
 			{

@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DeleteModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -81,6 +82,17 @@ namespace Server.Pages.Admin.RoleManager
 						return RedirectToPage("./Index");
 					}
 					else if (foundedItem.IsUndeletable)
+					{
+						string errorMessage = string.Format
+							(Resources.Messages.Errors.UnableTo,
+							Resources.DataDictionary.Delete,
+							Resources.DataDictionary.Role);
+
+						AddToastError(message: errorMessage);
+
+						return RedirectToPage("./Index");
+					}
+					else if (foundedItem.Users.Any())
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,

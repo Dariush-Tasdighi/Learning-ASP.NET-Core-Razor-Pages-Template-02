@@ -1,4 +1,4 @@
-﻿namespace Persistence.Conventions
+﻿namespace Data.Conventions
 {
 	internal static class DateTimeConventions : object
 	{

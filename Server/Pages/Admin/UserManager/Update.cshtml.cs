@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
 		public UpdateModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -56,6 +57,7 @@ namespace Server.Pages.Admin.UserManager
 						Username = current.Username,
 						Ordering = current.Ordering,
 						IsActive = current.IsActive,
+						IsProgrammer = current.IsProgrammer,
 						IsUndeletable = current.IsUndeletable,
 					}).FirstOrDefaultAsync();
 			}
@@ -105,9 +107,10 @@ namespace Server.Pages.Admin.UserManager
 				else
 				{
 					foundedItem.SetUpdateDateTime();
-					foundedItem.Ordering = ViewModel.Ordering;
+					foundedItem.RoleId = ViewModel.RoleId;
 					foundedItem.IsActive = ViewModel.IsActive;
-					foundedItem.RoleId = ViewModel.RoleId.Value;
+					foundedItem.Ordering = ViewModel.Ordering;
+					foundedItem.IsProgrammer = ViewModel.IsProgrammer;
 					foundedItem.IsUndeletable = ViewModel.IsUndeletable;
 
 					// **************************************************

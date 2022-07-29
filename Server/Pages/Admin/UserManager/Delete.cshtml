@@ -52,20 +52,24 @@
 					</div>
 				</div>
 
-				<div class="mb-3">
-					<label asp-for="ViewModel.Role" class="form-label"></label>
 
-					<div class="input-group">
-						@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Role) == false)
-						{
-							<div class="input-group-text">
-								<i class="@(applicationSettings.IconSettings.UserIcons.Role)"></i>
-							</div>
-						}
+				@if (Model.ViewModel.Role != null)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.Role" class="form-label"></label>
 
-						<input asp-for="ViewModel.Role" disabled readonly class="form-control" dir="ltr" />
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Role) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Role)"></i>
+								</div>
+							}
+
+							<input asp-for="ViewModel.Role" disabled readonly class="form-control" dir="ltr" />
+						</div>
 					</div>
-				</div>
+				}
 
 				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.FullName) == false)
 				{

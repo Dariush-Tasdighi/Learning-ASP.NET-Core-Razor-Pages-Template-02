@@ -99,7 +99,7 @@ var connectionString =
 	builder.Configuration.GetConnectionString(name: "ConnectionString");
 
 // AddDbContext -> using Microsoft.Extensions.DependencyInjection;
-builder.Services.AddDbContext<Persistence.DatabaseContext>
+builder.Services.AddDbContext<Data.DatabaseContext>
 	(optionsAction: options =>
 	{
 		options

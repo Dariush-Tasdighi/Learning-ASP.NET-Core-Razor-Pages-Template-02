@@ -1,7 +1,6 @@
-﻿using Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Persistence
+namespace Data
 {
 	public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
 	{
@@ -10,17 +9,19 @@ namespace Persistence
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 			(Microsoft.EntityFrameworkCore.DbContextOptions<DatabaseContext> options) : base(options: options)
 		{
-			//Database.EnsureDeleted();
 			Database.EnsureCreated();
 		}
 
-		public Microsoft.EntityFrameworkCore.DbSet<User> Users { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Role> Roles { get; set; }
 
-		public Microsoft.EntityFrameworkCore.DbSet<Role> Roles { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.User> Users { get; set; }
 
-		public Microsoft.EntityFrameworkCore.DbSet<Page> Pages { get; set; }
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.UserLogin> UserLogins { get; set; }
 
-		public Microsoft.EntityFrameworkCore.DbSet<MenuItem> MenuItems { get; set; }
+
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.Page> Pages { get; set; }
+
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.MenuItem> MenuItems { get; set; }
 
 		protected override void OnConfiguring
 			(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
@@ -34,7 +35,7 @@ namespace Persistence
 			(Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfigurationsFromAssembly
-				(typeof(Configurations.UserConfiguration).Assembly);
+				(assembly: typeof(Configurations.RoleConfiguration).Assembly);
 		}
 
 		protected override void ConfigureConventions

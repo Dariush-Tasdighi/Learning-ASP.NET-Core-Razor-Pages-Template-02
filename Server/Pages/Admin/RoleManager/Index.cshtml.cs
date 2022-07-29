@@ -4,12 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
 	//[Microsoft.AspNetCore.Authorization.Authorize
-	//	(Roles = Domain.SeedWork.Constant.SystemicRole.Admin)]
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public IndexModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -79,10 +80,10 @@ namespace Server.Pages.Admin.RoleManager
 					// **************************************************
 				}
 
-				if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
-				{
-					return RedirectToPage(pageName: "/admin/rolemanager/create");
-				}
+				//if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
+				//{
+				//	return RedirectToPage(pageName: "/admin/rolemanager/create");
+				//}
 			}
 			catch (System.Exception ex)
 			{

@@ -1,7 +1,7 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Configurations
+namespace Data.Configurations
 {
 	public class PageConfiguration :
 		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Page>

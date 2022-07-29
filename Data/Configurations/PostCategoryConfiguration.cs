@@ -1,7 +1,7 @@
 ﻿using Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistence.Configurations
+namespace Data.Configurations
 {
 	internal class PostCategoryConfiguration :
 		Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<PostCategory>

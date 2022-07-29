@@ -25,7 +25,7 @@ namespace ViewModels.Pages.Admin.RoleManager
 			maximum: Domain.SeedWork.Constant.Maximum.Ordering,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
-		public uint Ordering { get; set; }
+		public int Ordering { get; set; }
 		// **********
 	}
 }

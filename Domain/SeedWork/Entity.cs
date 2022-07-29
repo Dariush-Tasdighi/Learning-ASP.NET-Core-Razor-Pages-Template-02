@@ -4,7 +4,7 @@
 	{
 		public Entity() : base()
 		{
-			Ordering = SeedWork.Constant.Default.Ordering;
+			Ordering = 10_000;
 
 			InsertDateTime =
 				Dtat.Utility.Now;
@@ -29,11 +29,10 @@
 			Name = nameof(Resources.DataDictionary.Ordering))]
 
 		[System.ComponentModel.DataAnnotations.Range
-			(minimum: SeedWork.Constant.Minimum.Ordering,
-			maximum: SeedWork.Constant.Maximum.Ordering,
+			(minimum: 1, maximum: 100_000,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
-		public uint Ordering { get; set; }
+		public int Ordering { get; set; }
 		// **********
 
 		// **********

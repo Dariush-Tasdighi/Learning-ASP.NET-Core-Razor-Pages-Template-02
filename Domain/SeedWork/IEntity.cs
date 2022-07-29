@@ -7,7 +7,7 @@
 		// **********
 
 		// **********
-		public uint Ordering { get; set; }
+		public int Ordering { get; set; }
 		// **********
 
 		// **********

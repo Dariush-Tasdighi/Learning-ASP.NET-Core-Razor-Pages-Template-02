@@ -1,14 +1,17 @@
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.UserManager
 {
+	[Microsoft.AspNetCore.Authorization.Authorize]
+	//[Microsoft.AspNetCore.Authorization.Authorize
+	//	(Roles = Infrastructure.Constant.Role.Admin)]
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
 		public DeleteModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -46,6 +49,7 @@ namespace Server.Pages.Admin.UserManager
 						InsertDateTime = current.InsertDateTime,
 					})
 					.FirstOrDefaultAsync();
+
 			}
 			catch (System.Exception ex)
 			{
@@ -69,7 +73,6 @@ namespace Server.Pages.Admin.UserManager
 				var foundedItem =
 					await DatabaseContext.Users
 					.Where(current => current.Id == id)
-					.Where(current => current.IsDeleted == false)
 					.FirstOrDefaultAsync();
 
 				if (foundedItem == null)
@@ -103,7 +106,7 @@ namespace Server.Pages.Admin.UserManager
 				}
 				else
 				{
-					foundedItem.IsDeleted = true;
+					DatabaseContext.Remove(entity: foundedItem);
 
 					await DatabaseContext.SaveChangesAsync();
 				}

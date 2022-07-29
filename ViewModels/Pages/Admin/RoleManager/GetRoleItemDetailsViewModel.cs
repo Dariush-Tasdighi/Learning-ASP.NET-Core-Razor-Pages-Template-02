@@ -15,13 +15,6 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeleted),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeleted { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.IsSystemic),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsSystemic { get; init; }
@@ -45,7 +38,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Ordering),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public uint Ordering { get; init; }
+		public int Ordering { get; init; }
 		// **********
 
 		// **********

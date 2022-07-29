@@ -1,18 +1,13 @@
 ﻿namespace Dtat.Security
 {
-	public static class Cryptography
+	public static class Hashing
 	{
-		static Cryptography()
+		static Hashing()
 		{
 		}
 
-		public static string? GetSha256(string? text)
+		public static string GetSha256(string text)
 		{
-			if (string.IsNullOrWhiteSpace(value: text))
-			{
-				return null;
-			}
-
 			var inputBytes =
 				System.Text.Encoding.UTF8.GetBytes(s: text);
 
@@ -27,9 +22,6 @@
 
 			var result =
 				System.Convert.ToBase64String(inArray: outputBytes);
-
-			result =
-				result.ToLower();
 
 			return result;
 		}

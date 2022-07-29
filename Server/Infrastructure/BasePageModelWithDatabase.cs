@@ -3,12 +3,12 @@
 	public abstract class BasePageModelWithDatabase : BasePageModel
 	{
 		public BasePageModelWithDatabase
-			(Persistence.DatabaseContext databaseContext) : base()
+			(Data.DatabaseContext databaseContext) : base()
 		{
 			DatabaseContext = databaseContext;
 		}
 
-		protected Persistence.DatabaseContext? DatabaseContext { get; set; }
+		protected Data.DatabaseContext? DatabaseContext { get; set; }
 
 		protected async
 			System.Threading.Tasks.Task DisposeDatabaseContextAsync()

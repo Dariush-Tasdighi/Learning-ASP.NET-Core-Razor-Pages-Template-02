@@ -8,7 +8,7 @@ namespace Server.Pages.Admin.MenuItemManager
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public CreateModel
-			(Persistence.DatabaseContext databaseContext,
+			(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;

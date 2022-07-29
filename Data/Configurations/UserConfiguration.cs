@@ -1,16 +1,17 @@
-﻿namespace Persistence.Configurations
+﻿namespace Data.Configurations
 {
-	internal class UserConfiguration :
-		object, Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.User>
+	internal class UserConfiguration : object,
+		Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.User>
 	{
 		public UserConfiguration() : base()
 		{
 		}
 
 		public void Configure
-			(Microsoft.EntityFrameworkCore.Metadata
-			.Builders.EntityTypeBuilder<Domain.User> builder)
+			(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.User> builder)
 		{
+			// **************************************************
+			// **************************************************
 			// **************************************************
 			builder
 				.Property(current => current.EmailAddress)
@@ -19,8 +20,7 @@
 
 			builder
 				.HasIndex(current => new { current.EmailAddress })
-				//.IsUnique(unique: true)
-				.IsUnique(unique: false)
+				.IsUnique(unique: true)
 				;
 			// **************************************************
 
@@ -39,8 +39,7 @@
 
 			builder
 				.HasIndex(current => new { current.Username })
-				.IsUnique(unique: false)
-				//.IsUnique(unique: true)
+				.IsUnique(unique: true)
 				;
 
 			//builder.HasIndex(current => current.Username)
@@ -57,8 +56,7 @@
 
 			builder
 				.HasIndex(current => new { current.CellPhoneNumber })
-				//.IsUnique(unique: true)
-				.IsUnique(unique: false)
+				.IsUnique(unique: true)
 				;
 
 			//builder.HasIndex(current => current.CellPhoneNumber)
@@ -90,12 +88,32 @@
 				.IsUnicode(unicode: false)
 				;
 			// **************************************************
+			// **************************************************
+			// **************************************************
 
 			// **************************************************
 			// **************************************************
 			// **************************************************
+			builder
+				.HasMany(current => current.UserLogins)
+				.WithOne(other => other.User)
+				.IsRequired(required: true)
+				.HasForeignKey(other => other.UserId)
+				.OnDelete(deleteBehavior:
+					Microsoft.EntityFrameworkCore.DeleteBehavior.Cascade)
+				;
+			// **************************************************
+			// **************************************************
+			// **************************************************
+
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			//var user =
+			//	new Domain.User(emailAddress: "DariushT@GMail.com", roleId: Domain.Role.DefaultRoleId)
+
 			var user =
-				new Domain.User(emailAddress: "DariushT@GMail.com", roleId: Domain.Role.UserRoleId)
+				new Domain.User(emailAddress: "DariushT@GMail.com")
 				{
 					//Id,
 					//Role,
@@ -106,10 +124,11 @@
 					//EmailAddressVerificationKey
 					//CellPhoneNumberVerificationKey,
 
-					Ordering = 0,
+					Ordering = 1,
 
 					IsActive = true,
 					IsSystemic = true,
+					IsProgrammer = true,
 					IsUndeletable = true,
 					IsProfilePublic = true,
 					IsEmailAddressVerified = true,
@@ -120,9 +139,10 @@
 
 					Username = "Dariush",
 					FullName = "داریوش تصدیقی",
-					CellPhoneNumber = "09121087461",
+					CellPhoneNumber = "00989121087461",
+
 					Password =
-						Dtat.Security.Cryptography.GetSha256(text: "1234512345"),
+						Dtat.Security.Hashing.GetSha256(text: "1234512345"),
 				};
 
 			user.SetId(id: Domain.User.SuperUserId);

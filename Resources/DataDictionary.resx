@@ -447,4 +447,7 @@
   <data name="Websites" xml:space="preserve">
     <value>Websites</value>
   </data>
+  <data name="IP" xml:space="preserve">
+    <value>IP</value>
+  </data>
 </root>

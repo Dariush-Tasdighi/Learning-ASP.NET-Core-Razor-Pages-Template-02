@@ -35,20 +35,24 @@
 
 				<hr />
 
-				<div class="mb-3">
-					<label asp-for="ViewModel.Username" class="form-label"></label>
 
-					<div class="input-group">
-						@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Username) == false)
-						{
-							<div class="input-group-text">
-								<i class="@(applicationSettings.IconSettings.UserIcons.Username)"></i>
-							</div>
-						}
+				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Username) == false)
+				{
+					<div class="mb-3">
+						<label asp-for="ViewModel.Username" class="form-label"></label>
 
-						<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Username) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Username)"></i>
+								</div>
+							}
+
+							<input asp-for="ViewModel.Username" class="form-control" dir="ltr" />
+						</div>
 					</div>
-				</div>
+				}
 
 				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.FullName) == false)
 				{
@@ -64,23 +68,6 @@
 							}
 
 							<input asp-for="ViewModel.FullName" class="form-control" />
-						</div>
-					</div>
-				}
-
-				@if (Model.ViewModel.BirthDate.HasValue)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.BirthDate" class="form-label"></label>
-						<div class="input-group">
-							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.SharedIcons.DateTime) == false)
-							{
-								<div class="input-group-text">
-									<i class="@(applicationSettings.IconSettings.SharedIcons.DateTime)"></i>
-								</div>
-							}
-
-							<input placeholder="@(Model.ViewModel.BirthDate.Value)" class="form-control" dir="ltr" />
 						</div>
 					</div>
 				}
@@ -152,7 +139,28 @@
 							</div>
 						}
 
-						<input asp-for="ViewModel.Role" class="form-control" dir="ltr" />
+						@if (Model.ViewModel.Role == null)
+						{
+							<input class="form-control" dir="ltr" value="@(Resources.DataDictionary.NotSelected)">
+						}
+						else
+						{
+							<input asp-for="ViewModel.Role" class="form-control" dir="ltr" />
+						}
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsSystemic" class="form-check-input" />
+						<label asp-for="ViewModel.IsSystemic" class="form-check-label"></label>
+					</div>
+				</div>
+
+				<div class="mb-3">
+					<div class="form-check">
+						<input asp-for="ViewModel.IsProgrammer" class="form-check-input" />
+						<label asp-for="ViewModel.IsProgrammer" class="form-check-label"></label>
 					</div>
 				</div>
 
@@ -198,13 +206,6 @@
 					<div class="form-check">
 						<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
 						<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsDeleted" class="form-check-input" />
-						<label asp-for="ViewModel.IsDeleted" class="form-check-label"></label>
 					</div>
 				</div>
 			</fieldset>
