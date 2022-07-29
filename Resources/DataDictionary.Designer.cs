@@ -196,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creator User.
+        /// </summary>
+        public static string CreatorUser {
+            get {
+                return ResourceManager.GetString("CreatorUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creator User Id.
         /// </summary>
         public static string CreatorUserId {
@@ -822,6 +831,15 @@ namespace Resources {
         public static string RememberMe {
             get {
                 return ResourceManager.GetString("RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remover User.
+        /// </summary>
+        public static string RemoverUser {
+            get {
+                return ResourceManager.GetString("RemoverUser", resourceCulture);
             }
         }
         

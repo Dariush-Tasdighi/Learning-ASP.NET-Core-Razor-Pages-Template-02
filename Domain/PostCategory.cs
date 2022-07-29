@@ -12,7 +12,8 @@
 		{
 			Title = title;
 
-			SetUpdateDateTime();
+			//SetUpdateDateTime();
+			UpdateDateTime = InsertDateTime;
 
 			//Posts =
 			//	new System.Collections.Generic.List<Posts>();

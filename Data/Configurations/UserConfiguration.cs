@@ -95,6 +95,36 @@
 			// **************************************************
 			// **************************************************
 			builder
+				.HasMany(current => current.CreatedPages)
+				.WithOne(other => other.CreatorUser)
+				.IsRequired(required: true)
+				.HasForeignKey(other => other.CreatorUserId)
+				.OnDelete(deleteBehavior:
+					Microsoft.EntityFrameworkCore.DeleteBehavior.Cascade)
+				;
+			// **************************************************
+			// **************************************************
+			// **************************************************
+
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			builder
+				.HasMany(current => current.RemovedPages)
+				.WithOne(other => other.RemoverUser)
+				.IsRequired(required: false)
+				.HasForeignKey(other => other.RemoverUserId)
+				.OnDelete(deleteBehavior:
+					Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
+				;
+			// **************************************************
+			// **************************************************
+			// **************************************************
+
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			builder
 				.HasMany(current => current.UserLogins)
 				.WithOne(other => other.User)
 				.IsRequired(required: true)

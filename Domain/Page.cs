@@ -28,12 +28,57 @@
 		public const int ClassificationMaxLength = 1000;
 		#endregion /Constant(s)
 
-		public Page(string title) : base()
+		public Page(string title, System.Guid creatorUserId) : base()
 		{
 			Title = title;
 
-			SetUpdateDateTime();
+			CreatorUserId = creatorUserId;
+
+			//SetUpdateDateTime();
+			UpdateDateTime = InsertDateTime;
 		}
+
+		// **********
+		// **********
+		// **********
+		/// <summary>
+		/// آیدی کاربر سازنده صفحه
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.CreatorUser))]
+		public System.Guid CreatorUserId { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.CreatorUser))]
+		public virtual User? CreatorUser { get; set; }
+		// **********
+		// **********
+		// **********
+
+		// **********
+		// **********
+		// **********
+		/// <summary>
+		/// کاربر حذف کننده ی صفحه
+		/// </summary>
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.RemoverUser))]
+		public System.Guid? RemoverUserId { get; set; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.RemoverUser))]
+		public virtual User? RemoverUser { get; set; }
+		// **********
+		// **********
+		// **********
 
 		// **********
 		// **********
@@ -51,7 +96,7 @@
 		//[System.ComponentModel.DataAnnotations.Display
 		//	(ResourceType = typeof(Resources.DataDictionary),
 		//	Name = nameof(Resources.DataDictionary.Layout))]
-		//public Layout Layout { get; set; }
+		//public virtual Layout Layout { get; set; }
 		// **********
 		// **********
 		// **********

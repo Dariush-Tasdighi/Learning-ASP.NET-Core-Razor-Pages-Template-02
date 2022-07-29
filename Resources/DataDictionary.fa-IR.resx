@@ -456,4 +456,10 @@
   <data name="WithoutRole" xml:space="preserve">
     <value>بدون نقش</value>
   </data>
+  <data name="CreatorUser" xml:space="preserve">
+    <value>کاربر ایجاد کننده</value>
+  </data>
+  <data name="RemoverUser" xml:space="preserve">
+    <value>کاربر حذف کننده</value>
+  </data>
 </root>

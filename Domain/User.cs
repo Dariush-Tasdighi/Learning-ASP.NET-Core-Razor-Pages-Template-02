@@ -22,6 +22,12 @@
 			EmailAddress = emailAddress;
 			EmailAddressVerificationKey = System.Guid.NewGuid();
 
+			RemovedPages =
+				new System.Collections.Generic.List<Page>();
+
+			CreatedPages =
+				new System.Collections.Generic.List<Page>();
+
 			UserLogins =
 				new System.Collections.Generic.List<UserLogin>();
 		}
@@ -264,6 +270,14 @@
 		{
 			Id = id;
 		}
+
+		// **********
+		public virtual System.Collections.Generic.IList<Page> CreatedPages { get; private set; }
+		// **********
+
+		// **********
+		public virtual System.Collections.Generic.IList<Page> RemovedPages { get; private set; }
+		// **********
 
 		// **********
 		public virtual System.Collections.Generic.IList<UserLogin> UserLogins { get; private set; }

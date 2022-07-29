@@ -453,4 +453,10 @@
   <data name="WithoutRole" xml:space="preserve">
     <value>Without Role</value>
   </data>
+  <data name="CreatorUser" xml:space="preserve">
+    <value>Creator User</value>
+  </data>
+  <data name="RemoverUser" xml:space="preserve">
+    <value>Remover User</value>
+  </data>
 </root>
