@@ -13,19 +13,6 @@
 			SuperUserId = new(g: "CC75D635-EF6D-4E86-907A-BC532CDC3ACC");
 		#endregion /Static(s)
 
-		//public User(string emailAddress, System.Guid roleId) : base()
-		//{
-		//	//SetUpdateDateTime();
-		//	UpdateDateTime = InsertDateTime;
-
-		//	RoleId = roleId;
-		//	EmailAddress = emailAddress;
-		//	EmailAddressVerificationKey = System.Guid.NewGuid();
-
-		//	UserLogins =
-		//		new System.Collections.Generic.List<UserLogin>();
-		//}
-
 		public User(string emailAddress) : base()
 		{
 			//SetUpdateDateTime();

@@ -1,8 +1,5 @@
 ﻿namespace Domain
 {
-	// دستور ذیل کار نمی‌کند
-	//[Microsoft.EntityFrameworkCore.Index
-	//	(propertyNames: nameof(Name), IsUnique = true)]
 	public class Role :
 		SeedWork.Entity,
 		//SeedWork.IEntityCanSetId,
@@ -11,11 +8,6 @@
 		SeedWork.IEntityHasIsUndeletable,
 		SeedWork.IEntityHasUpdateDateTime
 	{
-		//#region Static(s)
-		//public static readonly System.Guid
-		//	DefaultRoleId = new(g: "2A533503-E7E1-4E08-98DD-33973A69AE15");
-		//#endregion /Static(s)
-
 		#region Constructor
 		public Role(string name) : base()
 		{
