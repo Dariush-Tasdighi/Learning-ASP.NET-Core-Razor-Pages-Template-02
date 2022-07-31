@@ -28,14 +28,14 @@
 			<DependentUpon>LableCaptions.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Messages\Errors.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>Errors.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Errors.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Messages\Validations.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>Validations.resx</DependentUpon>
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Validations.resx</DependentUpon>
 		</Compile>
 		<Compile Update="PageTitles.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -62,12 +62,12 @@
 			<LastGenOutput>LableCaptions.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Messages\Errors.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>Errors.Designer.cs</LastGenOutput>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Errors.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Messages\Validations.resx">
-		  <Generator>PublicResXFileCodeGenerator</Generator>
-		  <LastGenOutput>Validations.Designer.cs</LastGenOutput>
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>Validations.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="PageTitles.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
