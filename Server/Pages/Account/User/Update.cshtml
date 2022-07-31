@@ -1,0 +1,110 @@
+﻿@*@page "{userId?}"
+@model Server.Pages.Security.User.UpdateModel
+@{
+	var pageTitle =
+		Resources.PageTitles.UpdateProfile;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<form method="post">
+
+	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+		<div class="row">
+			<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+				<fieldset>
+					<legend>
+						@(pageTitle)
+					</legend>
+
+					<hr />
+
+					<partial name="PartialViews/_DisplayPageMessages" />
+
+
+					<div class="row">
+						<div class="col-6">
+
+							<div class="mb-3">
+								<label asp-for="ViewModel.FirstName" class="form-label"></label>
+
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+									<input asp-for="ViewModel.FirstName" class="form-control" />
+								</div>
+
+								<span asp-validation-for="ViewModel.FirstName" class="text-danger"></span>
+							</div>
+						</div>
+
+						<div class="col-6">
+							<div class="mb-3">
+								<label asp-for="ViewModel.LastName" class="form-label"></label>
+
+								<div class="input-group">
+									<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+									<input asp-for="ViewModel.LastName" class="form-control" />
+								</div>
+
+								<span asp-validation-for="ViewModel.LastName" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Username" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+							<input asp-for="ViewModel.Username" readonly class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.Username" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-envelope-fill"></i></div>
+							<input asp-for="ViewModel.EmailAddress" readonly class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.EmailAddress" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.CellPhoneNumber" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-telephone-fill"></i></div>
+							<input asp-for="ViewModel.CellPhoneNumber" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.CellPhoneNumber" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Update)</button>
+						<a href="#" class="btn btn-secondary">@(Resources.ButtonCaptions.Home)</a>
+					</div>
+				</fieldset>
+
+				<hr class="mt-4" />
+			</div>
+		</div>
+	</div>
+
+</form>
+*@

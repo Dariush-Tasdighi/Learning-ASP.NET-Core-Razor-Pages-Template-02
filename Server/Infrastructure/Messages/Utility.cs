@@ -16,7 +16,7 @@ namespace Infrastructure.Messages
 			MessageType type, string? message)
 		{
 			message =
-				Infrastructure.Utility.FixText(text: message);
+				Dtat.Utility.FixText(text: message);
 
 			if (message == null)
 			{

@@ -6,6 +6,9 @@
 
 		public ApplicationSettings() : base()
 		{
+			IconSettings =
+				new IconSettings();
+
 			ToastSettings =
 				new ToastSettings();
 
@@ -14,6 +17,9 @@
 
 			FileManagerSettings =
 				new FileManagerSettings();
+
+			TablesDefaultSettings =
+				new TablesDefaultSettings();
 		}
 
 		// **********
@@ -29,6 +35,10 @@
 		// **********
 
 		// **********
+		public IconSettings IconSettings { get; set; }
+		// **********
+
+		// **********
 		public ToastSettings ToastSettings { get; set; }
 		// **********
 
@@ -38,6 +48,10 @@
 
 		// **********
 		public FileManagerSettings FileManagerSettings { get; set; }
+		// **********
+
+		// **********
+		public TablesDefaultSettings TablesDefaultSettings { get; set; }
 		// **********
 	}
 }

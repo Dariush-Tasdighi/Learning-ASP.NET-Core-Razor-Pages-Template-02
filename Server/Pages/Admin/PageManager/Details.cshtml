@@ -1,0 +1,51 @@
+﻿@page
+@model Server.Pages.Admin.PageManager.DetailsModel
+
+@{
+	//@if (Model.ViewModel == null)
+	//{
+	//	return;
+	//}
+
+	var pageTitle =
+		Resources.PageTitles.PageDetails;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+	<div class="row">
+		<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+			<fieldset disabled readonly>
+				<legend>
+					@(pageTitle)
+				</legend>
+
+				<hr />
+
+			</fieldset>
+
+			<hr class="mt-4" />
+
+			<div class="text-center">
+				<a href="/">@(Resources.ButtonCaptions.Home)</a>
+				|
+				<a asp-page="Index">
+					@(Resources.ButtonCaptions.BackToList)
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+

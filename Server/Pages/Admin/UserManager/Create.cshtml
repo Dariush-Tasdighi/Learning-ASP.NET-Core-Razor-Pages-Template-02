@@ -1,0 +1,194 @@
+﻿@page
+@model Server.Pages.Admin.UserManager.CreateModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+
+@{
+	var pageTitle =
+		Resources.PageTitles.CreateUser;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<form method="post">
+
+	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+		<div class="row">
+			<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+				<fieldset>
+					<legend>
+						@(pageTitle)
+					</legend>
+
+					<hr />
+
+					<partial name="PartialViews/_DisplayPageMessages" />
+
+
+					<div class="mb-3">
+						<i class="mr-2">*</i>
+						<label asp-for="ViewModel.EmailAddress" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.EmailAddress) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.EmailAddress)"></i>
+								</div>
+							}
+
+							<input asp-for="ViewModel.EmailAddress" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.EmailAddress" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.CellPhoneNumber" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.CellPhoneNumber) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.CellPhoneNumber)"></i>
+								</div>
+							}
+
+							<input asp-for="ViewModel.CellPhoneNumber" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.CellPhoneNumber" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<i class="mr-2">*</i>
+						<label asp-for="ViewModel.Password" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Password) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Password)"></i>
+								</div>
+							}
+
+							<input asp-for="ViewModel.Password" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.Password" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<i class="mr-2">*</i>
+						<label asp-for="ViewModel.ConfirmPassword" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Password) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Password)"></i>
+								</div>
+							}
+
+							<input asp-for="ViewModel.ConfirmPassword" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.ConfirmPassword" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.RoleId" class="form-label"></label>
+
+						<div class="input-group">
+							@if (string.IsNullOrWhiteSpace(value: applicationSettings.IconSettings.UserIcons.Role) == false)
+							{
+								<div class="input-group-text">
+									<i class="@(applicationSettings.IconSettings.UserIcons.Role)"></i>
+								</div>
+							}
+
+							<select class="form-select" asp-for="ViewModel.RoleId">
+								<option value="@(null)" selected>@(Resources.DataDictionary.WithoutRole)</option>
+
+								@foreach (var item in Model?.RolesViewModel)
+								{
+									<option value="@(item.Id)">@(item.Name)</option>
+								}
+							</select>
+						</div>
+
+						<span asp-validation-for="ViewModel.RoleId" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsProgrammer" class="form-check-input" />
+							<label asp-for="ViewModel.IsProgrammer" class="form-check-label"></label>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Ordering" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
+
+							<input type="number" asp-for="ViewModel.Ordering"
+								   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
+								   value="@(Domain.SeedWork.Constant.Minimum.Ordering)" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsActive" class="form-check-input" />
+							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+						</div>
+					</div>
+
+					@*
+					<div class="mb-3">
+					<div class="form-check">
+					<input asp-for="ViewModel.IsProgrammer" class="form-check-input" />
+					<label asp-for="ViewModel.IsProgrammer" class="form-check-label"></label>
+					</div>
+					</div>
+					*@
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
+							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
+						</div>
+					</div>
+
+					<div class="mb-3 d-flex justify-content-center">
+						<button type="submit" class="btn btn-primary mx-1">@(Resources.ButtonCaptions.Register)</button>
+						<button type="reset" class="btn btn-secondary mx-1">@(Resources.ButtonCaptions.Reset)</button>
+					</div>
+				</fieldset>
+
+				<hr class="mt-4" />
+
+				<div class="text-center">
+					<a href="/">@(Resources.ButtonCaptions.Home)</a>
+					|
+					<a href="@(Model.ReturnUrl)">@(Resources.ButtonCaptions.Back)</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>

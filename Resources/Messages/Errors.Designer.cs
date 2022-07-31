@@ -61,11 +61,29 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} already exists!.
+        /// </summary>
+        public static string AlreadyExists {
+            get {
+                return ResourceManager.GetString("AlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You should just use digits!.
         /// </summary>
         public static string Captcha {
             get {
                 return ResourceManager.GetString("Captcha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure to delete this item?.
+        /// </summary>
+        public static string ConfirmDelete {
+            get {
+                return ResourceManager.GetString("ConfirmDelete", resourceCulture);
             }
         }
         
@@ -102,6 +120,42 @@ namespace Resources.Messages {
         public static string NewPasswordCanNotBeSameAsCurrentPassword {
             get {
                 return ResourceManager.GetString("NewPasswordCanNotBeSameAsCurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no {0} with this information!.
+        /// </summary>
+        public static string NotFound {
+            get {
+                return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are unable to {0} this {1}!.
+        /// </summary>
+        public static string UnableTo {
+            get {
+                return ResourceManager.GetString("UnableTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to update parent!.
+        /// </summary>
+        public static string UnableToUpdateParent {
+            get {
+                return ResourceManager.GetString("UnableToUpdateParent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error!.
+        /// </summary>
+        public static string UnexpectedError {
+            get {
+                return ResourceManager.GetString("UnexpectedError", resourceCulture);
             }
         }
         

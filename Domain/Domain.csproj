@@ -11,8 +11,4 @@
 		<ProjectReference Include="..\Resources\Resources.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="Cms\" />
-	</ItemGroup>
-
 </Project>

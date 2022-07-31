@@ -132,8 +132,35 @@
   <data name="Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
+  <data name="CreateMenuItem" xml:space="preserve">
+    <value>Create Menu Item</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>Create Page</value>
+  </data>
+  <data name="CreateRole" xml:space="preserve">
+    <value>Create Role</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Create User</value>
+  </data>
   <data name="DeactivateAccount" xml:space="preserve">
     <value>Deactivate Account</value>
+  </data>
+  <data name="DeleteMenuItem" xml:space="preserve">
+    <value>Delete Menu Item</value>
+  </data>
+  <data name="DeletePage" xml:space="preserve">
+    <value>Delete Page</value>
+  </data>
+  <data name="DeleteRole" xml:space="preserve">
+    <value>Delete Role</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>Delete User</value>
+  </data>
+  <data name="Error404" xml:space="preserve">
+    <value>Page Not Found!</value>
   </data>
   <data name="Error500" xml:space="preserve">
     <value>Internal Server Error!</value>
@@ -150,11 +177,29 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="MenuItemDetails" xml:space="preserve">
+    <value>Menu Item Details</value>
+  </data>
+  <data name="MenuItemManagement" xml:space="preserve">
+    <value>Menu Item Management</value>
+  </data>
+  <data name="PageDetails" xml:space="preserve">
+    <value>Page Details</value>
+  </data>
+  <data name="PageManagement" xml:space="preserve">
+    <value>Page Management</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="RoleDetails" xml:space="preserve">
+    <value>Role Details</value>
+  </data>
+  <data name="RoleManagement" xml:space="preserve">
+    <value>Role Management</value>
   </data>
   <data name="TerminateAccount" xml:space="preserve">
     <value>Terminate Account</value>
@@ -162,8 +207,26 @@
   <data name="UnexpectedError" xml:space="preserve">
     <value>Unexpected Error!</value>
   </data>
+  <data name="UpdateMenuItem" xml:space="preserve">
+    <value>Update Menu Item</value>
+  </data>
+  <data name="UpdatePage" xml:space="preserve">
+    <value>Update Page</value>
+  </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>Update Profile</value>
+  </data>
+  <data name="UpdateRole" xml:space="preserve">
+    <value>Update Role</value>
+  </data>
+  <data name="UpdateUser" xml:space="preserve">
+    <value>Update User</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>User Details</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>User Management</value>
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>User Settings</value>

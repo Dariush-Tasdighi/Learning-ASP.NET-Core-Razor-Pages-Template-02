@@ -132,8 +132,35 @@
   <data name="Contact" xml:space="preserve">
     <value>تماس با ما</value>
   </data>
+  <data name="CreateMenuItem" xml:space="preserve">
+    <value>ایجاد آیتم منو</value>
+  </data>
+  <data name="CreatePage" xml:space="preserve">
+    <value>ایجاد صفحه</value>
+  </data>
+  <data name="CreateRole" xml:space="preserve">
+    <value>ایجاد نقش</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>تعریف کاربر</value>
+  </data>
   <data name="DeactivateAccount" xml:space="preserve">
     <value>غیرفعال کردن حساب کاربری</value>
+  </data>
+  <data name="DeleteMenuItem" xml:space="preserve">
+    <value>حذف آیتم منو</value>
+  </data>
+  <data name="DeletePage" xml:space="preserve">
+    <value>حذف صفحه</value>
+  </data>
+  <data name="DeleteRole" xml:space="preserve">
+    <value>حذف نقش</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>حذف کاربر</value>
+  </data>
+  <data name="Error404" xml:space="preserve">
+    <value>صفحه ی مورد نظر یافت نشد!</value>
   </data>
   <data name="Error500" xml:space="preserve">
     <value>خطای داخلی سرور!</value>
@@ -150,11 +177,29 @@
   <data name="Logout" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="MenuItemDetails" xml:space="preserve">
+    <value>جزئیات آیتم منو</value>
+  </data>
+  <data name="MenuItemManagement" xml:space="preserve">
+    <value>مدیریت آیتم های منو</value>
+  </data>
+  <data name="PageDetails" xml:space="preserve">
+    <value>چزئیات صفحه</value>
+  </data>
+  <data name="PageManagement" xml:space="preserve">
+    <value>مدیریت صفحات</value>
+  </data>
   <data name="Profile" xml:space="preserve">
     <value>پروفایل</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>ثبت‌نام</value>
+  </data>
+  <data name="RoleDetails" xml:space="preserve">
+    <value>جزئیات نقش</value>
+  </data>
+  <data name="RoleManagement" xml:space="preserve">
+    <value>مدیریت نقش ها</value>
   </data>
   <data name="TerminateAccount" xml:space="preserve">
     <value>حذف حساب کاربری</value>
@@ -162,8 +207,26 @@
   <data name="UnexpectedError" xml:space="preserve">
     <value>خطای ناشناخته!</value>
   </data>
+  <data name="UpdateMenuItem" xml:space="preserve">
+    <value>ویرایش آیتم منو</value>
+  </data>
+  <data name="UpdatePage" xml:space="preserve">
+    <value>ویرایش صفحه</value>
+  </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>ویرایش مشخصات</value>
+  </data>
+  <data name="UpdateRole" xml:space="preserve">
+    <value>ویرایش نقش</value>
+  </data>
+  <data name="UpdateUser" xml:space="preserve">
+    <value>ویرایش کاربر</value>
+  </data>
+  <data name="UserDetails" xml:space="preserve">
+    <value>جزئیات کاربر</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>مدیریت کاربران</value>
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>تنظیمات کاربری</value>

@@ -29,6 +29,14 @@
 		{
 			"library": "flag-icon-css@6.6.2",
 			"destination": "wwwroot/lib/flag-icon-css/"
+		},
+		{
+			"library": "bootstrap-iconpicker@1.10.0",
+			"destination": "wwwroot/lib/bootstrap-iconpicker/"
+		},
+		{
+			"library": "popper.js@2.11.5",
+			"destination": "wwwroot/lib/popper.js/"
 		}
 	]
 }

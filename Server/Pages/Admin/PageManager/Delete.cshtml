@@ -1,0 +1,66 @@
+﻿@page
+@model Server.Pages.Admin.PageManager.DeleteModel
+
+@{
+	//@if (Model.ViewModel == null)
+	//{
+	//	return;
+	//}
+
+	var pageTitle =
+		Resources.PageTitles.DeletePage;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+	<div class="row">
+		<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+			<fieldset>
+				<legend>
+					@(pageTitle)
+				</legend>
+
+				<hr />
+
+				<partial name="PartialViews/_DisplayPageMessages" />
+
+				<div class="mb-3 d-flex">
+					<button type="button" class="btn btn-primary mx-1" onclick="openModal()">@(Resources.ButtonCaptions.Delete)</button>
+				</div>
+			</fieldset>
+
+			<hr class="mt-4" />
+
+			<div class="text-center">
+				<a href="/">@(Resources.ButtonCaptions.Home)</a>
+				|
+				<a asp-page="Index">
+					@(Resources.ButtonCaptions.BackToList)
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	function openModal() {
+		$('#delete-conformation').modal('show')
+	}
+	function closeModal() {
+		$('#delete-conformation').modal('hide')
+	}
+
+</script>

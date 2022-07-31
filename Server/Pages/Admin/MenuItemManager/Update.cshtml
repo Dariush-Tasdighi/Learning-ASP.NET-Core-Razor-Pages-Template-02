@@ -1,0 +1,198 @@
+﻿@page
+@model Server.Pages.Admin.MenuItemManager.UpdateModel
+
+@{
+	var pageTitle =
+		Resources.PageTitles.UpdateMenuItem;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+@section StyleSheets {
+
+	<link href="/lib/bootstrap-icon-picker/css/bootstrapicons-iconpicker.min.css" rel="stylesheet">
+
+	<style>
+
+		.popover-title-text, .iconpicker-btn {
+			font-family: IRANSansX
+		}
+
+	</style>
+
+}
+
+	<form method="post">
+
+		<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+			<div class="row">
+				<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+					<fieldset>
+
+						<legend>
+							@(pageTitle)
+						</legend>
+
+						<hr />
+
+						<partial name="PartialViews/_DisplayPageMessages" />
+
+						<div class="mb-3">
+							<label asp-for="ViewModel.Title" class="form-label"></label>
+
+							<input asp-for="ViewModel.Title" class="form-control" dir="ltr" />
+
+							<span asp-validation-for="ViewModel.Title" class="text-danger"></span>
+						</div>
+
+						<div class="mb-3">
+							<label asp-for="ViewModel.ParentId" class="form-label"></label>
+
+							<select asp-for="ViewModel.ParentId" class="form-select">
+								<option value="@(null)">@(Resources.DataDictionary.NoParent)</option>
+
+								@foreach (var item in Model?.ParentsViewModel)
+							{
+								<option value="@(item.Id)">@(item.Title)</option>
+							}
+						</select>
+
+						<span asp-validation-for="ViewModel.ParentId" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Ordering" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
+
+							<input asp-for="ViewModel.Ordering"
+								   value="@(Model.ViewModel.Ordering)"
+								   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
+								   class="form-control" dir="ltr" />
+
+							<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Link" class="form-label"></label>
+
+						<input asp-for="ViewModel.Link" class="form-control" dir="ltr" />
+
+						<span asp-validation-for="ViewModel.Link" class="text-danger"></span>
+					</div>
+
+					<div class="row">
+						<div class="mb-3 col-md-6">
+							<label asp-for="ViewModel.Icon" class="form-label"></label>
+
+							<input asp-for="ViewModel.Icon" onclick="$(this).pickIcon(@(Resources.DataDictionary.Icon));" class="form-control iconpicker" dir="ltr" />
+						</div>
+
+						<div class="mb-3 col-md-6">
+							<label asp-for="ViewModel.IconPosition" class="form-label"></label>
+
+							<select asp-for="ViewModel.IconPosition" class="form-select">
+
+								<option value="@(Domain.Enumerations.IconPosition.Left)" selected>@(Resources.DataDictionary.Left)</option>
+
+								<option value="@(Domain.Enumerations.IconPosition.Right)">@(Resources.DataDictionary.Right)</option>
+
+								@if (Model?.ViewModel?.ParentId == null)
+								{
+									<option value="@(Domain.Enumerations.IconPosition.Top)">@(Resources.DataDictionary.Top)</option>
+
+									<option value="@(Domain.Enumerations.IconPosition.Bottom)">@(Resources.DataDictionary.Bottom)</option>
+								}
+							</select>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsActive" class="form-check-input" />
+							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsPublic" class="form-check-input" />
+
+							<label asp-for="ViewModel.IsPublic" class="form-check-label"></label>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
+							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Save)</button>
+
+						<button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
+					</div>
+				</fieldset>
+
+				<hr class="mt-4" />
+
+				<div class="text-center">
+					<a href="/">@(Resources.ButtonCaptions.Home)</a>
+					|
+					<a asp-page="./Index">@(Resources.ButtonCaptions.BackToList)</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>
+
+@section Scripts {
+
+	<script src="/lib/bootstrap-icon-picker/js/bootstrapicon-iconpicker.min.js"></script>
+	<script>
+		$('.iconpicker').iconpicker({
+			title: '@(Resources.DataDictionary.Icon)',
+			selected: false,
+			defaultValue: false,
+			placement: "bottom",
+			collision: "none",
+			animation: true,
+			hideOnSelect: true,
+			showFooter: false,
+			searchInFooter: false,
+			mustAccept: false,
+			selectedCustomClass: "bg-primary",
+			fullClassFormatter: function(e) {
+				return e;
+			},
+			input: "input,.iconpicker-input",
+			inputSearch: false,
+			container: false,
+			component: ".input-group-addon,.iconpicker-component",
+			templates: {
+				footer: '<div class="popover-footer"></div>',
+				iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
+				iconpickerItem: '<a role="button" href="javascript:;" class="iconpicker-item"><i></i></a>',
+				search: '<input type="search" class="form-control iconpicker-search" placeholder="@(Resources.DataDictionary.Search)" />',
+				popover: '<div class="iconpicker-popover popover" role="tooltip"><div class="arrow"></div>' + '<div class="popover-title"></div><div class="popover-content"></div></div>',
+				buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">@(Resources.ButtonCaptions.Back)</button>' + ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">@(Resources.ButtonCaptions.Save)</button>',
+			}
+		});
+	</script>
+}

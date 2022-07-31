@@ -1,0 +1,105 @@
+﻿@page
+@model Server.Pages.Admin.RoleManager.CreateModel
+
+@{
+	var pageTitle =
+		Resources.PageTitles.CreateRole;
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<form method="post">
+
+	<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+		<div class="row">
+			<div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+				<fieldset>
+					<legend class="mb-3">
+						@(pageTitle)
+					</legend>
+
+					<hr />
+
+					<partial name="PartialViews/_DisplayPageMessages" />
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Name" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-person-workspace"></i></div>
+							<input asp-for="ViewModel.Name" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.Name" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Ordering" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
+
+							<input type="number" asp-for="ViewModel.Ordering"
+								   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
+								   value="@(Domain.SeedWork.Constant.Minimum.Ordering)" class="form-control" dir="ltr" />
+						</div>
+
+						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<label asp-for="ViewModel.Description" class="form-label"></label>
+
+						<div class="input-group">
+							<div class="input-group-text"><i class="bi bi-card-text"></i></div>
+							<textarea asp-for="ViewModel.Description" class="form-control"> </textarea>
+						</div>
+
+						<span asp-validation-for="ViewModel.Description" class="text-danger"></span>
+					</div>
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsActive" class="form-check-input" />
+							<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<div class="form-check">
+							<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
+							<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<button type="submit" class="btn btn-primary">@(Resources.ButtonCaptions.Save)</button>
+						<button type="reset" class="btn btn-secondary">@(Resources.ButtonCaptions.Reset)</button>
+					</div>
+
+				</fieldset>
+
+				<hr class="mt-4" />
+
+				<div class="text-center">
+					<a href="/">@(Resources.ButtonCaptions.Home)</a>
+					|
+					<a asp-page="./Index">@(Resources.ButtonCaptions.BackToList)</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</form>
+
