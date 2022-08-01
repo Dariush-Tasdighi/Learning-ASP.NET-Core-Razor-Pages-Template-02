@@ -2,10 +2,7 @@
 {
 	public class Role :
 		SeedWork.Entity,
-		//SeedWork.IEntityCanSetId,
 		SeedWork.IEntityHasIsActive,
-		SeedWork.IEntityHasIsSystemic,
-		SeedWork.IEntityHasIsUndeletable,
 		SeedWork.IEntityHasUpdateDateTime
 	{
 		#region Constructor
@@ -13,7 +10,6 @@
 		{
 			Name = name;
 
-			//SetUpdateDateTime();
 			UpdateDateTime = InsertDateTime;
 
 			Users =
@@ -26,20 +22,6 @@
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IsActive))]
 		public bool IsActive { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.IsSystemic))]
-		public bool IsSystemic { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.IsUndeletable))]
-		public bool IsUndeletable { get; set; }
 		// **********
 
 		// **********
@@ -81,11 +63,6 @@
 			UpdateDateTime =
 				Dtat.Utility.Now;
 		}
-
-		//public void SetId(System.Guid id)
-		//{
-		//	Id = id;
-		//}
 
 		// **********
 		public virtual System.Collections.Generic.IList<User> Users { get; private set; }

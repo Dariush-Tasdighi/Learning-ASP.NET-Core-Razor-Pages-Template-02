@@ -1,8 +1,8 @@
 ﻿namespace ViewModels.Pages.Admin.RoleManager
 {
-	public class CreateRoleViewModel : Base.RoleExtendedViewModel
+	public class CreateViewModel : Base.RoleExtendedViewModel
 	{
-		public CreateRoleViewModel() : base()
+		public CreateViewModel() : base()
 		{
 		}
 

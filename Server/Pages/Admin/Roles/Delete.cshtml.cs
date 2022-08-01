@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.RoleManager
+namespace Server.Pages.Admin.Roles
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constant.Role.Admin)]
@@ -38,15 +38,15 @@ namespace Server.Pages.Admin.RoleManager
 						Id = current.Id,
 						Name = current.Name,
 						IsActive = current.IsActive,
-						IsSystemic = current.IsSystemic,
-						IsUndeletable = current.IsUndeletable,
 						InsertDateTime = current.InsertDateTime,
 					})
 					.FirstOrDefaultAsync();
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				//Logger.LogError(message: ex.Message);
+				Logger.Log
+					(logLevel: LogLevel.Error, message: ex.Message);
 
 				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
 			}
@@ -80,17 +80,17 @@ namespace Server.Pages.Admin.RoleManager
 
 						return RedirectToPage("./Index");
 					}
-					else if (foundedItem.IsUndeletable)
-					{
-						string errorMessage = string.Format
-							(Resources.Messages.Errors.UnableTo,
-							Resources.DataDictionary.Delete,
-							Resources.DataDictionary.Role);
+					//else if (foundedItem.IsUndeletable)
+					//{
+					//	string errorMessage = string.Format
+					//		(Resources.Messages.Errors.UnableTo,
+					//		Resources.DataDictionary.Delete,
+					//		Resources.DataDictionary.Role);
 
-						AddToastError(message: errorMessage);
+					//	AddToastError(message: errorMessage);
 
-						return RedirectToPage("./Index");
-					}
+					//	return RedirectToPage("./Index");
+					//}
 					else if (foundedItem.Users.Any())
 					{
 						string errorMessage = string.Format

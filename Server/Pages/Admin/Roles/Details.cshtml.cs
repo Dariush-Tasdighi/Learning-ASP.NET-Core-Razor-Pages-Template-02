@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.RoleManager
+namespace Server.Pages.Admin.Roles
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constant.Role.Admin)]
@@ -42,9 +42,9 @@ namespace Server.Pages.Admin.RoleManager
 						Ordering = current.Ordering,
 						IsActive = current.IsActive,
 						//IsDeleted = current.IsDeleted,
-						IsSystemic = current.IsSystemic,
+						//IsSystemic = current.IsSystemic,
 						Description = current.Description,
-						IsUndeletable = current.IsUndeletable,
+						//IsUndeletable = current.IsUndeletable,
 						InsertDateTime = current.InsertDateTime,
 						UpdateDateTime = current.UpdateDateTime,
 					}).FirstOrDefaultAsync();

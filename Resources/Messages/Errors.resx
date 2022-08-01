@@ -132,6 +132,9 @@
   <data name="EmailAddressIsNotVerified" xml:space="preserve">
     <value>Email address is not verified yet!</value>
   </data>
+  <data name="IdIsNull" xml:space="preserve">
+    <value>Id is null!</value>
+  </data>
   <data name="InvalidUsernameOrPassword" xml:space="preserve">
     <value>Invalid Username or Password!</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>There is no {0} with this information!</value>
+  </data>
+  <data name="ThereIsNotAnyDataWithThisId" xml:space="preserve">
+    <value>There is not any data with this id!</value>
   </data>
   <data name="UnableTo" xml:space="preserve">
     <value>We are unable to {0} this {1}!</value>

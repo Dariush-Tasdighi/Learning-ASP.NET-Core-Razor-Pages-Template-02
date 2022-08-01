@@ -462,4 +462,13 @@
   <data name="RemoverUser" xml:space="preserve">
     <value>کاربر حذف کننده</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>ایجاد</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>نمایش</value>
+  </data>
 </root>

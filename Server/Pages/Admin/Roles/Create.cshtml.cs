@@ -2,15 +2,15 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.RoleManager
+namespace Server.Pages.Admin.Roles
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constant.Role.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
-		public CreateModel
-			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) : base(databaseContext: databaseContext)
+		public CreateModel(Data.DatabaseContext databaseContext,
+			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 			ViewModel = new();
@@ -22,7 +22,7 @@ namespace Server.Pages.Admin.RoleManager
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.RoleManager.CreateRoleViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.Roles.CreateViewModel ViewModel { get; set; }
 		// **********
 
 		public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
@@ -33,70 +33,69 @@ namespace Server.Pages.Admin.RoleManager
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 		{
-			if (ModelState.IsValid is false)
+			if (ModelState.IsValid == false)
 			{
 				return Page();
 			}
 
 			try
 			{
-				string? fixedName =
+				var fixedName =
 					Dtat.Utility.FixText(text: ViewModel.Name);
 
-				bool foundAny =
+				var foundedAny =
 					await DatabaseContext.Roles
 					.Where(current => current.Name.ToLower() == fixedName.ToLower())
 					.AnyAsync();
 
-				if (foundAny)
+				if (foundedAny)
 				{
 					// **************************************************
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.Name);
 
-					AddToastError(message: errorMessage);
+					AddPageError(message: errorMessage);
 
 					return Page();
 					// **************************************************
 				}
-				else
-				{
-					// **************************************************
-					Domain.Role role = new(name: fixedName)
+
+				// **************************************************
+				var fixedDescription =
+					Dtat.Utility.FixText(text: ViewModel.Description);
+
+				Domain.Role role =
+					new(name: fixedName)
 					{
 						Ordering = ViewModel.Ordering,
 						IsActive = ViewModel.IsActive,
-						IsUndeletable = ViewModel.IsUndeletable,
-						Description = Dtat.Utility.FixText(text: ViewModel.Description),
+						Description = fixedDescription,
 					};
-					// **************************************************
 
-					var entityEntry =
-						await DatabaseContext.AddAsync(entity: role);
+				var entityEntry =
+					await
+					DatabaseContext.AddAsync(entity: role);
 
-					int affectedRows =
-						await DatabaseContext.SaveChangesAsync();
+				int affectedRows =
+					await
+					DatabaseContext.SaveChangesAsync();
+				// **************************************************
 
-					// **************************************************
-					if (affectedRows > 0)
-					{
-						string successMessage = string.Format
-							(Resources.Messages.Successes.SuccessfullyCreated,
-							Resources.DataDictionary.Role);
+				// **************************************************
+				string successMessage = string.Format
+					(Resources.Messages.Successes.SuccessfullyCreated,
+					Resources.DataDictionary.Role);
 
-						AddToastSuccess(message: successMessage);
-					}
-					// **************************************************
+				AddToastSuccess(message: successMessage);
+				// **************************************************
 
-					return RedirectToPage(pageName: "Index");
-				}
+				return RedirectToPage(pageName: "Index");
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
-
-				//System.Console.WriteLine(value: ex.Message);
+				Logger.Log(logLevel: Microsoft.Extensions
+					.Logging.LogLevel.Error, message: ex.Message);
 
 				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
 

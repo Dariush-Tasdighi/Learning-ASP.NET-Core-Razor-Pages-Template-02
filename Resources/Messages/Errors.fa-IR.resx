@@ -132,6 +132,9 @@
   <data name="EmailAddressIsNotVerified" xml:space="preserve">
     <value>نشانی پست الکترونیکی هنوز تایید نشده است!</value>
   </data>
+  <data name="IdIsNull" xml:space="preserve">
+    <value>شناسه اطلاعات باید مشخص شده باشد!</value>
+  </data>
   <data name="InvalidUsernameOrPassword" xml:space="preserve">
     <value>شناسه‌کاربری و یا گذرواژه صحیح نمی‌باشد!</value>
   </data>
@@ -140,6 +143,9 @@
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>{0} مورد نظر یافت نشد!</value>
+  </data>
+  <data name="ThereIsNotAnyDataWithThisId" xml:space="preserve">
+    <value>اطلاعاتی با چنین شناسه‌ای وجود ندارد!</value>
   </data>
   <data name="UnableTo" xml:space="preserve">
     <value>در حال حاضر امکان {0} این {1} وجود ندارد!</value>

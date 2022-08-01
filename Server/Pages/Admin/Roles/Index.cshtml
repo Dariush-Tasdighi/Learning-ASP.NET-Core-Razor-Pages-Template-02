@@ -1,0 +1,116 @@
+﻿@page
+@model Server.Pages.Admin.Roles.IndexModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+
+@{
+	@if (Model.Roles == null)
+	{
+		return;
+	}
+
+	var pageTitle =
+		$"{Resources.DataDictionary.ListOf} {Resources.DataDictionary.Roles}";
+
+	ViewData["PageTitle"] = pageTitle;
+
+	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+	{
+		Layout =
+			"Layouts/Rtl/_Layout";
+	}
+	else
+	{
+		Layout =
+			"Layouts/Ltr/_Layout";
+	}
+}
+
+<partial name="PartialViews/_PageTitle" model="@(pageTitle)" />
+
+<div class="row">
+	<div class="col">
+		<a asp-page="Create" class="btn btn-primary">
+			<i class="bi bi-person-workspace"></i>
+			@($"{Resources.DataDictionary.Create} {Resources.DataDictionary.Role}")
+		</a>
+
+	</div>
+</div>
+
+<hr />
+
+<div class="row">
+	<div class="col table-responsive">
+		<table class="@(applicationSettings.TablesDefaultSettings.TableStyle)">
+
+			<caption>
+				@(pageTitle)
+			</caption>
+
+			<thead class="@(applicationSettings.TablesDefaultSettings.TableHeaderStyle)">
+				<tr>
+					<th>
+						#
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Roles[0].Name)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Roles[0].IsActive)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Roles[0].Ordering)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Roles[0].InsertDateTime)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Roles[0].UpdateDateTime)
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				@for (int index = 0; index <= Model.Roles.Count - 1; index++)
+				{
+					var item = Model.Roles[index];
+
+					<tr>
+						<td>
+							@(index + 1)
+						</td>
+						<td>
+							@(item.Name)
+						</td>
+						<td>
+							@(item.Ordering.ToString("#,##0"))
+						</td>
+						<td>
+							<i class="@(item.IsActive ? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
+						</td>
+						<td>
+							@(item.InsertDateTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
+						</td>
+						<td>
+							@(item.UpdateDateTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
+						</td>
+
+						<td>
+							<a asp-page="./Update" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+								<i class="@(applicationSettings.IconSettings.TableIcons.Update)"></i>
+							</a>
+							<a asp-page="./Delete" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+								<i class="@(applicationSettings.IconSettings.TableIcons.Delete)"></i>
+							</a>
+							<a asp-page="./Details" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+								<i class="@(applicationSettings.IconSettings.TableIcons.Details)"></i>
+							</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>

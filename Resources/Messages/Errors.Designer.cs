@@ -106,6 +106,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Id is null!.
+        /// </summary>
+        public static string IdIsNull {
+            get {
+                return ResourceManager.GetString("IdIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Username or Password!.
         /// </summary>
         public static string InvalidUsernameOrPassword {
@@ -129,6 +138,15 @@ namespace Resources.Messages {
         public static string NotFound {
             get {
                 return ResourceManager.GetString("NotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is not any data with this id!.
+        /// </summary>
+        public static string ThereIsNotAnyDataWithThisId {
+            get {
+                return ResourceManager.GetString("ThereIsNotAnyDataWithThisId", resourceCulture);
             }
         }
         

@@ -1,5 +1,5 @@
 ﻿@page
-@model Server.Pages.Admin.RoleManager.DeleteModel
+@model Server.Pages.Admin.Roles.DeleteModel
 
 @{
 	@if (Model.ViewModel == null)
@@ -49,20 +49,6 @@
 					<div class="form-check">
 						<input asp-for="ViewModel.IsActive" disabled readonly class="form-check-input" />
 						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsSystemic" disabled readonly class="form-check-input" />
-						<label asp-for="ViewModel.IsSystemic" class="form-check-label"></label>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsUndeletable" disabled readonly class="form-check-input" />
-						<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
 					</div>
 				</div>
 
