@@ -63,8 +63,8 @@ namespace Server.Pages.Admin.Roles
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(logLevel: Microsoft.Extensions
-					.Logging.LogLevel.Error, message: ex.Message);
+				Logger.LogError
+					(message: ex.Message);
 
 				AddPageError(message:
 					Resources.Messages.Errors.UnexpectedError);
@@ -94,11 +94,13 @@ namespace Server.Pages.Admin.Roles
 
 				if (foundedAny)
 				{
-					string errorMessage = string.Format
+					string errorMessage =
+						string.Format
 						(Resources.Messages.Errors.CascadeDelete,
 						Resources.DataDictionary.Role);
 
-					AddPageError(message: errorMessage);
+					AddPageError
+						(message: errorMessage);
 
 					return Page();
 				}
@@ -114,13 +116,14 @@ namespace Server.Pages.Admin.Roles
 					AddToastError(message:
 						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 
-					return RedirectToPage("Index");
+					return RedirectToPage(pageName: "./Index");
 				}
 
 				// **************************************************
 				DatabaseContext.Remove(entity: foundedItem);
 
 				await DatabaseContext.SaveChangesAsync();
+				// **************************************************
 
 				// **************************************************
 				string successMessage =
@@ -128,15 +131,16 @@ namespace Server.Pages.Admin.Roles
 					(Resources.Messages.Successes.Deleted,
 					Resources.DataDictionary.Role);
 
-				AddToastSuccess(message: successMessage);
+				AddToastSuccess
+					(message: successMessage);
 				// **************************************************
 
-				return RedirectToPage(pageName: "Index");
+				return RedirectToPage(pageName: "./Index");
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(logLevel: Microsoft.Extensions
-					.Logging.LogLevel.Error, message: ex.Message);
+				Logger.LogError
+					(message: ex.Message);
 
 				AddPageError(message:
 					Resources.Messages.Errors.UnexpectedError);

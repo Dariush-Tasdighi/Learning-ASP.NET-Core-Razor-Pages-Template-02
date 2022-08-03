@@ -62,8 +62,8 @@ namespace Server.Pages.Admin.Roles
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(logLevel: Microsoft.Extensions
-					.Logging.LogLevel.Error, message: ex.Message);
+				Logger.LogError
+					(message: ex.Message);
 
 				AddPageError(message:
 					Resources.Messages.Errors.UnexpectedError);

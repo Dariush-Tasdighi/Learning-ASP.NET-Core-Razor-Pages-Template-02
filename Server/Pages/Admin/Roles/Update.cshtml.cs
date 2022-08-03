@@ -10,7 +10,8 @@ namespace Server.Pages.Admin.Roles
 	{
 		public UpdateModel
 			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
+			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
@@ -36,7 +37,7 @@ namespace Server.Pages.Admin.Roles
 					AddToastError(message:
 						Resources.Messages.Errors.IdIsNull);
 
-					return RedirectToPage(pageName: "Index");
+					return RedirectToPage(pageName: "./Index");
 				}
 
 				ViewModel =
@@ -57,12 +58,14 @@ namespace Server.Pages.Admin.Roles
 				{
 					AddToastError(message:
 						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+					return RedirectToPage(pageName: "./Index");
 				}
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(logLevel: Microsoft.Extensions
-					.Logging.LogLevel.Error, message: ex.Message);
+				Logger.LogError
+					(message: ex.Message);
 
 				AddPageError(message:
 					Resources.Messages.Errors.UnexpectedError);
@@ -100,7 +103,8 @@ namespace Server.Pages.Admin.Roles
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.Name);
 
-					AddToastError(message: errorMessage);
+					AddPageError
+						(message: errorMessage);
 
 					return Page();
 				}
@@ -115,6 +119,8 @@ namespace Server.Pages.Admin.Roles
 				{
 					AddToastError(message:
 						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+					return RedirectToPage(pageName: "./Index");
 				}
 
 				// **************************************************
@@ -133,19 +139,20 @@ namespace Server.Pages.Admin.Roles
 					await DatabaseContext.SaveChangesAsync();
 
 				// **************************************************
-				string successMessage = string.Format
+				string successMessage =
+					string.Format
 					(Resources.Messages.Successes.Updated,
 					Resources.DataDictionary.Role);
 
 				AddToastSuccess(message: successMessage);
 				// **************************************************
 
-				return RedirectToPage(pageName: "Index");
+				return RedirectToPage(pageName: "./Index");
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(logLevel: Microsoft.Extensions
-					.Logging.LogLevel.Error, message: ex.Message);
+				Logger.LogError
+					(message: ex.Message);
 
 				AddPageError(message:
 					Resources.Messages.Errors.UnexpectedError);

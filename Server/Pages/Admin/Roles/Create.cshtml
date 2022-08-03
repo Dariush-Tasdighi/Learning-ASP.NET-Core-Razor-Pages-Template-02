@@ -47,7 +47,7 @@
 
 				<div class="@(Infrastructure.CssClasses.FormDivField)">
 					<label asp-for="ViewModel.Description" class="form-label"></label>
-					<input asp-for="ViewModel.Description" class="form-control" />
+					<textarea asp-for="ViewModel.Description" class="form-control"></textarea>
 					<span asp-validation-for="ViewModel.Description" class="text-danger"></span>
 				</div>
 			</fieldset>

@@ -16,7 +16,7 @@
 <div class="@(Infrastructure.CssClasses.FormDivRow)">
 	<div class="@(Infrastructure.CssClasses.FormDivCol)">
 		<fieldset disabled>
-			<legend>
+			<legend class="@(Infrastructure.CssClasses.FormLegend)">
 				@(pageTitle)
 			</legend>
 
@@ -24,44 +24,44 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<div class="mb-3">
+			<div class="@(Infrastructure.CssClasses.FormDivField)">
 				<label asp-for="ViewModel.Id" class="form-label"></label>
 				<input asp-for="ViewModel.Id" class="form-control" dir="ltr" />
 			</div>
 
-			<div class="mb-3">
+			<div class="@(Infrastructure.CssClasses.FormDivField)">
 				<label asp-for="ViewModel.Name" class="form-label"></label>
 				<input asp-for="ViewModel.Name" class="form-control" />
 			</div>
 
-			<div class="mb-3">
+			<div class="@(Infrastructure.CssClasses.FormDivField)">
 				<label asp-for="ViewModel.UserCount" class="form-label"></label>
 				<input asp-for="ViewModel.UserCount" class="form-control" dir="ltr" />
 			</div>
 
-			<div class="mb-3">
+			<div class="@(Infrastructure.CssClasses.FormDivField)">
 				<label asp-for="ViewModel.Ordering" class="form-label"></label>
 				<input asp-for="ViewModel.Ordering" class="form-control" dir="ltr" />
 			</div>
 
-			<div class="mb-3">
+			<div class="@(Infrastructure.CssClasses.FormDivField)">
 				<div class="form-check">
 					<input asp-for="ViewModel.IsActive" class="form-check-input" />
 					<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
 				</div>
 			</div>
 
-			<div class="mb-3">
+			<div class="@(Infrastructure.CssClasses.FormDivField)">
 				<label asp-for="ViewModel.Description" class="form-label"></label>
 				<textarea asp-for="ViewModel.Description" class="form-control"></textarea>
 			</div>
 
-			<div class="mb-3">
+			<div class="@(Infrastructure.CssClasses.FormDivField)">
 				<label asp-for="ViewModel.DisplayInsertDateTime" class="form-label"></label>
 				<input value="@(Model.ViewModel.DisplayInsertDateTime)" class="form-control" dir="ltr" />
 			</div>
 
-			<div class="mb-3">
+			<div class="@(Infrastructure.CssClasses.FormDivField)">
 				<label asp-for="ViewModel.DisplayUpdateDateTime" class="form-label"></label>
 				<input value="@(Model.ViewModel.DisplayUpdateDateTime)" class="form-control" dir="ltr" />
 			</div>
