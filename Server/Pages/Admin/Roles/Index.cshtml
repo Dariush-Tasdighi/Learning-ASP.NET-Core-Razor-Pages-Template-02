@@ -16,27 +16,26 @@
 
 <partial name="PartialViews/_PageTitle" model="@(pageTitle)" />
 
-<div class="row">
-	<div class="col">
+<div class="@(Infrastructure.CssClasses.ListButtonsDivRow)">
+	<div class="@(Infrastructure.CssClasses.ListButtonsDivCol)">
 		<a asp-page="Create" class="btn btn-primary">
 			<i class="bi bi-person-workspace"></i>
 			@($"{Resources.DataDictionary.Create} {Resources.DataDictionary.Role}")
 		</a>
-
 	</div>
 </div>
 
-<hr />
+<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
 
-<div class="row">
-	<div class="col table-responsive">
-		<table class="@(applicationSettings.TablesDefaultSettings.TableStyle)">
+<div class="@(Infrastructure.CssClasses.ListTableDivRow)">
+	<div class="@(Infrastructure.CssClasses.ListTableDivCol)">
+		<table class="@(Infrastructure.CssClasses.ListTable)">
 
 			<caption>
 				@(pageTitle)
 			</caption>
 
-			<thead class="@(applicationSettings.TablesDefaultSettings.TableHeaderStyle)">
+			<thead class="@(Infrastructure.CssClasses.ListTableHeader)">
 				<tr>
 					<th>
 						#
@@ -61,7 +60,7 @@
 				</tr>
 			</thead>
 
-			<tbody>
+			<tbody class="@(Infrastructure.CssClasses.ListTableBody)">
 				@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
 				{
 					var item = Model.ViewModel[index];
@@ -74,6 +73,8 @@
 						<td>
 							@(item.Name)
 						</td>
+
+						// TODO
 
 						<td class="text-center">
 							<i class="@(item.IsActive ? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
@@ -92,13 +93,15 @@
 						</td>
 
 						<td class="text-center">
-							<a asp-page="./Update" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+							<a asp-page="./Update" asp-route-id="@(item.Id)" class="@(Infrastructure.CssClasses.Link)">
 								<i class="@(applicationSettings.IconSettings.TableIcons.Update)"></i>
 							</a>
-							<a asp-page="./Delete" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+							|
+							<a asp-page="./Delete" asp-route-id="@(item.Id)" class="@(Infrastructure.CssClasses.Link)">
 								<i class="@(applicationSettings.IconSettings.TableIcons.Delete)"></i>
 							</a>
-							<a asp-page="./Details" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+							|
+							<a asp-page="./Details" asp-route-id="@(item.Id)" class="@(Infrastructure.CssClasses.Link)">
 								<i class="@(applicationSettings.IconSettings.TableIcons.Details)"></i>
 							</a>
 						</td>

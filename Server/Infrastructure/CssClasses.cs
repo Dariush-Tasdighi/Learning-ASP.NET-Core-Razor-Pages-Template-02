@@ -113,5 +113,101 @@
 				return result;
 			}
 		}
+
+		public static string ListButtonsDivRow
+		{
+			get
+			{
+				var result =
+					"row"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListButtonsDivCol
+		{
+			get
+			{
+				var result =
+					"col"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListTableDivRow
+		{
+			get
+			{
+				var result =
+					"row"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListTableDivCol
+		{
+			get
+			{
+				var result =
+					"col table-responsive"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListTable
+		{
+			get
+			{
+				var result =
+					"table table-bordered table-sm table-striped table-hover align-items-center"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListTableHeader
+		{
+			get
+			{
+				var result =
+					"table-primary text-center"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListTableBody
+		{
+			get
+			{
+				var result =
+					""
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListTableFooter
+		{
+			get
+			{
+				var result =
+					"table-secondary"
+					;
+
+				return result;
+			}
+		}
 	}
 }
