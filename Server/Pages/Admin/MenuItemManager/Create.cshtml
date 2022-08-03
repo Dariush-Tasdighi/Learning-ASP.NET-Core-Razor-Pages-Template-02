@@ -77,8 +77,8 @@
 							<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
 
 							<input asp-for="ViewModel.Ordering"
-								   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
-								   value="@(Domain.SeedWork.Constant.Minimum.Ordering)" class="form-control" dir="ltr" />
+								   min="@(Domain.SeedWork.Constants.Minimum.Ordering)"
+								   value="@(Domain.SeedWork.Constants.Minimum.Ordering)" class="form-control" dir="ltr" />
 
 							<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
 						</div>

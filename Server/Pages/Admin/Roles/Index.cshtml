@@ -3,7 +3,7 @@
 @inject Infrastructure.Settings.ApplicationSettings applicationSettings
 
 @{
-	@if (Model.Roles == null)
+	@if (Model.ViewModel == null)
 	{
 		return;
 	}
@@ -11,18 +11,7 @@
 	var pageTitle =
 		$"{Resources.DataDictionary.ListOf} {Resources.DataDictionary.Roles}";
 
-	ViewData["PageTitle"] = pageTitle;
-
-	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-	{
-		Layout =
-			"Layouts/Rtl/_Layout";
-	}
-	else
-	{
-		Layout =
-			"Layouts/Ltr/_Layout";
-	}
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 }
 
 <partial name="PartialViews/_PageTitle" model="@(pageTitle)" />
@@ -53,19 +42,19 @@
 						#
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Roles[0].Name)
+						@Html.DisplayNameFor(model => model.ViewModel[0].Name)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Roles[0].IsActive)
+						@Html.DisplayNameFor(model => model.ViewModel[0].IsActive)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Roles[0].Ordering)
+						@Html.DisplayNameFor(model => model.ViewModel[0].Ordering)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Roles[0].InsertDateTime)
+						@Html.DisplayNameFor(model => model.ViewModel[0].InsertDateTime)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.Roles[0].UpdateDateTime)
+						@Html.DisplayNameFor(model => model.ViewModel[0].UpdateDateTime)
 					</th>
 					<th>
 					</th>
@@ -73,31 +62,36 @@
 			</thead>
 
 			<tbody>
-				@for (int index = 0; index <= Model.Roles.Count - 1; index++)
+				@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
 				{
-					var item = Model.Roles[index];
+					var item = Model.ViewModel[index];
 
 					<tr>
-						<td>
+						<td class="text-center">
 							@(index + 1)
 						</td>
+
 						<td>
 							@(item.Name)
 						</td>
-						<td>
-							@(item.Ordering.ToString("#,##0"))
-						</td>
-						<td>
+
+						<td class="text-center">
 							<i class="@(item.IsActive ? applicationSettings.TablesDefaultSettings.YesIcon : applicationSettings.TablesDefaultSettings.NoIcon)"></i>
 						</td>
-						<td>
+
+						<td dir="ltr">
+							@(item.Ordering.ToString("#,##0"))
+						</td>
+
+						<td dir="ltr">
 							@(item.InsertDateTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
 						</td>
-						<td>
+
+						<td dir="ltr">
 							@(item.UpdateDateTime.ToString(applicationSettings.FileManagerSettings.DisplayDateTimeFormat))
 						</td>
 
-						<td>
+						<td class="text-center">
 							<a asp-page="./Update" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
 								<i class="@(applicationSettings.IconSettings.TableIcons.Update)"></i>
 							</a>

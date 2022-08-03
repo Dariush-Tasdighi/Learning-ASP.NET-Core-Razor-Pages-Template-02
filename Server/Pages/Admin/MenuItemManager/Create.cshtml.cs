@@ -113,7 +113,7 @@ namespace Server.Pages.Admin.MenuItemManager
 				if (affectedRow > 0)
 				{
 					string successMessage = string.Format
-						(Resources.Messages.Successes.SuccessfullyCreated,
+						(Resources.Messages.Successes.Created,
 						Resources.DataDictionary.MenuItem);
 
 					AddToastSuccess(message: successMessage);

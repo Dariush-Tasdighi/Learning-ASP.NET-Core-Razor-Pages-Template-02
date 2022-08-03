@@ -123,7 +123,7 @@
 						<label asp-for="ViewModel.Ordering" class="form-label"></label>
 
 						<input type="number" asp-for="ViewModel.Ordering"
-							   min="@(Domain.SeedWork.Constant.Minimum.Ordering)"
+							   min="@(Domain.SeedWork.Constants.Minimum.Ordering)"
 							   value="@(Model.ViewModel.Ordering)" class="form-control" dir="ltr" />
 
 						<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>

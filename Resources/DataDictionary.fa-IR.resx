@@ -471,4 +471,7 @@
   <data name="Details" xml:space="preserve">
     <value>نمایش</value>
   </data>
+  <data name="UserCount" xml:space="preserve">
+    <value>تعداد کاربران</value>
+  </data>
 </root>

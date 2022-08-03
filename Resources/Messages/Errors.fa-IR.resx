@@ -123,6 +123,9 @@
   <data name="Captcha" xml:space="preserve">
     <value>شما باید عدد فوق را با دقت و با ارقام انگلیسی وارد نمایید!</value>
   </data>
+  <data name="CascadeDelete" xml:space="preserve">
+    <value>از این {0} در جای دیگری استفاده شده است، لذا شما قادر به حذف آن نمی‌باشید!</value>
+  </data>
   <data name="ConfirmDelete" xml:space="preserve">
     <value>آیا از حذف این آیتم اطمینان دارید؟</value>
   </data>

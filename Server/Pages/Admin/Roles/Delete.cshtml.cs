@@ -10,7 +10,8 @@ namespace Server.Pages.Admin.Roles
 	{
 		public DeleteModel
 			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) : base(databaseContext: databaseContext)
+			Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
@@ -18,105 +19,55 @@ namespace Server.Pages.Admin.Roles
 		}
 
 		// **********
-		private Microsoft.Extensions.Logging.ILogger<DeleteModel> Logger { get; }
+		private Microsoft.Extensions.Logging.ILogger<DetailsModel> Logger { get; }
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.RoleManager.DeleteRoleViewModel ViewModel { get; private set; }
+		[Microsoft.AspNetCore.Mvc.BindProperty]
+		public ViewModels.Pages.Admin.Roles.DeleteDetailsViewModel ViewModel { get; private set; }
 		// **********
 
-		public async System.Threading.Tasks.Task OnGetAsync(System.Guid id)
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 		{
 			try
 			{
+				if (id.HasValue == false)
+				{
+					AddToastError(message:
+						Resources.Messages.Errors.IdIsNull);
+				}
+
 				ViewModel =
-					await DatabaseContext.Roles
-					.Where(current => current.Id == id)
-					//.Where(current => current.IsDeleted == false)
-					.Select(current => new ViewModels.Pages.Admin.RoleManager.DeleteRoleViewModel
+					await
+					DatabaseContext.Roles
+					.Where(current => current.Id == id.Value)
+					.Select(current => new ViewModels.Pages.Admin.Roles.DeleteDetailsViewModel()
 					{
 						Id = current.Id,
 						Name = current.Name,
 						IsActive = current.IsActive,
+						Ordering = current.Ordering,
+						UserCount = current.Users.Count,
+						Description = current.Description,
 						InsertDateTime = current.InsertDateTime,
+						UpdateDateTime = current.UpdateDateTime,
 					})
 					.FirstOrDefaultAsync();
-			}
-			catch (System.Exception ex)
-			{
-				//Logger.LogError(message: ex.Message);
-				Logger.Log
-					(logLevel: LogLevel.Error, message: ex.Message);
 
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
-			}
-			finally
-			{
-				await DisposeDatabaseContextAsync();
-			}
-		}
-
-
-		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostDeleteAsync(System.Guid? id)
-		{
-			try
-			{
-				if (id.HasValue)
+				if (ViewModel == null)
 				{
-					var foundedItem =
-						await DatabaseContext.Roles
-						.Where(current => current.Id == id.Value)
-						//.Where(current => current.IsDeleted == false)
-						.FirstOrDefaultAsync();
-
-					if (foundedItem == null)
-					{
-						string errorMessage = string.Format
-							(Resources.Messages.Errors.NotFound,
-							Resources.DataDictionary.Role);
-
-						AddToastError(message: errorMessage);
-
-						return RedirectToPage("./Index");
-					}
-					//else if (foundedItem.IsUndeletable)
-					//{
-					//	string errorMessage = string.Format
-					//		(Resources.Messages.Errors.UnableTo,
-					//		Resources.DataDictionary.Delete,
-					//		Resources.DataDictionary.Role);
-
-					//	AddToastError(message: errorMessage);
-
-					//	return RedirectToPage("./Index");
-					//}
-					else if (foundedItem.Users.Any())
-					{
-						string errorMessage = string.Format
-							(Resources.Messages.Errors.UnableTo,
-							Resources.DataDictionary.Delete,
-							Resources.DataDictionary.Role);
-
-						AddToastError(message: errorMessage);
-
-						return RedirectToPage("./Index");
-					}
-					else
-					{
-						DatabaseContext.Remove(entity: foundedItem);
-
-						await DatabaseContext.SaveChangesAsync();
-
-						return RedirectToPage("./Index");
-					}
+					AddToastError(message:
+						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 				}
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.Log(logLevel: Microsoft.Extensions
+					.Logging.LogLevel.Error, message: ex.Message);
 
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError(message:
+					Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
@@ -124,6 +75,78 @@ namespace Server.Pages.Admin.Roles
 			}
 
 			return Page();
+		}
+
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
+		{
+			try
+			{
+				if (id.HasValue == false)
+				{
+					return Page();
+				}
+
+				var foundedAny =
+					await DatabaseContext.Users
+					.Where(current => current.RoleId != ViewModel.Id)
+					.AnyAsync();
+
+				if (foundedAny)
+				{
+					string errorMessage = string.Format
+						(Resources.Messages.Errors.CascadeDelete,
+						Resources.DataDictionary.Role);
+
+					AddPageError(message: errorMessage);
+
+					return Page();
+				}
+
+				var foundedItem =
+					await
+					DatabaseContext.Roles
+					.Where(current => current.Id == ViewModel.Id)
+					.FirstOrDefaultAsync();
+
+				if (foundedItem == null)
+				{
+					AddToastError(message:
+						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+					return RedirectToPage("Index");
+				}
+
+				// **************************************************
+				DatabaseContext.Remove(entity: foundedItem);
+
+				await DatabaseContext.SaveChangesAsync();
+
+				// **************************************************
+				string successMessage =
+					string.Format
+					(Resources.Messages.Successes.Deleted,
+					Resources.DataDictionary.Role);
+
+				AddToastSuccess(message: successMessage);
+				// **************************************************
+
+				return RedirectToPage(pageName: "Index");
+			}
+			catch (System.Exception ex)
+			{
+				Logger.Log(logLevel: Microsoft.Extensions
+					.Logging.LogLevel.Error, message: ex.Message);
+
+				AddPageError(message:
+					Resources.Messages.Errors.UnexpectedError);
+
+				return Page();
+			}
+			finally
+			{
+				await DisposeDatabaseContextAsync();
+			}
 		}
 	}
 }

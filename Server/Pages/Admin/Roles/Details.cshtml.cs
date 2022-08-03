@@ -10,7 +10,8 @@ namespace Server.Pages.Admin.Roles
 	{
 		public DetailsModel
 			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) : base(databaseContext: databaseContext)
+			Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
@@ -22,47 +23,50 @@ namespace Server.Pages.Admin.Roles
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.RoleManager.GetRoleItemDetailsViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.Roles.DeleteDetailsViewModel ViewModel { get; private set; }
 		// **********
 
-		public async
-			System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnGetAsync(System.Guid id)
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 		{
 			try
 			{
+				if (id.HasValue == false)
+				{
+					AddToastError(message:
+						Resources.Messages.Errors.IdIsNull);
+				}
+
 				ViewModel =
-					await DatabaseContext.Roles
-					.Where(current => current.Id == id)
-					.Select(current => new ViewModels.Pages.Admin.RoleManager.GetRoleItemDetailsViewModel
+					await
+					DatabaseContext.Roles
+					.Where(current => current.Id == id.Value)
+					.Select(current => new ViewModels.Pages.Admin.Roles.DeleteDetailsViewModel()
 					{
 						Id = current.Id,
 						Name = current.Name,
-						Ordering = current.Ordering,
 						IsActive = current.IsActive,
-						//IsDeleted = current.IsDeleted,
-						//IsSystemic = current.IsSystemic,
+						Ordering = current.Ordering,
+						UserCount = current.Users.Count,
 						Description = current.Description,
-						//IsUndeletable = current.IsUndeletable,
 						InsertDateTime = current.InsertDateTime,
 						UpdateDateTime = current.UpdateDateTime,
-					}).FirstOrDefaultAsync();
+					})
+					.FirstOrDefaultAsync();
 
-				if (ViewModel.Id.HasValue)
+				if (ViewModel == null)
 				{
-					// Might Not Be Used
-					ViewModel.NumberOfUserWithThisRole =
-						await DatabaseContext.Users
-						.Where(current => current.RoleId == ViewModel.Id)
-						.CountAsync();
+					AddToastError(message:
+						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 				}
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.Log(logLevel: Microsoft.Extensions
+					.Logging.LogLevel.Error, message: ex.Message);
 
-				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError(message:
+					Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{

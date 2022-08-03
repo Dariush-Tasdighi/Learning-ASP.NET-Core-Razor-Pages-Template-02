@@ -131,7 +131,7 @@ namespace Server.Pages.Admin.UserManager
 							await DatabaseContext.SaveChangesAsync();
 
 						string successMessage = string.Format
-							(Resources.Messages.Successes.SuccessfullyUpdated,
+							(Resources.Messages.Successes.Updated,
 							Resources.DataDictionary.User);
 
 						AddToastSuccess(message: successMessage);

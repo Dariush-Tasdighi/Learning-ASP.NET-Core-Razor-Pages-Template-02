@@ -84,7 +84,7 @@ namespace Server.Pages.Admin.Roles
 
 				// **************************************************
 				string successMessage = string.Format
-					(Resources.Messages.Successes.SuccessfullyCreated,
+					(Resources.Messages.Successes.Created,
 					Resources.DataDictionary.Role);
 
 				AddToastSuccess(message: successMessage);
@@ -97,7 +97,8 @@ namespace Server.Pages.Admin.Roles
 				Logger.Log(logLevel: Microsoft.Extensions
 					.Logging.LogLevel.Error, message: ex.Message);
 
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError(message:
+					Resources.Messages.Errors.UnexpectedError);
 
 				return Page();
 			}

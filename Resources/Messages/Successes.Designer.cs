@@ -61,20 +61,29 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} successfully created....
+        ///   Looks up a localized string similar to {0} successfully created..
         /// </summary>
-        public static string SuccessfullyCreated {
+        public static string Created {
             get {
-                return ResourceManager.GetString("SuccessfullyCreated", resourceCulture);
+                return ResourceManager.GetString("Created", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} successfully updated....
+        ///   Looks up a localized string similar to {0} successfully deleted..
         /// </summary>
-        public static string SuccessfullyUpdated {
+        public static string Deleted {
             get {
-                return ResourceManager.GetString("SuccessfullyUpdated", resourceCulture);
+                return ResourceManager.GetString("Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} successfully updated..
+        /// </summary>
+        public static string Updated {
+            get {
+                return ResourceManager.GetString("Updated", resourceCulture);
             }
         }
     }

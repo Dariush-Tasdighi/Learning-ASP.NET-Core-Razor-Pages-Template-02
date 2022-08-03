@@ -35,6 +35,8 @@ namespace Server.Pages.Admin.Roles
 				{
 					AddToastError(message:
 						Resources.Messages.Errors.IdIsNull);
+
+					return RedirectToPage(pageName: "Index");
 				}
 
 				ViewModel =
@@ -59,9 +61,11 @@ namespace Server.Pages.Admin.Roles
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(logLevel: LogLevel.Error, message: ex.Message);
+				Logger.Log(logLevel: Microsoft.Extensions
+					.Logging.LogLevel.Error, message: ex.Message);
 
-				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError(message:
+					Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
@@ -130,7 +134,7 @@ namespace Server.Pages.Admin.Roles
 
 				// **************************************************
 				string successMessage = string.Format
-					(Resources.Messages.Successes.SuccessfullyUpdated,
+					(Resources.Messages.Successes.Updated,
 					Resources.DataDictionary.Role);
 
 				AddToastSuccess(message: successMessage);
@@ -140,9 +144,11 @@ namespace Server.Pages.Admin.Roles
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(logLevel: LogLevel.Error, message: ex.Message);
+				Logger.Log(logLevel: Microsoft.Extensions
+					.Logging.LogLevel.Error, message: ex.Message);
 
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError(message:
+					Resources.Messages.Errors.UnexpectedError);
 
 				return Page();
 			}

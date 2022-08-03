@@ -468,4 +468,7 @@
   <data name="Details" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="UserCount" xml:space="preserve">
+    <value>User Count</value>
+  </data>
 </root>

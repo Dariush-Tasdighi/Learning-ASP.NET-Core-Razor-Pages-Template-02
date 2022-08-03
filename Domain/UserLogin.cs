@@ -40,12 +40,12 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: SeedWork.Constant.MaxLength.IP,
+			(length: SeedWork.Constants.MaxLength.IP,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: SeedWork.Constant.RegularExpression.IP,
+			(pattern: SeedWork.Constants.RegularExpression.IP,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.IP))]
 		public string UserIP { get; set; }

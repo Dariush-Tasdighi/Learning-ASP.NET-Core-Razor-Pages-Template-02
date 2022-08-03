@@ -57,7 +57,7 @@ namespace Server.Pages.Admin.MenuItemManager
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.Log(logLevel: LogLevel.Error, message: ex.Message);
 
 				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
 			}
@@ -162,7 +162,7 @@ namespace Server.Pages.Admin.MenuItemManager
 					if (affectedRows > 0)
 					{
 						string successMessage = string.Format
-							(Resources.Messages.Successes.SuccessfullyUpdated,
+							(Resources.Messages.Successes.Updated,
 							Resources.DataDictionary.MenuItem);
 
 						AddToastSuccess(message: successMessage);

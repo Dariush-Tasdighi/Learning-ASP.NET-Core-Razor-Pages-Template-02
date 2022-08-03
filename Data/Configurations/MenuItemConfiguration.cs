@@ -16,7 +16,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Title)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constant.MaxLength.Title)
+				.HasMaxLength(maxLength: Domain.SeedWork.Constants.MaxLength.Title)
 				.IsRequired(required: false)
 				.IsUnicode(unicode: true)
 				;

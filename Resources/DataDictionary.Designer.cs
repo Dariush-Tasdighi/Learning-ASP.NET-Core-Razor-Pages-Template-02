@@ -1042,6 +1042,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Count.
+        /// </summary>
+        public static string UserCount {
+            get {
+                return ResourceManager.GetString("UserCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Manager.
         /// </summary>
         public static string UserManager {

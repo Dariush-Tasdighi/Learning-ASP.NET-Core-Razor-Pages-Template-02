@@ -13,7 +13,7 @@ namespace Server.Pages.Admin.Roles
 		{
 			Logger = logger;
 
-			Roles =
+			ViewModel =
 				new System.Collections.Generic.List<Domain.Role>();
 		}
 
@@ -22,7 +22,7 @@ namespace Server.Pages.Admin.Roles
 		// **********
 
 		// **********
-		public System.Collections.Generic.IList<Domain.Role> Roles { get; set; }
+		public System.Collections.Generic.IList<Domain.Role> ViewModel { get; private set; }
 		// **********
 
 		public async System.Threading.Tasks.Task
@@ -30,7 +30,7 @@ namespace Server.Pages.Admin.Roles
 		{
 			try
 			{
-				Roles =
+				ViewModel =
 					DatabaseContext.Roles
 					.OrderBy(current => current.Ordering)
 					.OrderBy(current => current.Name)
@@ -39,9 +39,10 @@ namespace Server.Pages.Admin.Roles
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(logLevel: Microsoft.Extensions.Logging.LogLevel.Error, message: ex.Message);
+				Logger.Log(logLevel: Microsoft.Extensions
+					.Logging.LogLevel.Error, message: ex.Message);
 
-				AddToastError(message:
+				AddPageError(message:
 					Resources.Messages.Errors.UnexpectedError);
 			}
 			finally

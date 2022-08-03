@@ -17,12 +17,12 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.EmailAddress,
+			(length: Domain.SeedWork.Constants.MaxLength.EmailAddress,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.Constant.RegularExpression.EmailAddress,
+			(pattern: Domain.SeedWork.Constants.RegularExpression.EmailAddress,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
 		public string? EmailAddress { get; set; }
@@ -34,12 +34,12 @@
 			ResourceType = typeof(Resources.DataDictionary))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.FixedLength.CellPhoneNumber,
+			(length: Domain.SeedWork.Constants.FixedLength.CellPhoneNumber,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.Constant.RegularExpression.CellPhoneNumber,
+			(pattern: Domain.SeedWork.Constants.RegularExpression.CellPhoneNumber,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
 		public string? CellPhoneNumber { get; set; }
@@ -56,12 +56,12 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constant.MaxLength.Password,
+			(length: Domain.SeedWork.Constants.MaxLength.Password,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: Domain.SeedWork.Constant.RegularExpression.Password,
+			(pattern: Domain.SeedWork.Constants.RegularExpression.Password,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Password))]
 
@@ -142,8 +142,8 @@
 			ResourceType = typeof(Resources.DataDictionary))]
 
 		[System.ComponentModel.DataAnnotations.Range
-			(minimum: Domain.SeedWork.Constant.Minimum.Ordering,
-			maximum: Domain.SeedWork.Constant.Maximum.Ordering,
+			(minimum: Domain.SeedWork.Constants.Minimum.Ordering,
+			maximum: Domain.SeedWork.Constants.Maximum.Ordering,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
 		public int Ordering { get; set; }

@@ -123,6 +123,9 @@
   <data name="Captcha" xml:space="preserve">
     <value>You should just use digits!</value>
   </data>
+  <data name="CascadeDelete" xml:space="preserve">
+    <value>There are some related data to this {0}, So you can not delete this item!</value>
+  </data>
   <data name="ConfirmDelete" xml:space="preserve">
     <value>Are you sure to delete this item?</value>
   </data>

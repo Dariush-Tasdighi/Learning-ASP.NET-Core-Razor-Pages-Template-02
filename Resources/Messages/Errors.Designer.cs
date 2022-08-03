@@ -79,6 +79,15 @@ namespace Resources.Messages {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are some related data to this {0}, So you can not delete this item!.
+        /// </summary>
+        public static string CascadeDelete {
+            get {
+                return ResourceManager.GetString("CascadeDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure to delete this item?.
         /// </summary>
         public static string ConfirmDelete {

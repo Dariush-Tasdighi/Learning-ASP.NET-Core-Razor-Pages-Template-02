@@ -68,8 +68,8 @@
 			ResourceType = typeof(Resources.DataDictionary))]
 
 		[System.ComponentModel.DataAnnotations.Range
-			(minimum: Domain.SeedWork.Constant.Minimum.Ordering,
-			maximum: Domain.SeedWork.Constant.Maximum.Ordering,
+			(minimum: Domain.SeedWork.Constants.Minimum.Ordering,
+			maximum: Domain.SeedWork.Constants.Maximum.Ordering,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
 		public int Ordering { get; set; }

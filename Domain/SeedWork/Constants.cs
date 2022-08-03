@@ -1,9 +1,20 @@
 ﻿namespace Domain.SeedWork
 {
-	public static class Constant : object
+	public static class Constants : object
 	{
-		static Constant()
+		static Constants()
 		{
+		}
+
+		public static class Format : object
+		{
+			static Format()
+			{
+			}
+
+			public const string Date = "yyyy/MM/dd";
+			public const string Time = "HH:mm:ss";
+			public const string DateTime = "yyyy/MM/dd - HH:mm:ss";
 		}
 
 		public static class FixedLength : object

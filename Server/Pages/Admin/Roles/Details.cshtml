@@ -8,107 +8,79 @@
 	}
 
 	var pageTitle =
-		Resources.PageTitles.RoleDetails;
+		$"{Resources.DataDictionary.Details} {Resources.DataDictionary.Role}";
 
-	ViewData["PageTitle"] = pageTitle;
-
-	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-	{
-		Layout =
-			"Layouts/Rtl/_Layout";
-	}
-	else
-	{
-		Layout =
-			"Layouts/Ltr/_Layout";
-	}
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 }
 
-<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
-	<div class="row">
-		<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
-			<fieldset disabled readonly>
-				<legend>
-					@(pageTitle)
-				</legend>
+<div class="@(Infrastructure.CssClasses.FormDivRow)">
+	<div class="@(Infrastructure.CssClasses.FormDivCol)">
+		<fieldset disabled>
+			<legend>
+				@(pageTitle)
+			</legend>
 
-				<hr />
+			<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
 
-				<div class="mb-3">
-					<label asp-for="ViewModel.Name" class="form-label"></label>
+			<partial name="PartialViews/_DisplayPageMessages" />
 
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-						<input asp-for="ViewModel.Name" class="form-control" />
-					</div>
-				</div>
-
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Description) == false)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.Description" class="form-label"></label>
-
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-card-text"></i></div>
-							<textarea asp-for="ViewModel.Description" class="form-control"> </textarea>
-						</div>
-					</div>
-				}
-
-				<div class="mb-3">
-					<label asp-for="ViewModel.Ordering" class="form-label"></label>
-
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
-						<input asp-for="ViewModel.Ordering" class="form-control" />
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label asp-for="ViewModel.NumberOfUserWithThisRole" class="form-label"></label>
-
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-graph-up-arrow"></i></div>
-						<input asp-for="ViewModel.NumberOfUserWithThisRole" class="form-control" />
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label asp-for="ViewModel.InsertDateTime" class="form-label"></label>
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
-						<input placeholder="@(Model.ViewModel.InsertDateTime.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
-					</div>
-				</div>
-
-				@if (Model.ViewModel.UpdateDateTime.HasValue)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.UpdateDateTime" class="form-label"></label>
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
-							<input placeholder="@(Model.ViewModel.UpdateDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
-						</div>
-					</div>
-				}
-
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsActive" class="form-check-input" />
-						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
-					</div>
-				</div>
-			</fieldset>
-
-			<hr class="mt-4" />
-
-			<div class="text-center">
-				<a href="/">@(Resources.ButtonCaptions.Home)</a>
-				|
-				<a asp-page="Index">
-					@(Resources.ButtonCaptions.BackToList)
-				</a>
+			<div class="mb-3">
+				<label asp-for="ViewModel.Id" class="form-label"></label>
+				<input asp-for="ViewModel.Id" class="form-control" dir="ltr" />
 			</div>
+
+			<div class="mb-3">
+				<label asp-for="ViewModel.Name" class="form-label"></label>
+				<input asp-for="ViewModel.Name" class="form-control" />
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="ViewModel.UserCount" class="form-label"></label>
+				<input asp-for="ViewModel.UserCount" class="form-control" dir="ltr" />
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="ViewModel.Ordering" class="form-label"></label>
+				<input asp-for="ViewModel.Ordering" class="form-control" dir="ltr" />
+			</div>
+
+			<div class="mb-3">
+				<div class="form-check">
+					<input asp-for="ViewModel.IsActive" class="form-check-input" />
+					<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
+				</div>
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="ViewModel.Description" class="form-label"></label>
+				<textarea asp-for="ViewModel.Description" class="form-control"></textarea>
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="ViewModel.DisplayInsertDateTime" class="form-label"></label>
+				<input value="@(Model.ViewModel.DisplayInsertDateTime)" class="form-control" dir="ltr" />
+			</div>
+
+			<div class="mb-3">
+				<label asp-for="ViewModel.DisplayUpdateDateTime" class="form-label"></label>
+				<input value="@(Model.ViewModel.DisplayUpdateDateTime)" class="form-control" dir="ltr" />
+			</div>
+		</fieldset>
+
+		<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
+
+		<div class="@(Infrastructure.CssClasses.FormDivFooter)">
+			<a asp-page="./Index" class="@(Infrastructure.CssClasses.Link)">
+				@(Resources.ButtonCaptions.BackToList)
+			</a>
+			|
+			<a asp-page="./Update" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.Link)">
+				@(Resources.DataDictionary.Update)
+			</a>
+			|
+			<a asp-page="./Delete" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.Link)">
+				@(Resources.ButtonCaptions.Delete)
+			</a>
 		</div>
 	</div>
 </div>

@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SuccessfullyCreated" xml:space="preserve">
-    <value>{0} با موفقیت ایجاد گردید...</value>
+  <data name="Created" xml:space="preserve">
+    <value>{0} با موفقیت ایجاد گردید.</value>
   </data>
-  <data name="SuccessfullyUpdated" xml:space="preserve">
-    <value>بروز رسانی {0} با موفقیت انجام شد...</value>
+  <data name="Deleted" xml:space="preserve">
+    <value>{0} با موفقیت حذف گردید.</value>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>{0} با موفقیت ویرایش گردید.</value>
   </data>
 </root>

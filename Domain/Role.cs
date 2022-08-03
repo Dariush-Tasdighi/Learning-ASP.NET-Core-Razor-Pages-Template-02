@@ -45,7 +45,7 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: SeedWork.Constant.MaxLength.Name,
+			(length: SeedWork.Constants.MaxLength.Name,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string Name { get; set; }
