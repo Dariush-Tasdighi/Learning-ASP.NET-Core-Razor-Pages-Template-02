@@ -4,6 +4,8 @@
 	{
 		public IndexItemViewModel() : base()
 		{
+			// Note: Just For Ignoring Warning!
+			Name = string.Empty;
 		}
 
 		// **********
@@ -24,7 +26,7 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Name))]
-		public string? Name { get; set; }
+		public string Name { get; set; }
 		// **********
 
 		// **********

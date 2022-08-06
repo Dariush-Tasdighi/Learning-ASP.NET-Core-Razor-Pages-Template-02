@@ -6,17 +6,17 @@ namespace Server.Pages.Admin.Roles
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constant.Role.Admin)]
-	public class IndexModel : Infrastructure.BasePageModelWithDatabase
+	public class IndexSimpleModel : Infrastructure.BasePageModelWithDatabase
 	{
-		public IndexModel
+		public IndexSimpleModel
 			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
+			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
 			ViewModel =
-				new System.Collections.Generic.List
-				<ViewModels.Pages.Admin.Roles.IndexItemViewModel>();
+				new System.Collections.Generic.List<Domain.Role>();
 		}
 
 		// **********
@@ -24,9 +24,7 @@ namespace Server.Pages.Admin.Roles
 		// **********
 
 		// **********
-		public System.Collections.Generic.IList
-			<ViewModels.Pages.Admin.Roles.IndexItemViewModel> ViewModel
-		{ get; private set; }
+		public System.Collections.Generic.IList<Domain.Role> ViewModel { get; private set; }
 		// **********
 
 		public async System.Threading.Tasks.Task
@@ -39,16 +37,6 @@ namespace Server.Pages.Admin.Roles
 					DatabaseContext.Roles
 					.OrderBy(current => current.Ordering)
 					.ThenBy(current => current.Name)
-					.Select(current => new ViewModels.Pages.Admin.Roles.IndexItemViewModel
-					{
-						Id = current.Id,
-						Name = current.Name,
-						IsActive = current.IsActive,
-						Ordering = current.Ordering,
-						UserCount = current.Users.Count,
-						InsertDateTime = current.InsertDateTime,
-						UpdateDateTime = current.UpdateDateTime,
-					})
 					.ToListAsync()
 					;
 			}

@@ -1,6 +1,6 @@
 ﻿namespace Infrastructure
 {
-	public static class CssClasses
+	public static class CssClasses : object
 	{
 		static CssClasses()
 		{
@@ -12,6 +12,18 @@
 			{
 				var result =
 					"text-decoration-none"
+					;
+
+				return result;
+			}
+		}
+
+		public static string HorizontalRule
+		{
+			get
+			{
+				var result =
+					"mt-4"
 					;
 
 				return result;
@@ -54,12 +66,24 @@
 			}
 		}
 
-		public static string FormDivFooter
+		public static string FormFooterDiv
 		{
 			get
 			{
 				var result =
 					"text-center"
+					;
+
+				return result;
+			}
+		}
+
+		public static string FormFooterLink
+		{
+			get
+			{
+				var result =
+					""
 					;
 
 				return result;
@@ -78,7 +102,7 @@
 			}
 		}
 
-		public static string FormDivField
+		public static string FormFieldDiv
 		{
 			get
 			{
@@ -90,7 +114,7 @@
 			}
 		}
 
-		public static string FormDivButtons
+		public static string FormActionsDiv
 		{
 			get
 			{
@@ -102,19 +126,7 @@
 			}
 		}
 
-		public static string HorizontalRule
-		{
-			get
-			{
-				var result =
-					"mt-4"
-					;
-
-				return result;
-			}
-		}
-
-		public static string ListButtonsDivRow
+		public static string ListActionsDivRow
 		{
 			get
 			{
@@ -126,12 +138,24 @@
 			}
 		}
 
-		public static string ListButtonsDivCol
+		public static string ListActionsDivCol
 		{
 			get
 			{
 				var result =
 					"col"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListActionsLink
+		{
+			get
+			{
+				var result =
+					"btn btn-primary"
 					;
 
 				return result;
@@ -204,6 +228,30 @@
 			{
 				var result =
 					"table-secondary"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListTableActionsTd
+		{
+			get
+			{
+				var result =
+					"text-center"
+					;
+
+				return result;
+			}
+		}
+
+		public static string ListTableActionsLink
+		{
+			get
+			{
+				var result =
+					"text-center"
 					;
 
 				return result;

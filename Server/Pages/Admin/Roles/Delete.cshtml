@@ -24,71 +24,72 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<div class="@(Infrastructure.CssClasses.FormDivField)">
+			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 				<label asp-for="ViewModel.Id" class="form-label"></label>
 				<input asp-for="ViewModel.Id" class="form-control" dir="ltr" />
 			</div>
 
-			<div class="@(Infrastructure.CssClasses.FormDivField)">
+			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 				<label asp-for="ViewModel.Name" class="form-label"></label>
 				<input asp-for="ViewModel.Name" class="form-control" />
 			</div>
 
-			<div class="@(Infrastructure.CssClasses.FormDivField)">
+			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 				<label asp-for="ViewModel.UserCount" class="form-label"></label>
 				<input asp-for="ViewModel.UserCount" class="form-control" dir="ltr" />
 			</div>
 
-			<div class="@(Infrastructure.CssClasses.FormDivField)">
+			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 				<label asp-for="ViewModel.Ordering" class="form-label"></label>
 				<input asp-for="ViewModel.Ordering" class="form-control" dir="ltr" />
 			</div>
 
-			<div class="@(Infrastructure.CssClasses.FormDivField)">
+			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 				<div class="form-check">
 					<input asp-for="ViewModel.IsActive" class="form-check-input" />
 					<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
 				</div>
 			</div>
 
-			<div class="@(Infrastructure.CssClasses.FormDivField)">
+			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 				<label asp-for="ViewModel.Description" class="form-label"></label>
 				<textarea asp-for="ViewModel.Description" class="form-control"></textarea>
 			</div>
 
-			<div class="@(Infrastructure.CssClasses.FormDivField)">
+			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 				<label asp-for="ViewModel.DisplayInsertDateTime" class="form-label"></label>
 				<input asp-for="ViewModel.DisplayInsertDateTime" class="form-control" dir="ltr" />
 			</div>
 
-			<div class="@(Infrastructure.CssClasses.FormDivField)">
+			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 				<label asp-for="ViewModel.DisplayUpdateDateTime" class="form-label"></label>
 				<input asp-for="ViewModel.DisplayUpdateDateTime" class="form-control" dir="ltr" />
 			</div>
 		</fieldset>
 
-		<div class="@(Infrastructure.CssClasses.FormDivButtons)">
+		<div class="@(Infrastructure.CssClasses.FormActionsDiv)">
 			<form method="post">
 				<input type="hidden" asp-for="ViewModel.Id" />
 
-				<button type="submit" class="btn btn-danger">
-					@(Resources.ButtonCaptions.Delete)
-				</button>
+				@(Html.DtatDisplayButtonDelete())
 			</form>
 		</div>
 
 		<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
 
-		<div class="@(Infrastructure.CssClasses.FormDivFooter)">
-			<a asp-page="./Index" class="@(Infrastructure.CssClasses.Link)">
+		<div class="@(Infrastructure.CssClasses.FormFooterDiv)">
+			<a asp-page="Index" class="@(Infrastructure.CssClasses.FormFooterLink)">
+				@(Html.DtatDisplayIconList())
 				@(Resources.ButtonCaptions.BackToList)
 			</a>
 			|
-			<a asp-page="./Details" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.Link)">
+			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.FormFooterLink)">
+				@(Html.DtatDisplayIconDetails())
 				@(Resources.DataDictionary.Details)
 			</a>
 			|
-			<a asp-page="./Update" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.Link)">
+			<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.FormFooterLink)">
+				@(Html.DtatDisplayIconUpdate())
 				@(Resources.ButtonCaptions.Update)
 			</a>
 		</div>

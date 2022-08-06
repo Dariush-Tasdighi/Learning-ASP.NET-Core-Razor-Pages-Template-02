@@ -28,53 +28,52 @@
 
 				<input type="hidden" asp-for="ViewModel.Id" />
 
-				<div class="@(Infrastructure.CssClasses.FormDivField)">
+				<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 					<label asp-for="ViewModel.Name" class="form-label"></label>
 					<input asp-for="ViewModel.Name" class="form-control" />
 					<span asp-validation-for="ViewModel.Name" class="text-danger"></span>
 				</div>
 
-				<div class="@(Infrastructure.CssClasses.FormDivField)">
+				<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 					<label asp-for="ViewModel.Ordering" class="form-label"></label>
 					<input asp-for="ViewModel.Ordering" class="form-control" />
 					<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
 				</div>
 
-				<div class="@(Infrastructure.CssClasses.FormDivField)">
+				<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 					<div class="form-check">
 						<input asp-for="ViewModel.IsActive" class="form-check-input" />
 						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
 					</div>
 				</div>
 
-				<div class="@(Infrastructure.CssClasses.FormDivField)">
+				<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
 					<label asp-for="ViewModel.Description" class="form-label"></label>
 					<textarea asp-for="ViewModel.Description" class="form-control"></textarea>
 					<span asp-validation-for="ViewModel.Description" class="text-danger"></span>
 				</div>
 			</fieldset>
 
-			<div class="@(Infrastructure.CssClasses.FormDivButtons)">
-				<button type="submit" class="btn btn-primary">
-					@(Resources.ButtonCaptions.Save)
-				</button>
-				<button type="reset" class="btn btn-secondary">
-					@(Resources.ButtonCaptions.Reset)
-				</button>
+			<div class="@(Infrastructure.CssClasses.FormActionsDiv)">
+				@(Html.DtatDisplayButtonUpdate())
+				@(Html.DtatDisplayButtonReset())
 			</div>
 
 			<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
 
-			<div class="@(Infrastructure.CssClasses.FormDivFooter)">
-				<a asp-page="./Index">
+			<div class="@(Infrastructure.CssClasses.FormFooterDiv)">
+				<a asp-page="Index" class="@(Infrastructure.CssClasses.FormFooterLink)">
+					@(Html.DtatDisplayIconList())
 					@(Resources.ButtonCaptions.BackToList)
 				</a>
 				|
-				<a asp-page="./Details" asp-route-id="@(Model.ViewModel.Id)">
+				<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.FormFooterLink)">
+					@(Html.DtatDisplayIconDetails())
 					@(Resources.DataDictionary.Details)
 				</a>
 				|
-				<a asp-page="./Delete" asp-route-id="@(Model.ViewModel.Id)">
+				<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.FormFooterLink)">
+					@(Html.DtatDisplayIconDelete())
 					@(Resources.ButtonCaptions.Delete)
 				</a>
 			</div>
