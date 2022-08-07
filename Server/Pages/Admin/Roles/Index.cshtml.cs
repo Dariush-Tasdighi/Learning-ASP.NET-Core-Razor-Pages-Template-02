@@ -10,7 +10,8 @@ namespace Server.Pages.Admin.Roles
 	{
 		public IndexModel
 			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
+			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
