@@ -153,6 +153,9 @@
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="ListOf" xml:space="preserve">
+    <value>List of</value>
+  </data>
   <data name="Login" xml:space="preserve">
     <value>Login</value>
   </data>

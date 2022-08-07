@@ -87,9 +87,33 @@ namespace Server.Pages.Admin.Roles
 					return Page();
 				}
 
+				ViewModel =
+					await
+					DatabaseContext.Roles
+					.Where(current => current.Id == id.Value)
+					.Select(current => new ViewModels.Pages.Admin.Roles.DeleteDetailsViewModel()
+					{
+						Id = current.Id,
+						Name = current.Name,
+						IsActive = current.IsActive,
+						Ordering = current.Ordering,
+						UserCount = current.Users.Count,
+						Description = current.Description,
+						InsertDateTime = current.InsertDateTime,
+						UpdateDateTime = current.UpdateDateTime,
+					})
+					.FirstOrDefaultAsync();
+
+				if (ViewModel == null)
+				{
+					AddToastError(message:
+						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+				}
+
 				var foundedAny =
-					await DatabaseContext.Users
-					.Where(current => current.RoleId != ViewModel.Id)
+					await
+					DatabaseContext.Users
+					.Where(current => current.RoleId == id.Value)
 					.AnyAsync();
 
 				if (foundedAny)
@@ -105,10 +129,11 @@ namespace Server.Pages.Admin.Roles
 					return Page();
 				}
 
+				// **************************************************
 				var foundedItem =
 					await
 					DatabaseContext.Roles
-					.Where(current => current.Id == ViewModel.Id)
+					.Where(current => current.Id == id.Value)
 					.FirstOrDefaultAsync();
 
 				if (foundedItem == null)
@@ -119,7 +144,6 @@ namespace Server.Pages.Admin.Roles
 					return RedirectToPage(pageName: "./Index");
 				}
 
-				// **************************************************
 				DatabaseContext.Remove(entity: foundedItem);
 
 				await DatabaseContext.SaveChangesAsync();
@@ -135,17 +159,17 @@ namespace Server.Pages.Admin.Roles
 					(message: successMessage);
 				// **************************************************
 
-				return RedirectToPage(pageName: "./Index");
+				return RedirectToPage(pageName: "Index");
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
 					(message: ex.Message);
 
-				AddPageError(message:
+				AddToastError(message:
 					Resources.Messages.Errors.UnexpectedError);
 
-				return Page();
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{

@@ -8,76 +8,63 @@
 	}
 
 	var pageTitle =
-		$"{Resources.DataDictionary.Update} {Resources.DataDictionary.Role}";
+		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.Role}";
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 }
 
 <form method="post">
 
-	<div class="@(Infrastructure.CssClasses.FormDivRow)">
-		<div class="@(Infrastructure.CssClasses.FormDivCol)">
-			<fieldset>
-				<legend class="@(Infrastructure.CssClasses.FormLegend)">
-					@(pageTitle)
-				</legend>
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
 
-				<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
+			<partial name="PartialViews/_DisplayPageMessages" />
 
-				<partial name="PartialViews/_DisplayPageMessages" />
+			<input type="hidden" asp-for="ViewModel.Id" />
 
-				<input type="hidden" asp-for="ViewModel.Id" />
+			<section-form-field>
+				<label asp-for="ViewModel.Name"></label>
+				<input asp-for="ViewModel.Name" />
+				<span asp-validation-for="ViewModel.Name"></span>
+			</section-form-field>
 
-				<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-					<label asp-for="ViewModel.Name" class="form-label"></label>
-					<input asp-for="ViewModel.Name" class="form-control" />
-					<span asp-validation-for="ViewModel.Name" class="text-danger"></span>
-				</div>
+			<section-form-check>
+				<input asp-for="ViewModel.IsActive" />
+				<label asp-for="ViewModel.IsActive"></label>
+			</section-form-check>
 
-				<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-					<label asp-for="ViewModel.Ordering" class="form-label"></label>
-					<input asp-for="ViewModel.Ordering" class="form-control" />
-					<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>
-				</div>
+			<section-form-field>
+				<label asp-for="ViewModel.Ordering"></label>
+				<input asp-for="ViewModel.Ordering" />
+				<span asp-validation-for="ViewModel.Ordering"></span>
+			</section-form-field>
 
-				<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsActive" class="form-check-input" />
-						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
-					</div>
-				</div>
+			<section-form-field>
+				<label asp-for="ViewModel.Description"></label>
+				<textarea asp-for="ViewModel.Description"></textarea>
+				<span asp-validation-for="ViewModel.Description"></span>
+			</section-form-field>
+		</fieldset>
 
-				<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-					<label asp-for="ViewModel.Description" class="form-label"></label>
-					<textarea asp-for="ViewModel.Description" class="form-control"></textarea>
-					<span asp-validation-for="ViewModel.Description" class="text-danger"></span>
-				</div>
-			</fieldset>
+		<section-form-buttons>
+			<button-update />
+			<button-reset />
+		</section-form-buttons>
 
-			<div class="@(Infrastructure.CssClasses.FormActionsDiv)">
-				@(Html.DtatDisplayButtonUpdate())
-				@(Html.DtatDisplayButtonReset())
-			</div>
-
-			<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
-
-			<div class="@(Infrastructure.CssClasses.FormFooterDiv)">
-				<a asp-page="Index" class="@(Infrastructure.CssClasses.FormFooterLink)">
-					@(Html.DtatDisplayIconList())
-					@(Resources.ButtonCaptions.BackToList)
-				</a>
-				|
-				<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.FormFooterLink)">
-					@(Html.DtatDisplayIconDetails())
-					@(Resources.DataDictionary.Details)
-				</a>
-				|
-				<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.FormFooterLink)">
-					@(Html.DtatDisplayIconDelete())
-					@(Resources.ButtonCaptions.Delete)
-				</a>
-			</div>
-		</div>
-	</div>
+		<section-form-footer>
+			<a asp-page="Index">
+				@(Html.DtatGetLinkCaptionForList())
+			</a>
+			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDetails())
+			</a>
+			<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDelete())
+			</a>
+		</section-form-footer>
+	</section-form>
 
 </form>

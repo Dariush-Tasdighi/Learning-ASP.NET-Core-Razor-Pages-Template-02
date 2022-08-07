@@ -139,7 +139,7 @@
     <value>حذف</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>نمایش</value>
+    <value>جزئیات</value>
   </data>
   <data name="Edit" xml:space="preserve">
     <value>ویرایش</value>
@@ -152,6 +152,9 @@
   </data>
   <data name="Home" xml:space="preserve">
     <value>خانه</value>
+  </data>
+  <data name="ListOf" xml:space="preserve">
+    <value>فهرست</value>
   </data>
   <data name="Login" xml:space="preserve">
     <value>ورود</value>

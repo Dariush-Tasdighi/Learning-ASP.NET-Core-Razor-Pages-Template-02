@@ -14,30 +14,6 @@
 			}
 		}
 
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayPageHeader
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, string title)
-		{
-			if (html is null)
-			{
-				throw new System
-					.ArgumentNullException(paramName: nameof(html));
-			}
-
-			//var result =
-			//	$"<h3 class='text-center'>{title}</h3>";
-
-			//return html.Raw(result);
-
-			var heading =
-				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: "h3");
-
-			heading.AddCssClass(value: "text-center");
-
-			heading.InnerHtml.Append(unencoded: title);
-
-			return heading;
-		}
-
 		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayBoolean
 			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, bool? value)
 		{
@@ -72,7 +48,7 @@
 			return div;
 		}
 
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayTdBoolean
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayBooleanWithTd
 			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, bool? value)
 		{
 			var td =
@@ -106,7 +82,7 @@
 			return html.Raw(result);
 		}
 
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayTdInteger
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayIntegerWithTd
 			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
 		{
 			var td =
@@ -124,7 +100,7 @@
 			return td;
 		}
 
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayTdRowNumber
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayRowNumberWithTd
 			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
 		{
 			var td =
@@ -159,7 +135,7 @@
 			return html.Raw(result);
 		}
 
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayTdDateTime
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayDateTimeWithTd
 			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, System.DateTime? value)
 		{
 			var td =
@@ -177,166 +153,7 @@
 			return td;
 		}
 
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayIconList
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
-		{
-			if (html is null)
-			{
-				throw new System
-					.ArgumentNullException(paramName: nameof(html));
-			}
-
-			var i =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "i");
-
-			i.AddCssClass(value: "bi");
-			i.AddCssClass(value: "bi-person-workspace");
-
-			return i;
-		}
-
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayIconCreate
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
-		{
-			if (html is null)
-			{
-				throw new System
-					.ArgumentNullException(paramName: nameof(html));
-			}
-
-			var i =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "i");
-
-			i.AddCssClass(value: "bi");
-			i.AddCssClass(value: "bi-person-workspace");
-
-			return i;
-		}
-
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayIconDetails
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
-		{
-			if (html is null)
-			{
-				throw new System
-					.ArgumentNullException(paramName: nameof(html));
-			}
-
-			var i =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "i");
-
-			i.AddCssClass(value: "bi");
-			i.AddCssClass(value: "bi-zoom-in");
-
-			return i;
-		}
-
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayIconUpdate
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
-		{
-			if (html is null)
-			{
-				throw new System
-					.ArgumentNullException(paramName: nameof(html));
-			}
-
-			var i =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "i");
-
-			i.AddCssClass(value: "bi");
-			i.AddCssClass(value: "bi-pencil-fill");
-
-			return i;
-		}
-
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayIconDelete
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
-		{
-			if (html is null)
-			{
-				throw new System
-					.ArgumentNullException(paramName: nameof(html));
-			}
-
-			var i =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "i");
-
-			i.AddCssClass(value: "bi");
-			i.AddCssClass(value: "bi-trash-fill");
-
-			return i;
-		}
-
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayButtonCreate
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
-		{
-			if (html is null)
-			{
-				throw new System
-					.ArgumentNullException(paramName: nameof(html));
-			}
-
-			var i =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "i");
-
-			i.AddCssClass(value: "bi");
-			i.AddCssClass(value: "bi-person-workspace");
-
-			var button =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "button");
-
-			button.AddCssClass(value: "btn");
-			button.AddCssClass(value: "btn-primary");
-
-			button.Attributes.Add
-				(key: "type", value: "submit");
-
-			button.InnerHtml.AppendHtml(content: i);
-			button.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Create);
-
-			return button;
-		}
-
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayButtonReset
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
-		{
-			if (html is null)
-			{
-				throw new System
-					.ArgumentNullException(paramName: nameof(html));
-			}
-
-			var i =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "i");
-
-			i.AddCssClass(value: "bi");
-			i.AddCssClass(value: "bi-person-workspace");
-
-			var button =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "button");
-
-			button.AddCssClass(value: "btn");
-			button.AddCssClass(value: "btn-secondary");
-
-			button.Attributes.Add
-				(key: "type", value: "reset");
-
-			button.InnerHtml.AppendHtml(content: i);
-			button.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Reset);
-
-			return button;
-		}
-
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayButtonUpdate
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetLinkCaptionForList
 			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
 		{
 			if (html is null)
@@ -346,25 +163,25 @@
 			}
 
 			var icon =
-				DtatDisplayIconUpdate(html: html);
+				TagHelpers.Utility.GetIconList();
 
-			var button =
+			var span =
 				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "button");
+				.Rendering.TagBuilder(tagName: "span");
 
-			button.AddCssClass(value: "btn");
-			button.AddCssClass(value: "btn-primary");
+			span.AddCssClass(value: "mx-1");
 
-			button.Attributes.Add
-				(key: "type", value: "submit");
+			span.InnerHtml.Append(unencoded: "[");
+			span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.AppendHtml(content: icon);
+			span.InnerHtml.Append(unencoded: Resources.ButtonCaptions.BackToList);
+			span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.Append(unencoded: "]");
 
-			button.InnerHtml.AppendHtml(content: icon);
-			button.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Save);
-
-			return button;
+			return span;
 		}
 
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayButtonDelete
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetLinkCaptionForDetails
 			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
 		{
 			if (html is null)
@@ -374,22 +191,166 @@
 			}
 
 			var icon =
-				DtatDisplayIconDelete(html: html);
+				TagHelpers.Utility.GetIconDetails();
 
-			var button =
+			var span =
 				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "button");
+				.Rendering.TagBuilder(tagName: "span");
 
-			button.AddCssClass(value: "btn");
-			button.AddCssClass(value: "btn-danger");
+			span.AddCssClass(value: "mx-1");
 
-			button.Attributes.Add
-				(key: "type", value: "submit");
+			span.InnerHtml.Append(unencoded: "[");
+			span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.AppendHtml(content: icon);
+			span.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Details);
+			span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.Append(unencoded: "]");
 
-			button.InnerHtml.AppendHtml(content: icon);
-			button.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Delete);
+			return span;
+		}
 
-			return button;
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetLinkCaptionForCreate
+			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+		{
+			if (html is null)
+			{
+				throw new System
+					.ArgumentNullException(paramName: nameof(html));
+			}
+
+			var icon =
+				TagHelpers.Utility.GetIconCreate();
+
+			var span =
+				new Microsoft.AspNetCore.Mvc
+				.Rendering.TagBuilder(tagName: "span");
+
+			//span.AddCssClass(value: "mx-1");
+
+			//span.InnerHtml.Append(unencoded: "[");
+			//span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.AppendHtml(content: icon);
+			span.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Create);
+			//span.InnerHtml.Append(unencoded: " ");
+			//span.InnerHtml.Append(unencoded: "]");
+
+			return span;
+		}
+
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetLinkCaptionForUpdate
+			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+		{
+			if (html is null)
+			{
+				throw new System
+					.ArgumentNullException(paramName: nameof(html));
+			}
+
+			var icon =
+				TagHelpers.Utility.GetIconUpdate();
+
+			var span =
+				new Microsoft.AspNetCore.Mvc
+				.Rendering.TagBuilder(tagName: "span");
+
+			span.AddCssClass(value: "mx-1");
+
+			span.InnerHtml.Append(unencoded: "[");
+			span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.AppendHtml(content: icon);
+			span.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Update);
+			span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.Append(unencoded: "]");
+
+			return span;
+		}
+
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetLinkCaptionForDelete
+			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+		{
+			if (html is null)
+			{
+				throw new System
+					.ArgumentNullException(paramName: nameof(html));
+			}
+
+			var icon =
+				TagHelpers.Utility.GetIconDelete();
+
+			var span =
+				new Microsoft.AspNetCore.Mvc
+				.Rendering.TagBuilder(tagName: "span");
+
+			span.AddCssClass(value: "mx-1");
+
+			span.InnerHtml.Append(unencoded: "[");
+			span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.AppendHtml(content: icon);
+			span.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Delete);
+			span.InnerHtml.Append(unencoded: " ");
+			span.InnerHtml.Append(unencoded: "]");
+
+			return span;
+		}
+
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconDetails
+			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+		{
+			if (html is null)
+			{
+				throw new System
+					.ArgumentNullException(paramName: nameof(html));
+			}
+
+			var icon =
+				TagHelpers.Utility.GetIconDetails();
+
+			return icon;
+		}
+
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconCreate
+			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+		{
+			if (html is null)
+			{
+				throw new System
+					.ArgumentNullException(paramName: nameof(html));
+			}
+
+			var icon =
+				TagHelpers.Utility.GetIconCreate();
+
+			return icon;
+		}
+
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconUpdate
+			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+		{
+			if (html is null)
+			{
+				throw new System
+					.ArgumentNullException(paramName: nameof(html));
+			}
+
+			var icon =
+				TagHelpers.Utility.GetIconUpdate();
+
+			return icon;
+		}
+
+		public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconDelete
+			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+		{
+			if (html is null)
+			{
+				throw new System
+					.ArgumentNullException(paramName: nameof(html));
+			}
+
+			var icon =
+				TagHelpers.Utility.GetIconDelete();
+
+			return icon;
 		}
 	}
 }

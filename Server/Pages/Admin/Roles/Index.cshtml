@@ -8,98 +8,90 @@
 	}
 
 	var pageTitle =
-		$"{Resources.DataDictionary.ListOf} {Resources.DataDictionary.Roles}";
+		$"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.Roles}";
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 }
 
-@Html.DtatDisplayPageHeader(title: pageTitle)
+<section-page-header>
+	@(pageTitle)
+</section-page-header>
 
-<div class="@(Infrastructure.CssClasses.ListActionsDivRow)">
-	<div class="@(Infrastructure.CssClasses.ListActionsDivCol)">
-		<a asp-page="Create" class="@(Infrastructure.CssClasses.ListActionsLink)">
-			@(Html.DtatDisplayIconCreate())
-			@(Resources.ButtonCaptions.Create)
-		</a>
-	</div>
-</div>
+<section-page-actions>
+	<a asp-page="Create">
+		@(Html.DtatGetLinkCaptionForCreate())
+	</a>
+</section-page-actions>
 
-<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
+<section-table>
+	<table>
+		<caption>
+			@(pageTitle)
+		</caption>
 
-<div class="@(Infrastructure.CssClasses.ListTableDivRow)">
-	<div class="@(Infrastructure.CssClasses.ListTableDivCol)">
-		<table class="@(Infrastructure.CssClasses.ListTable)">
+		<thead>
+			<tr>
+				<th>
+					#
+				</th>
+				<th>
+				</th>
+				<th>
+					@(Html.DisplayNameFor(model => model.ViewModel[0].Name))
+				</th>
+				<th>
+					@(Html.DisplayNameFor(model => model.ViewModel[0].IsActive))
+				</th>
+				<th>
+					@(Html.DisplayNameFor(model => model.ViewModel[0].Ordering))
+				</th>
+				<th>
+					@(Html.DisplayNameFor(model => model.ViewModel[0].UserCount))
+				</th>
+				<th>
+					@(Html.DisplayNameFor(model => model.ViewModel[0].DisplayInsertDateTime))
+				</th>
+				<th>
+					@(Html.DisplayNameFor(model => model.ViewModel[0].DisplayUpdateDateTime))
+				</th>
+			</tr>
+		</thead>
 
-			<caption>
-				@(pageTitle)
-			</caption>
+		<tbody>
+			@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+			{
+				var item = Model.ViewModel[index];
 
-			<thead class="@(Infrastructure.CssClasses.ListTableHeader)">
 				<tr>
-					<th>
-						#
-					</th>
-					<th>
-					</th>
-					<th>
-						@(Html.DisplayNameFor(model => model.ViewModel[0].Name))
-					</th>
-					<th>
-						@(Html.DisplayNameFor(model => model.ViewModel[0].IsActive))
-					</th>
-					<th>
-						@(Html.DisplayNameFor(model => model.ViewModel[0].Ordering))
-					</th>
-					<th>
-						@(Html.DisplayNameFor(model => model.ViewModel[0].UserCount))
-					</th>
-					<th>
-						@(Html.DisplayNameFor(model => model.ViewModel[0].DisplayInsertDateTime))
-					</th>
-					<th>
-						@(Html.DisplayNameFor(model => model.ViewModel[0].DisplayUpdateDateTime))
-					</th>
+					@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+					<table-actions>
+						<a asp-page="Details" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconDetails())
+						</a>
+						<a asp-page="Update" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconUpdate())
+						</a>
+						<a asp-page="Delete" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconDelete())
+						</a>
+					</table-actions>
+
+					<td>
+						@(item.Name)
+					</td>
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsActive))
+
+					@(Html.DtatDisplayIntegerWithTd(value: item.Ordering))
+
+					@(Html.DtatDisplayIntegerWithTd(value: item.UserCount))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.UpdateDateTime))
 				</tr>
-			</thead>
-
-			<tbody class="@(Infrastructure.CssClasses.ListTableBody)">
-				@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
-				{
-					var item = Model.ViewModel[index];
-
-					<tr>
-						@(Html.DtatDisplayTdInteger(value: index + 1))
-
-						<td class="@(Infrastructure.CssClasses.ListTableActionsTd)">
-							<a asp-page="Details" asp-route-id="@(item.Id)" class="@(Infrastructure.CssClasses.ListTableActionsLink)">
-								@(Html.DtatDisplayIconDetails())
-							</a>
-							|
-							<a asp-page="Update" asp-route-id="@(item.Id)" class="@(Infrastructure.CssClasses.ListTableActionsLink)">
-								@(Html.DtatDisplayIconUpdate())
-							</a>
-							|
-							<a asp-page="Delete" asp-route-id="@(item.Id)" class="@(Infrastructure.CssClasses.ListTableActionsLink)">
-								@(Html.DtatDisplayIconDelete())
-							</a>
-						</td>
-
-						<td>
-							@(item.Name)
-						</td>
-
-						@(Html.DtatDisplayTdBoolean(value: item.IsActive))
-
-						@(Html.DtatDisplayTdInteger(value: item.Ordering))
-
-						@(Html.DtatDisplayTdInteger(value: item.UserCount))
-
-						@(Html.DtatDisplayTdDateTime(value: item.InsertDateTime))
-
-						@(Html.DtatDisplayTdDateTime(value: item.UpdateDateTime))
-					</tr>
-				}
-			</tbody>
-		</table>
-	</div>
-</div>
+			}
+		</tbody>
+	</table>
+</section-table>

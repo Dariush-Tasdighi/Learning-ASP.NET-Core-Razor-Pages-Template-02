@@ -88,7 +88,7 @@ namespace Server.Pages.Admin.MenuItemManager
 					{
 						string errorMessage = string.Format
 							(Resources.Messages.Errors.UnableTo,
-							Resources.DataDictionary.Delete,
+							Resources.ButtonCaptions.Delete,
 							Resources.DataDictionary.MenuItem);
 
 						AddPageError(message: errorMessage);

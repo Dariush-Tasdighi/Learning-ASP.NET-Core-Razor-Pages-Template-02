@@ -1,0 +1,5 @@
+﻿https://bigfont.ca/taghelper-structure/
+https://www.yogihosting.com/aspnet-core-custom-tag-helpers/
+https://wesleycabus.be/writing-a-custom-taghelper-in-aspnet-5
+https://riptutorial.com/asp-net-core/example/11152/custom-tag-helper
+https://stackoverflow.com/questions/51904629/how-to-create-custom-tag-helper-containing-other-tag-helpers

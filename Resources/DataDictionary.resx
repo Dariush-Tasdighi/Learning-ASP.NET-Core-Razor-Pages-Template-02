@@ -168,9 +168,6 @@
   <data name="Deactive" xml:space="preserve">
     <value>Deactive</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
-  </data>
   <data name="Deleted" xml:space="preserve">
     <value>Deleted</value>
   </data>
@@ -305,9 +302,6 @@
   </data>
   <data name="List" xml:space="preserve">
     <value>List</value>
-  </data>
-  <data name="ListOf" xml:space="preserve">
-    <value>List of </value>
   </data>
   <data name="ListOfItems" xml:space="preserve">
     <value>List of {0}</value>
@@ -458,15 +452,6 @@
   </data>
   <data name="RemoverUser" xml:space="preserve">
     <value>Remover User</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>Create</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Update</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>Details</value>
   </data>
   <data name="UserCount" xml:space="preserve">
     <value>User Count</value>

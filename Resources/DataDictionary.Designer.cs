@@ -196,15 +196,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create.
-        /// </summary>
-        public static string Create {
-            get {
-                return ResourceManager.GetString("Create", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Creator User.
         /// </summary>
         public static string CreatorUser {
@@ -232,15 +223,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete.
-        /// </summary>
-        public static string Delete {
-            get {
-                return ResourceManager.GetString("Delete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Deleted.
         /// </summary>
         public static string Deleted {
@@ -264,15 +246,6 @@ namespace Resources {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Details.
-        /// </summary>
-        public static string Details {
-            get {
-                return ResourceManager.GetString("Details", resourceCulture);
             }
         }
         
@@ -664,15 +637,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of .
-        /// </summary>
-        public static string ListOf {
-            get {
-                return ResourceManager.GetString("ListOf", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to List of {0}.
         /// </summary>
         public static string ListOfItems {
@@ -1002,15 +966,6 @@ namespace Resources {
         public static string Unspecified {
             get {
                 return ResourceManager.GetString("Unspecified", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string Update {
-            get {
-                return ResourceManager.GetString("Update", resourceCulture);
             }
         }
         

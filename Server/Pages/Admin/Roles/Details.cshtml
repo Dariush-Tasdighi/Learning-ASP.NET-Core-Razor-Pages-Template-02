@@ -8,82 +8,59 @@
 	}
 
 	var pageTitle =
-		$"{Resources.DataDictionary.Details} {Resources.DataDictionary.Role}";
+		$"{Resources.ButtonCaptions.Details} {Resources.DataDictionary.Role}";
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 }
 
-<div class="@(Infrastructure.CssClasses.FormDivRow)">
-	<div class="@(Infrastructure.CssClasses.FormDivCol)">
-		<fieldset disabled>
-			<legend class="@(Infrastructure.CssClasses.FormLegend)">
-				@(pageTitle)
-			</legend>
+<section-form>
+	<fieldset disabled>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
 
-			<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
+		<partial name="PartialViews/_DisplayPageMessages" />
 
-			<partial name="PartialViews/_DisplayPageMessages" />
+		<section-form-field>
+			<label asp-for="ViewModel.Id"></label>
+			<input asp-for="ViewModel.Id" />
+		</section-form-field>
 
-			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-				<label asp-for="ViewModel.Id" class="form-label"></label>
-				<input asp-for="ViewModel.Id" class="form-control" dir="ltr" />
-			</div>
+		<section-form-field>
+			<label asp-for="ViewModel.Name"></label>
+			<input asp-for="ViewModel.Name" />
+		</section-form-field>
 
-			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-				<label asp-for="ViewModel.Name" class="form-label"></label>
-				<input asp-for="ViewModel.Name" class="form-control" />
-			</div>
+		<section-form-check>
+			<input asp-for="ViewModel.IsActive" />
+			<label asp-for="ViewModel.IsActive"></label>
+		</section-form-check>
 
-			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-				<label asp-for="ViewModel.UserCount" class="form-label"></label>
-				<input asp-for="ViewModel.UserCount" class="form-control" dir="ltr" />
-			</div>
+		<section-form-field>
+			<label asp-for="ViewModel.UserCount"></label>
+			<input asp-for="ViewModel.UserCount" />
+		</section-form-field>
 
-			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-				<label asp-for="ViewModel.Ordering" class="form-label"></label>
-				<input asp-for="ViewModel.Ordering" class="form-control" dir="ltr" />
-			</div>
+		<section-form-field>
+			<label asp-for="ViewModel.Ordering"></label>
+			<input asp-for="ViewModel.Ordering" />
+		</section-form-field>
 
-			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-				<div class="form-check">
-					<input asp-for="ViewModel.IsActive" class="form-check-input" />
-					<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
-				</div>
-			</div>
+		<section-form-field>
+			<label asp-for="ViewModel.Description"></label>
+			<textarea asp-for="ViewModel.Description"></textarea>
+		</section-form-field>
+	</fieldset>
 
-			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-				<label asp-for="ViewModel.Description" class="form-label"></label>
-				<textarea asp-for="ViewModel.Description" class="form-control"></textarea>
-			</div>
-
-			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-				<label asp-for="ViewModel.DisplayInsertDateTime" class="form-label"></label>
-				<input value="@(Model.ViewModel.DisplayInsertDateTime)" class="form-control" dir="ltr" />
-			</div>
-
-			<div class="@(Infrastructure.CssClasses.FormFieldDiv)">
-				<label asp-for="ViewModel.DisplayUpdateDateTime" class="form-label"></label>
-				<input value="@(Model.ViewModel.DisplayUpdateDateTime)" class="form-control" dir="ltr" />
-			</div>
-		</fieldset>
-
-		<hr class="@(Infrastructure.CssClasses.HorizontalRule)" />
-
-		<div class="@(Infrastructure.CssClasses.FormFooterDiv)">
-			<a asp-page="Index" class="@(Infrastructure.CssClasses.FormFooterLink)">
-				@(Html.DtatDisplayIconList())
-				@(Resources.ButtonCaptions.BackToList)
-			</a>
-			|
-			<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.FormFooterLink)">
-				@(Html.DtatDisplayIconUpdate())
-				@(Resources.DataDictionary.Update)
-			</a>
-			|
-			<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)" class="@(Infrastructure.CssClasses.FormFooterLink)">
-				@(Html.DtatDisplayIconDelete())
-				@(Resources.ButtonCaptions.Delete)
-			</a>
-		</div>
-	</div>
-</div>
+	<section-form-footer>
+		<a asp-page="Index">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+		<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForUpdate())
+		</a>
+		<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForDelete())
+		</a>
+	</section-form-footer>
+</section-form>

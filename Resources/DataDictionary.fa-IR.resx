@@ -168,9 +168,6 @@
   <data name="Deactive" xml:space="preserve">
     <value>غیر فعال</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>حذف</value>
-  </data>
   <data name="Deleted" xml:space="preserve">
     <value>حذف شده</value>
   </data>
@@ -302,9 +299,6 @@
   </data>
   <data name="List" xml:space="preserve">
     <value>فهرست</value>
-  </data>
-  <data name="ListOf" xml:space="preserve">
-    <value>فهرست </value>
   </data>
   <data name="ListOfItems" xml:space="preserve">
     <value>فهرست {0}</value>
@@ -461,15 +455,6 @@
   </data>
   <data name="RemoverUser" xml:space="preserve">
     <value>کاربر حذف کننده</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>ایجاد</value>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>ویرایش</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>نمایش</value>
   </data>
   <data name="UserCount" xml:space="preserve">
     <value>تعداد کاربران</value>
