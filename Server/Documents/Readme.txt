@@ -342,3 +342,18 @@ app.UseAuthorization();
 **************************************************
 **************************************************
 **************************************************
+
+**************************************************
+Session (65)
+**************************************************
+1. Domain -> Role.cs
+2. Data -> Configurations -> RoleConfiguration.cs
+3. Data -> DatabaseContext.cs -> OnConfiguring
+4. Server -> Infrastructure -> BasePageModel.cs
+5. Server -> Infrastructure -> BasePageModelWithDatabase.cs
+6. Server -> Program.cs
+7. Server -> appsettings.Development.json
+8. Server -> Pages -> Roles -> Index.cshtml, Index.cshtml.cs
+**************************************************
+**************************************************
+**************************************************

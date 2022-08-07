@@ -8,7 +8,7 @@
 			DatabaseContext = databaseContext;
 		}
 
-		protected Data.DatabaseContext? DatabaseContext { get; set; }
+		protected Data.DatabaseContext DatabaseContext { get; }
 
 		protected async
 			System.Threading.Tasks.Task DisposeDatabaseContextAsync()
@@ -17,7 +17,7 @@
 			{
 				await DatabaseContext.DisposeAsync();
 
-				DatabaseContext = null;
+				//DatabaseContext = null;
 			}
 		}
 	}

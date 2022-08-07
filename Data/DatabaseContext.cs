@@ -25,8 +25,6 @@ namespace Data
 		protected override void OnConfiguring
 			(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseLazyLoadingProxies();
-
 			base.OnConfiguring(optionsBuilder);
 		}
 
