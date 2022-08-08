@@ -55,11 +55,10 @@ namespace Server.Pages.Admin.Roles
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.Name);
 
-					AddPageError
-						(message: errorMessage);
+					AddPageError(message: errorMessage);
+					// **************************************************
 
 					return Page();
-					// **************************************************
 				}
 
 				// **************************************************
@@ -84,23 +83,24 @@ namespace Server.Pages.Admin.Roles
 				// **************************************************
 
 				// **************************************************
-				string successMessage =
-					string.Format
+				string successMessage = string.Format
 					(Resources.Messages.Successes.Created,
 					Resources.DataDictionary.Role);
 
 				AddToastSuccess(message: successMessage);
 				// **************************************************
 
-				return RedirectToPage(pageName: "./Index");
+				//return RedirectToPage(pageName: "./Index");
+
+				return RedirectToPage(pageName: "Index");
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
-					(message: ex.Message);
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 
 				return Page();
 			}

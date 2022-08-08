@@ -33,8 +33,8 @@ namespace Server.Pages.Admin.Roles
 			{
 				if (id.HasValue == false)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.IdIsNull);
+					AddToastError
+						(message: Resources.Messages.Errors.IdIsNull);
 				}
 
 				ViewModel =
@@ -56,17 +56,17 @@ namespace Server.Pages.Admin.Roles
 
 				if (ViewModel == null)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 				}
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
-					(message: ex.Message);
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{

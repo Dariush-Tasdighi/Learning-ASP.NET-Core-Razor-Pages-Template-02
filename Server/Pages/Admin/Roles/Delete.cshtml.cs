@@ -10,7 +10,7 @@ namespace Server.Pages.Admin.Roles
 	{
 		public DeleteModel
 			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) :
+			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) :
 			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
@@ -19,7 +19,7 @@ namespace Server.Pages.Admin.Roles
 		}
 
 		// **********
-		private Microsoft.Extensions.Logging.ILogger<DetailsModel> Logger { get; }
+		private Microsoft.Extensions.Logging.ILogger<DeleteModel> Logger { get; }
 		// **********
 
 		// **********
@@ -34,8 +34,8 @@ namespace Server.Pages.Admin.Roles
 			{
 				if (id.HasValue == false)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.IdIsNull);
+					AddToastError
+						(message: Resources.Messages.Errors.IdIsNull);
 				}
 
 				ViewModel =
@@ -57,17 +57,17 @@ namespace Server.Pages.Admin.Roles
 
 				if (ViewModel == null)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 				}
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
-					(message: ex.Message);
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
@@ -106,8 +106,8 @@ namespace Server.Pages.Admin.Roles
 
 				if (ViewModel == null)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 				}
 
 				var foundedAny =
@@ -118,13 +118,13 @@ namespace Server.Pages.Admin.Roles
 
 				if (foundedAny)
 				{
-					string errorMessage =
-						string.Format
+					// **************************************************
+					string errorMessage = string.Format
 						(Resources.Messages.Errors.CascadeDelete,
 						Resources.DataDictionary.Role);
 
-					AddPageError
-						(message: errorMessage);
+					AddPageError(message: errorMessage);
+					// **************************************************
 
 					return Page();
 				}
@@ -138,10 +138,10 @@ namespace Server.Pages.Admin.Roles
 
 				if (foundedItem == null)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 
-					return RedirectToPage(pageName: "./Index");
+					return RedirectToPage(pageName: "Index");
 				}
 
 				DatabaseContext.Remove(entity: foundedItem);
@@ -150,13 +150,11 @@ namespace Server.Pages.Admin.Roles
 				// **************************************************
 
 				// **************************************************
-				string successMessage =
-					string.Format
+				string successMessage = string.Format
 					(Resources.Messages.Successes.Deleted,
 					Resources.DataDictionary.Role);
 
-				AddToastSuccess
-					(message: successMessage);
+				AddToastSuccess(message: successMessage);
 				// **************************************************
 
 				return RedirectToPage(pageName: "Index");
@@ -164,10 +162,10 @@ namespace Server.Pages.Admin.Roles
 			catch (System.Exception ex)
 			{
 				Logger.LogError
-					(message: ex.Message);
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddToastError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				AddToastError
+					(message: Resources.Messages.Errors.UnexpectedError);
 
 				return RedirectToPage(pageName: "Index");
 			}

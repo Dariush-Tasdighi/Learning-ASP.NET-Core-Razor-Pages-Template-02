@@ -6,6 +6,15 @@
 		{
 		}
 
+		public static class Logger : object
+		{
+			static Logger()
+			{
+			}
+
+			public const string ErrorMessage = "Error Message: {Message}";
+		}
+
 		public static class Format : object
 		{
 			static Format()
