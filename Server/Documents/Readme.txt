@@ -364,3 +364,66 @@ Session (65)
 **************************************************
 **************************************************
 **************************************************
+
+**************************************************
+Session (66)
+**************************************************
+HTML Helper فلسفه
+
+(1)
+<input type="submit" value="Save">
+
+(2)
+<input type="submit" value="Save" />
+
+(3)
+<button type="submit">
+	<img src="..." />
+	Save
+</button>
+
+(4)
+- Bootstrap
+
+<button type="submit" class="btn btn-primary">
+	<img src="..." />
+	Save
+</button>
+
+(5)
+- Bootstrap 5.x
+- Google Material
+
+<button type="submit" class="googooli magooli">
+	<img src="..." />
+	Save
+</button>
+
+=>
+
+@Html.DtatSave()
+
+Tag Helper فلسفه
+
+<h3 class="text-center">
+	فهرست کاربران
+	...
+</h3>
+
+(1)
+@Html.DtatDisplayPageHeader(title: "فهرست کاربران")
+
+(2)
+@Html.DtatPageHeaderStart()
+<img src="..." />
+فهرست کاربران
+@Html.DtatPageHeaderEnd()
+
+(3)
+<page-header class="...">
+	<img src="..." />
+	فهرست کاربران
+</page-header>
+**************************************************
+**************************************************
+**************************************************
