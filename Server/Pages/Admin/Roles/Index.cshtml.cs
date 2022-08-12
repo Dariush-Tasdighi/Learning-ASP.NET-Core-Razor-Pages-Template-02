@@ -55,8 +55,19 @@ namespace Server.Pages.Admin.Roles
 			}
 			catch (System.Exception ex)
 			{
+				//Logger.Log
+				//	(logLevel: LogLevel.Error, message: ex.Message);
+
+				// LogError() -> using Microsoft.Extensions.Logging;
 				//Logger.LogError
 				//	(message: ex.Message);
+
+				//Logger.LogCritical();
+				//Logger.LogError();
+				//Logger.LogWarning();
+				//Logger.LogInformation();
+				//Logger.LogDebug();
+				//Logger.LogTrace();
 
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
