@@ -35,7 +35,7 @@
 			"destination": "wwwroot/lib/bootstrap-iconpicker/"
 		},
 		{
-			"library": "popper.js@2.11.5",
+			"library": "popper.js@2.11.6",
 			"destination": "wwwroot/lib/popper.js/"
 		}
 	]

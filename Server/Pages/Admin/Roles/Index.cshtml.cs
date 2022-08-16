@@ -10,7 +10,8 @@ namespace Server.Pages.Admin.Roles
 	{
 		public IndexModel
 			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
+			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
@@ -54,11 +55,25 @@ namespace Server.Pages.Admin.Roles
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError
-					(message: ex.Message);
+				//Logger.Log
+				//	(logLevel: LogLevel.Error, message: ex.Message);
 
-				AddPageError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				// LogError() -> using Microsoft.Extensions.Logging;
+				//Logger.LogError
+				//	(message: ex.Message);
+
+				//Logger.LogCritical();
+				//Logger.LogError();
+				//Logger.LogWarning();
+				//Logger.LogInformation();
+				//Logger.LogDebug();
+				//Logger.LogTrace();
+
+				Logger.LogError
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{

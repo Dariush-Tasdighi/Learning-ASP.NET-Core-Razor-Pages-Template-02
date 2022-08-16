@@ -347,13 +347,95 @@ app.UseAuthorization();
 Session (65)
 **************************************************
 1. Domain -> Role.cs
+
 2. Data -> Configurations -> RoleConfiguration.cs
+
 3. Data -> DatabaseContext.cs -> OnConfiguring
+
 4. Server -> Infrastructure -> BasePageModel.cs
+
 5. Server -> Infrastructure -> BasePageModelWithDatabase.cs
+
 6. Server -> Program.cs
+
 7. Server -> appsettings.Development.json
+
 8. Server -> Pages -> Roles -> Index.cshtml, Index.cshtml.cs
+**************************************************
+**************************************************
+**************************************************
+
+
+
+**************************************************
+Session (66)
+**************************************************
+Index.cshtml.cs
+**************************************************
+**************************************************
+**************************************************
+
+
+
+**************************************************
+Session (67)
+**************************************************
+HTML Helper فلسفه
+
+(1)
+<input type="submit" value="Save">
+
+(2)
+<input type="submit" value="Save" />
+
+(3)
+<button type="submit">
+	<img src="..." />
+	Save
+</button>
+
+(4)
+- Bootstrap
+
+<button type="submit" class="btn btn-primary">
+	<img src="..." />
+	Save
+</button>
+
+(5)
+- Bootstrap 5.x
+- Google Material
+
+<button type="submit" class="googooli magooli">
+	<img src="..." />
+	Save
+</button>
+
+=>
+
+@Html.DtatSave()
+
+Tag Helper فلسفه
+
+<h3 class="text-center">
+	فهرست کاربران
+	...
+</h3>
+
+(1)
+@Html.DtatDisplayPageHeader(title: "فهرست کاربران")
+
+(2)
+@Html.DtatPageHeaderStart()
+<img src="..." />
+فهرست کاربران
+@Html.DtatPageHeaderEnd()
+
+(3)
+<page-header class="...">
+	<img src="..." />
+	فهرست کاربران
+</page-header>
 **************************************************
 **************************************************
 **************************************************

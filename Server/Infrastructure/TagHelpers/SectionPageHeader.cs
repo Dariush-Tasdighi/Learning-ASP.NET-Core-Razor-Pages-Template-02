@@ -9,6 +9,13 @@
 		{
 		}
 
+		//public override void Process
+		//	(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
+		//	Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
+		//{
+		//	base.Process(context, output);
+		//}
+
 		public async override System.Threading.Tasks.Task ProcessAsync
 			(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
 			Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)

@@ -34,10 +34,10 @@ namespace Server.Pages.Admin.Roles
 			{
 				if (id.HasValue == false)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.IdIsNull);
+					AddToastError
+						(message: Resources.Messages.Errors.IdIsNull);
 
-					return RedirectToPage(pageName: "./Index");
+					return RedirectToPage(pageName: "Index");
 				}
 
 				ViewModel =
@@ -56,19 +56,19 @@ namespace Server.Pages.Admin.Roles
 
 				if (ViewModel == null)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 
-					return RedirectToPage(pageName: "./Index");
+					return RedirectToPage(pageName: "Index");
 				}
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
-					(message: ex.Message);
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
@@ -99,12 +99,13 @@ namespace Server.Pages.Admin.Roles
 
 				if (foundedAny)
 				{
+					// **************************************************
 					string errorMessage = string.Format
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.Name);
 
-					AddPageError
-						(message: errorMessage);
+					AddPageError(message: errorMessage);
+					// **************************************************
 
 					return Page();
 				}
@@ -117,10 +118,10 @@ namespace Server.Pages.Admin.Roles
 
 				if (foundedItem == null)
 				{
-					AddToastError(message:
-						Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 
-					return RedirectToPage(pageName: "./Index");
+					return RedirectToPage(pageName: "Index");
 				}
 
 				// **************************************************
@@ -139,23 +140,22 @@ namespace Server.Pages.Admin.Roles
 					await DatabaseContext.SaveChangesAsync();
 
 				// **************************************************
-				string successMessage =
-					string.Format
+				string successMessage = string.Format
 					(Resources.Messages.Successes.Updated,
 					Resources.DataDictionary.Role);
 
 				AddToastSuccess(message: successMessage);
 				// **************************************************
 
-				return RedirectToPage(pageName: "./Index");
+				return RedirectToPage(pageName: "Index");
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
-					(message: ex.Message);
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 
 				return Page();
 			}
