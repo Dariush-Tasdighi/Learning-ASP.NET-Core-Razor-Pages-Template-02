@@ -9,71 +9,84 @@ namespace Server.Pages.Admin.Users
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
-		public UpdateModel
-			(Data.DatabaseContext databaseContext,
+		public UpdateModel(Data.DatabaseContext databaseContext,
 			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
 			ViewModel = new();
 
-			//RolesViewModel = new System.Collections.Generic.List
-			//	<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel>();
+			RolesViewModel =
+				new System.Collections.Generic.List
+				<ViewModels.Pages.Admin.Roles.CommonViewModel>();
 		}
 		#endregion /Constructor(s)
 
-		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<UpdateModel> Logger { get; }
 		// **********
 
 		// **********
-		//public System.Collections.Generic.IList
-		//	<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel> RolesViewModel
-		//{ get; private set; }
+		public System.Collections.Generic.List
+			<ViewModels.Pages.Admin.Roles.CommonViewModel> RolesViewModel
+		{ get; private set; }
 		// **********
-		#endregion /Property(ies)
 
-		#region BindProperty(ies)
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManager.UpdateViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.Users.UpdateViewModel ViewModel { get; set; }
 		// **********
-		#endregion /BindProperty(ies)
 
 		#region OnGet
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 		{
 			try
 			{
-				ViewModel = await DatabaseContext.Users
+				if (id.HasValue == false)
+				{
+					AddToastError
+						(message: Resources.Messages.Errors.IdIsNull);
+
+					return RedirectToPage(pageName: "Index");
+				}
+
+				await SetAccessibleRole();
+
+				ViewModel =
+					await
+					DatabaseContext.Users
 					.Where(current => current.Id == id)
-					.Select(current => new ViewModels.Pages.Admin.UserManager.UpdateViewModel
+					.Select(current => new ViewModels.Pages.Admin.Users.UpdateViewModel
 					{
 						Id = current.Id,
 						RoleId = current.RoleId,
-
 						Ordering = current.Ordering,
 						IsActive = current.IsActive,
 						IsProgrammer = current.IsProgrammer,
-						IsUndeletable = current.IsUndeletable,
-
-						//Username = current.Username,
 						EmailAddress = current.EmailAddress,
+						IsUndeletable = current.IsUndeletable,
 						AdminDescription = current.AdminDescription,
 					}).FirstOrDefaultAsync();
+
+				if (ViewModel == null)
+				{
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+					return RedirectToPage(pageName: "Index");
+				}
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.LogError
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
-				await SetAccessibleRole();
-
 				await DisposeDatabaseContextAsync();
 			}
 
@@ -85,7 +98,7 @@ namespace Server.Pages.Admin.Users
 		public async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid id)
 		{
-			if (ModelState.IsValid is false)
+			if (ModelState.IsValid == false)
 			{
 				return Page();
 			}
@@ -99,61 +112,55 @@ namespace Server.Pages.Admin.Users
 
 				if (foundedItem == null)
 				{
-					string errorMessage = string.Format
-						(Resources.Messages.Errors.NotFound,
-						Resources.DataDictionary.User);
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 
-					AddToastError(message: errorMessage);
-
-					return RedirectToPage("./Index");
+					return RedirectToPage(pageName: "Index");
 				}
-				else
-				{
-					foundedItem.SetUpdateDateTime();
-					foundedItem.RoleId = ViewModel.RoleId;
-					foundedItem.IsActive = ViewModel.IsActive;
-					foundedItem.Ordering = ViewModel.Ordering;
-					foundedItem.IsProgrammer = ViewModel.IsProgrammer;
-					foundedItem.IsUndeletable = ViewModel.IsUndeletable;
-					foundedItem.AdminDescription = Dtat.Utility.FixText(text: ViewModel.AdminDescription);
 
-					// **************************************************
-					var isValid =
-						Domain.SeedWork.ValidationHelper.IsValid(entity: foundedItem);
+				// **************************************************
+				string? fixedAdminDescription =
+					Dtat.Utility.FixText(text: ViewModel.AdminDescription);
 
-					var results =
-						Domain.SeedWork.ValidationHelper.GetValidationResults(entity: foundedItem);
-					// **************************************************
+				foundedItem.SetUpdateDateTime();
 
-					if (isValid)
-					{
-						int affectedRows =
-							await DatabaseContext.SaveChangesAsync();
+				foundedItem.RoleId = ViewModel.RoleId;
+				foundedItem.IsActive = ViewModel.IsActive;
+				foundedItem.Ordering = ViewModel.Ordering;
+				foundedItem.IsProgrammer = ViewModel.IsProgrammer;
+				foundedItem.IsUndeletable = ViewModel.IsUndeletable;
+				foundedItem.AdminDescription = fixedAdminDescription;
+				// **************************************************
 
-						string successMessage = string.Format
-							(Resources.Messages.Successes.Updated,
-							Resources.DataDictionary.User);
+				//var isValid =
+				//	Domain.SeedWork.ValidationHelper.IsValid(entity: foundedItem);
 
-						AddToastSuccess(message: successMessage);
-					}
+				//var results =
+				//	Domain.SeedWork.ValidationHelper.GetValidationResults(entity: foundedItem);
 
-					return RedirectToPage("./Index");
-				}
+				// **************************************************
+				int affectedRows =
+						await DatabaseContext.SaveChangesAsync();
+
+				string successMessage = string.Format
+					(Resources.Messages.Successes.Updated,
+					Resources.DataDictionary.User);
+				// **************************************************
+
+				return RedirectToPage(pageName: "Index");
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.LogError
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				//System.Console.WriteLine(value: ex.Message);
-
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 
 				return Page();
 			}
 			finally
 			{
-				await SetAccessibleRole();
-
 				await DisposeDatabaseContextAsync();
 			}
 		}
@@ -162,17 +169,17 @@ namespace Server.Pages.Admin.Users
 		#region SetAccessibleRole
 		private async System.Threading.Tasks.Task SetAccessibleRole()
 		{
-			//RolesViewModel =
-			//	await DatabaseContext.Roles
-			//	//.Where(current => current.IsDeleted == false)
-			//	.OrderBy(current => current.Ordering)
-			//	.Select(current => new ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel
-			//	{
-			//		Id = current.Id,
-			//		Name = current.Name,
-			//	})
-			//	.ToListAsync()
-			//	;
+			RolesViewModel =
+				await
+				DatabaseContext.Roles
+				.OrderBy(current => current.Ordering)
+				.Select(current => new ViewModels.Pages.Admin.Roles.CommonViewModel
+				{
+					Id = current.Id,
+					Name = current.Name,
+				})
+				.ToListAsync()
+				;
 		}
 		#endregion /SetAccessibleRole
 	}

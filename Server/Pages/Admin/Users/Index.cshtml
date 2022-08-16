@@ -1,129 +1,110 @@
 ﻿@page
-@model Server.Pages.Admin.UserManager.IndexModel
-@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+@model Server.Pages.Admin.Users.IndexModel
 
 @{
-	@if (Model.ViewModel == null)
-	{
-		return;
-	}
-
 	var pageTitle =
-		Resources.PageTitles.UserManagement;
+		$"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.Users}";
 
-	ViewData["PageTitle"] = pageTitle;
-
-	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-	{
-		Layout =
-			"Layouts/Rtl/_Layout";
-	}
-	else
-	{
-		Layout =
-			"Layouts/Ltr/_Layout";
-	}
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 }
-<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
 
-	<a asp-page="/Admin/UserManager/create" asp-route-returnurl="/Admin/UserManager" class="btn btn-primary btn-sm w-25 my-4" role="button" aria-pressed="true">
-		<i class="bi bi-person-plus-fill"></i>
-		@(string.Format(Resources.ButtonCaptions.CreateNew, Resources.DataDictionary.User))
+
+<section-page-header>
+	@(pageTitle)
+</section-page-header>
+
+<section-page-actions>
+	<a asp-page="Create">
+		@(Html.DtatGetLinkCaptionForCreate())
 	</a>
+</section-page-actions>
 
-	<div class="row">
-		<div class="col table-responsive">
-			<table class="@(applicationSettings.TablesDefaultSettings.TableStyle)">
+<section-table>
+	<table>
+		<caption>
+			@(pageTitle)
+		</caption>
 
-				<caption>@(string.Format(Resources.DataDictionary.ListOfItems, Resources.DataDictionary.Users))</caption>
+		<thead>
+			<tr>
+				<th>
+					#
+				</th>
+				<th>
+				</th>
+				<th>
+					@(Resources.DataDictionary.EmailAddress)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsEmailAddressVerified)
+				</th>
+				<th>
+					@(Resources.DataDictionary.Role)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsActive)
+				</th>
+				<th>
+					@(Resources.DataDictionary.Ordering)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsProgrammer)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsSystemic)
+				</th>
+				<th>
+					@(Resources.DataDictionary.InsertDateTime)
+				</th>
+				<th>
+					@(Resources.DataDictionary.UpdateDateTime)
+				</th>
+			</tr>
+		</thead>
 
-				<thead class="@(applicationSettings.TablesDefaultSettings.TableHeaderStyle)">
-					<tr>
-						<th>#</th>
-						<th>@(Resources.DataDictionary.EmailAddress)</th>
-						<th>@(Resources.DataDictionary.Active)</th>
-						<th>@(Resources.DataDictionary.IsUndeletable)</th>
-						<th>@(Resources.DataDictionary.InsertDateTime)</th>
-						<th>@(Resources.DataDictionary.UpdateDateTime)</th>
-						<th>@(Resources.DataDictionary.Action)</th>
-					</tr>
-				</thead>
+		<tbody>
+			@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+			{
+				var item = Model.ViewModel[index];
 
-				<tbody>
-					@for (int index = 0; index <= Model.ViewModel.Data.Count - 1; index++)
-					{
-						var item = Model.ViewModel.Data[index];
+				<tr>
+					@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
 
-						<tr>
-							<td>
-								@((Model.ViewModel.PageInformation.PageNumber - 1) * Model.ViewModel.PageInformation.PageSize + (index + 1))
-							</td>
+					<table-actions>
+						<a asp-page="Details" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconDetails())
+						</a>
+						<a asp-page="Update" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconUpdate())
+						</a>
+						<a asp-page="Delete" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconDelete())
+						</a>
+					</table-actions>
 
-							<td>
-								@(item.EmailAddress)
-							</td>
+					<td>
+						@(item.EmailAddress)
+					</td>
 
-							<td>
-								<i class="@(item.IsActive ? applicationSettings.IconSettings.TableIcons.True : applicationSettings.IconSettings.TableIcons.False)"></i>
-							</td>
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsEmailAddressVerified))
 
-							<td>
-								<i class="@(item.IsUndeletable ? applicationSettings.IconSettings.TableIcons.True : applicationSettings.IconSettings.TableIcons.False)"></i>
-							</td>
+					<td>
+						@(item.Role)
+					</td>
 
-							<td>
-								@(item.InsertDateTime)
-							</td>
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsActive))
 
-							@if (item.UpdateDateTime.HasValue)
-							{
-								<td>
-									@(item.UpdateDateTime)
-								</td>
-							}
-							else
-							{
-								<td>
-									<i class="@(applicationSettings.IconSettings.TableIcons.None)"></i>
-								</td>
-							}
+					@(Html.DtatDisplayIntegerWithTd(value: item.Ordering))
 
-							<td>
-								<a asp-page="./Update" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
-									<i class="@(applicationSettings.IconSettings.TableIcons.Update)"></i>
-								</a>
-								|
-								@if (item.IsUndeletable == false)
-								{
-									<a asp-page="./Delete" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
-										<i class="@(applicationSettings.IconSettings.TableIcons.Delete)"></i>
-									</a>
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsSystemic))
 
-									<text>
-										|
-									</text>
-								}
-								<a asp-page="./Details" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
-									<i class="@(applicationSettings.IconSettings.TableIcons.Details)"></i>
-								</a>
-							</td>
-						</tr>
-					}
-				</tbody>
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsProgrammer))
 
-				<tfoot class="@(applicationSettings.TablesDefaultSettings.TableFooterStyle)">
-					<tr>
-						@*Development in progress...*@
-						<td colspan="9"
-							page-action="./Index"
-							page-class="page-link"
-							page-classes-enabled="true"
-							page-default-class="text-dark text-decoration-none btn"
-							page-information-view-model="@(Model.ViewModel.PageInformation)">
-						</td>
-					</tr>
-				</tfoot>
-			</table>
-		</div>
-	</div>
-</div>
+					@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.UpdateDateTime))
+				</tr>
+			}
+		</tbody>
+	</table>
+</section-table>

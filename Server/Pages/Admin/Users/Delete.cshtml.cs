@@ -9,9 +9,9 @@ namespace Server.Pages.Admin.Users
 	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
-		public DeleteModel
-			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) : base(databaseContext: databaseContext)
+		public DeleteModel(Data.DatabaseContext databaseContext,
+			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
@@ -25,100 +25,53 @@ namespace Server.Pages.Admin.Users
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.UserManager.DeleteViewModel ViewModel { get; private set; }
+		[Microsoft.AspNetCore.Mvc.BindProperty]
+		public ViewModels.Pages.Admin.Users.DeleteDetailsViewModel ViewModel { get; private set; }
 		// **********
 		#endregion /Porperty(ies)
 
 		#region OnGet
-		public async System.Threading.Tasks.Task OnGetAsync(System.Guid id)
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 		{
 			try
 			{
+				if (id.HasValue == false)
+				{
+					AddToastError
+						(message: Resources.Messages.Errors.IdIsNull);
+				}
+
 				ViewModel =
-					await DatabaseContext.Users
-					.Where(current => current.Id == id)
-					//.Where(current => current.IsDeleted == false)
-					.Select(current => new ViewModels.Pages.Admin.UserManager.DeleteViewModel
+					await
+					DatabaseContext.Users
+					.Where(current => current.Id == id.Value)
+					.Select(current => new ViewModels.Pages.Admin.Users.DeleteDetailsViewModel
 					{
 						Id = current.Id,
 						Role = current.Role.Name,
-						Username = current.Username,
 						IsActive = current.IsActive,
 						FullName = current.FullName,
+						Ordering = current.Ordering,
 						EmailAddress = current.EmailAddress,
-						InsertDateTime = current.InsertDateTime,
+						AdminDescription = current.AdminDescription,
 						IsEmailAddressVerified = current.IsEmailAddressVerified,
 					})
 					.FirstOrDefaultAsync();
 
+				if (ViewModel == null)
+				{
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+				}
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.LogError
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
-			}
-			finally
-			{
-				await DisposeDatabaseContextAsync();
-			}
-		}
-		#endregion /OnGet
-
-		#region OnPost
-		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostDeleteAsync(System.Guid id)
-		{
-			try
-			{
-				var foundedItem =
-					await DatabaseContext.Users
-					.Where(current => current.Id == id)
-					.FirstOrDefaultAsync();
-
-				if (foundedItem == null)
-				{
-					string errorMessage = string.Format
-						(Resources.Messages.Errors.NotFound,
-						Resources.DataDictionary.User);
-
-					AddToastError(message: errorMessage);
-				}
-				// TO DO: Check User Id...
-				//else if (foundedItem.RoleId != Domain.Role.UserRoleId)
-				//{
-				//	string errorMessage = string.Format
-				//		(Resources.Messages.Errors.UnableTo,
-				//		Resources.DataDictionary.Delete,
-				//		Resources.DataDictionary.User);
-
-				//	AddToastError(message: errorMessage);
-
-				//	return RedirectToPage("./Index");
-				//}
-				else if (foundedItem.IsUndeletable)
-				{
-					string errorMessage = string.Format
-						(Resources.Messages.Errors.UnableTo,
-						Resources.ButtonCaptions.Delete,
-						Resources.DataDictionary.User);
-
-					AddToastError(message: errorMessage);
-				}
-				else
-				{
-					DatabaseContext.Remove(entity: foundedItem);
-
-					await DatabaseContext.SaveChangesAsync();
-				}
-
-				return RedirectToPage("./Index");
-			}
-			catch (System.Exception ex)
-			{
-				Logger.LogError(message: ex.Message);
-
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
@@ -126,6 +79,91 @@ namespace Server.Pages.Admin.Users
 			}
 
 			return Page();
+		}
+		#endregion /OnGet
+
+		#region OnPost
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
+		{
+			if (id.HasValue == false)
+			{
+				return Page();
+			}
+
+			try
+			{
+				var foundedItem =
+					await
+					DatabaseContext.Users
+					.Where(current => current.Id == id)
+					.FirstOrDefaultAsync();
+
+				if (foundedItem == null)
+				{
+					AddToastError
+						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+					return RedirectToPage(pageName: "Index");
+				}
+
+				// TO DO: Check User Id and Role
+				if (foundedItem.IsProgrammer)
+				{
+					// **************************************************
+					string errorMessage = string.Format
+						(Resources.Messages.Errors.UnableTo,
+						Resources.ButtonCaptions.Delete,
+						Resources.DataDictionary.User);
+
+					AddToastError(message: errorMessage);
+					// **************************************************
+
+					return RedirectToPage(pageName: "Index");
+				}
+
+				if (foundedItem.IsUndeletable)
+				{
+					// **************************************************
+					string errorMessage = string.Format
+						(Resources.Messages.Errors.UnableTo,
+						Resources.ButtonCaptions.Delete,
+						Resources.DataDictionary.User);
+
+					AddToastError(message: errorMessage);
+					// **************************************************
+
+					return RedirectToPage(pageName: "Index");
+				}
+
+				DatabaseContext.Remove(entity: foundedItem);
+
+				await DatabaseContext.SaveChangesAsync();
+
+				// **************************************************
+				string successMessage = string.Format
+					(Resources.Messages.Successes.Deleted,
+					Resources.DataDictionary.Role);
+
+				AddToastSuccess(message: successMessage);
+				// **************************************************
+
+				return RedirectToPage(pageName: "Index");
+			}
+			catch (System.Exception ex)
+			{
+				Logger.LogError
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+
+				AddToastError
+					(message: Resources.Messages.Errors.UnexpectedError);
+
+				return RedirectToPage(pageName: "Index");
+			}
+			finally
+			{
+				await DisposeDatabaseContextAsync();
+			}
 		}
 		#endregion /OnPost
 	}

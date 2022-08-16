@@ -2,8 +2,8 @@
 
 namespace Infrastructure.TagHelpers
 {
-	// TO DO:
-	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement(tag: Constant.HtmlTag.TableData, Attributes = "page-information-view-model")]
+	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
+		(tag: Constant.HtmlTag.TableData, Attributes = "page-information-view-model")]
 	public class PagerTagHelper : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
 		#region Constructor(s)

@@ -15,13 +15,6 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Username),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public string? Username { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.EmailAddress),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public string? EmailAddress { get; set; }
@@ -46,13 +39,6 @@
 			(Name = nameof(Resources.DataDictionary.IsProgrammer),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsProgrammer { get; set; }
-		// **********
-
-		// **********
-		//[System.ComponentModel.DataAnnotations.Display
-		//	(Name = nameof(Resources.DataDictionary.Role),
-		//	ResourceType = typeof(Resources.DataDictionary))]
-		//public string? Role { get; set; }
 		// **********
 
 		// **********

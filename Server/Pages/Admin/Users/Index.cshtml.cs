@@ -9,13 +9,15 @@ namespace Server.Pages.Admin.Users
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
-		public IndexModel
-			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
+		public IndexModel(Data.DatabaseContext databaseContext,
+			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
-			ViewModel = new();
+			ViewModel =
+				new System.Collections.Generic.List
+				<ViewModels.Pages.Admin.Users.IndexItemViewModel>();
 		}
 		#endregion /Constructor(s)
 
@@ -25,77 +27,47 @@ namespace Server.Pages.Admin.Users
 		// **********
 
 		// **********
-		public ViewModels.Shared.PaginationWithDataViewModel
-			<ViewModels.Pages.Admin.UserManager.GetUserItemViewModel> ViewModel
+		public System.Collections.Generic.IList
+			<ViewModels.Pages.Admin.Users.IndexItemViewModel> ViewModel
 		{ get; private set; }
 		// **********
 		#endregion /Property(ies)
 
-		// TO DO: Let Users Select Page Size
 		#region OnGet
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnGetAsync(int pageSize = 10, int pageNumber = 1)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync()
 		{
 			try
 			{
-				if (pageNumber > 0)
-				{
-					// **************************************************
-					ViewModel = new ViewModels.Shared.PaginationWithDataViewModel
-						<ViewModels.Pages.Admin.UserManager.GetUserItemViewModel>
+				ViewModel =
+					await
+					DatabaseContext.Users
+					.OrderBy(current => current.Ordering)
+					.Select(current => new ViewModels.Pages.Admin.Users.IndexItemViewModel
 					{
-						PageInformation = new()
-						{
-							PageSize = pageSize,
-							PageNumber = pageNumber,
-						},
-					};
-					// **************************************************
-
-					// **************************************************
-					ViewModel.PageInformation.TotalCount =
-						await DatabaseContext.Users.CountAsync();
-
-					if (ViewModel.PageInformation.TotalCount > 0)
-					{
-						ViewModel.Data =
-							await DatabaseContext.Users
-							.OrderBy(current => current.Ordering)
-							.Skip((pageNumber - 1) * pageSize)
-							.Take(pageSize)
-							.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserItemViewModel
-							{
-								Id = current.Id,
-
-								Username = current.Username,
-								EmailAddress = current.EmailAddress,
-
-								IsActive = current.IsActive,
-								IsUndeletable = current.IsUndeletable,
-
-								InsertDateTime = current.InsertDateTime,
-								UpdateDateTime = current.UpdateDateTime,
-							})
-							.AsNoTracking()
-							.ToListAsync()
-							;
-					}
-					// **************************************************
-				}
-
-				//if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
-				//{
-				//	return RedirectToPage(pageName: "/admin/usermanager/create");
-				//}
+						Id = current.Id,
+						Role = current.Role.Name,
+						Ordering = current.Ordering,
+						IsActive = current.IsActive,
+						IsSystemic = current.IsSystemic,
+						IsProgrammer = current.IsProgrammer,
+						EmailAddress = current.EmailAddress,
+						IsUndeletable = current.IsUndeletable,
+						InsertDateTime = current.InsertDateTime,
+						UpdateDateTime = current.UpdateDateTime,
+						IsEmailAddressVerified = current.IsEmailAddressVerified,
+					})
+					.AsNoTracking()
+					.ToListAsync()
+					;
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.LogError
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				//System.Console.WriteLine(value: ex.Message);
-
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{

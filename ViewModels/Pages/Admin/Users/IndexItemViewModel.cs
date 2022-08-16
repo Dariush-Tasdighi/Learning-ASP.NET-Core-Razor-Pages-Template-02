@@ -8,6 +8,13 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.Id),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public System.Guid? Id { get; init; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Role),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public string? Role { get; init; }
@@ -15,30 +22,9 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Username),
+			(Name = nameof(Resources.DataDictionary.Ordering),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public string? Username { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.FullName),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public string? FullName { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsProgrammer),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsProgrammer { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsSystemic),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsSystemic { get; init; }
+		public int Ordering { get; init; }
 		// **********
 
 		// **********
@@ -57,23 +43,16 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.CellPhoneNumber),
+			(Name = nameof(Resources.DataDictionary.IsProgrammer),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public string? CellPhoneNumber { get; init; }
+		public bool IsProgrammer { get; init; }
 		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified),
+			(Name = nameof(Resources.DataDictionary.IsSystemic),
 			ResourceType = typeof(Resources.DataDictionary))]
-		public bool? IsCellPhoneNumberVerified { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.Description),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public string? Description { get; init; }
+		public bool IsSystemic { get; init; }
 		// **********
 
 		// **********
@@ -102,13 +81,6 @@
 			(Name = nameof(Resources.DataDictionary.InsertDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public System.DateTime? InsertDateTime { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.AdminDescription),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public string? AdminDescription { get; set; }
 		// **********
 	}
 }

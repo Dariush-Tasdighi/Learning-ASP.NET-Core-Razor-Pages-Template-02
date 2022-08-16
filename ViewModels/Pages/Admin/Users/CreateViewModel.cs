@@ -124,20 +124,6 @@
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsEmailAddressVerified { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsCellPhoneNumberVerified { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Ordering),
 			ResourceType = typeof(Resources.DataDictionary))]
 

@@ -14,10 +14,11 @@ namespace Server.Pages.Admin.Users
 			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
+
 			ViewModel = new();
 
-			//RolesViewModel = new System.Collections.Generic.List
-			//	<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel>();
+			RolesViewModel = new System.Collections.Generic.List
+				<ViewModels.Pages.Admin.Roles.CommonViewModel>();
 		}
 		#endregion /Constructor(s)
 
@@ -47,7 +48,7 @@ namespace Server.Pages.Admin.Users
 			catch (System.Exception ex)
 			{
 				Logger.LogError
-					(message: ex.Message);
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
 				AddPageError(message:
 					Resources.Messages.Errors.UnexpectedError);
@@ -72,12 +73,10 @@ namespace Server.Pages.Admin.Users
 
 			try
 			{
-				bool foundedAny = false;
-
-
-				foundedAny =
-					await DatabaseContext.Users
-					.Where(current => current.EmailAddress.ToLower() == ViewModel.EmailAddress.Trim().ToLower())
+				var foundedAny =
+					await
+					DatabaseContext.Users
+					.Where(current => current.EmailAddress.ToLower() == ViewModel.EmailAddress.ToLower())
 					.Where(current => current.IsEmailAddressVerified)
 					.AnyAsync();
 
@@ -90,19 +89,9 @@ namespace Server.Pages.Admin.Users
 
 					AddPageError
 						(message: errorMessage);
+					// **************************************************
 
 					return Page();
-					// **************************************************
-				}
-
-				if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
-				{
-					ViewModel.IsEmailAddressVerified = true;
-				}
-
-				if (string.IsNullOrWhiteSpace(value: ViewModel.CellPhoneNumber) == false)
-				{
-					ViewModel.IsCellPhoneNumberVerified = true;
 				}
 
 				// **************************************************
@@ -113,49 +102,41 @@ namespace Server.Pages.Admin.Users
 					new(emailAddress: ViewModel.EmailAddress)
 					{
 						Password = hashedPassword,
+						RoleId = ViewModel.RoleId,
+						IsEmailAddressVerified = true,
 						Ordering = ViewModel.Ordering,
 						IsActive = ViewModel.IsActive,
 						IsProgrammer = ViewModel.IsProgrammer,
 						IsUndeletable = ViewModel.IsUndeletable,
 						CellPhoneNumber = ViewModel.CellPhoneNumber,
-						IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
-						IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
 					};
+
+				var entityEntry =
+					await
+					DatabaseContext.AddAsync(entity: user);
+
+				int affectedRow =
+					await
+					DatabaseContext.SaveChangesAsync();
 				// **************************************************
 
-				var isValid = Domain.SeedWork
-					.ValidationHelper.IsValid(entity: user);
-
-				var results =
-					Domain.SeedWork.ValidationHelper
-					.GetValidationResults(entity: user);
-
 				// **************************************************
-				if (isValid)
-				{
-					var entityEntry =
-						await DatabaseContext.AddAsync(entity: user);
+				string successMessage = string.Format
+					(Resources.Messages.Successes.Created,
+					Resources.DataDictionary.User);
 
-					int affectedRow =
-						await DatabaseContext.SaveChangesAsync();
-
-					string successMessage = string.Format
-						(Resources.Messages.Successes.Created,
-						Resources.DataDictionary.User);
-
-					AddToastSuccess(message: successMessage);
-				}
+				AddToastSuccess(message: successMessage);
 				// **************************************************
 
-				return RedirectToPage(pageName: "./Index");
+				return RedirectToPage(pageName: "/Index");
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log
-					(logLevel: LogLevel.Error, message: ex.Message);
+				Logger.LogError
+					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				AddPageError
+					(message: Resources.Messages.Errors.UnexpectedError);
 
 				return Page();
 			}
