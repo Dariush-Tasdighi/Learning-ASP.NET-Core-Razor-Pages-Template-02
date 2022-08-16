@@ -1,8 +1,8 @@
-﻿namespace ViewModels.Pages.Admin.UserManager
+﻿namespace ViewModels.Pages.Admin.Users
 {
-	public class CreateUserViewModel : object
+	public class CreateViewModel : object
 	{
-		public CreateUserViewModel() : base()
+		public CreateViewModel() : base()
 		{
 		}
 

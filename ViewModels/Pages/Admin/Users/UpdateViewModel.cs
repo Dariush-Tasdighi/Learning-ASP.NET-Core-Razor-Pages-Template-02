@@ -1,8 +1,8 @@
-﻿namespace ViewModels.Pages.Admin.UserManager
+﻿namespace ViewModels.Pages.Admin.Users
 {
-	public class UpdateUserViewModel : object
+	public class UpdateViewModel : object
 	{
-		public UpdateUserViewModel() : base()
+		public UpdateViewModel() : base()
 		{
 		}
 

@@ -2,67 +2,62 @@
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.UserManager
+namespace Server.Pages.Admin.Users
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constant.Role.Admin)]
 	public class CreateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
-		public CreateModel
-			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) : base(databaseContext: databaseContext)
+		public CreateModel(Data.DatabaseContext databaseContext,
+			Microsoft.Extensions.Logging.ILogger<CreateModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
-
 			ViewModel = new();
 
-			RolesViewModel = new System.Collections.Generic.List
-				<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel>();
+			//RolesViewModel = new System.Collections.Generic.List
+			//	<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel>();
 		}
 		#endregion /Constructor(s)
 
-		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<CreateModel> Logger { get; }
 		// **********
 
 		// **********
 		public System.Collections.Generic.IList
-			<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel> RolesViewModel
+			<ViewModels.Pages.Admin.Roles.CommonViewModel> RolesViewModel
 		{ get; private set; }
 		// **********
-		#endregion /Property(ies)
-
-		#region BindProperty(ies)
-		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public string? ReturnUrl { get; set; }
-		// **********
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManager.CreateUserViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.Users.CreateViewModel ViewModel { get; set; }
 		// **********
-		#endregion /BindProperty(ies)
 
 		#region OnGet
-		public async System.Threading.Tasks.Task OnGetAsync(string? returnUrl)
+		public async System.Threading.Tasks.Task
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync()
 		{
-			ReturnUrl = SetReturnUrl(returnUrl: returnUrl);
-
 			try
 			{
 				await SetAccessibleRole();
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.LogError
+					(message: ex.Message);
+
+				AddPageError(message:
+					Resources.Messages.Errors.UnexpectedError);
 			}
 			finally
 			{
 				await DisposeDatabaseContextAsync();
 			}
+
+			return Page();
 		}
 		#endregion /OnGet
 
@@ -77,29 +72,28 @@ namespace Server.Pages.Admin.UserManager
 
 			try
 			{
-				bool isEmailAddressFound = false;
+				bool foundedAny = false;
 
-				if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
-				{
-					isEmailAddressFound =
-						await DatabaseContext.Users
-						.Where(current => current.EmailAddress != null)
-						.Where(current => current.EmailAddress.ToLower() == ViewModel.EmailAddress.Trim().ToLower())
-						.Where(current => current.IsEmailAddressVerified)
-						.AnyAsync();
-				}
 
-				// **************************************************
-				if (isEmailAddressFound)
+				foundedAny =
+					await DatabaseContext.Users
+					.Where(current => current.EmailAddress.ToLower() == ViewModel.EmailAddress.Trim().ToLower())
+					.Where(current => current.IsEmailAddressVerified)
+					.AnyAsync();
+
+				if (foundedAny)
 				{
+					// **************************************************
 					string errorMessage = string.Format
-						(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.EmailAddress);
+						(Resources.Messages.Errors.AlreadyExists,
+						Resources.DataDictionary.EmailAddress);
 
-					AddPageError(message: errorMessage);
+					AddPageError
+						(message: errorMessage);
 
 					return Page();
+					// **************************************************
 				}
-				// **************************************************
 
 				if (string.IsNullOrWhiteSpace(value: ViewModel.EmailAddress) == false)
 				{
@@ -112,27 +106,29 @@ namespace Server.Pages.Admin.UserManager
 				}
 
 				// **************************************************
+				string hashedPassword =
+					Dtat.Security.Hashing.GetSha256(text: ViewModel.Password);
+
 				Domain.User user =
 					new(emailAddress: ViewModel.EmailAddress)
 					{
+						Password = hashedPassword,
 						Ordering = ViewModel.Ordering,
-
 						IsActive = ViewModel.IsActive,
- 						IsProgrammer = ViewModel.IsProgrammer,
+						IsProgrammer = ViewModel.IsProgrammer,
 						IsUndeletable = ViewModel.IsUndeletable,
+						CellPhoneNumber = ViewModel.CellPhoneNumber,
 						IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
 						IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
-
-						CellPhoneNumber = ViewModel.CellPhoneNumber,
-						Password = Dtat.Security.Hashing.GetSha256(text: ViewModel.Password),
 					};
 				// **************************************************
 
-				var isValid =
-						Domain.SeedWork.ValidationHelper.IsValid(entity: user);
+				var isValid = Domain.SeedWork
+					.ValidationHelper.IsValid(entity: user);
 
 				var results =
-					Domain.SeedWork.ValidationHelper.GetValidationResults(entity: user);
+					Domain.SeedWork.ValidationHelper
+					.GetValidationResults(entity: user);
 
 				// **************************************************
 				if (isValid)
@@ -150,25 +146,23 @@ namespace Server.Pages.Admin.UserManager
 					AddToastSuccess(message: successMessage);
 				}
 				// **************************************************
+
+				return RedirectToPage(pageName: "./Index");
 			}
 			catch (System.Exception ex)
 			{
-				Logger.LogError(message: ex.Message);
+				Logger.Log
+					(logLevel: LogLevel.Error, message: ex.Message);
 
-				//System.Console.WriteLine(value: ex.Message);
+				AddPageError(message:
+					Resources.Messages.Errors.UnexpectedError);
 
-				AddPageError(message: Resources.Messages.Errors.UnexpectedError);
+				return Page();
 			}
 			finally
 			{
-				await SetAccessibleRole();
-
 				await DisposeDatabaseContextAsync();
 			}
-
-			ReturnUrl = SetReturnUrl(returnUrl: ReturnUrl);
-
-			return Redirect(url: ReturnUrl);
 		}
 		#endregion OnPost
 
@@ -177,9 +171,8 @@ namespace Server.Pages.Admin.UserManager
 		{
 			RolesViewModel =
 				await DatabaseContext.Roles
-				//.Where(current => current.IsDeleted == false)
 				.OrderBy(current => current.Ordering)
-				.Select(current => new ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel
+				.Select(current => new ViewModels.Pages.Admin.Roles.CommonViewModel
 				{
 					Id = current.Id,
 					Name = current.Name,

@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.UserManager
+namespace Server.Pages.Admin.Users
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constant.Role.Admin)]
@@ -25,7 +25,7 @@ namespace Server.Pages.Admin.UserManager
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.UserManager.IndexItemViewModel ViewModel { get; private set; }
 		// **********
 		#endregion /Property(ies)
 
@@ -38,7 +38,7 @@ namespace Server.Pages.Admin.UserManager
 				ViewModel =
 					await DatabaseContext.Users
 					.Where(current => current.Id == id)
-					.Select(current => new ViewModels.Pages.Admin.UserManager.GetUserDetailsViewModel
+					.Select(current => new ViewModels.Pages.Admin.UserManager.IndexItemViewModel
 					{
 						Role = current.Role.Name,
 						Username = current.Username,

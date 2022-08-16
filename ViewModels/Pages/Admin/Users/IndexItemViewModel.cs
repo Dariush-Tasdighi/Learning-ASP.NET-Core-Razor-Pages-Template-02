@@ -1,8 +1,8 @@
-﻿namespace ViewModels.Pages.Admin.UserManager
+﻿namespace ViewModels.Pages.Admin.Users
 {
-	public class GetUserDetailsViewModel : object
+	public class IndexItemViewModel : object
 	{
-		public GetUserDetailsViewModel() : base()
+		public IndexItemViewModel() : base()
 		{
 		}
 

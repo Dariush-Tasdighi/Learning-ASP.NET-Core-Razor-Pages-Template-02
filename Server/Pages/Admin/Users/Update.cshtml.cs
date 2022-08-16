@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.UserManager
+namespace Server.Pages.Admin.Users
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constant.Role.Admin)]
@@ -17,8 +17,8 @@ namespace Server.Pages.Admin.UserManager
 
 			ViewModel = new();
 
-			RolesViewModel = new System.Collections.Generic.List
-				<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel>();
+			//RolesViewModel = new System.Collections.Generic.List
+			//	<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel>();
 		}
 		#endregion /Constructor(s)
 
@@ -28,16 +28,16 @@ namespace Server.Pages.Admin.UserManager
 		// **********
 
 		// **********
-		public System.Collections.Generic.IList
-			<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel> RolesViewModel
-		{ get; private set; }
+		//public System.Collections.Generic.IList
+		//	<ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel> RolesViewModel
+		//{ get; private set; }
 		// **********
 		#endregion /Property(ies)
 
 		#region BindProperty(ies)
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.UserManager.UpdateUserViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.UserManager.UpdateViewModel ViewModel { get; set; }
 		// **********
 		#endregion /BindProperty(ies)
 
@@ -49,7 +49,7 @@ namespace Server.Pages.Admin.UserManager
 			{
 				ViewModel = await DatabaseContext.Users
 					.Where(current => current.Id == id)
-					.Select(current => new ViewModels.Pages.Admin.UserManager.UpdateUserViewModel
+					.Select(current => new ViewModels.Pages.Admin.UserManager.UpdateViewModel
 					{
 						Id = current.Id,
 						RoleId = current.RoleId,
@@ -162,17 +162,17 @@ namespace Server.Pages.Admin.UserManager
 		#region SetAccessibleRole
 		private async System.Threading.Tasks.Task SetAccessibleRole()
 		{
-			RolesViewModel =
-				await DatabaseContext.Roles
-				//.Where(current => current.IsDeleted == false)
-				.OrderBy(current => current.Ordering)
-				.Select(current => new ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel
-				{
-					Id = current.Id,
-					Name = current.Name,
-				})
-				.ToListAsync()
-				;
+			//RolesViewModel =
+			//	await DatabaseContext.Roles
+			//	//.Where(current => current.IsDeleted == false)
+			//	.OrderBy(current => current.Ordering)
+			//	.Select(current => new ViewModels.Pages.Admin.RoleManager.Base.RoleBaseViewModel
+			//	{
+			//		Id = current.Id,
+			//		Name = current.Name,
+			//	})
+			//	.ToListAsync()
+			//	;
 		}
 		#endregion /SetAccessibleRole
 	}

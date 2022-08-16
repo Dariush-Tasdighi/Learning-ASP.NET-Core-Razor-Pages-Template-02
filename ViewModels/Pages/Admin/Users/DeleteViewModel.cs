@@ -1,8 +1,8 @@
-﻿namespace ViewModels.Pages.Admin.UserManager
+﻿namespace ViewModels.Pages.Admin.Users
 {
-	public class DeleteUserViewModel : object
+	public class DeleteViewModel : object
 	{
-		public DeleteUserViewModel() : base()
+		public DeleteViewModel() : base()
 		{
 		}
 

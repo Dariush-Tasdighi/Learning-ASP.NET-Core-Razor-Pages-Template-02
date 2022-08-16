@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.UserManager
+namespace Server.Pages.Admin.Users
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constant.Role.Admin)]
@@ -25,7 +25,7 @@ namespace Server.Pages.Admin.UserManager
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.UserManager.DeleteUserViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.UserManager.DeleteViewModel ViewModel { get; private set; }
 		// **********
 		#endregion /Porperty(ies)
 
@@ -38,7 +38,7 @@ namespace Server.Pages.Admin.UserManager
 					await DatabaseContext.Users
 					.Where(current => current.Id == id)
 					//.Where(current => current.IsDeleted == false)
-					.Select(current => new ViewModels.Pages.Admin.UserManager.DeleteUserViewModel
+					.Select(current => new ViewModels.Pages.Admin.UserManager.DeleteViewModel
 					{
 						Id = current.Id,
 						Role = current.Role.Name,
