@@ -9,6 +9,13 @@
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.Id))]
+		public System.Guid Id { get; init; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.Role))]
 		public string? Role { get; init; }
 		// **********
@@ -17,28 +24,14 @@
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IsActive))]
+		public bool? IsRoleActive { get; init; }
+		// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(ResourceType = typeof(Resources.DataDictionary),
+			Name = nameof(Resources.DataDictionary.IsActive))]
 		public bool IsActive { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.IsSystemic))]
-		public bool IsSystemic { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.IsProgrammer))]
-		public bool IsProgrammer { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.IsUndeletable))]
-		public bool IsUndeletable { get; init; }
 		// **********
 
 		// **********
@@ -60,20 +53,6 @@
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified))]
 		public bool IsCellPhoneNumberVerified { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.InsertDateTime))]
-		public System.DateTime InsertDateTime { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.UpdateDateTime))]
-		public System.DateTime UpdateDateTime { get; init; }
 		// **********
 
 		// **********
@@ -107,9 +86,16 @@
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.Description))]
-		public string? Description { get; init; }
+			Name = nameof(Resources.DataDictionary.Ordering))]
+		public int Ordering { get; init; }
 		// **********
+
+		//// **********
+		//[System.ComponentModel.DataAnnotations.Display
+		//	(ResourceType = typeof(Resources.DataDictionary),
+		//	Name = nameof(Resources.DataDictionary.Description))]
+		//public string? Description { get; init; }
+		//// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display

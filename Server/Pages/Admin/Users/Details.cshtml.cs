@@ -47,24 +47,21 @@ namespace Server.Pages.Admin.Users
 					.Where(current => current.Id == id)
 					.Select(current => new ViewModels.Pages.Admin.Users.DetailsViewModel
 					{
+						Id = current.Id,
 						Role = current.Role.Name,
+						Ordering = current.Ordering,
 						Username = current.Username,
 						FullName = current.FullName,
 						IsActive = current.IsActive,
-						IsSystemic = current.IsSystemic,
-						Description = current.Description,
-						IsProgrammer = current.IsProgrammer,
 						EmailAddress = current.EmailAddress,
-						IsUndeletable = current.IsUndeletable,
-						InsertDateTime = current.InsertDateTime,
-						UpdateDateTime = current.UpdateDateTime,
+						IsRoleActive = current.Role.IsActive,
 						CellPhoneNumber = current.CellPhoneNumber,
 						IsProfilePublic = current.IsProfilePublic,
 						AdminDescription = current.AdminDescription,
 						IsEmailAddressVerified = current.IsEmailAddressVerified,
 						IsCellPhoneNumberVerified = current.IsCellPhoneNumberVerified,
 					})
-					.AsNoTracking()
+					//.AsNoTracking()
 					.FirstOrDefaultAsync();
 
 				if (ViewModel == null)
