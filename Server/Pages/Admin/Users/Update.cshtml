@@ -46,6 +46,12 @@
 				<label asp-for="ViewModel.IsProgrammer"></label>
 			</section-form-check>
 
+			<section-form-field>
+				<label asp-for="ViewModel.Ordering"></label>
+				<input asp-for="ViewModel.Ordering" />
+				<span asp-validation-for="ViewModel.Ordering"></span>
+			</section-form-field>
+
 			<section-form-check>
 				<input asp-for="ViewModel.IsActive" />
 				<label asp-for="ViewModel.IsActive"></label>
@@ -55,12 +61,6 @@
 				<input asp-for="ViewModel.IsUndeletable" />
 				<label asp-for="ViewModel.IsUndeletable"></label>
 			</section-form-check>
-
-			<section-form-field>
-				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" />
-				<span asp-validation-for="ViewModel.Ordering"></span>
-			</section-form-field>
 
 			<section-form-field>
 				<label asp-for="ViewModel.AdminDescription"></label>
