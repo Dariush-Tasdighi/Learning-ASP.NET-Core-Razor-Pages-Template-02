@@ -459,4 +459,13 @@
   <data name="UserCount" xml:space="preserve">
     <value>تعداد کاربران</value>
   </data>
+  <data name="CreatedPagesCountByThisUser" xml:space="preserve">
+    <value>تعداد صفحات ایجاد شده توسط این کاربر</value>
+  </data>
+  <data name="LastLoginDateTime" xml:space="preserve">
+    <value>زمان آخرین ورود به سامانه</value>
+  </data>
+  <data name="RemovedPagesCountByThisUser" xml:space="preserve">
+    <value>تعداد صفحات حذف شده توسط این کاربر</value>
+  </data>
 </root>

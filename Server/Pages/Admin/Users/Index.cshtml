@@ -36,7 +36,7 @@
 					@(Resources.DataDictionary.EmailAddress)
 				</th>
 				<th>
-					@(Resources.DataDictionary.IsEmailAddressVerified)
+					@(Resources.DataDictionary.IsVerified)
 				</th>
 				<th>
 					@(Resources.DataDictionary.Role)
@@ -52,6 +52,9 @@
 				</th>
 				<th>
 					@(Resources.DataDictionary.IsSystemic)
+				</th>
+				<th>
+					@(Resources.DataDictionary.LastLoginDateTime)
 				</th>
 				<th>
 					@(Resources.DataDictionary.InsertDateTime)
@@ -77,9 +80,13 @@
 						<a asp-page="Update" asp-route-id="@(item.Id)">
 							@(Html.DtatGetIconUpdate())
 						</a>
-						<a asp-page="Delete" asp-route-id="@(item.Id)">
-							@(Html.DtatGetIconDelete())
-						</a>
+
+						@if (item.IsUndeletable == false)
+						{
+							<a asp-page="Delete" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDelete())
+							</a>
+						}
 					</table-actions>
 
 					<td>
@@ -99,6 +106,8 @@
 					@(Html.DtatDisplayBooleanWithTd(value: item.IsProgrammer))
 
 					@(Html.DtatDisplayBooleanWithTd(value: item.IsSystemic))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.LastLoginDateTime))
 
 					@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
 

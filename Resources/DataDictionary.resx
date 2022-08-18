@@ -456,4 +456,13 @@
   <data name="UserCount" xml:space="preserve">
     <value>User Count</value>
   </data>
+  <data name="CreatedPagesCountByThisUser" xml:space="preserve">
+    <value>Created Pages Count</value>
+  </data>
+  <data name="LastLoginDateTime" xml:space="preserve">
+    <value>Last Login</value>
+  </data>
+  <data name="RemovedPagesCountByThisUser" xml:space="preserve">
+    <value>Removed Pages Count</value>
+  </data>
 </root>

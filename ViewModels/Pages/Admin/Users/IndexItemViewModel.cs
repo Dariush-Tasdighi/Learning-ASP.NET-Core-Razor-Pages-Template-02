@@ -70,6 +70,27 @@
 		// **********
 
 		// **********
+		//[System.ComponentModel.DataAnnotations.Display
+		//	(Name = nameof(Resources.DataDictionary.CreatedPagesCountByThisUser),
+		//	ResourceType = typeof(Resources.DataDictionary))]
+		//public int CreatedPagesCount { get; init; }
+		// **********
+
+		//// **********
+		//[System.ComponentModel.DataAnnotations.Display
+		//	(Name = nameof(Resources.DataDictionary.RemovedPagesCountByThisUser),
+		//	ResourceType = typeof(Resources.DataDictionary))]
+		//public int RemovedPagesCount { get; init; }
+		//// **********
+
+		// **********
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = nameof(Resources.DataDictionary.LastLoginDateTime),
+			ResourceType = typeof(Resources.DataDictionary))]
+		public System.DateTime? LastLoginDateTime { get; init; }
+		// **********
+
+		// **********
 		[System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.UpdateDateTime),
 			ResourceType = typeof(Resources.DataDictionary))]

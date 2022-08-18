@@ -56,8 +56,9 @@ namespace Server.Pages.Admin.Users
 						InsertDateTime = current.InsertDateTime,
 						UpdateDateTime = current.UpdateDateTime,
 						IsEmailAddressVerified = current.IsEmailAddressVerified,
+						LastLoginDateTime = current.UserLogins.Max(current => current.InsertDateTime),
 					})
-					.AsNoTracking()
+					//.AsNoTracking()
 					.ToListAsync()
 					;
 			}
