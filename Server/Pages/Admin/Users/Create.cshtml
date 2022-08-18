@@ -39,15 +39,15 @@
 			<section-form-field>
 				<label asp-for="ViewModel.RoleId"></label>
 
-				<select class="form-select" asp-for="ViewModel.RoleId">
+				<select class="form-select" asp-for="ViewModel.RoleId"
+						asp-items="@(new SelectList(Model.RolesViewModel,
+						nameof(ViewModels.Pages.Admin.Roles.CommonViewModel.Id),
+						nameof(ViewModels.Pages.Admin.Roles.CommonViewModel.Name)))">
+
 					<option value="@(null)" selected>
 						@(Resources.DataDictionary.WithoutRole)
 					</option>
 
-					@foreach (var item in Model?.RolesViewModel)
-					{
-						<option value="@(item.Id)">@(item.Name)</option>
-					}
 				</select>
 
 				<span asp-validation-for="ViewModel.RoleId"></span>

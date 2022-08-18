@@ -29,32 +29,16 @@
 			<section-form-field>
 				<label asp-for="ViewModel.RoleId"></label>
 
-				<select class="form-select" asp-for="ViewModel.RoleId">
-					@if (Model.ViewModel.RoleId.HasValue)
-					{
-						<option value="@(null)">
-							@(Resources.DataDictionary.WithoutRole)
-						</option>
-					}
-					else
-					{
-						<option value="@(null)" selected>
-							@(Resources.DataDictionary.WithoutRole)
-						</option>
-					}
+				<select class="form-select" asp-for="ViewModel.RoleId"
+						asp-items="@(new SelectList(Model.RolesViewModel,
+						nameof(ViewModels.Pages.Admin.Roles.CommonViewModel.Id),
+						nameof(ViewModels.Pages.Admin.Roles.CommonViewModel.Name)))">
 
-					@foreach (var item in Model?.RolesViewModel)
-					{
-						@if (item.Id == Model.ViewModel.RoleId)
-						{
-							<option value="@(item.Id)" selected>@(item.Name)</option>
-						}
-						else
-						{
-							<option value="@(item.Id)">@(item.Name)</option>
-						}
-					}
+					<option value="@(null)" selected="@(Model.ViewModel.RoleId == null)">
+						@(Resources.DataDictionary.WithoutRole)
+					</option>
 				</select>
+
 			</section-form-field>
 
 			<section-form-check>
