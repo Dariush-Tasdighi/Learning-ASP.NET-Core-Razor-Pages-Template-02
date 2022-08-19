@@ -1,12 +1,12 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "section-form-field",
-		ParentTag = "fieldset",
+		(tag: "section-page-actions",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionFormField : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class SectionPageActionsTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public SectionFormField() : base()
+		public SectionPageActionsTagHelper() : base()
 		{
 		}
 
@@ -21,13 +21,22 @@
 			// **************************************************
 
 			// **************************************************
-			var body =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "div");
+			var divCol =
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder("div");
 
-			body.AddCssClass(value: "mb-3");
+			divCol.AddCssClass(value: "col");
 
-			body.InnerHtml.AppendHtml(content: originalContents);
+			divCol.InnerHtml.AppendHtml(content: originalContents);
+			// **************************************************
+
+			// **************************************************
+			var divRow =
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder("div");
+
+			divRow.AddCssClass(value: "row");
+			divRow.AddCssClass(value: "mb-3");
+
+			divRow.InnerHtml.AppendHtml(content: divCol);
 			// **************************************************
 
 			// **************************************************
@@ -37,7 +46,7 @@
 				Microsoft.AspNetCore.Razor
 				.TagHelpers.TagMode.StartTagAndEndTag;
 
-			output.Content.SetHtmlContent(htmlContent: body);
+			output.Content.SetHtmlContent(htmlContent: divRow);
 			// **************************************************
 		}
 	}

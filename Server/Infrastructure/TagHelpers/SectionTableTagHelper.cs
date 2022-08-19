@@ -3,9 +3,10 @@
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
 		(tag: "section-table",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionTable : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class SectionTableTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public SectionTable() : base()
+		public SectionTableTagHelper() : base()
 		{
 		}
 

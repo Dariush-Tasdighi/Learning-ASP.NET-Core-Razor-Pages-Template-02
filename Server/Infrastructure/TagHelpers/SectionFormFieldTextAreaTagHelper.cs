@@ -3,7 +3,8 @@
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
 		(tag: "input",
 		ParentTag = "section-form-field")]
-	public class SectionFormFieldTextArea : Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper
+	public class SectionFormFieldTextArea :
+		Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper
 	{
 		public SectionFormFieldTextArea
 			(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator) : base(generator)

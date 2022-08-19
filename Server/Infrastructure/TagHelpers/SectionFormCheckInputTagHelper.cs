@@ -1,11 +1,12 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "textarea",
-		ParentTag = "section-form-field")]
-	public class SectionFormFieldInput : Microsoft.AspNetCore.Mvc.TagHelpers.TextAreaTagHelper
+		(tag: "input",
+		ParentTag = "section-form-check")]
+	public class SectionFormCheckInputTagHelper :
+		Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper
 	{
-		public SectionFormFieldInput
+		public SectionFormCheckInputTagHelper
 			(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator) : base(generator)
 		{
 		}
@@ -15,9 +16,9 @@
 			Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
 		{
 			Utility.CreateOrMergeAttribute
-				(name: "class", content: "form-control", output: output);
+				(name: "class", content: "form-check-input", output: output);
 
-			//output.TagName = "textarea";
+			//output.TagName = "input";
 
 			return base.ProcessAsync(context, output);
 		}

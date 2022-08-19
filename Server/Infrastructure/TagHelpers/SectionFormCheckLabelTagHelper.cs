@@ -3,9 +3,10 @@
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
 		(tag: "label",
 		ParentTag = "section-form-check")]
-	public class SectionFormCheckLabel : Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper
+	public class SectionFormCheckLabelTagHelper :
+		Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper
 	{
-		public SectionFormCheckLabel
+		public SectionFormCheckLabelTagHelper
 			(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator) : base(generator)
 		{
 		}

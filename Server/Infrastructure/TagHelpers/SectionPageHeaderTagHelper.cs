@@ -1,14 +1,21 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "section-form-footer",
-		ParentTag = "section-form",
-		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionFormFooter : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+			(tag: "section-page-header",
+			TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
+	public class SectionPageHeaderTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public SectionFormFooter() : base()
+		public SectionPageHeaderTagHelper() : base()
 		{
 		}
+
+		//public override void Process
+		//	(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
+		//	Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
+		//{
+		//	base.Process(context, output);
+		//}
 
 		public async override System.Threading.Tasks.Task ProcessAsync
 			(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
@@ -33,12 +40,14 @@
 
 			// **************************************************
 			var body =
-				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder("div");
+				new Microsoft.AspNetCore.Mvc
+				.Rendering.TagBuilder(tagName: "h3");
 
 			body.AddCssClass(value: "mb-3");
 			body.AddCssClass(value: "text-center");
 
 			body.InnerHtml.AppendHtml(content: originalContents);
+			//body.InnerHtml.AppendHtml(content: horizontalRule);
 			// **************************************************
 
 			// **************************************************
@@ -48,7 +57,6 @@
 				Microsoft.AspNetCore.Razor
 				.TagHelpers.TagMode.StartTagAndEndTag;
 
-			output.PreElement.AppendHtml(htmlContent: horizontalRule);
 			output.Content.SetHtmlContent(htmlContent: body);
 			// **************************************************
 		}

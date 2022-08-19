@@ -4,9 +4,10 @@
 		(tag: "section-form-check",
 		ParentTag = "fieldset",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionFormCheck : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class SectionFormCheckTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public SectionFormCheck() : base()
+		public SectionFormCheckTagHelper() : base()
 		{
 		}
 

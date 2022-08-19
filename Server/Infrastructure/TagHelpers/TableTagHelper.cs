@@ -4,9 +4,10 @@
 		(tag: "table",
 		ParentTag = "section-table",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class Table : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class TableTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public Table() : base()
+		public TableTagHelper() : base()
 		{
 		}
 

@@ -4,9 +4,10 @@
 		(tag: "a",
 		ParentTag = "section-form-footer",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionFormFooterLink : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class SectionFormFooterLinkTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public SectionFormFooterLink() : base()
+		public SectionFormFooterLinkTagHelper() : base()
 		{
 		}
 

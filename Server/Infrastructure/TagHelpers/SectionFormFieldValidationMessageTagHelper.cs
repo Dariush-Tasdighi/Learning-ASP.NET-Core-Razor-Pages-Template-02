@@ -1,11 +1,14 @@
-﻿namespace Infrastructure.TagHelpers
+﻿using System.Linq;
+
+namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "label",
+		(tag: "span",
 		ParentTag = "section-form-field")]
-	public class SectionFormFieldLabel : Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper
+	public class SectionFormFieldValidationMessageTagHelper :
+		Microsoft.AspNetCore.Mvc.TagHelpers.ValidationMessageTagHelper
 	{
-		public SectionFormFieldLabel
+		public SectionFormFieldValidationMessageTagHelper
 			(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator) : base(generator)
 		{
 		}
@@ -15,9 +18,9 @@
 			Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
 		{
 			Utility.CreateOrMergeAttribute
-				(name: "class", content: "form-label", output: output);
+				(name: "class", content: "text-danger", output: output);
 
-			//output.TagName = "label";
+			//output.TagName = "span";
 
 			return base.ProcessAsync(context, output);
 		}

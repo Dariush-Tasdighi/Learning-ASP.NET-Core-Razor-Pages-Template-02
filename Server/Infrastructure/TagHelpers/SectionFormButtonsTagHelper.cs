@@ -1,12 +1,13 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "section-form-header",
-		ParentTag = "fieldset",
+		(tag: "section-form-buttons",
+		ParentTag = "section-form",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionFormHeader : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class SectionFormButtonsTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public SectionFormHeader() : base()
+		public SectionFormButtonsTagHelper() : base()
 		{
 		}
 
@@ -21,22 +22,10 @@
 			// **************************************************
 
 			// **************************************************
-			var horizontalRule =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "hr");
-
-			horizontalRule.TagRenderMode =
-				Microsoft.AspNetCore.Mvc.Rendering.TagRenderMode.SelfClosing;
-
-			horizontalRule.AddCssClass(value: "mt-4");
-			// **************************************************
-
-			// **************************************************
 			var body =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "legend");
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder("div");
 
-			body.AddCssClass(value: "text-center");
+			body.AddCssClass(value: "mb-3");
 
 			body.InnerHtml.AppendHtml(content: originalContents);
 			// **************************************************
@@ -45,11 +34,11 @@
 			output.TagName = null;
 
 			output.TagMode =
-				Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag;
-			// **************************************************
+				Microsoft.AspNetCore.Razor
+				.TagHelpers.TagMode.StartTagAndEndTag;
 
 			output.Content.SetHtmlContent(htmlContent: body);
-			output.PostElement.AppendHtml(htmlContent: horizontalRule);
+			// **************************************************
 		}
 	}
 }

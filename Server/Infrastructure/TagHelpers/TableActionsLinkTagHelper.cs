@@ -4,9 +4,10 @@
 		(tag: "a",
 		ParentTag = "table-actions",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class TableActionsLink : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class TableActionsLinkTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public TableActionsLink() : base()
+		public TableActionsLinkTagHelper() : base()
 		{
 		}
 

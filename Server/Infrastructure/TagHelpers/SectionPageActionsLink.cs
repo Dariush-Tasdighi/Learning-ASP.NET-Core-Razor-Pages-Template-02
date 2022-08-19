@@ -4,7 +4,8 @@
 		(tag: "a",
 		ParentTag = "section-page-actions",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionPageActionsLink : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class SectionPageActionsLink :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
 		public SectionPageActionsLink() : base()
 		{
