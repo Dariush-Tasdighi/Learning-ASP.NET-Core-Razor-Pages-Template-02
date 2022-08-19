@@ -3,7 +3,8 @@
 namespace Infrastructure.TagHelpers.CheckThemOut
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: Constant.HtmlTag.TableData, Attributes = "page-information-view-model")]
+		(tag: Constant.HtmlTag.TableData,
+		Attributes = "page-information-view-model")]
 	public class PagerTagHelper : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
 		#region Constructor(s)
@@ -46,14 +47,17 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 			(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
 			Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
 		{
-			IUrlHelper urlHelper =
-				UrlHelperFactory.GetUrlHelper(context: ViewContext);
+			var urlHelper =
+				UrlHelperFactory.GetUrlHelper
+				(context: ViewContext);
 
 			var result =
-				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.TableData);
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
+				(tagName: Constant.HtmlTag.TableData);
 
 			var ulTag =
-				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.Unorderedlist);
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
+				(tagName: Constant.HtmlTag.Unorderedlist);
 
 			ulTag.AddCssClass(value: "pagination");
 
@@ -84,10 +88,12 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 					index == PageInformationViewModel.PageNumber - 1 ||
 					index == PageInformationViewModel.PageNumber + 1)
 				{
-					liTag = BuildListItemTag();
+					liTag =
+						BuildListItemTag();
 
 					aTag = BuildAnchorTag
-						(urlHelper: urlHelper, caption: index.ToString(), pageNumber: index);
+						(pageNumber: index,
+						urlHelper: urlHelper, caption: index.ToString());
 
 					liTag.InnerHtml.AppendHtml(content: aTag);
 
@@ -98,7 +104,8 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 			// **************************************************
 			liTag = BuildListItemTag();
 
-			aTag = BuildAnchorTag(urlHelper: urlHelper,
+			aTag = BuildAnchorTag
+				(urlHelper: urlHelper,
 				caption: Resources.ButtonCaptions.Next,
 				pageNumber: PageInformationViewModel.PageNumber + 1);
 
@@ -123,7 +130,8 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 		private static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder BuildListItemTag()
 		{
 			var tag =
-				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.ListItem);
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
+				(tagName: Constant.HtmlTag.ListItem);
 
 			tag.AddCssClass(value: "page-item");
 
@@ -134,20 +142,28 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 		#region Build Anchor Tag
 		private
 			Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
-			BuildAnchorTag(string caption, int pageNumber, IUrlHelper urlHelper)
+			BuildAnchorTag
+			(string caption, int pageNumber, IUrlHelper urlHelper)
 		{
 			var tag =
-				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder(tagName: Constant.HtmlTag.Anchor);
+				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
+				(tagName: Constant.HtmlTag.Anchor);
 
 			tag.Attributes["href"] =
 				// .Action -> using Microsoft.AspNetCore.Mvc
 				urlHelper.Action
-				(action: PageAction, values: new { PageNumber = pageNumber, PageInformationViewModel.PageSize });
+				(action: PageAction,
+				values: new { PageNumber = pageNumber, PageInformationViewModel.PageSize });
 
 			if (PageClassesEnabled)
 			{
-				string cssClass =
-					$"{PageClass} {(pageNumber == PageInformationViewModel.PageNumber ? PageSelectedClass : PageDefaultClass)}";
+				var style =
+					pageNumber ==
+					PageInformationViewModel.PageNumber ?
+					PageSelectedClass : PageDefaultClass;
+
+				var cssClass =
+					$"{PageClass} {style}";
 
 				tag.AddCssClass(value: cssClass);
 			}
