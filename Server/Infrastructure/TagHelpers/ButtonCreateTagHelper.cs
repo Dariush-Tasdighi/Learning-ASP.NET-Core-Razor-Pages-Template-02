@@ -1,12 +1,13 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-			(tag: "button-reset",
+			(tag: "button-create",
 			ParentTag = "section-form-buttons",
 			TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
-	public class ButtonReset : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class ButtonCreateTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public ButtonReset() : base()
+		public ButtonCreateTagHelper() : base()
 		{
 		}
 
@@ -16,7 +17,7 @@
 		{
 			// **************************************************
 			var icon =
-				Utility.GetIconReset();
+				Utility.GetIconCreate();
 			// **************************************************
 
 			// **************************************************
@@ -25,13 +26,13 @@
 				.Rendering.TagBuilder(tagName: "button");
 
 			body.Attributes.Add
-				(key: "type", value: "reset");
+				(key: "type", value: "submit");
 
 			body.AddCssClass(value: "btn");
-			body.AddCssClass(value: "btn-secondary");
+			body.AddCssClass(value: "btn-primary");
 
 			body.InnerHtml.AppendHtml(content: icon);
-			body.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Reset);
+			body.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Create);
 			// **************************************************
 
 			// **************************************************

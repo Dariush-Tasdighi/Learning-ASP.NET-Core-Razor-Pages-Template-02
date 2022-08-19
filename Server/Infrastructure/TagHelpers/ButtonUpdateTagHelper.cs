@@ -4,9 +4,10 @@
 			(tag: "button-update",
 			ParentTag = "section-form-buttons",
 			TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
-	public class ButtonUpdate : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class ButtonUpdateTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public ButtonUpdate() : base()
+		public ButtonUpdateTagHelper() : base()
 		{
 		}
 

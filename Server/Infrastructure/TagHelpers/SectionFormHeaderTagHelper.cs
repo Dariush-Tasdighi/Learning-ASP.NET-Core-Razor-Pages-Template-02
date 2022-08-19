@@ -1,20 +1,15 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-			(tag: "section-page-header",
-			TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionPageHeader : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+		(tag: "section-form-header",
+		ParentTag = "fieldset",
+		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
+	public class SectionFormHeaderTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public SectionPageHeader() : base()
+		public SectionFormHeaderTagHelper() : base()
 		{
 		}
-
-		//public override void Process
-		//	(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
-		//	Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
-		//{
-		//	base.Process(context, output);
-		//}
 
 		public async override System.Threading.Tasks.Task ProcessAsync
 			(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
@@ -40,24 +35,22 @@
 			// **************************************************
 			var body =
 				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "h3");
+				.Rendering.TagBuilder(tagName: "legend");
 
-			body.AddCssClass(value: "mb-3");
 			body.AddCssClass(value: "text-center");
 
 			body.InnerHtml.AppendHtml(content: originalContents);
-			//body.InnerHtml.AppendHtml(content: horizontalRule);
 			// **************************************************
 
 			// **************************************************
 			output.TagName = null;
 
 			output.TagMode =
-				Microsoft.AspNetCore.Razor
-				.TagHelpers.TagMode.StartTagAndEndTag;
+				Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag;
+			// **************************************************
 
 			output.Content.SetHtmlContent(htmlContent: body);
-			// **************************************************
+			output.PostElement.AppendHtml(htmlContent: horizontalRule);
 		}
 	}
 }

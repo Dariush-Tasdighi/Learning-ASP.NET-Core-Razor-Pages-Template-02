@@ -1,32 +1,38 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "section-form-buttons",
-		ParentTag = "section-form",
-		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class SectionFormButtons : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+			(tag: "button-reset",
+			ParentTag = "section-form-buttons",
+			TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
+	public class ButtonResetTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public SectionFormButtons() : base()
+		public ButtonResetTagHelper() : base()
 		{
 		}
 
-		public async override System.Threading.Tasks.Task ProcessAsync
+		public override void Process
 			(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
 			Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
 		{
 			// **************************************************
-			var originalContents =
-				await
-				output.GetChildContentAsync();
+			var icon =
+				Utility.GetIconReset();
 			// **************************************************
 
 			// **************************************************
 			var body =
-				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder("div");
+				new Microsoft.AspNetCore.Mvc
+				.Rendering.TagBuilder(tagName: "button");
 
-			body.AddCssClass(value: "mb-3");
+			body.Attributes.Add
+				(key: "type", value: "reset");
 
-			body.InnerHtml.AppendHtml(content: originalContents);
+			body.AddCssClass(value: "btn");
+			body.AddCssClass(value: "btn-secondary");
+
+			body.InnerHtml.AppendHtml(content: icon);
+			body.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Reset);
 			// **************************************************
 
 			// **************************************************

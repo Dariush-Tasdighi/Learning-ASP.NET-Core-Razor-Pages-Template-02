@@ -1,12 +1,13 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "table-actions",
-		ParentTag = "tr",
+		(tag: "section-form-field",
+		ParentTag = "fieldset",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
-	public class TableActions : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class SectionFormFieldTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public TableActions() : base()
+		public SectionFormFieldTagHelper() : base()
 		{
 		}
 
@@ -23,9 +24,9 @@
 			// **************************************************
 			var body =
 				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "td");
+				.Rendering.TagBuilder(tagName: "div");
 
-			body.AddCssClass(value: "text-center");
+			body.AddCssClass(value: "mb-3");
 
 			body.InnerHtml.AppendHtml(content: originalContents);
 			// **************************************************

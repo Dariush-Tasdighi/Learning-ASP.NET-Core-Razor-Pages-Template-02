@@ -1,37 +1,34 @@
 ﻿namespace Infrastructure.TagHelpers
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-			(tag: "button-create",
-			ParentTag = "section-form-buttons",
-			TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
-	public class ButtonCreate : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+		(tag: "table-actions",
+		ParentTag = "tr",
+		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.NormalOrSelfClosing)]
+	public class TableActionsTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public ButtonCreate() : base()
+		public TableActionsTagHelper() : base()
 		{
 		}
 
-		public override void Process
+		public async override System.Threading.Tasks.Task ProcessAsync
 			(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
 			Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)
 		{
 			// **************************************************
-			var icon =
-				Utility.GetIconCreate();
+			var originalContents =
+				await
+				output.GetChildContentAsync();
 			// **************************************************
 
 			// **************************************************
 			var body =
 				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "button");
+				.Rendering.TagBuilder(tagName: "td");
 
-			body.Attributes.Add
-				(key: "type", value: "submit");
+			body.AddCssClass(value: "text-center");
 
-			body.AddCssClass(value: "btn");
-			body.AddCssClass(value: "btn-primary");
-
-			body.InnerHtml.AppendHtml(content: icon);
-			body.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Create);
+			body.InnerHtml.AppendHtml(content: originalContents);
 			// **************************************************
 
 			// **************************************************

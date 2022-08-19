@@ -32,10 +32,11 @@
 				<th>
 				</th>
 				<th>
-					@(Resources.DataDictionary.Name)
+					@*نام*@
 					@*
 					@(Html.DisplayNameFor(model => model.ViewModel[0].Name))
 					*@
+					@(Resources.DataDictionary.Name)
 				</th>
 				<th>
 					@(Resources.DataDictionary.IsActive)
@@ -61,6 +62,18 @@
 				var item = Model.ViewModel[index];
 
 				<tr>
+					@*
+					<td class="text-center">
+						@(index + 1)
+					</td>
+					*@
+
+					@*
+					<td class="text-center">
+						@(Html.DtatDisplayInteger(value: index + 1))
+					</td>
+					*@
+
 					@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
 
 					<table-actions>

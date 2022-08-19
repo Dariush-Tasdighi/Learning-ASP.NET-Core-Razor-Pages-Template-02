@@ -14,11 +14,13 @@
 			}
 
 			var currentUICultureName =
-				System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToUpper();
+				System.Threading.Thread.CurrentThread
+				.CurrentUICulture.Parent.Name.ToUpper();
 
 			switch (currentUICultureName)
 			{
-				case "FA-IR":
+				case "FA":
+				case "AR":
 				{
 					var result =
 						value

@@ -4,9 +4,10 @@
 			(tag: "button-delete",
 			ParentTag = "section-form-buttons",
 			TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
-	public class ButtonDelete : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
+	public class ButtonDeleteTagHelper :
+		Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
-		public ButtonDelete() : base()
+		public ButtonDeleteTagHelper() : base()
 		{
 		}
 

@@ -61,21 +61,23 @@ namespace Server.Pages.Admin.Roles
 
 					return RedirectToPage(pageName: "Index");
 				}
+
+				return Page();
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError
+				AddToastError
 					(message: Resources.Messages.Errors.UnexpectedError);
+
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{
 				await DisposeDatabaseContextAsync();
 			}
-
-			return Page();
 		}
 
 		public async System.Threading.Tasks.Task
@@ -89,7 +91,8 @@ namespace Server.Pages.Admin.Roles
 			try
 			{
 				var fixedName =
-					Dtat.Utility.FixText(text: ViewModel.Name);
+					Dtat.Utility.FixText
+					(text: ViewModel.Name);
 
 				var foundedAny =
 					await DatabaseContext.Roles
@@ -100,7 +103,7 @@ namespace Server.Pages.Admin.Roles
 				if (foundedAny)
 				{
 					// **************************************************
-					string errorMessage = string.Format
+					var errorMessage = string.Format
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.Name);
 
@@ -126,7 +129,8 @@ namespace Server.Pages.Admin.Roles
 
 				// **************************************************
 				var fixedDescription =
-					Dtat.Utility.FixText(text: ViewModel.Description);
+					Dtat.Utility.FixText
+					(text: ViewModel.Description);
 
 				foundedItem.SetUpdateDateTime();
 
@@ -136,11 +140,11 @@ namespace Server.Pages.Admin.Roles
 				foundedItem.Description = fixedDescription;
 				// **************************************************
 
-				int affectedRows =
+				var affectedRows =
 					await DatabaseContext.SaveChangesAsync();
 
 				// **************************************************
-				string successMessage = string.Format
+				var successMessage = string.Format
 					(Resources.Messages.Successes.Updated,
 					Resources.DataDictionary.Role);
 
@@ -154,10 +158,10 @@ namespace Server.Pages.Admin.Roles
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError
+				AddToastError
 					(message: Resources.Messages.Errors.UnexpectedError);
 
-				return Page();
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{

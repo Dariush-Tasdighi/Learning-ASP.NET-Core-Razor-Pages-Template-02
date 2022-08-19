@@ -1,8 +1,8 @@
 ﻿namespace ViewModels.Pages.Admin.Roles
 {
-	public class DeleteDetailsViewModel : UpdateViewModel
+	public class DetailsOrDeleteViewModel : UpdateViewModel
 	{
-		public DeleteDetailsViewModel() : base()
+		public DetailsOrDeleteViewModel() : base()
 		{
 			InsertDateTime =
 				Domain.SeedWork.Utility.Now;
