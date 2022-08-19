@@ -27,6 +27,9 @@ namespace Server.Pages.Admin.Roles
 
 		public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
 		{
+			// Note: If you want to change default value!
+			//ViewModel.Ordering = 100;
+
 			return Page();
 		}
 
@@ -41,10 +44,12 @@ namespace Server.Pages.Admin.Roles
 			try
 			{
 				var fixedName =
-					Dtat.Utility.FixText(text: ViewModel.Name);
+					Dtat.Utility.FixText
+					(text: ViewModel.Name);
 
 				var foundedAny =
-					await DatabaseContext.Roles
+					await
+					DatabaseContext.Roles
 					.Where(current => current.Name.ToLower() == fixedName.ToLower())
 					.AnyAsync();
 
@@ -63,10 +68,11 @@ namespace Server.Pages.Admin.Roles
 
 				// **************************************************
 				var fixedDescription =
-					Dtat.Utility.FixText(text: ViewModel.Description);
+					Dtat.Utility.FixText
+					(text: ViewModel.Description);
 
-				Domain.Role role =
-					new(name: fixedName)
+				var role =
+					new Domain.Role(name: fixedName)
 					{
 						Ordering = ViewModel.Ordering,
 						IsActive = ViewModel.IsActive,
@@ -77,7 +83,7 @@ namespace Server.Pages.Admin.Roles
 					await
 					DatabaseContext.AddAsync(entity: role);
 
-				int affectedRows =
+				var affectedRows =
 					await
 					DatabaseContext.SaveChangesAsync();
 				// **************************************************

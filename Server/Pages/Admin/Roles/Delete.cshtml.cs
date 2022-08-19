@@ -24,7 +24,7 @@ namespace Server.Pages.Admin.Roles
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.Roles.DeleteDetailsViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.Roles.DetailsOrDeleteViewModel ViewModel { get; private set; }
 		// **********
 
 		public async System.Threading.Tasks.Task
@@ -42,7 +42,7 @@ namespace Server.Pages.Admin.Roles
 					await
 					DatabaseContext.Roles
 					.Where(current => current.Id == id.Value)
-					.Select(current => new ViewModels.Pages.Admin.Roles.DeleteDetailsViewModel()
+					.Select(current => new ViewModels.Pages.Admin.Roles.DetailsOrDeleteViewModel()
 					{
 						Id = current.Id,
 						Name = current.Name,
@@ -91,7 +91,7 @@ namespace Server.Pages.Admin.Roles
 					await
 					DatabaseContext.Roles
 					.Where(current => current.Id == id.Value)
-					.Select(current => new ViewModels.Pages.Admin.Roles.DeleteDetailsViewModel()
+					.Select(current => new ViewModels.Pages.Admin.Roles.DetailsOrDeleteViewModel()
 					{
 						Id = current.Id,
 						Name = current.Name,
