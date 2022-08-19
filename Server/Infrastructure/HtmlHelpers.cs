@@ -10,8 +10,28 @@
 		{
 			get
 			{
+				//return null;
+				//return string.Empty;
 				return "-----";
 			}
+		}
+
+		public static Microsoft.AspNetCore.Html
+			.IHtmlContent DtatDisplayRowNumberWithTd
+			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
+		{
+			var td =
+				new Microsoft.AspNetCore.Mvc
+				.Rendering.TagBuilder(tagName: "td");
+
+			td.AddCssClass(value: "text-center");
+
+			var innerHtml =
+				DtatDisplayInteger(html: html, value: value);
+
+			td.InnerHtml.AppendHtml(content: innerHtml);
+
+			return td;
 		}
 
 		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayBoolean
@@ -70,7 +90,7 @@
 		{
 			if (value.HasValue == false)
 			{
-				return html.Raw(DefaultValue);
+				return html.Raw(value: DefaultValue);
 			}
 
 			var result =
@@ -79,7 +99,7 @@
 			result =
 				Convert.DigitsToUnicode(value: result);
 
-			return html.Raw(result);
+			return html.Raw(value: result);
 		}
 
 		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayIntegerWithTd
@@ -100,29 +120,12 @@
 			return td;
 		}
 
-		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayRowNumberWithTd
-			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
-		{
-			var td =
-				new Microsoft.AspNetCore.Mvc
-				.Rendering.TagBuilder(tagName: "td");
-
-			td.AddCssClass(value: "text-center");
-
-			var innerHtml =
-				DtatDisplayInteger(html: html, value: value);
-
-			td.InnerHtml.AppendHtml(content: innerHtml);
-
-			return td;
-		}
-
 		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayDateTime
 			(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, System.DateTime? value)
 		{
 			if (value.HasValue == false)
 			{
-				return html.Raw(DefaultValue);
+				return html.Raw(value: DefaultValue);
 			}
 
 			var result =
@@ -132,7 +135,7 @@
 			result =
 				Convert.DigitsToUnicode(value: result);
 
-			return html.Raw(result);
+			return html.Raw(value: result);
 		}
 
 		public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayDateTimeWithTd

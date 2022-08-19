@@ -19,6 +19,7 @@
 			switch (currentUICultureName)
 			{
 				case "FA-IR":
+				case "AR-SU":
 				{
 					var result =
 						value
