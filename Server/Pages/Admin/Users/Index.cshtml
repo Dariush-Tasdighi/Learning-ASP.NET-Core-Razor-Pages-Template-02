@@ -81,7 +81,7 @@
 							@(Html.DtatGetIconUpdate())
 						</a>
 
-						@if (item.IsUndeletable == false)
+						@if ((item.IsUndeletable == false) && (item.IsProgrammer == false))
 						{
 							<a asp-page="Delete" asp-route-id="@(item.Id)">
 								@(Html.DtatGetIconDelete())

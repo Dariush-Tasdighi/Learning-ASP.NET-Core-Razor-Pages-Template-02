@@ -107,7 +107,7 @@ namespace Server.Pages.Admin.Users
 					return RedirectToPage(pageName: "Index");
 				}
 
-				// TO DO: Check User Id and Role
+				// TO DO: Check User Id (and maybe User Role)
 				if (foundedItem.IsProgrammer)
 				{
 					// **************************************************

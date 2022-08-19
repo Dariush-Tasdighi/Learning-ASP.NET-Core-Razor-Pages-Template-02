@@ -22,6 +22,7 @@ namespace Server.Pages.Admin.Users
 		}
 		#endregion /Constructor(s)
 
+		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<CreateModel> Logger { get; }
 		// **********
@@ -36,6 +37,7 @@ namespace Server.Pages.Admin.Users
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.Users.CreateViewModel ViewModel { get; set; }
 		// **********
+		#endregion /Property(ies)
 
 		#region OnGet
 		public async System.Threading.Tasks.Task

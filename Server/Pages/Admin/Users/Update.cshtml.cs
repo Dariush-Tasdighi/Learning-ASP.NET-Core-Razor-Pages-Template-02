@@ -10,7 +10,8 @@ namespace Server.Pages.Admin.Users
 	{
 		#region Constructor(s)
 		public UpdateModel(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
+			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) :
+			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
 
@@ -22,6 +23,7 @@ namespace Server.Pages.Admin.Users
 		}
 		#endregion /Constructor(s)
 
+		#region Property(ies)
 		// **********
 		private Microsoft.Extensions.Logging.ILogger<UpdateModel> Logger { get; }
 		// **********
@@ -36,6 +38,7 @@ namespace Server.Pages.Admin.Users
 		[Microsoft.AspNetCore.Mvc.BindProperty]
 		public ViewModels.Pages.Admin.Users.UpdateViewModel ViewModel { get; set; }
 		// **********
+		#endregion /Property(ies)
 
 		#region OnGet
 		public async System.Threading.Tasks.Task
