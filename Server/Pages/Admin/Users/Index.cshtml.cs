@@ -43,6 +43,7 @@ namespace Server.Pages.Admin.Users
 					await
 					DatabaseContext.Users
 					.OrderBy(current => current.Ordering)
+					//.ThenBy(current => current.EmailAddress)
 					.Select(current => new ViewModels.Pages.Admin.Users.IndexItemViewModel
 					{
 						Id = current.Id,

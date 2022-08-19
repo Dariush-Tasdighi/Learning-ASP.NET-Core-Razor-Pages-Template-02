@@ -158,6 +158,7 @@ namespace Server.Pages.Admin.Users
 			RolesViewModel =
 				await DatabaseContext.Roles
 				.OrderBy(current => current.Ordering)
+				.ThenBy(current => current.Name)
 				.Select(current => new ViewModels.Pages.Admin.Roles.CommonViewModel
 				{
 					Id = current.Id,
