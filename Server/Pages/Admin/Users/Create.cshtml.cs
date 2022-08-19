@@ -133,7 +133,7 @@ namespace Server.Pages.Admin.Users
 				AddToastSuccess(message: successMessage);
 				// **************************************************
 
-				return RedirectToPage(pageName: "/Index");
+				return RedirectToPage(pageName: "Index");
 			}
 			catch (System.Exception ex)
 			{
