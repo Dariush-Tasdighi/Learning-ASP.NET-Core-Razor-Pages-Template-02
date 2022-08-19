@@ -46,21 +46,23 @@ namespace Server.Pages.Admin.Users
 			try
 			{
 				await SetAccessibleRole();
+
+				return Page();
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError(message:
-					Resources.Messages.Errors.UnexpectedError);
+				AddToastError
+					(message: Resources.Messages.Errors.UnexpectedError);
+
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{
 				await DisposeDatabaseContextAsync();
 			}
-
-			return Page();
 		}
 		#endregion /OnGet
 
@@ -85,7 +87,7 @@ namespace Server.Pages.Admin.Users
 				if (foundedAny)
 				{
 					// **************************************************
-					string errorMessage = string.Format
+					var errorMessage = string.Format
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.EmailAddress);
 
@@ -97,8 +99,9 @@ namespace Server.Pages.Admin.Users
 				}
 
 				// **************************************************
-				string hashedPassword =
-					Dtat.Security.Hashing.GetSha256(text: ViewModel.Password);
+				var hashedPassword =
+					Dtat.Security.Hashing.GetSha256
+					(text: ViewModel.Password);
 
 				Domain.User user =
 					new(emailAddress: ViewModel.EmailAddress)
@@ -117,13 +120,13 @@ namespace Server.Pages.Admin.Users
 					await
 					DatabaseContext.AddAsync(entity: user);
 
-				int affectedRow =
+				var affectedRow =
 					await
 					DatabaseContext.SaveChangesAsync();
 				// **************************************************
 
 				// **************************************************
-				string successMessage = string.Format
+				var successMessage = string.Format
 					(Resources.Messages.Successes.Created,
 					Resources.DataDictionary.User);
 
@@ -137,10 +140,10 @@ namespace Server.Pages.Admin.Users
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError
+				AddToastError
 					(message: Resources.Messages.Errors.UnexpectedError);
 
-				return Page();
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{

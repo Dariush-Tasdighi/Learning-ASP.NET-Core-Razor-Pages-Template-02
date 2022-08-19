@@ -40,6 +40,8 @@ namespace Server.Pages.Admin.Users
 				{
 					AddToastError
 						(message: Resources.Messages.Errors.IdIsNull);
+
+					return RedirectToPage(pageName: "Index");
 				}
 
 				ViewModel =
@@ -63,22 +65,26 @@ namespace Server.Pages.Admin.Users
 				{
 					AddToastError
 						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+					return RedirectToPage(pageName: "Index");
 				}
+
+				return Page();
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError
+				AddToastError
 					(message: Resources.Messages.Errors.UnexpectedError);
+
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{
 				await DisposeDatabaseContextAsync();
 			}
-
-			return Page();
 		}
 		#endregion /OnGet
 
@@ -88,7 +94,10 @@ namespace Server.Pages.Admin.Users
 		{
 			if (id.HasValue == false)
 			{
-				return Page();
+				AddToastError
+					(message: Resources.Messages.Errors.IdIsNull);
+
+				return RedirectToPage(pageName: "Index");
 			}
 
 			try
@@ -96,7 +105,7 @@ namespace Server.Pages.Admin.Users
 				var foundedItem =
 					await
 					DatabaseContext.Users
-					.Where(current => current.Id == id)
+					.Where(current => current.Id == id.Value)
 					.FirstOrDefaultAsync();
 
 				if (foundedItem == null)
@@ -111,7 +120,7 @@ namespace Server.Pages.Admin.Users
 				if (foundedItem.IsProgrammer)
 				{
 					// **************************************************
-					string errorMessage = string.Format
+					var errorMessage = string.Format
 						(Resources.Messages.Errors.UnableTo,
 						Resources.ButtonCaptions.Delete,
 						Resources.DataDictionary.User);
@@ -125,7 +134,7 @@ namespace Server.Pages.Admin.Users
 				if (foundedItem.IsUndeletable)
 				{
 					// **************************************************
-					string errorMessage = string.Format
+					var errorMessage = string.Format
 						(Resources.Messages.Errors.UnableTo,
 						Resources.ButtonCaptions.Delete,
 						Resources.DataDictionary.User);
@@ -136,12 +145,15 @@ namespace Server.Pages.Admin.Users
 					return RedirectToPage(pageName: "Index");
 				}
 
-				DatabaseContext.Remove(entity: foundedItem);
+				var entityEntry =
+					DatabaseContext.Remove(entity: foundedItem);
 
-				await DatabaseContext.SaveChangesAsync();
+				var affectedRows =
+					await
+					DatabaseContext.SaveChangesAsync();
 
 				// **************************************************
-				string successMessage = string.Format
+				var successMessage = string.Format
 					(Resources.Messages.Successes.Deleted,
 					Resources.DataDictionary.Role);
 

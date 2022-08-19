@@ -59,7 +59,7 @@ namespace Server.Pages.Admin.Users
 				ViewModel =
 					await
 					DatabaseContext.Users
-					.Where(current => current.Id == id)
+					.Where(current => current.Id == id.Value)
 					.Select(current => new ViewModels.Pages.Admin.Users.UpdateViewModel
 					{
 						Id = current.Id,
@@ -70,7 +70,8 @@ namespace Server.Pages.Admin.Users
 						EmailAddress = current.EmailAddress,
 						IsUndeletable = current.IsUndeletable,
 						AdminDescription = current.AdminDescription,
-					}).FirstOrDefaultAsync();
+					})
+					.FirstOrDefaultAsync();
 
 				if (ViewModel == null)
 				{
@@ -79,27 +80,29 @@ namespace Server.Pages.Admin.Users
 
 					return RedirectToPage(pageName: "Index");
 				}
+
+				return Page();
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError
+				AddToastError
 					(message: Resources.Messages.Errors.UnexpectedError);
+
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{
 				await DisposeDatabaseContextAsync();
 			}
-
-			return Page();
 		}
 		#endregion /OnGet
 
 		#region OnPost
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 		{
 			if (ModelState.IsValid == false)
 			{
@@ -110,7 +113,7 @@ namespace Server.Pages.Admin.Users
 			{
 				var foundedItem =
 					await DatabaseContext.Users
-					.Where(current => current.Id == id)
+					.Where(current => current.Id == ViewModel.Id)
 					.FirstOrDefaultAsync();
 
 				if (foundedItem == null)
@@ -122,8 +125,9 @@ namespace Server.Pages.Admin.Users
 				}
 
 				// **************************************************
-				string? fixedAdminDescription =
-					Dtat.Utility.FixText(text: ViewModel.AdminDescription);
+				var fixedAdminDescription =
+					Dtat.Utility.FixText
+					(text: ViewModel.AdminDescription);
 
 				foundedItem.SetUpdateDateTime();
 
@@ -135,19 +139,15 @@ namespace Server.Pages.Admin.Users
 				foundedItem.AdminDescription = fixedAdminDescription;
 				// **************************************************
 
-				//var isValid =
-				//	Domain.SeedWork.ValidationHelper.IsValid(entity: foundedItem);
-
-				//var results =
-				//	Domain.SeedWork.ValidationHelper.GetValidationResults(entity: foundedItem);
+				var affectedRows =
+					await DatabaseContext.SaveChangesAsync();
 
 				// **************************************************
-				int affectedRows =
-						await DatabaseContext.SaveChangesAsync();
-
-				string successMessage = string.Format
+				var successMessage = string.Format
 					(Resources.Messages.Successes.Updated,
 					Resources.DataDictionary.User);
+
+				AddToastSuccess(message: successMessage);
 				// **************************************************
 
 				return RedirectToPage(pageName: "Index");
@@ -157,10 +157,10 @@ namespace Server.Pages.Admin.Users
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError
+				AddToastError
 					(message: Resources.Messages.Errors.UnexpectedError);
 
-				return Page();
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{
