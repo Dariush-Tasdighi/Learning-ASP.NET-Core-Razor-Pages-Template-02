@@ -35,6 +35,8 @@ namespace Server.Pages.Admin.Roles
 				{
 					AddToastError
 						(message: Resources.Messages.Errors.IdIsNull);
+
+					return RedirectToPage(pageName: "Index");
 				}
 
 				ViewModel =
@@ -58,22 +60,26 @@ namespace Server.Pages.Admin.Roles
 				{
 					AddToastError
 						(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+					return RedirectToPage(pageName: "Index");
 				}
+
+				return Page();
 			}
 			catch (System.Exception ex)
 			{
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError
+				AddToastError
 					(message: Resources.Messages.Errors.UnexpectedError);
+
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{
 				await DisposeDatabaseContextAsync();
 			}
-
-			return Page();
 		}
 	}
 }

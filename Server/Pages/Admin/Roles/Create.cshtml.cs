@@ -56,7 +56,7 @@ namespace Server.Pages.Admin.Roles
 				if (foundedAny)
 				{
 					// **************************************************
-					string errorMessage = string.Format
+					var errorMessage = string.Format
 						(Resources.Messages.Errors.AlreadyExists,
 						Resources.DataDictionary.Name);
 
@@ -89,7 +89,7 @@ namespace Server.Pages.Admin.Roles
 				// **************************************************
 
 				// **************************************************
-				string successMessage = string.Format
+				var successMessage = string.Format
 					(Resources.Messages.Successes.Created,
 					Resources.DataDictionary.Role);
 
@@ -105,10 +105,10 @@ namespace Server.Pages.Admin.Roles
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 
-				AddPageError
+				AddToastError
 					(message: Resources.Messages.Errors.UnexpectedError);
 
-				return Page();
+				return RedirectToPage(pageName: "Index");
 			}
 			finally
 			{
