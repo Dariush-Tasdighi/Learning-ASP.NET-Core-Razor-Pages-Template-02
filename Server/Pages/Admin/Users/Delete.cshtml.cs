@@ -26,7 +26,7 @@ namespace Server.Pages.Admin.Users
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.Users.DeleteDetailsViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel ViewModel { get; private set; }
 		// **********
 		#endregion /Porperty(ies)
 
@@ -48,16 +48,21 @@ namespace Server.Pages.Admin.Users
 					await
 					DatabaseContext.Users
 					.Where(current => current.Id == id.Value)
-					.Select(current => new ViewModels.Pages.Admin.Users.DeleteDetailsViewModel
+					.Select(current => new ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel
 					{
 						Id = current.Id,
 						Role = current.Role.Name,
-						IsActive = current.IsActive,
-						FullName = current.FullName,
 						Ordering = current.Ordering,
+						Username = current.Username,
+						FullName = current.FullName,
+						IsActive = current.IsActive,
 						EmailAddress = current.EmailAddress,
+						IsRoleActive = current.Role.IsActive,
+						CellPhoneNumber = current.CellPhoneNumber,
+						IsProfilePublic = current.IsProfilePublic,
 						AdminDescription = current.AdminDescription,
 						IsEmailAddressVerified = current.IsEmailAddressVerified,
+						IsCellPhoneNumberVerified = current.IsCellPhoneNumberVerified,
 					})
 					.FirstOrDefaultAsync();
 

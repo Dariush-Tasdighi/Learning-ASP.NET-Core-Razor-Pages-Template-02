@@ -1,8 +1,8 @@
 ﻿namespace ViewModels.Pages.Admin.Users
 {
-	public class DetailsViewModel : object
+	public class DetailsOrDeleteViewModel : object
 	{
-		public DetailsViewModel() : base()
+		public DetailsOrDeleteViewModel() : base()
 		{
 		}
 

@@ -25,7 +25,7 @@ namespace Server.Pages.Admin.Users
 		// **********
 
 		// **********
-		public ViewModels.Pages.Admin.Users.DetailsViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel ViewModel { get; private set; }
 		// **********
 		#endregion /Property(ies)
 
@@ -47,7 +47,7 @@ namespace Server.Pages.Admin.Users
 					await
 					DatabaseContext.Users
 					.Where(current => current.Id == id)
-					.Select(current => new ViewModels.Pages.Admin.Users.DetailsViewModel
+					.Select(current => new ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel
 					{
 						Id = current.Id,
 						Role = current.Role.Name,
