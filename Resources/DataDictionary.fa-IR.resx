@@ -459,4 +459,13 @@
   <data name="UserCount" xml:space="preserve">
     <value>تعداد کاربران</value>
   </data>
+  <data name="PageCategories" xml:space="preserve">
+    <value>طبقه‌بندی‌های صفحه</value>
+  </data>
+  <data name="PageCount" xml:space="preserve">
+    <value>تعداد صفحات</value>
+  </data>
+  <data name="PageCategory" xml:space="preserve">
+    <value>طبقه‌بندی صفحه</value>
+  </data>
 </root>

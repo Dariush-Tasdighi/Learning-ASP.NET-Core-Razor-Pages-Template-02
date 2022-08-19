@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.Roles
+namespace Server.Pages.Admin.PageCategorys
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constants.Role.Admin)]
@@ -22,7 +22,7 @@ namespace Server.Pages.Admin.Roles
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.Roles.CreateViewModel ViewModel { get; set; }
+		public ViewModels.Pages.Admin.PageCategories.CreateViewModel ViewModel { get; set; }
 		// **********
 
 		public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
@@ -49,7 +49,7 @@ namespace Server.Pages.Admin.Roles
 
 				var foundedAny =
 					await
-					DatabaseContext.Roles
+					DatabaseContext.PageCategories
 					.Where(current => current.Name.ToLower() == fixedName.ToLower())
 					.AnyAsync();
 
@@ -71,8 +71,8 @@ namespace Server.Pages.Admin.Roles
 					Dtat.Utility.FixText
 					(text: ViewModel.Description);
 
-				var role =
-					new Domain.Role(name: fixedName)
+				var pageCategory =
+					new Domain.PageCategory(name: fixedName)
 					{
 						Ordering = ViewModel.Ordering,
 						IsActive = ViewModel.IsActive,
@@ -81,7 +81,7 @@ namespace Server.Pages.Admin.Roles
 
 				var entityEntry =
 					await
-					DatabaseContext.AddAsync(entity: role);
+					DatabaseContext.AddAsync(entity: pageCategory);
 
 				var affectedRows =
 					await
@@ -91,7 +91,7 @@ namespace Server.Pages.Admin.Roles
 				// **************************************************
 				var successMessage = string.Format
 					(Resources.Messages.Successes.Created,
-					Resources.DataDictionary.Role);
+					Resources.DataDictionary.PageCategory);
 
 				AddToastSuccess(message: successMessage);
 				// **************************************************

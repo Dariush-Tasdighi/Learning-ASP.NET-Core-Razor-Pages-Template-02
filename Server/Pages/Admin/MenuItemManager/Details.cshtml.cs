@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 namespace Server.Pages.Admin.MenuItemManager
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Infrastructure.Constant.Role.Admin)]
+		(Roles = Infrastructure.Constants.Role.Admin)]
 	public class DetailsModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public DetailsModel

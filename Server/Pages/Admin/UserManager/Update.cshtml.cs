@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Server.Pages.Admin.UserManager
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Infrastructure.Constant.Role.Admin)]
+		(Roles = Infrastructure.Constants.Role.Admin)]
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)

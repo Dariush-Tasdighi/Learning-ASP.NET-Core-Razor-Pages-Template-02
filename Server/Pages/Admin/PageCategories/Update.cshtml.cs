@@ -2,28 +2,29 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.Roles
+namespace Server.Pages.Admin.PageCategorys
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constants.Role.Admin)]
-	public class DeleteModel : Infrastructure.BasePageModelWithDatabase
+	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
-		public DeleteModel
+		public UpdateModel
 			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<DeleteModel> logger) :
+			Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) :
 			base(databaseContext: databaseContext)
 		{
 			Logger = logger;
+
 			ViewModel = new();
 		}
 
 		// **********
-		private Microsoft.Extensions.Logging.ILogger<DeleteModel> Logger { get; }
+		private Microsoft.Extensions.Logging.ILogger<UpdateModel> Logger { get; }
 		// **********
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.Roles.DetailsOrDeleteViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.PageCategories.UpdateViewModel ViewModel { get; set; }
 		// **********
 
 		public async System.Threading.Tasks.Task
@@ -41,18 +42,15 @@ namespace Server.Pages.Admin.Roles
 
 				ViewModel =
 					await
-					DatabaseContext.Roles
+					DatabaseContext.PageCategories
 					.Where(current => current.Id == id.Value)
-					.Select(current => new ViewModels.Pages.Admin.Roles.DetailsOrDeleteViewModel()
+					.Select(current => new ViewModels.Pages.Admin.PageCategories.UpdateViewModel()
 					{
 						Id = current.Id,
 						Name = current.Name,
 						IsActive = current.IsActive,
 						Ordering = current.Ordering,
-						UserCount = current.Users.Count,
 						Description = current.Description,
-						InsertDateTime = current.InsertDateTime,
-						UpdateDateTime = current.UpdateDateTime,
 					})
 					.FirstOrDefaultAsync();
 
@@ -83,42 +81,42 @@ namespace Server.Pages.Admin.Roles
 		}
 
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 		{
+			if (ModelState.IsValid == false)
+			{
+				return Page();
+			}
+
 			try
 			{
-				if (id.HasValue == false)
-				{
-					AddToastError
-						(message: Resources.Messages.Errors.IdIsNull);
+				var fixedName =
+					Dtat.Utility.FixText
+					(text: ViewModel.Name);
 
-					return RedirectToPage(pageName: "Index");
-				}
-
-				var hasAnyChildren =
-					await
-					DatabaseContext.Users
-					.Where(current => current.RoleId == id.Value)
+				var foundedAny =
+					await DatabaseContext.PageCategories
+					.Where(current => current.Id != ViewModel.Id)
+					.Where(current => current.Name.ToLower() == fixedName.ToLower())
 					.AnyAsync();
 
-				if (hasAnyChildren)
+				if (foundedAny)
 				{
 					// **************************************************
 					var errorMessage = string.Format
-						(Resources.Messages.Errors.CascadeDelete,
-						Resources.DataDictionary.Role);
+						(Resources.Messages.Errors.AlreadyExists,
+						Resources.DataDictionary.Name);
 
-					AddToastError(message: errorMessage);
+					AddPageError(message: errorMessage);
 					// **************************************************
 
-					return RedirectToPage(pageName: "Index");
+					return Page();
 				}
 
-				// **************************************************
 				var foundedItem =
 					await
-					DatabaseContext.Roles
-					.Where(current => current.Id == id.Value)
+					DatabaseContext.PageCategories
+					.Where(current => current.Id == ViewModel.Id)
 					.FirstOrDefaultAsync();
 
 				if (foundedItem == null)
@@ -129,15 +127,26 @@ namespace Server.Pages.Admin.Roles
 					return RedirectToPage(pageName: "Index");
 				}
 
-				DatabaseContext.Remove(entity: foundedItem);
-
-				await DatabaseContext.SaveChangesAsync();
 				// **************************************************
+				var fixedDescription =
+					Dtat.Utility.FixText
+					(text: ViewModel.Description);
+
+				foundedItem.SetUpdateDateTime();
+
+				foundedItem.Name = fixedName;
+				foundedItem.Ordering = ViewModel.Ordering;
+				foundedItem.IsActive = ViewModel.IsActive;
+				foundedItem.Description = fixedDescription;
+				// **************************************************
+
+				var affectedRows =
+					await DatabaseContext.SaveChangesAsync();
 
 				// **************************************************
 				var successMessage = string.Format
-					(Resources.Messages.Successes.Deleted,
-					Resources.DataDictionary.Role);
+					(Resources.Messages.Successes.Updated,
+					Resources.DataDictionary.PageCategory);
 
 				AddToastSuccess(message: successMessage);
 				// **************************************************

@@ -1,0 +1,65 @@
+﻿@page
+@model Server.Pages.Admin.PageCategorys.UpdateModel
+
+@{
+	var pageTitle =
+		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.PageCategory}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<input type="hidden" asp-for="ViewModel.Id" />
+
+			<section-form-field>
+				<label asp-for="ViewModel.Name"></label>
+				<input asp-for="ViewModel.Name" />
+				<span asp-validation-for="ViewModel.Name"></span>
+			</section-form-field>
+
+			<section-form-check>
+				<input asp-for="ViewModel.IsActive" />
+				<label asp-for="ViewModel.IsActive"></label>
+			</section-form-check>
+
+			<section-form-field>
+				<label asp-for="ViewModel.Ordering"></label>
+				<input asp-for="ViewModel.Ordering" />
+				<span asp-validation-for="ViewModel.Ordering"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.Description"></label>
+				<textarea asp-for="ViewModel.Description"></textarea>
+				<span asp-validation-for="ViewModel.Description"></span>
+			</section-form-field>
+		</fieldset>
+
+		<section-form-buttons>
+			<button-update />
+			<button-reset />
+		</section-form-buttons>
+
+		<section-form-footer>
+			<a asp-page="Index">
+				@(Html.DtatGetLinkCaptionForList())
+			</a>
+			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDetails())
+			</a>
+			<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDelete())
+			</a>
+		</section-form-footer>
+	</section-form>
+
+</form>

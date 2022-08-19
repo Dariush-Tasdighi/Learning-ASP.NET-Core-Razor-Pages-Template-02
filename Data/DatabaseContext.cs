@@ -22,6 +22,8 @@ namespace Data
 
 		public Microsoft.EntityFrameworkCore.DbSet<Domain.UserLogin> UserLogins { get; set; }
 
+		public Microsoft.EntityFrameworkCore.DbSet<Domain.PageCategory> PageCategories { get; set; }
+
 		protected override void OnConfiguring
 			(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
 		{

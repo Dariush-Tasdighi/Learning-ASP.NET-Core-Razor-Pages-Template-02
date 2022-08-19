@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.Roles
+namespace Server.Pages.Admin.PageCategorys
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constants.Role.Admin)]
@@ -17,7 +17,7 @@ namespace Server.Pages.Admin.Roles
 
 			ViewModel =
 				new System.Collections.Generic.List
-				<ViewModels.Pages.Admin.Roles.IndexItemViewModel>();
+				<ViewModels.Pages.Admin.PageCategories.IndexItemViewModel>();
 		}
 
 		// **********
@@ -26,7 +26,7 @@ namespace Server.Pages.Admin.Roles
 
 		// **********
 		public System.Collections.Generic.IList
-			<ViewModels.Pages.Admin.Roles.IndexItemViewModel> ViewModel
+			<ViewModels.Pages.Admin.PageCategories.IndexItemViewModel> ViewModel
 		{ get; private set; }
 		// **********
 
@@ -37,16 +37,16 @@ namespace Server.Pages.Admin.Roles
 			{
 				ViewModel =
 					await
-					DatabaseContext.Roles
+					DatabaseContext.PageCategories
 					.OrderBy(current => current.Ordering)
 					.ThenBy(current => current.Name)
-					.Select(current => new ViewModels.Pages.Admin.Roles.IndexItemViewModel
+					.Select(current => new ViewModels.Pages.Admin.PageCategories.IndexItemViewModel
 					{
 						Id = current.Id,
 						Name = current.Name,
 						IsActive = current.IsActive,
 						Ordering = current.Ordering,
-						UserCount = current.Users.Count,
+						//PageCount = current.Pages.Count,
 						InsertDateTime = current.InsertDateTime,
 						UpdateDateTime = current.UpdateDateTime,
 					})
@@ -55,20 +55,6 @@ namespace Server.Pages.Admin.Roles
 			}
 			catch (System.Exception ex)
 			{
-				//Logger.Log
-				//	(logLevel: LogLevel.Error, message: ex.Message);
-
-				// LogError() -> using Microsoft.Extensions.Logging;
-				//Logger.LogError
-				//	(message: ex.Message);
-
-				//Logger.LogCritical();
-				//Logger.LogError();
-				//Logger.LogWarning();
-				//Logger.LogInformation();
-				//Logger.LogDebug();
-				//Logger.LogTrace();
-
 				Logger.LogError
 					(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
 

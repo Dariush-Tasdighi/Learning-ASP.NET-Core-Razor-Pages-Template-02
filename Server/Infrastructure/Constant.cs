@@ -1,8 +1,8 @@
 ﻿namespace Infrastructure
 {
-	public static class Constant
+	public static class Constants
 	{
-		static Constant()
+		static Constants()
 		{
 		}
 

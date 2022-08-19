@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.Roles
+namespace Server.Pages.Admin.PageCategorys
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constants.Role.Admin)]
@@ -23,7 +23,7 @@ namespace Server.Pages.Admin.Roles
 
 		// **********
 		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public ViewModels.Pages.Admin.Roles.DetailsOrDeleteViewModel ViewModel { get; private set; }
+		public ViewModels.Pages.Admin.PageCategories.DetailsOrDeleteViewModel ViewModel { get; private set; }
 		// **********
 
 		public async System.Threading.Tasks.Task
@@ -41,15 +41,15 @@ namespace Server.Pages.Admin.Roles
 
 				ViewModel =
 					await
-					DatabaseContext.Roles
+					DatabaseContext.PageCategories
 					.Where(current => current.Id == id.Value)
-					.Select(current => new ViewModels.Pages.Admin.Roles.DetailsOrDeleteViewModel()
+					.Select(current => new ViewModels.Pages.Admin.PageCategories.DetailsOrDeleteViewModel()
 					{
 						Id = current.Id,
 						Name = current.Name,
 						IsActive = current.IsActive,
 						Ordering = current.Ordering,
-						UserCount = current.Users.Count,
+						//PageCount = current.Pages.Count,
 						Description = current.Description,
 						InsertDateTime = current.InsertDateTime,
 						UpdateDateTime = current.UpdateDateTime,
@@ -95,29 +95,30 @@ namespace Server.Pages.Admin.Roles
 					return RedirectToPage(pageName: "Index");
 				}
 
-				var hasAnyChildren =
-					await
-					DatabaseContext.Users
-					.Where(current => current.RoleId == id.Value)
-					.AnyAsync();
+				// TODO
+				//var hasAnyChildren =
+				//	await
+				//	DatabaseContext.Users
+				//	.Where(current => current.PageCategoryId == id.Value)
+				//	.AnyAsync();
 
-				if (hasAnyChildren)
-				{
-					// **************************************************
-					var errorMessage = string.Format
-						(Resources.Messages.Errors.CascadeDelete,
-						Resources.DataDictionary.Role);
+				//if (hasAnyChildren)
+				//{
+				//	// **************************************************
+				//	var errorMessage = string.Format
+				//		(Resources.Messages.Errors.CascadeDelete,
+				//		Resources.DataDictionary.PageCategory);
 
-					AddToastError(message: errorMessage);
-					// **************************************************
+				//	AddToastError(message: errorMessage);
+				//	// **************************************************
 
-					return RedirectToPage(pageName: "Index");
-				}
+				//	return RedirectToPage(pageName: "Index");
+				//}
 
 				// **************************************************
 				var foundedItem =
 					await
-					DatabaseContext.Roles
+					DatabaseContext.PageCategories
 					.Where(current => current.Id == id.Value)
 					.FirstOrDefaultAsync();
 
@@ -137,7 +138,7 @@ namespace Server.Pages.Admin.Roles
 				// **************************************************
 				var successMessage = string.Format
 					(Resources.Messages.Successes.Deleted,
-					Resources.DataDictionary.Role);
+					Resources.DataDictionary.PageCategory);
 
 				AddToastSuccess(message: successMessage);
 				// **************************************************

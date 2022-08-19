@@ -456,4 +456,13 @@
   <data name="UserCount" xml:space="preserve">
     <value>User Count</value>
   </data>
+  <data name="PageCategories" xml:space="preserve">
+    <value>Page Categories</value>
+  </data>
+  <data name="PageCount" xml:space="preserve">
+    <value>Page Count</value>
+  </data>
+  <data name="PageCategory" xml:space="preserve">
+    <value>Page Category</value>
+  </data>
 </root>
