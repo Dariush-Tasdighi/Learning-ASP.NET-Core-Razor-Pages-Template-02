@@ -27,7 +27,7 @@
 			"destination": "wwwroot/lib/tinymce/"
 		},
 		{
-			"library": "flag-icon-css@6.6.4",
+			"library": "flag-icon-css@6.6.6",
 			"destination": "wwwroot/lib/flag-icon-css/"
 		},
 		{
