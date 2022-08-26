@@ -35,6 +35,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		try
 		{
+			//if(id == null)
 			if (id.HasValue == false)
 			{
 				AddToastError
