@@ -62,7 +62,7 @@ namespace Server.Pages.Admin.MenuItemManager
 
 
 		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostDeleteAsync(System.Guid? id)
+			<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
 		{
 			try
 			{
