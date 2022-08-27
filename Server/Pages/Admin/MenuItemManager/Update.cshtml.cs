@@ -148,6 +148,7 @@ namespace Server.Pages.Admin.MenuItemManager
 					foundedItem.Ordering = ViewModel.Ordering;
 					foundedItem.IsUndeletable = ViewModel.IsUndeletable;
 					foundedItem.IconPosition = ViewModel.IconPosition;
+					foundedItem.Link = ViewModel.Link;
 
 					foundedItem.SetUpdateDateTime();
 					// **************************************************
