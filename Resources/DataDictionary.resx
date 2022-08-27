@@ -468,4 +468,7 @@
   <data name="RowNumber" xml:space="preserve">
     <value>#</value>
   </data>
+  <data name="LastLoginDateTime" xml:space="preserve">
+    <value>Last Login Date Time</value>
+  </data>
 </root>

@@ -6,7 +6,7 @@ namespace Server.Pages.Admin.Users
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constants.Role.Admin)]
-	public class CreateModel : Infrastructure.BasePageModelWithDatabase
+	public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		#region Constructor(s)
 		public CreateModel(Data.DatabaseContext databaseContext,
