@@ -103,6 +103,10 @@ namespace Server.Pages.Admin.Users
 					Dtat.Security.Hashing.GetSha256
 					(text: ViewModel.Password);
 
+				var fixedDescription =
+					Dtat.Utility.FixText
+					(text: ViewModel.AdminDescription);
+
 				Domain.User user =
 					new(emailAddress: ViewModel.EmailAddress)
 					{
@@ -111,6 +115,7 @@ namespace Server.Pages.Admin.Users
 						IsEmailAddressVerified = true,
 						Ordering = ViewModel.Ordering,
 						IsActive = ViewModel.IsActive,
+						AdminDescription = fixedDescription,
 						IsProgrammer = ViewModel.IsProgrammer,
 						IsUndeletable = ViewModel.IsUndeletable,
 						CellPhoneNumber = ViewModel.CellPhoneNumber,

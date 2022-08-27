@@ -1,17 +1,10 @@
 ﻿namespace ViewModels.Pages.Admin.Users
 {
-	public class DetailsOrDeleteViewModel : object
+	public class DetailsOrDeleteViewModel : UpdateViewModel
 	{
 		public DetailsOrDeleteViewModel() : base()
 		{
 		}
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.Id))]
-		public System.Guid Id { get; init; }
-		// **********
 
 		// **********
 		[System.ComponentModel.DataAnnotations.Display
@@ -25,13 +18,6 @@
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.IsActive))]
 		public bool? IsRoleActive { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.IsActive))]
-		public bool IsActive { get; init; }
 		// **********
 
 		// **********
@@ -67,41 +53,6 @@
 			(ResourceType = typeof(Resources.DataDictionary),
 			Name = nameof(Resources.DataDictionary.FullName))]
 		public string? FullName { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.EmailAddress))]
-		public string? EmailAddress { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.CellPhoneNumber))]
-		public string? CellPhoneNumber { get; init; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.Ordering))]
-		public int Ordering { get; init; }
-		// **********
-
-		//// **********
-		//[System.ComponentModel.DataAnnotations.Display
-		//	(ResourceType = typeof(Resources.DataDictionary),
-		//	Name = nameof(Resources.DataDictionary.Description))]
-		//public string? Description { get; init; }
-		//// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.AdminDescription))]
-		public string? AdminDescription { get; init; }
 		// **********
 	}
 }

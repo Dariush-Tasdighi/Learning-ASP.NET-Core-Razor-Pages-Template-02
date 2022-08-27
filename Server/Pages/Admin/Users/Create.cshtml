@@ -73,6 +73,12 @@
 				<input asp-for="ViewModel.IsUndeletable" />
 				<label asp-for="ViewModel.IsUndeletable"></label>
 			</section-form-check>
+
+			<section-form-field>
+				<label asp-for="ViewModel.AdminDescription"></label>
+				<textarea asp-for="ViewModel.AdminDescription"></textarea>
+				<span asp-validation-for="ViewModel.AdminDescription"></span>
+			</section-form-field>
 		</fieldset>
 
 		<section-form-buttons>
