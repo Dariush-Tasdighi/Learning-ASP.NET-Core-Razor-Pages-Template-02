@@ -6,8 +6,15 @@
 		{
 		}
 
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
+        // **********
+        [System.ComponentModel.DataAnnotations.Display
+            (Name = nameof(Resources.DataDictionary.Id),
+            ResourceType = typeof(Resources.DataDictionary))]
+        public System.Guid Id { get; init; }
+        // **********
+
+        // **********
+        [System.ComponentModel.DataAnnotations.Display
 			(Name = nameof(Resources.DataDictionary.Parent),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public string? Parent { get; init; }
