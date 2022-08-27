@@ -107,8 +107,8 @@ namespace Server.Pages.Admin.Users
 					Dtat.Utility.FixText
 					(text: ViewModel.AdminDescription);
 
-				Domain.User user =
-					new(emailAddress: ViewModel.EmailAddress)
+				var newEntity =
+					new Domain.User(emailAddress: ViewModel.EmailAddress)
 					{
 						Password = hashedPassword,
 						RoleId = ViewModel.RoleId,
@@ -123,7 +123,7 @@ namespace Server.Pages.Admin.Users
 
 				var entityEntry =
 					await
-					DatabaseContext.AddAsync(entity: user);
+					DatabaseContext.AddAsync(entity: newEntity);
 
 				var affectedRow =
 					await

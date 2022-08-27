@@ -1,6 +1,6 @@
 ﻿namespace ViewModels.Pages.Admin.Users
 {
-	public class UpdateViewModel : CreateViewModel
+	public class UpdateViewModel : CommonViewModel
 	{
 		public UpdateViewModel() : base()
 		{
