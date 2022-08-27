@@ -1,4 +1,4 @@
-﻿namespace ViewModels.Pages.Admin.Roles;
+﻿namespace ViewModels.Pages.Admin.PageCategories;
 
 public class CreateViewModel : object
 {

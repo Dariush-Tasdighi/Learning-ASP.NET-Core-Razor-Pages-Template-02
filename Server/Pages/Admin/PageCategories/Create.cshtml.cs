@@ -2,7 +2,7 @@ using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 
-namespace Server.Pages.Admin.Roles;
+namespace Server.Pages.Admin.PageCategories;
 
 [Microsoft.AspNetCore.Authorization.Authorize
 	(Roles = Infrastructure.Constants.Role.Admin)]
@@ -22,14 +22,11 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabase
 
 	// **********
 	[Microsoft.AspNetCore.Mvc.BindProperty]
-	public ViewModels.Pages.Admin.Roles.CreateViewModel ViewModel { get; set; }
+	public ViewModels.Pages.Admin.PageCategories.CreateViewModel ViewModel { get; set; }
 	// **********
 
 	public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
 	{
-		// Note: If you want to change default value!
-		//ViewModel.Ordering = 100;
-
 		return Page();
 	}
 
@@ -49,7 +46,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabase
 
 			var foundedAny =
 				await
-				DatabaseContext.Roles
+				DatabaseContext.PageCategories
 				.Where(current => current.Name.ToLower() == fixedName.ToLower())
 				.AnyAsync();
 
@@ -72,7 +69,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabase
 				(text: ViewModel.Description);
 
 			var newEntity =
-				new Domain.Role(name: fixedName)
+				new Domain.PageCategory(name: fixedName)
 				{
 					Ordering = ViewModel.Ordering,
 					IsActive = ViewModel.IsActive,
@@ -91,12 +88,10 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabase
 			// **************************************************
 			var successMessage = string.Format
 				(Resources.Messages.Successes.Created,
-				Resources.DataDictionary.Role);
+				Resources.DataDictionary.PageCategory);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************
-
-			//return RedirectToPage(pageName: "./Index");
 
 			return RedirectToPage(pageName: "Index");
 		}

@@ -1,13 +1,13 @@
 ﻿namespace Infrastructure.TagHelpers;
 
 [Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "button-create",
+		(tag: "button-save",
 		ParentTag = "section-form-buttons",
 		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
-public class ButtonCreateTagHelper :
+public class ButtonSaveTagHelper :
 	Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 {
-	public ButtonCreateTagHelper() : base()
+	public ButtonSaveTagHelper() : base()
 	{
 	}
 
@@ -17,7 +17,7 @@ public class ButtonCreateTagHelper :
 	{
 		// **************************************************
 		var icon =
-			Utility.GetIconCreate();
+			Utility.GetIconUpdate();
 		// **************************************************
 
 		// **************************************************
@@ -32,7 +32,7 @@ public class ButtonCreateTagHelper :
 		body.AddCssClass(value: "btn-primary");
 
 		body.InnerHtml.AppendHtml(content: icon);
-		body.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Create);
+		body.InnerHtml.Append(unencoded: Resources.ButtonCaptions.Save);
 		// **************************************************
 
 		// **************************************************

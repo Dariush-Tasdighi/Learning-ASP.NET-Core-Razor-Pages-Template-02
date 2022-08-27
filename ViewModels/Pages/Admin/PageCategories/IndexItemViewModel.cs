@@ -1,20 +1,13 @@
-﻿namespace ViewModels.Pages.Admin.Roles;
+﻿namespace ViewModels.Pages.Admin.PageCategories;
 
 public class IndexItemViewModel : object
 {
 	public IndexItemViewModel() : base()
 	{
-		// Note: Just For Ignoring Warning!
 		Name = string.Empty;
 	}
 
 	// **********
-	/// <summary>
-	/// با نگاه جدید نیازی به دستور ذیل نمی‌باشد
-	/// </summary>
-	//[System.ComponentModel.DataAnnotations.Display
-	//	(ResourceType = typeof(Resources.DataDictionary),
-	//	Name = nameof(Resources.DataDictionary.Id))]
 	public System.Guid Id { get; set; }
 	// **********
 
@@ -31,7 +24,7 @@ public class IndexItemViewModel : object
 	// **********
 
 	// **********
-	public int UserCount { get; set; }
+	public int PageCount { get; set; }
 	// **********
 
 	// **********

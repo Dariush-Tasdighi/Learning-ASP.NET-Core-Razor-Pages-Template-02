@@ -1,9 +1,9 @@
 ﻿@page
-@model Server.Pages.Admin.Roles.UpdateModel
+@model Server.Pages.Admin.PageCategories.UpdateModel
 
 @{
 	var pageTitle =
-		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.Role}";
+		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.PageCategory}";
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 }
@@ -45,7 +45,7 @@
 		</fieldset>
 
 		<section-form-buttons>
-			<button-save />
+			<button-update />
 			<button-reset />
 		</section-form-buttons>
 

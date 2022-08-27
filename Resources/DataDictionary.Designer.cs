@@ -772,6 +772,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Page Categories.
+        /// </summary>
+        public static string PageCategories {
+            get {
+                return ResourceManager.GetString("PageCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Category.
+        /// </summary>
+        public static string PageCategory {
+            get {
+                return ResourceManager.GetString("PageCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Count.
+        /// </summary>
+        public static string PageCount {
+            get {
+                return ResourceManager.GetString("PageCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Page Manager.
         /// </summary>
         public static string PageManager {

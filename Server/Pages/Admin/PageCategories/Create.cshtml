@@ -1,9 +1,9 @@
 ﻿@page
-@model Server.Pages.Admin.Roles.UpdateModel
+@model Server.Pages.Admin.PageCategories.CreateModel
 
 @{
 	var pageTitle =
-		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.Role}";
+		$"{Resources.ButtonCaptions.Create} {Resources.DataDictionary.PageCategory}";
 
 	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
 }
@@ -17,8 +17,6 @@
 			</section-form-header>
 
 			<partial name="PartialViews/_DisplayPageMessages" />
-
-			<input type="hidden" asp-for="ViewModel.Id" />
 
 			<section-form-field>
 				<label asp-for="ViewModel.Name"></label>
@@ -45,19 +43,13 @@
 		</fieldset>
 
 		<section-form-buttons>
-			<button-save />
+			<button-create />
 			<button-reset />
 		</section-form-buttons>
 
 		<section-form-footer>
 			<a asp-page="Index">
 				@(Html.DtatGetLinkCaptionForList())
-			</a>
-			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
-				@(Html.DtatGetLinkCaptionForDetails())
-			</a>
-			<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
-				@(Html.DtatGetLinkCaptionForDelete())
 			</a>
 		</section-form-footer>
 	</section-form>

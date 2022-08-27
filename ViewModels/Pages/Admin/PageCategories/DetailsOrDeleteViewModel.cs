@@ -1,4 +1,4 @@
-﻿namespace ViewModels.Pages.Admin.Roles;
+﻿namespace ViewModels.Pages.Admin.PageCategories;
 
 public class DetailsOrDeleteViewModel : UpdateViewModel
 {
@@ -14,8 +14,8 @@ public class DetailsOrDeleteViewModel : UpdateViewModel
 	// **********
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.UserCount))]
-	public int UserCount { get; set; }
+		Name = nameof(Resources.DataDictionary.PageCount))]
+	public int PageCount { get; set; }
 	// **********
 
 	// **********

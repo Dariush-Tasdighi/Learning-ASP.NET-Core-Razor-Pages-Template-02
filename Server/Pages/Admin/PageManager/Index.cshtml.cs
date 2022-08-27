@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 namespace Server.Pages.Admin.PageManager
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Infrastructure.Constant.Role.Admin)]
+		(Roles = Infrastructure.Constants.Role.Admin)]
 	public class IndexModel : Infrastructure.BasePageModelWithDatabase
 	{
 		public IndexModel
