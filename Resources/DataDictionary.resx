@@ -465,4 +465,7 @@
   <data name="PageCategory" xml:space="preserve">
     <value>Page Category</value>
   </data>
+  <data name="LastLoginDateTime" xml:space="preserve">
+    <value>Last Login Date Time</value>
+  </data>
 </root>

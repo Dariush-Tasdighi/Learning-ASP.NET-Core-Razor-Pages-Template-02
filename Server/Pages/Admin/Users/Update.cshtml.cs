@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Server.Pages.Admin.Users
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Infrastructure.Constant.Role.Admin)]
+		(Roles = Infrastructure.Constants.Role.Admin)]
 	public class UpdateModel : Infrastructure.BasePageModelWithDatabase
 	{
 		#region Constructor(s)
@@ -111,6 +111,7 @@ namespace Server.Pages.Admin.Users
 
 			try
 			{
+				// **************************************************
 				var foundedItem =
 					await DatabaseContext.Users
 					.Where(current => current.Id == ViewModel.Id)
@@ -123,6 +124,7 @@ namespace Server.Pages.Admin.Users
 
 					return RedirectToPage(pageName: "Index");
 				}
+				// **************************************************
 
 				// **************************************************
 				var fixedAdminDescription =
@@ -140,7 +142,8 @@ namespace Server.Pages.Admin.Users
 				// **************************************************
 
 				var affectedRows =
-					await DatabaseContext.SaveChangesAsync();
+					await
+					DatabaseContext.SaveChangesAsync();
 
 				// **************************************************
 				var successMessage = string.Format

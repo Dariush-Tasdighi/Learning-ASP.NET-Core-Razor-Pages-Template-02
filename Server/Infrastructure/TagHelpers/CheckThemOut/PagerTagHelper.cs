@@ -3,7 +3,7 @@
 namespace Infrastructure.TagHelpers.CheckThemOut
 {
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: Constant.HtmlTag.TableData,
+		(tag: Constants.HtmlTag.TableData,
 		Attributes = "page-information-view-model")]
 	public class PagerTagHelper : Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 	{
@@ -53,11 +53,11 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 
 			var result =
 				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
-				(tagName: Constant.HtmlTag.TableData);
+				(tagName: Constants.HtmlTag.TableData);
 
 			var ulTag =
 				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
-				(tagName: Constant.HtmlTag.Unorderedlist);
+				(tagName: Constants.HtmlTag.Unorderedlist);
 
 			ulTag.AddCssClass(value: "pagination");
 
@@ -71,7 +71,7 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 
 			if (PageInformationViewModel.PageNumber <= 1)
 			{
-				aTag.AddCssClass(value: Constant.CssClass.Disabled);
+				aTag.AddCssClass(value: Constants.CssClass.Disabled);
 			}
 			// **************************************************
 
@@ -111,7 +111,7 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 
 			if (PageInformationViewModel.PageNumber >= PageInformationViewModel.PageCount)
 			{
-				aTag.AddCssClass(value: Constant.CssClass.Disabled);
+				aTag.AddCssClass(value: Constants.CssClass.Disabled);
 			}
 			// **************************************************
 
@@ -131,7 +131,7 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 		{
 			var tag =
 				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
-				(tagName: Constant.HtmlTag.ListItem);
+				(tagName: Constants.HtmlTag.ListItem);
 
 			tag.AddCssClass(value: "page-item");
 
@@ -147,7 +147,7 @@ namespace Infrastructure.TagHelpers.CheckThemOut
 		{
 			var tag =
 				new Microsoft.AspNetCore.Mvc.Rendering.TagBuilder
-				(tagName: Constant.HtmlTag.Anchor);
+				(tagName: Constants.HtmlTag.Anchor);
 
 			tag.Attributes["href"] =
 				// .Action -> using Microsoft.AspNetCore.Mvc

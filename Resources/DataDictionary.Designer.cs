@@ -196,15 +196,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Created Pages Count.
-        /// </summary>
-        public static string CreatedPagesCountByThisUser {
-            get {
-                return ResourceManager.GetString("CreatedPagesCountByThisUser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Creator User.
         /// </summary>
         public static string CreatorUser {
@@ -601,7 +592,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Login.
+        ///   Looks up a localized string similar to Last Login Date Time.
         /// </summary>
         public static string LastLoginDateTime {
             get {
@@ -858,15 +849,6 @@ namespace Resources {
         public static string RememberMe {
             get {
                 return ResourceManager.GetString("RememberMe", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Removed Pages Count.
-        /// </summary>
-        public static string RemovedPagesCountByThisUser {
-            get {
-                return ResourceManager.GetString("RemovedPagesCountByThisUser", resourceCulture);
             }
         }
         

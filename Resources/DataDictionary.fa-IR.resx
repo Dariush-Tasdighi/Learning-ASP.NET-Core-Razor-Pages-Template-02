@@ -468,4 +468,7 @@
   <data name="PageCategory" xml:space="preserve">
     <value>طبقه‌بندی صفحه</value>
   </data>
+  <data name="LastLoginDateTime" xml:space="preserve">
+    <value>زمان آخرین ورود به سامانه</value>
+  </data>
 </root>
