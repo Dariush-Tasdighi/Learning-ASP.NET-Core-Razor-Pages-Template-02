@@ -6,7 +6,7 @@ namespace Server.Pages.Admin.PageCategories;
 
 [Microsoft.AspNetCore.Authorization.Authorize
 	(Roles = Infrastructure.Constants.Role.Admin)]
-public class DeleteModel : Infrastructure.BasePageModelWithDatabase
+public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public DeleteModel
 		(Data.DatabaseContext databaseContext,

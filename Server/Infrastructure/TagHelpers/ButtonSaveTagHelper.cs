@@ -1,9 +1,9 @@
 ﻿namespace Infrastructure.TagHelpers;
 
 [Microsoft.AspNetCore.Razor.TagHelpers.HtmlTargetElement
-		(tag: "button-save",
-		ParentTag = "section-form-buttons",
-		TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
+	(tag: "button-save",
+	ParentTag = "section-form-buttons",
+	TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
 public class ButtonSaveTagHelper :
 	Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 {

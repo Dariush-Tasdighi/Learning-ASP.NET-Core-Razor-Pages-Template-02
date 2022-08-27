@@ -27,7 +27,7 @@
 		<thead>
 			<tr>
 				<th>
-					#
+					@(Resources.DataDictionary.RowNumber)
 				</th>
 				<th>
 				</th>
@@ -53,7 +53,7 @@
 		</thead>
 
 		<tbody>
-			@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+			@for (var index = 0; index <= Model.ViewModel.Count - 1; index++)
 			{
 				var item = Model.ViewModel[index];
 

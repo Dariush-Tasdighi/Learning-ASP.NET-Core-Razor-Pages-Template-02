@@ -6,7 +6,7 @@ namespace Server.Pages.Admin.PageCategories;
 
 [Microsoft.AspNetCore.Authorization.Authorize
 	(Roles = Infrastructure.Constants.Role.Admin)]
-public class IndexModel : Infrastructure.BasePageModelWithDatabase
+public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public IndexModel
 		(Data.DatabaseContext databaseContext,
