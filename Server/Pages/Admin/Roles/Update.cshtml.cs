@@ -6,7 +6,7 @@ namespace Server.Pages.Admin.Roles;
 
 [Microsoft.AspNetCore.Authorization.Authorize
 	(Roles = Infrastructure.Constants.Role.Admin)]
-public class UpdateModel : Infrastructure.BasePageModelWithDatabase
+public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public UpdateModel
 		(Data.DatabaseContext databaseContext,

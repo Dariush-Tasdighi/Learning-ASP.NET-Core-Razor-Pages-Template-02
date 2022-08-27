@@ -24,16 +24,16 @@
 				{
 					var result =
 						value
-						.Replace("0", "۰")
-						.Replace("1", "۱")
-						.Replace("2", "۲")
-						.Replace("3", "۳")
-						.Replace("4", "۴")
-						.Replace("5", "۵")
-						.Replace("6", "۶")
-						.Replace("7", "۷")
-						.Replace("8", "۸")
-						.Replace("9", "۹")
+						.Replace(oldChar: '0', newChar: '۰')
+						.Replace(oldChar: '1', newChar: '۱')
+						.Replace(oldChar: '2', newChar: '۲')
+						.Replace(oldChar: '3', newChar: '۳')
+						.Replace(oldChar: '4', newChar: '۴')
+						.Replace(oldChar: '5', newChar: '۵')
+						.Replace(oldChar: '6', newChar: '۶')
+						.Replace(oldChar: '7', newChar: '۷')
+						.Replace(oldChar: '8', newChar: '۸')
+						.Replace(oldChar: '9', newChar: '۹')
 						;
 
 					return result;
