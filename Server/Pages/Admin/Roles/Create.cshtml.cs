@@ -71,7 +71,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabase
 				Dtat.Utility.FixText
 				(text: ViewModel.Description);
 
-			var role =
+			var newEntity =
 				new Domain.Role(name: fixedName)
 				{
 					Ordering = ViewModel.Ordering,
@@ -81,7 +81,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabase
 
 			var entityEntry =
 				await
-				DatabaseContext.AddAsync(entity: role);
+				DatabaseContext.AddAsync(entity: newEntity);
 
 			var affectedRows =
 				await
