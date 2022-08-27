@@ -43,7 +43,7 @@ namespace Server.Pages.Admin.MenuItemManager
 						.Where(current => current.Id == id.Value)
 						.Select(current => new ViewModels.Pages.Admin.MenuItemManager.GetMenuItemDetailsViewModel
 						{
-							//Id = current.Id,
+							Id = current.Id,
 							Link = current.Link,
 							Icon = current.Icon,
 							Title = current.Title,
