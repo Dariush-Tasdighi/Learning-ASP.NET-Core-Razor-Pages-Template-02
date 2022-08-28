@@ -41,8 +41,8 @@
 
 				<select class="form-select" asp-for="ViewModel.RoleId"
 						asp-items="@(new SelectList(Model.RolesViewModel,
-						nameof(ViewModels.Pages.Admin.Roles.CommonViewModel.Id),
-						nameof(ViewModels.Pages.Admin.Roles.CommonViewModel.Name)))">
+						nameof(ViewModels.Shared.KeyValueViewModel.Id),
+						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
 
 					<option value="@(null)" selected>
 						@(Resources.DataDictionary.WithoutRole)
