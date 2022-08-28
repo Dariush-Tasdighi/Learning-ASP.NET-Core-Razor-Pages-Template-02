@@ -35,6 +35,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		try
 		{
+			//if(id is null)
 			//if(id == null)
 			if (id.HasValue == false)
 			{
