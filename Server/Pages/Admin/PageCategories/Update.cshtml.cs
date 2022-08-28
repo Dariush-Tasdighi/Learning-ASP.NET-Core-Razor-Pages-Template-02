@@ -27,11 +27,16 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 	public ViewModels.Pages.Admin.PageCategories.UpdateViewModel ViewModel { get; set; }
 	// **********
 
+	//public async System.Threading.Tasks.Task
+	//	<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid id)
+
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 	{
 		try
 		{
+			//if(id is null)
+			//if(id == null)
 			if (id.HasValue == false)
 			{
 				AddToastError
@@ -67,7 +72,8 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Domain.SeedWork.Constants.Logger.ErrorMessage,
+				args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -90,12 +96,30 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 		try
 		{
+			// **************************************************
+			var foundedItem =
+				await
+				DatabaseContext.PageCategories
+				.Where(current => current.Id == ViewModel.Id)
+				.FirstOrDefaultAsync();
+
+			if (foundedItem == null)
+			{
+				AddToastError
+					(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+				return RedirectToPage(pageName: "Index");
+			}
+			// **************************************************
+
+			// **************************************************
 			var fixedName =
 				Dtat.Utility.FixText
 				(text: ViewModel.Name);
 
 			var foundedAny =
-				await DatabaseContext.PageCategories
+				await
+				DatabaseContext.PageCategories
 				.Where(current => current.Id != ViewModel.Id)
 				.Where(current => current.Name.ToLower() == fixedName.ToLower())
 				.AnyAsync();
@@ -112,20 +136,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return Page();
 			}
-
-			var foundedItem =
-				await
-				DatabaseContext.PageCategories
-				.Where(current => current.Id == ViewModel.Id)
-				.FirstOrDefaultAsync();
-
-			if (foundedItem == null)
-			{
-				AddToastError
-					(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
-
-				return RedirectToPage(pageName: "Index");
-			}
+			// **************************************************
 
 			// **************************************************
 			var fixedDescription =
@@ -141,7 +152,8 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			// **************************************************
 
 			var affectedRows =
-				await DatabaseContext.SaveChangesAsync();
+				await
+				DatabaseContext.SaveChangesAsync();
 
 			// **************************************************
 			var successMessage = string.Format
@@ -156,7 +168,8 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Domain.SeedWork.Constants.Logger.ErrorMessage,
+				args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
