@@ -592,6 +592,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Login Date Time.
+        /// </summary>
+        public static string LastLoginDateTime {
+            get {
+                return ResourceManager.GetString("LastLoginDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Name.
         /// </summary>
         public static string LastName {

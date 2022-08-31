@@ -21,13 +21,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModels", "ViewModels\Vi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resources", "Resources\Resources.csproj", "{7A072591-2B39-4F10-9210-3063C0A31220}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6941B1F8-C4CB-4590-AA42-44FB593B359F}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-		Document.docx = Document.docx
-		Readme.txt = Readme.txt
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{B80B015E-5112-4043-8685-91E2C6FF188E}"
 EndProject
 Global

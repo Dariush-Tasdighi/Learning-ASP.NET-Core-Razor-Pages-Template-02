@@ -1,16 +1,15 @@
-﻿namespace ViewModels.Shared
+﻿namespace ViewModels.Shared;
+
+public class PaginationWithDataViewModel<T> : object
 {
-	public class PaginationWithDataViewModel<T> : object
+	public PaginationWithDataViewModel() : base()
 	{
-		public PaginationWithDataViewModel() : base()
-		{
-			PageInformation = new();
+		PageInformation = new();
 
-			Data = new System.Collections.Generic.List<T>();
-		}
-
-		public PaginationViewModel PageInformation { get; set; }
-
-		public System.Collections.Generic.IList<T> Data { get; set; }
+		Data = new System.Collections.Generic.List<T>();
 	}
+
+	public PaginationViewModel PageInformation { get; set; }
+
+	public System.Collections.Generic.IList<T> Data { get; set; }
 }

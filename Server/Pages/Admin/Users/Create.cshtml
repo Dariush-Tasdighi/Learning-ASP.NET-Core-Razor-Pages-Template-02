@@ -1,0 +1,95 @@
+﻿@page
+@model Server.Pages.Admin.Users.CreateModel
+
+@{
+	var pageTitle =
+		$"{Resources.ButtonCaptions.Create} {Resources.DataDictionary.User}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<section-form-field>
+				<label asp-for="ViewModel.EmailAddress"></label>
+				<input asp-for="ViewModel.EmailAddress" />
+				<span asp-validation-for="ViewModel.EmailAddress"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.Password"></label>
+				<input type="password" asp-for="ViewModel.Password" />
+				<span asp-validation-for="ViewModel.Password"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.ConfirmPassword"></label>
+				<input type="password" asp-for="ViewModel.ConfirmPassword" />
+				<span asp-validation-for="ViewModel.ConfirmPassword"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.RoleId"></label>
+
+				<select class="form-select" asp-for="ViewModel.RoleId"
+						asp-items="@(new SelectList(Model.RolesViewModel,
+						nameof(ViewModels.Shared.KeyValueViewModel.Id),
+						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+
+					<option value="@(null)" selected>
+						@(Resources.DataDictionary.WithoutRole)
+					</option>
+				</select>
+
+				<span asp-validation-for="ViewModel.RoleId"></span>
+			</section-form-field>
+
+			<section-form-check>
+				<input asp-for="ViewModel.IsProgrammer" />
+				<label asp-for="ViewModel.IsProgrammer"></label>
+			</section-form-check>
+
+			<section-form-field>
+				<label asp-for="ViewModel.Ordering"></label>
+				<input asp-for="ViewModel.Ordering" value="10000" />
+				<span asp-validation-for="ViewModel.Ordering"></span>
+			</section-form-field>
+
+			<section-form-check>
+				<input asp-for="ViewModel.IsActive" />
+				<label asp-for="ViewModel.IsActive"></label>
+			</section-form-check>
+
+			<section-form-check>
+				<input asp-for="ViewModel.IsUndeletable" />
+				<label asp-for="ViewModel.IsUndeletable"></label>
+			</section-form-check>
+
+			<section-form-field>
+				<label asp-for="ViewModel.AdminDescription"></label>
+				<textarea asp-for="ViewModel.AdminDescription"></textarea>
+				<span asp-validation-for="ViewModel.AdminDescription"></span>
+			</section-form-field>
+		</fieldset>
+
+		<section-form-buttons>
+			<button-create />
+			<button-reset />
+		</section-form-buttons>
+
+		<section-form-footer>
+			<a asp-page="Index">
+				@(Html.DtatGetLinkCaptionForList())
+			</a>
+		</section-form-footer>
+	</section-form>
+
+</form>
