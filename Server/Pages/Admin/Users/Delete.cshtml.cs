@@ -30,7 +30,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 	#endregion /Porperty(ies)
 
-	#region OnGet
+	#region OnGetAsync
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 	{
@@ -91,9 +91,9 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 			await DisposeDatabaseContextAsync();
 		}
 	}
-	#endregion /OnGet
+	#endregion /OnGetAsync
 
-	#region OnPost
+	#region OnPostAsync
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid? id)
 	{
@@ -182,5 +182,5 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 			await DisposeDatabaseContextAsync();
 		}
 	}
-	#endregion /OnPost
+	#endregion /OnPostAsync
 }

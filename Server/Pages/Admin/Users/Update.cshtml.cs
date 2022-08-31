@@ -40,7 +40,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 	#endregion /Property(ies)
 
-	#region OnGet
+	#region OnGetAsync
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 	{
@@ -54,7 +54,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 				return RedirectToPage(pageName: "Index");
 			}
 
-			await SetAccessibleRole();
+			await SetAccessibleRoleAsync();
 
 			ViewModel =
 				await
@@ -98,9 +98,9 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			await DisposeDatabaseContextAsync();
 		}
 	}
-	#endregion /OnGet
+	#endregion /OnGetAsync
 
-	#region OnPost
+	#region OnPostAsync
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 	{
@@ -170,10 +170,10 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			await DisposeDatabaseContextAsync();
 		}
 	}
-	#endregion /OnPost
+	#endregion /OnPostAsync
 
-	#region SetAccessibleRole
-	private async System.Threading.Tasks.Task SetAccessibleRole()
+	#region SetAccessibleRoleAsync
+	private async System.Threading.Tasks.Task SetAccessibleRoleAsync()
 	{
 		RolesViewModel =
 			await
@@ -188,5 +188,5 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			.ToListAsync()
 			;
 	}
-	#endregion /SetAccessibleRole
+	#endregion /SetAccessibleRoleAsync
 }

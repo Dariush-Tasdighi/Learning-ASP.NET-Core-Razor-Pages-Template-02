@@ -33,7 +33,7 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 	#endregion /Property(ies)
 
-	#region OnGet
+	#region OnGetAsync
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync()
 	{
@@ -78,5 +78,5 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 
 		return Page();
 	}
-	#endregion /OnGet
+	#endregion /OnGetAsync
 }
