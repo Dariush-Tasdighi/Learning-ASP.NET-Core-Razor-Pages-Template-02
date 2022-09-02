@@ -6,7 +6,7 @@ namespace Server.Pages.Admin.MenuItemManager
 {
 	[Microsoft.AspNetCore.Authorization.Authorize
 		(Roles = Infrastructure.Constants.Role.Admin)]
-	public class CreateModel : Infrastructure.BasePageModelWithDatabase
+	public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		public CreateModel
 			(Data.DatabaseContext databaseContext,

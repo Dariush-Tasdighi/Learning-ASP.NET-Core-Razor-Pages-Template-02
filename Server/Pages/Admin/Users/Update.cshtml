@@ -1,0 +1,89 @@
+﻿@page
+@model Server.Pages.Admin.Users.UpdateModel
+
+@{
+	var pageTitle =
+		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.User}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<input type="hidden" asp-for="ViewModel.Id" />
+
+			<section-form-field>
+				<label asp-for="ViewModel.EmailAddress"></label>
+				<input asp-for="ViewModel.EmailAddress" readonly="readonly" />
+				<span asp-validation-for="ViewModel.EmailAddress"></span>
+			</section-form-field>
+
+			<section-form-field>
+				<label asp-for="ViewModel.RoleId"></label>
+
+				<select class="form-select" asp-for="ViewModel.RoleId"
+						asp-items="@(new SelectList(Model.RolesViewModel,
+						nameof(ViewModels.Shared.KeyValueViewModel.Id),
+						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+
+					<option value="@(null)" selected="@(Model.ViewModel.RoleId == null)">
+						@(Resources.DataDictionary.WithoutRole)
+					</option>
+				</select>
+			</section-form-field>
+
+			<section-form-check>
+				<input asp-for="ViewModel.IsProgrammer" />
+				<label asp-for="ViewModel.IsProgrammer"></label>
+			</section-form-check>
+
+			<section-form-field>
+				<label asp-for="ViewModel.Ordering"></label>
+				<input asp-for="ViewModel.Ordering" />
+				<span asp-validation-for="ViewModel.Ordering"></span>
+			</section-form-field>
+
+			<section-form-check>
+				<input asp-for="ViewModel.IsActive" />
+				<label asp-for="ViewModel.IsActive"></label>
+			</section-form-check>
+
+			<section-form-check>
+				<input asp-for="ViewModel.IsUndeletable" />
+				<label asp-for="ViewModel.IsUndeletable"></label>
+			</section-form-check>
+
+			<section-form-field>
+				<label asp-for="ViewModel.AdminDescription"></label>
+				<textarea asp-for="ViewModel.AdminDescription"></textarea>
+				<span asp-validation-for="ViewModel.AdminDescription"></span>
+			</section-form-field>
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+			<button-reset />
+		</section-form-buttons>
+
+		<section-form-footer>
+			<a asp-page="Index">
+				@(Html.DtatGetLinkCaptionForList())
+			</a>
+			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDetails())
+			</a>
+			<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDelete())
+			</a>
+		</section-form-footer>
+	</section-form>
+
+</form>

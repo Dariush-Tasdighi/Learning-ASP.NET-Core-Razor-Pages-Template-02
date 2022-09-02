@@ -27,7 +27,7 @@
 		<thead>
 			<tr>
 				<th>
-					#
+					@(Resources.DataDictionary.RowNumber)
 				</th>
 				<th>
 				</th>
@@ -57,11 +57,17 @@
 		</thead>
 
 		<tbody>
-			@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+			@for (var index = 0; index <= Model.ViewModel.Count - 1; index++)
 			{
 				var item = Model.ViewModel[index];
 
 				<tr>
+					@*
+					<td>
+						@(index + 1)
+					</td>
+					*@
+
 					@*
 					<td class="text-center">
 						@(index + 1)
@@ -87,6 +93,12 @@
 							@(Html.DtatGetIconDelete())
 						</a>
 					</table-actions>
+
+					@*
+					<td>
+						@(item.IsActive)
+					</td>
+					*@
 
 					<td>
 						@(item.Name)

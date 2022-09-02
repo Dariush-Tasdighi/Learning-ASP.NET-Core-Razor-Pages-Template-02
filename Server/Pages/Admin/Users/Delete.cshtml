@@ -1,0 +1,104 @@
+﻿@page
+@model Server.Pages.Admin.Users.DeleteModel
+
+@{
+	var pageTitle =
+		$"{Resources.ButtonCaptions.Delete} {Resources.DataDictionary.User}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+}
+
+<section-form>
+	<fieldset disabled>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
+
+		<partial name="PartialViews/_DisplayPageMessages" />
+
+		<section-form-field>
+			<label asp-for="ViewModel.Id"></label>
+			<input asp-for="ViewModel.Id" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Username"></label>
+			<input asp-for="ViewModel.Username" />
+		</section-form-field>
+
+		<section-form-check>
+			<input asp-for="ViewModel.IsActive" />
+			<label asp-for="ViewModel.IsActive"></label>
+		</section-form-check>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Role"></label>
+			<input asp-for="ViewModel.Role" />
+		</section-form-field>
+
+		<section-form-check>
+			<input asp-for="ViewModel.IsRoleActive.Value" />
+			<label asp-for="ViewModel.IsRoleActive"></label>
+		</section-form-check>
+
+		<section-form-field>
+			<label asp-for="ViewModel.FullName"></label>
+			<input asp-for="ViewModel.FullName" />
+		</section-form-field>
+
+		<section-form-check>
+			<input asp-for="ViewModel.IsProfilePublic" />
+			<label asp-for="ViewModel.IsProfilePublic"></label>
+		</section-form-check>
+
+		<section-form-field>
+			<label asp-for="ViewModel.EmailAddress"></label>
+			<input asp-for="ViewModel.EmailAddress" />
+		</section-form-field>
+
+		<section-form-check>
+			<input asp-for="ViewModel.IsEmailAddressVerified" />
+			<label asp-for="ViewModel.IsEmailAddressVerified"></label>
+		</section-form-check>
+
+		<section-form-field>
+			<label asp-for="ViewModel.CellPhoneNumber"></label>
+			<input asp-for="ViewModel.CellPhoneNumber" />
+		</section-form-field>
+
+		<section-form-check>
+			<input asp-for="ViewModel.IsCellPhoneNumberVerified" />
+			<label asp-for="ViewModel.IsCellPhoneNumberVerified"></label>
+		</section-form-check>
+
+		<section-form-field>
+			<label asp-for="ViewModel.Ordering"></label>
+			<input asp-for="ViewModel.Ordering" />
+		</section-form-field>
+
+		<section-form-field>
+			<label asp-for="ViewModel.AdminDescription"></label>
+			<textarea asp-for="ViewModel.AdminDescription"></textarea>
+		</section-form-field>
+	</fieldset>
+
+	<form method="post">
+		<section-form-buttons>
+			<input type="hidden" asp-for="ViewModel.Id" />
+
+			<button-delete />
+		</section-form-buttons>
+	</form>
+
+	<section-form-footer>
+		<a asp-page="Index">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+		<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForDetails())
+		</a>
+		<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForUpdate())
+		</a>
+	</section-form-footer>
+</section-form>

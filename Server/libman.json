@@ -11,7 +11,7 @@
 			"destination": "wwwroot/lib/bootstrap-icons/"
 		},
 		{
-			"library": "jquery@3.6.0",
+			"library": "jquery@3.6.1",
 			"destination": "wwwroot/lib/jquery/"
 		},
 		{
@@ -27,7 +27,7 @@
 			"destination": "wwwroot/lib/tinymce/"
 		},
 		{
-			"library": "flag-icon-css@6.6.4",
+			"library": "flag-icon-css@6.6.6",
 			"destination": "wwwroot/lib/flag-icon-css/"
 		},
 		{

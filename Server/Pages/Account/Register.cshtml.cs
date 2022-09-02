@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Security
 {
-	public class RegisterModel : Infrastructure.BasePageModelWithDatabase
+	public class RegisterModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		public RegisterModel
 			(Data.DatabaseContext databaseContext,

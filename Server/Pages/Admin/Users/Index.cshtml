@@ -1,0 +1,118 @@
+﻿@page
+@model Server.Pages.Admin.Users.IndexModel
+
+@{
+	var pageTitle =
+		$"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.Users}";
+
+	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+}
+
+<section-page-header>
+	@(pageTitle)
+</section-page-header>
+
+<section-page-actions>
+	<a asp-page="Create">
+		@(Html.DtatGetLinkCaptionForCreate())
+	</a>
+</section-page-actions>
+
+<section-table>
+	<table>
+		<caption>
+			@(pageTitle)
+		</caption>
+
+		<thead>
+			<tr>
+				<th>
+					@(Resources.DataDictionary.RowNumber)
+				</th>
+				<th>
+				</th>
+				<th>
+					@(Resources.DataDictionary.EmailAddress)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsVerified)
+				</th>
+				<th>
+					@(Resources.DataDictionary.Role)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsActive)
+				</th>
+				<th>
+					@(Resources.DataDictionary.Ordering)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsProgrammer)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsSystemic)
+				</th>
+				<th>
+					@(Resources.DataDictionary.LastLoginDateTime)
+				</th>
+				<th>
+					@(Resources.DataDictionary.InsertDateTime)
+				</th>
+				<th>
+					@(Resources.DataDictionary.UpdateDateTime)
+				</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+			{
+				var item = Model.ViewModel[index];
+
+				<tr>
+					@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+
+					<table-actions>
+						<a asp-page="Details" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconDetails())
+						</a>
+						<a asp-page="Update" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconUpdate())
+						</a>
+
+						@if ((item.IsUndeletable == false) && (item.IsProgrammer == false))
+						{
+							<a asp-page="Delete" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDelete())
+							</a>
+						}
+					</table-actions>
+
+					<td>
+						@(item.EmailAddress)
+					</td>
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsEmailAddressVerified))
+
+					<td>
+						@(item.Role)
+					</td>
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsActive))
+
+					@(Html.DtatDisplayIntegerWithTd(value: item.Ordering))
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsProgrammer))
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsSystemic))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.LastLoginDateTime))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.UpdateDateTime))
+				</tr>
+			}
+		</tbody>
+	</table>
+</section-table>
