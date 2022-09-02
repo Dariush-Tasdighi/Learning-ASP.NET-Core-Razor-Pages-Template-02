@@ -4,7 +4,8 @@ using System.Data;
 namespace Infrastructure.TagHelpers;
 
 [Microsoft.AspNetCore.Razor.TagHelpers
-	.HtmlTargetElement(tag: "readonly-textarea")]
+	.HtmlTargetElement(tag: "readonly-textarea",
+	TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
 public class ReadOnlyTextAreaTagHelper :
 	Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 {
