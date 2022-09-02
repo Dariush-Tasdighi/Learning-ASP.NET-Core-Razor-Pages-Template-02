@@ -49,7 +49,7 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 					Name = current.Name,
 					IsActive = current.IsActive,
 					Ordering = current.Ordering,
-					//PageCount = current.Pages.Count,
+					PageCount = current.Pages.Count,
 					Description = current.Description,
 					InsertDateTime = current.InsertDateTime,
 					UpdateDateTime = current.UpdateDateTime,

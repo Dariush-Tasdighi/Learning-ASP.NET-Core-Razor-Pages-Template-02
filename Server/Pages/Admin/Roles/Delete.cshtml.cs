@@ -87,6 +87,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		try
 		{
+			// **************************************************
 			if (id.HasValue == false)
 			{
 				AddToastError
@@ -94,7 +95,9 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
+			// **************************************************
 			var hasAnyChildren =
 				await
 				DatabaseContext.Users
@@ -113,6 +116,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
 			// **************************************************
 			var foundedItem =
@@ -128,10 +132,15 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
-			DatabaseContext.Remove(entity: foundedItem);
+			// **************************************************
+			var entityEntry =
+				DatabaseContext.Remove(entity: foundedItem);
 
-			await DatabaseContext.SaveChangesAsync();
+			var affectedRows =
+				await
+				DatabaseContext.SaveChangesAsync();
 			// **************************************************
 
 			// **************************************************
