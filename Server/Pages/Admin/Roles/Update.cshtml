@@ -5,7 +5,7 @@
 	var pageTitle =
 		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.Role}";
 
-	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <form method="post">
@@ -33,7 +33,7 @@
 
 			<section-form-field>
 				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" />
+				<input asp-for="ViewModel.Ordering" dir="ltr" />
 				<span asp-validation-for="ViewModel.Ordering"></span>
 			</section-form-field>
 

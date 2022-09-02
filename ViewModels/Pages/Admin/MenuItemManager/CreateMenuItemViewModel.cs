@@ -24,7 +24,7 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: Domain.SeedWork.Constants.MaxLength.Title,
+			(length: Constants.MaxLength.Title,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 		public string? Title { get; set; }
@@ -58,8 +58,8 @@
 			Name = nameof(Resources.DataDictionary.Ordering))]
 
 		[System.ComponentModel.DataAnnotations.Range
-			(minimum: Domain.SeedWork.Constants.Minimum.Ordering,
-			maximum: Domain.SeedWork.Constants.Maximum.Ordering,
+			(minimum: Constants.MinValue.Ordering,
+			maximum: Constants.MaxValue.Ordering,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
 		public int Ordering { get; set; }

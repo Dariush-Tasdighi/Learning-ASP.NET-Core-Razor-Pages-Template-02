@@ -17,12 +17,12 @@ public class CreateViewModel : CommonViewModel
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: Domain.SeedWork.Constants.MaxLength.Password,
+		(length: Constants.MaxLength.Password,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 	[System.ComponentModel.DataAnnotations.RegularExpression
-		(pattern: Domain.SeedWork.Constants.RegularExpression.Password,
+		(pattern: Constants.RegularExpression.Password,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Password))]
 

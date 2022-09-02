@@ -5,7 +5,7 @@
 	var pageTitle =
 		Resources.PageTitles.UpdateMenuItem;
 
-	ViewData["PageTitle"] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 
 	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
 	{
@@ -79,7 +79,7 @@
 
 							<input asp-for="ViewModel.Ordering"
 								   value="@(Model.ViewModel.Ordering)"
-								   min="@(Domain.SeedWork.Constants.Minimum.Ordering)"
+								   min="@(Constants.MinValue.Ordering)"
 								   class="form-control" dir="ltr" />
 
 							<span asp-validation-for="ViewModel.Ordering" class="text-danger"></span>

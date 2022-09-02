@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.Users;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	#region Constructor(s)
@@ -86,7 +86,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -158,7 +158,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);

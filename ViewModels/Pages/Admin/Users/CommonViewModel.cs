@@ -17,12 +17,12 @@ public class CommonViewModel : object
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: Domain.SeedWork.Constants.MaxLength.EmailAddress,
+		(length: Constants.MaxLength.EmailAddress,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 	[System.ComponentModel.DataAnnotations.RegularExpression
-		(pattern: Domain.SeedWork.Constants.RegularExpression.EmailAddress,
+		(pattern: Constants.RegularExpression.EmailAddress,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
 	public string? EmailAddress { get; set; }
@@ -34,12 +34,12 @@ public class CommonViewModel : object
 		ResourceType = typeof(Resources.DataDictionary))]
 
 	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: Domain.SeedWork.Constants.FixedLength.CellPhoneNumber,
+		(length: Constants.FixedLength.CellPhoneNumber,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 	[System.ComponentModel.DataAnnotations.RegularExpression
-		(pattern: Domain.SeedWork.Constants.RegularExpression.CellPhoneNumber,
+		(pattern: Constants.RegularExpression.CellPhoneNumber,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
 	public string? CellPhoneNumber { get; set; }
@@ -83,8 +83,8 @@ public class CommonViewModel : object
 		ResourceType = typeof(Resources.DataDictionary))]
 
 	[System.ComponentModel.DataAnnotations.Range
-		(minimum: Domain.SeedWork.Constants.Minimum.Ordering,
-		maximum: Domain.SeedWork.Constants.Maximum.Ordering,
+		(minimum: Constants.MinValue.Ordering,
+		maximum: Constants.MaxValue.Ordering,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
 	public int Ordering { get; set; }

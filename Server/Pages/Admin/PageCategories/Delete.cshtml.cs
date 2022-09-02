@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.PageCategories;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public DeleteModel
@@ -69,7 +69,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -148,7 +148,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);

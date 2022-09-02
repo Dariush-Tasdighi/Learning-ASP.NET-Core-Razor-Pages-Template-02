@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.Roles;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public CreateModel(Data.DatabaseContext databaseContext,
@@ -103,7 +103,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);

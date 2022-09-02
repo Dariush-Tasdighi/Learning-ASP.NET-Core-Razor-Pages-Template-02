@@ -8,6 +8,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Dtat\Dtat.csproj" />
+		<ProjectReference Include="..\Constants\Constants.csproj" />
 		<ProjectReference Include="..\Resources\Resources.csproj" />
 	</ItemGroup>
 
