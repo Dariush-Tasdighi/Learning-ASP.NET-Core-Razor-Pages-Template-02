@@ -52,5 +52,9 @@
 		// **********
 		public string[] PermittedFileExtensions { get; set; }
 		// **********
+
+		// **********
+		public string UserPhotoPath { get; set; }
+		// **********
 	}
 }

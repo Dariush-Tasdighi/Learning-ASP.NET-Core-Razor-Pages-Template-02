@@ -1069,6 +1069,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Photo.
+        /// </summary>
+        public static string UserPhoto {
+            get {
+                return ResourceManager.GetString("UserPhoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users.
         /// </summary>
         public static string Users {

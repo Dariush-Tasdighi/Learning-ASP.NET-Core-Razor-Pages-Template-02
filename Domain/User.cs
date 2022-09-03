@@ -260,6 +260,11 @@ public class User :
 	public string? AdminDescription { get; set; }
 	// **********
 
+	// **********
+	public string? UserPhoto { get; set; }
+	// ********
+
+	// ********
 	public void SetUpdateDateTime()
 	{
 		UpdateDateTime =
