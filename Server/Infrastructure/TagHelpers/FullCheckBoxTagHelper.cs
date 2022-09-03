@@ -1,12 +1,12 @@
 ﻿namespace Infrastructure.TagHelpers;
 
 [Microsoft.AspNetCore.Razor.TagHelpers
-	.HtmlTargetElement(tag: Constants.TagHelper.ReadOnlyCheckBox,
+	.HtmlTargetElement(tag: Constants.TagHelper.FullCheckBox,
 	TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
-public class ReadOnlyCheckBoxTagHelper :
+public class FullCheckBoxTagHelper :
 	Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
 {
-	public ReadOnlyCheckBoxTagHelper
+	public FullCheckBoxTagHelper
 		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator) : base()
 	{
 		Generator = generator;
@@ -44,19 +44,21 @@ public class ReadOnlyCheckBoxTagHelper :
 		// **************************************************
 
 		// **************************************************
-		var textBoxElement =
+		var checkBox =
 			await
-			CreateCheckBoxElementAsync();
+			Utility.GenerateCheckBoxAsync
+			(generator: Generator, viewContext: ViewContext, @for: For);
 
-		innerDiv.InnerHtml.AppendHtml(encoded: textBoxElement);
+		innerDiv.InnerHtml.AppendHtml(encoded: checkBox);
 		// **************************************************
 
 		// **************************************************
-		var labelElement =
+		var label =
 			await
-			CreateLabelElementAsync();
+			Utility.GenerateLabelAsync(generator: Generator,
+			viewContext: ViewContext, @for: For, cssClass: "form-check-label");
 
-		innerDiv.InnerHtml.AppendHtml(encoded: labelElement);
+		innerDiv.InnerHtml.AppendHtml(encoded: label);
 		// **************************************************
 
 		// **************************************************
@@ -70,63 +72,25 @@ public class ReadOnlyCheckBoxTagHelper :
 		// **************************************************
 	}
 
-	private async System.Threading.Tasks.Task<string> CreateLabelElementAsync()
-	{
-		var tagBuilder =
-			Generator.GenerateLabel
-			(viewContext: ViewContext,
-			modelExplorer: For.ModelExplorer, expression: For.Name, labelText: null,
-			htmlAttributes: new { @class = "form-check-label" });
+	//private async System.Threading.Tasks.Task<string> CreateLabelElementAsync()
+	//{
+	//	var tagBuilder =
+	//		Generator.GenerateLabel
+	//		(viewContext: ViewContext,
+	//		modelExplorer: For.ModelExplorer, expression: For.Name, labelText: null,
+	//		htmlAttributes: new { @class =  });
 
-		var writer =
-			new System.IO.StringWriter();
+	//	var writer =
+	//		new System.IO.StringWriter();
 
-		tagBuilder.WriteTo(writer: writer,
-			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+	//	tagBuilder.WriteTo(writer: writer,
+	//		encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
 
-		var result =
-			writer.ToString();
+	//	var result =
+	//		writer.ToString();
 
-		await writer.DisposeAsync();
+	//	await writer.DisposeAsync();
 
-		return result;
-	}
-
-	private async System.Threading.Tasks.Task<string> CreateCheckBoxElementAsync()
-	{
-		Microsoft.AspNetCore.Mvc.Rendering.TagBuilder tagBuilder;
-
-		bool? isChecked = null;
-
-		if (For.Model != null)
-		{
-			isChecked =
-				System.Convert
-				.ToBoolean(value: For.Model);
-		}
-
-		tagBuilder =
-			Generator.GenerateCheckBox
-			(viewContext: ViewContext,
-			modelExplorer: For.ModelExplorer,
-			expression: For.Name, isChecked: isChecked, htmlAttributes: null);
-
-		tagBuilder.AddCssClass(value: "form-check-input");
-
-		tagBuilder.Attributes.Add(key: "disabled", value: null);
-		//tagBuilder.Attributes.Add(key: "disabled", value: "disabled");
-
-		var writer =
-			new System.IO.StringWriter();
-
-		tagBuilder.WriteTo(writer: writer,
-			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
-
-		var result =
-			writer.ToString();
-
-		await writer.DisposeAsync();
-
-		return result;
-	}
+	//	return result;
+	//}
 }

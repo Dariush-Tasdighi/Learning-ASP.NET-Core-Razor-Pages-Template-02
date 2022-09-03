@@ -6,7 +6,7 @@
 /// https://stackoverflow.com/questions/46681692/combine-taghelper-statements
 /// </summary>
 [Microsoft.AspNetCore.Razor.TagHelpers
-	.HtmlTargetElement(tag: "readonly-input",
+	.HtmlTargetElement(tag: Constants.TagHelper.ReadOnlyInput,
 	TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
 public class ReadOnlyInputTagHelper :
 	Microsoft.AspNetCore.Razor.TagHelpers.TagHelper

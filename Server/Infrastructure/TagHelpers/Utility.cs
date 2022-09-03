@@ -101,7 +101,8 @@ public static class Utility : object
 				new Microsoft.AspNetCore.Razor.TagHelpers
 				.TagHelperAttribute(name: name, value: content);
 
-			output.Attributes.Add(attribute: attribute);
+			output.Attributes
+				.Add(attribute: attribute);
 		}
 		else
 		{
@@ -119,5 +120,177 @@ public static class Utility : object
 			output.Attributes
 				.Add(attribute: newAttribute);
 		}
+	}
+
+	public static async
+		System.Threading.Tasks.Task<string> GenerateLabelAsync
+		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
+		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for, string? cssClass = null)
+	{
+		var tagBuilder =
+			generator.GenerateLabel
+			(viewContext: viewContext,
+			modelExplorer: @for.ModelExplorer,
+			expression: @for.Name, labelText: null, htmlAttributes: null);
+
+		if (cssClass != null)
+		{
+			tagBuilder.AddCssClass
+				(value: "form-label");
+		}
+		else
+		{
+			tagBuilder.AddCssClass(value: cssClass);
+		}
+
+		var writer =
+			new System.IO.StringWriter();
+
+		tagBuilder.WriteTo(writer: writer,
+			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+
+		var result =
+			writer.ToString();
+
+		await writer.DisposeAsync();
+
+		return result;
+	}
+
+	public static async
+		System.Threading.Tasks.Task<string> GenerateTextBoxAsync
+		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
+		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for)
+	{
+		var tagBuilder =
+			generator.GenerateTextBox
+			(viewContext: viewContext,
+			modelExplorer: @for.ModelExplorer, expression: @for.Name,
+			value: @for.Model, format: null, htmlAttributes: null);
+
+		tagBuilder.AddCssClass
+			(value: "form-control");
+
+		if ((@for.ModelExplorer.ModelType == typeof(System.Int16))
+			||
+			(@for.ModelExplorer.ModelType == typeof(System.Int32))
+			||
+			(@for.ModelExplorer.ModelType == typeof(System.Int64))
+			||
+			(@for.ModelExplorer.ModelType == typeof(System.DateTime)))
+		{
+			tagBuilder.AddCssClass(value: "ltr");
+
+			tagBuilder.Attributes.Remove(key: "type");
+			tagBuilder.Attributes.Add(key: "type", value: "number");
+		}
+
+		var writer =
+			new System.IO.StringWriter();
+
+		tagBuilder.WriteTo(writer: writer,
+			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+
+		var result =
+			writer.ToString();
+
+		await writer.DisposeAsync();
+
+		return result;
+	}
+
+	public static async
+		System.Threading.Tasks.Task<string> GenerateCheckBoxAsync
+		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
+		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for)
+	{
+		bool? isChecked = null;
+
+		if (@for.Model != null)
+		{
+			isChecked =
+				System.Convert
+				.ToBoolean(value: @for.Model);
+		}
+
+		var tagBuilder =
+			generator.GenerateCheckBox
+			(viewContext: viewContext, modelExplorer: @for.ModelExplorer,
+			expression: @for.Name, isChecked: isChecked, htmlAttributes: null);
+
+		tagBuilder.AddCssClass
+			(value: "form-check-input");
+
+		var writer =
+			new System.IO.StringWriter();
+
+		tagBuilder.WriteTo(writer: writer,
+			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+
+		var result =
+			writer.ToString();
+
+		await writer.DisposeAsync();
+
+		return result;
+	}
+
+	public static async
+		System.Threading.Tasks.Task<string> GenerateTextAreaAsync
+		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
+		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for)
+	{
+		var tagBuilder =
+			generator.GenerateTextArea
+			(viewContext: viewContext, modelExplorer: @for.ModelExplorer,
+			expression: @for.Name, rows: 3, columns: 60, htmlAttributes: null);
+
+		tagBuilder.AddCssClass
+			(value: "form-control");
+
+		var writer =
+			new System.IO.StringWriter();
+
+		tagBuilder.WriteTo(writer: writer,
+			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+
+		var result =
+			writer.ToString();
+
+		await writer.DisposeAsync();
+
+		return result;
+	}
+
+	public static async
+		System.Threading.Tasks.Task<string> GenerateValidationMessageAsync
+		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
+		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for)
+	{
+		var tagBuilder =
+			generator.GenerateValidationMessage
+			(viewContext: viewContext,
+			modelExplorer: @for.ModelExplorer,
+			expression: @for.Name, message: null, tag: null, htmlAttributes: null);
+
+		tagBuilder.AddCssClass(value: "text-danger");
+
+		var writer =
+			new System.IO.StringWriter();
+
+		tagBuilder.WriteTo(writer: writer,
+			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+
+		var result =
+			writer.ToString();
+
+		await writer.DisposeAsync();
+
+		return result;
 	}
 }
