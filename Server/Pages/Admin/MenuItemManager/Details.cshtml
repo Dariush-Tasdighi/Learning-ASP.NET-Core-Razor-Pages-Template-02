@@ -24,134 +24,73 @@
 	}
 }
 
-<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
-	<div class="row">
-		<div class="col-12 p-3 col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
-			<fieldset disabled readonly>
-				<legend>
-					@(pageTitle)
-				</legend>
+<section-form>
+	<fieldset disabled>
+		<section-form-header>
+			@(pageTitle)
+		</section-form-header>
 
-				<hr />
+		<partial name="PartialViews/_DisplayPageMessages" />
 
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Title) == false)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.Title" class="form-label"></label>
+		<section-form-field>
+			<label asp-for="ViewModel.Title"></label>
+			<input asp-for="ViewModel.Title" />
+		</section-form-field>
 
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-bookmark"></i></div>
-							<input asp-for="ViewModel.Title" class="form-control" dir="ltr" />
-						</div>
-					</div>
-				}
+		<section-form-field>
+			<label asp-for="ViewModel.Parent"></label>
+			<input asp-for="ViewModel.Parent" />
+		</section-form-field>
 
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Parent) == false)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.Parent" class="form-label"></label>
+		<section-form-field>
+			<label asp-for="ViewModel.Ordering"></label>
+			<input asp-for="ViewModel.Ordering" />
+		</section-form-field>
 
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-bookmark"></i></div>
-							<input asp-for="ViewModel.Parent" class="form-control" />
-						</div>
-					</div>
-				}
+		<section-form-field>
+			<label asp-for="ViewModel.Link"></label>
+			<input asp-for="ViewModel.Link" />
+		</section-form-field>
 
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Icon) == false)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.Icon" class="form-label"></label>
+		<section-form-field>
+			<label asp-for="ViewModel.Icon"></label>
+			<input asp-for="ViewModel.Icon"/>
+		</section-form-field>
 
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-align-middle"></i></div>
+		<section-form-field>
+			<label asp-for="ViewModel.IconPosition"></label>
+			<input asp-for="ViewModel.IconPosition"/>
+		</section-form-field>
 
-							<input asp-for="ViewModel.IconPosition" class="form-control" dir="ltr" />
-						</div>
-					</div>
-				}
+		<section-form-check>
+			<label asp-for="ViewModel.IsActive"></label>
+			<input asp-for="ViewModel.IsActive" />
+		</section-form-check>
 
-				@if (string.IsNullOrWhiteSpace(value: Model.ViewModel.Link) == false)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.Link" class="form-label"></label>
+		<section-form-check>
+			<label asp-for="ViewModel.IsPublic"></label>
+			<input asp-for="ViewModel.IsPublic" />
+		</section-form-check>
 
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-link-45deg"></i></div>
-							<input asp-for="ViewModel.Link" class="form-control" dir="ltr" />
-						</div>
-					</div>
-				}
+		<section-form-check>
+			<label asp-for="ViewModel.IsUndeletable"></label>
+			<input asp-for="ViewModel.IsUndeletable" />
+		</section-form-check>
 
-				<div class="mb-3">
-					<label asp-for="ViewModel.NumberOfSubMenus" class="form-label"></label>
+	</fieldset>
 
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-graph-up-arrow"></i></div>
-						<input asp-for="ViewModel.NumberOfSubMenus" class="form-control" dir="ltr" />
-					</div>
-				</div>
+	<section-form-footer>
+		<a asp-page="Index">
+			@(Html.DtatGetLinkCaptionForList())
+		</a>
+		<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForUpdate())
+		</a>
+		<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+			@(Html.DtatGetLinkCaptionForDelete())
+		</a>
+	</section-form-footer>
+</section-form>
 
-				<div class="mb-3">
-					<label asp-for="ViewModel.Ordering" class="form-label"></label>
 
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-list-ul"></i></div>
-						<input asp-for="ViewModel.Ordering" class="form-control" dir="ltr" />
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<label asp-for="ViewModel.InsertDateTime" class="form-label"></label>
-					<div class="input-group">
-						<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
-						<input placeholder="@(Model.ViewModel.InsertDateTime.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
-					</div>
-				</div>
-
-				@if (Model.ViewModel.UpdateDateTime.HasValue)
-				{
-					<div class="mb-3">
-						<label asp-for="ViewModel.UpdateDateTime" class="form-label"></label>
-						<div class="input-group">
-							<div class="input-group-text"><i class="bi bi-calendar2-date-fill"></i></div>
-							<input placeholder="@(Model.ViewModel.UpdateDateTime.Value.ToString(format: "yyyy-MM-dd HH:mm:dd"))" class="form-control" dir="ltr" />
-						</div>
-					</div>
-				}
-
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsActive" class="form-check-input" />
-						<label asp-for="ViewModel.IsActive" class="form-check-label"></label>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsPublic" class="form-check-input" />
-						<label asp-for="ViewModel.IsPublic" class="form-check-label"></label>
-					</div>
-				</div>
-
-				<div class="mb-3">
-					<div class="form-check">
-						<input asp-for="ViewModel.IsUndeletable" class="form-check-input" />
-						<label asp-for="ViewModel.IsUndeletable" class="form-check-label"></label>
-					</div>
-				</div>
-			</fieldset>
-
-			<hr class="mt-4" />
-
-			<div class="text-center">
-				<a href="/">@(Resources.ButtonCaptions.Home)</a>
-				|
-				<a asp-page="Index">
-					@(Resources.ButtonCaptions.BackToList)
-				</a>
-			</div>
-		</div>
-	</div>
-</div>
 

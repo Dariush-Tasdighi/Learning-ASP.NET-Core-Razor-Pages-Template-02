@@ -29,7 +29,7 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 	#endregion /Property(ies)
 
-	#region OnGet
+	#region OnGetAsync
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 	{
@@ -91,5 +91,5 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 			await DisposeDatabaseContextAsync();
 		}
 	}
-	#endregion /OnGet
+	#endregion /OnGetAsync
 }
