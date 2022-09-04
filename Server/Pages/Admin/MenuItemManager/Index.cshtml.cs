@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace Server.Pages.Admin.MenuItemManager;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-        (Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+    .Authorize(Roles = Constants.Role.Admin)]
 public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 {
     public IndexModel
@@ -68,8 +68,7 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
         catch (System.Exception ex)
         {
             Logger.LogError
-                (message: Domain.SeedWork.Constants
-                .Logger.ErrorMessage, args: ex.Message);
+                (message: Constants.Logger.ErrorMessage, args: ex.Message);
 
             AddPageError
                 (message: Resources.Messages.Errors.UnexpectedError);

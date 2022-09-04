@@ -24,7 +24,7 @@ public class CreateViewModel : object
         ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
     [System.ComponentModel.DataAnnotations.MaxLength
-        (length: Domain.SeedWork.Constants.MaxLength.Title,
+        (length: Constants.MaxLength.Title,
         ErrorMessageResourceType = typeof(Resources.Messages.Validations),
         ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
     public string? Title { get; set; }
@@ -57,9 +57,13 @@ public class CreateViewModel : object
         (ResourceType = typeof(Resources.DataDictionary),
         Name = nameof(Resources.DataDictionary.Ordering))]
 
+    [System.ComponentModel.DataAnnotations.Required
+        (AllowEmptyStrings = false,
+        ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+        ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
     [System.ComponentModel.DataAnnotations.Range
-        (minimum: Domain.SeedWork.Constants.Minimum.Ordering,
-        maximum: Domain.SeedWork.Constants.Maximum.Ordering,
+        (minimum: 1, maximum: 100_000,
         ErrorMessageResourceType = typeof(Resources.Messages.Validations),
         ErrorMessageResourceName = nameof(Resources.Messages.Validations.Range))]
     public int Ordering { get; set; }

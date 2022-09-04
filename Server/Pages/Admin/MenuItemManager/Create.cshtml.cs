@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace Server.Pages.Admin.MenuItemManager;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-    (Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+    .Authorize(Roles = Constants.Role.Admin)]
 public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
     public CreateModel

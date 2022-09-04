@@ -48,7 +48,7 @@
             {
                 var result =
                     InsertDateTime.ToString
-                    (format: Domain.SeedWork.Constants.Format.DateTime);
+                    (format: Constants.Format.DateTime);
 
                 return result;
             }
@@ -74,7 +74,7 @@
             {
                 var result =
                     UpdateDateTime.ToString
-                    (format: Domain.SeedWork.Constants.Format.DateTime);
+                    (format: Constants.Format.DateTime);
 
                 return result;
             }
