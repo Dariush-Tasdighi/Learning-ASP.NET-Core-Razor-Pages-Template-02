@@ -61,7 +61,7 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} already exists!.
+        ///   Looks up a localized string similar to The {0} already exists!.
         /// </summary>
         public static string AlreadyExists {
             get {

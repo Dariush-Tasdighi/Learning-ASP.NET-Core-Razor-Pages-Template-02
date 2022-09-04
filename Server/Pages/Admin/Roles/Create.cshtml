@@ -19,6 +19,14 @@
 			<partial name="PartialViews/_DisplayPageMessages" />
 
 			@*
+			<div class="mb-3">
+			<label asp-for="ViewModel.Name" class="form-label"></label>
+			<input asp-for="ViewModel.Name" class="form-control" />
+			<span asp-validation-for="ViewModel.Name" class="text-danger"></span>
+			</div>
+			*@
+
+			@*
 			<section-form-field>
 			<label asp-for="ViewModel.Name"></label>
 			<input asp-for="ViewModel.Name" />

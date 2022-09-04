@@ -61,7 +61,7 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} successfully created..
+        ///   Looks up a localized string similar to The {0} successfully created..
         /// </summary>
         public static string Created {
             get {
@@ -70,7 +70,7 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} successfully deleted..
+        ///   Looks up a localized string similar to The {0} successfully deleted..
         /// </summary>
         public static string Deleted {
             get {
@@ -79,7 +79,7 @@ namespace Resources.Messages {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} successfully updated..
+        ///   Looks up a localized string similar to The {0} successfully updated..
         /// </summary>
         public static string Updated {
             get {
