@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.Roles;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public DeleteModel
@@ -69,7 +69,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -87,6 +87,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		try
 		{
+			// **************************************************
 			if (id.HasValue == false)
 			{
 				AddToastError
@@ -94,7 +95,9 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
+			// **************************************************
 			var hasAnyChildren =
 				await
 				DatabaseContext.Users
@@ -113,6 +116,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
 			// **************************************************
 			var foundedItem =
@@ -128,10 +132,15 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
-			DatabaseContext.Remove(entity: foundedItem);
+			// **************************************************
+			var entityEntry =
+				DatabaseContext.Remove(entity: foundedItem);
 
-			await DatabaseContext.SaveChangesAsync();
+			var affectedRows =
+				await
+				DatabaseContext.SaveChangesAsync();
 			// **************************************************
 
 			// **************************************************
@@ -147,7 +156,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);

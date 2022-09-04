@@ -45,7 +45,7 @@ public class PageCategory :
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: SeedWork.Constants.MaxLength.Name,
+		(length: Constants.MaxLength.Name,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string Name { get; set; }

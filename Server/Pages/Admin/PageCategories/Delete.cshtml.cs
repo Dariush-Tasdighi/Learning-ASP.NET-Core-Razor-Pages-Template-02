@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.PageCategories;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public DeleteModel
@@ -49,7 +49,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 					Name = current.Name,
 					IsActive = current.IsActive,
 					Ordering = current.Ordering,
-					//PageCount = current.Pages.Count,
+					PageCount = current.Pages.Count,
 					Description = current.Description,
 					InsertDateTime = current.InsertDateTime,
 					UpdateDateTime = current.UpdateDateTime,
@@ -69,7 +69,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -87,6 +87,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		try
 		{
+			// **************************************************
 			if (id.HasValue == false)
 			{
 				AddToastError
@@ -94,31 +95,33 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
-			// TODO
-			//var hasAnyChildren =
-			//	await
-			//	DatabaseContext.Users
-			//	.Where(current => current.PageCategoryId == id.Value)
-			//	.AnyAsync();
+			// **************************************************
+			var hasAnyChildren =
+				await
+				DatabaseContext.Pages
+				.Where(current => current.PageCategoryId == id.Value)
+				.AnyAsync();
 
-			//if (hasAnyChildren)
-			//{
-			//	// **************************************************
-			//	var errorMessage = string.Format
-			//		(Resources.Messages.Errors.CascadeDelete,
-			//		Resources.DataDictionary.PageCategory);
+			if (hasAnyChildren)
+			{
+				// **************************************************
+				var errorMessage = string.Format
+					(Resources.Messages.Errors.CascadeDelete,
+					Resources.DataDictionary.PageCategory);
 
-			//	AddToastError(message: errorMessage);
-			//	// **************************************************
+				AddToastError(message: errorMessage);
+				// **************************************************
 
-			//	return RedirectToPage(pageName: "Index");
-			//}
+				return RedirectToPage(pageName: "Index");
+			}
+			// **************************************************
 
 			// **************************************************
 			var foundedItem =
 				await
-				DatabaseContext.PageCategories
+				DatabaseContext.Roles
 				.Where(current => current.Id == id.Value)
 				.FirstOrDefaultAsync();
 
@@ -129,16 +132,21 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
-			DatabaseContext.Remove(entity: foundedItem);
+			// **************************************************
+			var entityEntry =
+				DatabaseContext.Remove(entity: foundedItem);
 
-			await DatabaseContext.SaveChangesAsync();
+			var affectedRows =
+				await
+				DatabaseContext.SaveChangesAsync();
 			// **************************************************
 
 			// **************************************************
 			var successMessage = string.Format
 				(Resources.Messages.Successes.Deleted,
-				Resources.DataDictionary.PageCategory);
+				Resources.DataDictionary.Role);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************
@@ -148,7 +156,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);

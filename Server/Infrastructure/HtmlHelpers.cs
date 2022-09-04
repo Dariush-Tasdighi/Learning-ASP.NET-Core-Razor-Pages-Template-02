@@ -6,26 +6,18 @@ public static class HtmlHelpers : object
 	{
 	}
 
-	public static string DefaultValue
-	{
-		get
-		{
-			//return null;
-			//return string.Empty;
-			return "-----";
-		}
-	}
-
 	public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayInteger
 		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, long? value)
 	{
 		if (value.HasValue == false)
 		{
-			return html.Raw(value: DefaultValue);
+			return html.Raw
+				(value: Constants.Format.NullValue);
 		}
 
 		var result =
-			value.Value.ToString(format: "#,##0");
+			value.Value.ToString
+			(format: Constants.Format.Integer);
 
 		result =
 			Convert.DigitsToUnicode(value: result);
@@ -125,12 +117,13 @@ public static class HtmlHelpers : object
 	{
 		if (value.HasValue == false)
 		{
-			return html.Raw(value: DefaultValue);
+			return html.Raw
+				(value: Constants.Format.NullValue);
 		}
 
 		var result =
 			value.Value.ToString
-			(format: "yyyy/MM/dd - HH:mm:ss");
+			(format: Constants.Format.DateTime);
 
 		result =
 			Convert.DigitsToUnicode(value: result);

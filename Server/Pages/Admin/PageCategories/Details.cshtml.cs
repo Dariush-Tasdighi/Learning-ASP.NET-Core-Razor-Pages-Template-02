@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.PageCategories;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public DetailsModel
@@ -49,7 +49,7 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 					Name = current.Name,
 					IsActive = current.IsActive,
 					Ordering = current.Ordering,
-					//PageCount = current.Pages.Count,
+					PageCount = current.Pages.Count,
 					Description = current.Description,
 					InsertDateTime = current.InsertDateTime,
 					UpdateDateTime = current.UpdateDateTime,
@@ -69,7 +69,7 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);

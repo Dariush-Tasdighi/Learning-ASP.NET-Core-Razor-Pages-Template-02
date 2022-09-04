@@ -5,7 +5,7 @@
 	var pageTitle =
 		$"{Resources.ButtonCaptions.Create} {Resources.DataDictionary.PageCategory}";
 
-	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <form method="post">
@@ -18,28 +18,13 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Name"></label>
-				<input asp-for="ViewModel.Name" />
-				<span asp-validation-for="ViewModel.Name"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.Name" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsActive" />
-				<label asp-for="ViewModel.IsActive"></label>
-			</section-form-check>
+			<dtat-full-checkbox asp-for="ViewModel.IsActive" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" />
-				<span asp-validation-for="ViewModel.Ordering"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.Ordering" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Description"></label>
-				<textarea asp-for="ViewModel.Description"></textarea>
-				<span asp-validation-for="ViewModel.Description"></span>
-			</section-form-field>
+			<dtat-full-textarea asp-for="ViewModel.Description" />
 		</fieldset>
 
 		<section-form-buttons>
