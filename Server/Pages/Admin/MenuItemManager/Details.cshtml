@@ -2,94 +2,94 @@
 @model Server.Pages.Admin.MenuItemManager.DetailsModel
 
 @{
-	@if (Model.ViewModel == null)
-	{
-		return;
-	}
+    @if (Model.ViewModel == null)
+    {
+        return;
+    }
 
-	var pageTitle =
-		Resources.PageTitles.MenuItemDetails;
+    var pageTitle =
+        Resources.PageTitles.MenuItemDetails;
 
-	ViewData["PageTitle"] = pageTitle;
+    ViewData["PageTitle"] = pageTitle;
 
-	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-	{
-		Layout =
-			"Layouts/Rtl/_Layout";
-	}
-	else
-	{
-		Layout =
-			"Layouts/Ltr/_Layout";
-	}
+    if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+    {
+        Layout =
+            "Layouts/Rtl/_Layout";
+    }
+    else
+    {
+        Layout =
+            "Layouts/Ltr/_Layout";
+    }
 }
 
 <section-form>
-	<fieldset disabled>
-		<section-form-header>
-			@(pageTitle)
-		</section-form-header>
+    <fieldset disabled>
+        <section-form-header>
+            @(pageTitle)
+        </section-form-header>
 
-		<partial name="PartialViews/_DisplayPageMessages" />
+        <partial name="PartialViews/_DisplayPageMessages" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Title"></label>
-			<input asp-for="ViewModel.Title" />
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModel.Title"></label>
+            <input asp-for="ViewModel.Title" />
+        </section-form-field>
 
-		<section-form-field>
-			<label asp-for="ViewModel.Parent"></label>
-			<input asp-for="ViewModel.Parent" />
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModel.ParentTitle"></label>
+            <input asp-for="ViewModel.ParentTitle" />
+        </section-form-field>
 
-		<section-form-field>
-			<label asp-for="ViewModel.Ordering"></label>
-			<input asp-for="ViewModel.Ordering" />
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModel.Ordering"></label>
+            <input asp-for="ViewModel.Ordering" />
+        </section-form-field>
 
-		<section-form-field>
-			<label asp-for="ViewModel.Link"></label>
-			<input asp-for="ViewModel.Link" />
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModel.Link"></label>
+            <input asp-for="ViewModel.Link" />
+        </section-form-field>
 
-		<section-form-field>
-			<label asp-for="ViewModel.Icon"></label>
-			<input asp-for="ViewModel.Icon"/>
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModel.Icon"></label>
+            <input asp-for="ViewModel.Icon" />
+        </section-form-field>
 
-		<section-form-field>
-			<label asp-for="ViewModel.IconPosition"></label>
-			<input asp-for="ViewModel.IconPosition"/>
-		</section-form-field>
+        <section-form-field>
+            <label asp-for="ViewModel.IconPosition"></label>
+            <input asp-for="ViewModel.IconPosition" />
+        </section-form-field>
 
-		<section-form-check>
-			<label asp-for="ViewModel.IsActive"></label>
-			<input asp-for="ViewModel.IsActive" />
-		</section-form-check>
+        <section-form-check>
+            <label asp-for="ViewModel.IsActive"></label>
+            <input asp-for="ViewModel.IsActive" />
+        </section-form-check>
 
-		<section-form-check>
-			<label asp-for="ViewModel.IsPublic"></label>
-			<input asp-for="ViewModel.IsPublic" />
-		</section-form-check>
+        <section-form-check>
+            <label asp-for="ViewModel.IsPublic"></label>
+            <input asp-for="ViewModel.IsPublic" />
+        </section-form-check>
 
-		<section-form-check>
-			<label asp-for="ViewModel.IsUndeletable"></label>
-			<input asp-for="ViewModel.IsUndeletable" />
-		</section-form-check>
+        <section-form-check>
+            <label asp-for="ViewModel.IsUndeletable"></label>
+            <input asp-for="ViewModel.IsUndeletable" />
+        </section-form-check>
 
-	</fieldset>
+    </fieldset>
 
-	<section-form-footer>
-		<a asp-page="Index">
-			@(Html.DtatGetLinkCaptionForList())
-		</a>
-		<a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
-			@(Html.DtatGetLinkCaptionForUpdate())
-		</a>
-		<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
-			@(Html.DtatGetLinkCaptionForDelete())
-		</a>
-	</section-form-footer>
+    <section-form-footer>
+        <a asp-page="Index">
+            @(Html.DtatGetLinkCaptionForList())
+        </a>
+        <a asp-page="Update" asp-route-id="@(Model.ViewModel.Id)">
+            @(Html.DtatGetLinkCaptionForUpdate())
+        </a>
+        <a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+            @(Html.DtatGetLinkCaptionForDelete())
+        </a>
+    </section-form-footer>
 </section-form>
 
 

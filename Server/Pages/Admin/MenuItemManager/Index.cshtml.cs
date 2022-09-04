@@ -1,122 +1,84 @@
-using System.Linq;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Linq;
 
-namespace Server.Pages.Admin.MenuItemManager
+namespace Server.Pages.Admin.MenuItemManager;
+
+[Microsoft.AspNetCore.Authorization.Authorize
+        (Roles = Infrastructure.Constants.Role.Admin)]
+public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 {
-	[Microsoft.AspNetCore.Authorization.Authorize
-		(Roles = Infrastructure.Constants.Role.Admin)]
-	public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
-	{
-		#region Constructor(s)
-		public IndexModel
-			(Data.DatabaseContext databaseContext,
-			Microsoft.Extensions.Logging.ILogger<IndexModel> logger) : base(databaseContext: databaseContext)
-		{
-			Logger = logger;
+    public IndexModel
+        (Data.DatabaseContext databaseContext,
+        Microsoft.Extensions.Logging.ILogger<IndexModel> logger) :
+        base(databaseContext: databaseContext)
+    {
+        Logger = logger;
 
-			ViewModel = new ViewModels.Shared.PaginationWithDataViewModel
-				<ViewModels.Pages.Admin.MenuItemManager.GetMenuItemViewModel>();
-		}
-		#endregion Constructor(s)
+        ViewModel =
+            new System.Collections.Generic.List
+            <ViewModels.Pages.Admin.MenuItemManager.IndexItemViewModel>();
+    }
 
-		#region Property(ies)
-		// **********
-		[Microsoft.AspNetCore.Mvc.BindProperty]
-		public System.Guid? ParentId { get; set; }
-		// **********
+    // **********
+    [Microsoft.AspNetCore.Mvc.BindProperty]
+    public System.Guid? ParentId { get; set; }
+    // **********
 
-		// **********
-		private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
-		// **********
+    // **********
+    private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
+    // **********
 
-		// **********
-		public ViewModels.Shared.PaginationWithDataViewModel
-			<ViewModels.Pages.Admin.MenuItemManager.GetMenuItemViewModel> ViewModel
-		{ get; private set; }
-		// **********
-		#endregion Property(ies)
+    // **********
+    public System.Collections.Generic.IList
+        <ViewModels.Pages.Admin.MenuItemManager.IndexItemViewModel> ViewModel
+    { get; private set; }
+    // **********
 
-		#region On Get
-		// TO DO: Let Users Select Page Size
-		public async System.Threading.Tasks.Task
-			<Microsoft.AspNetCore.Mvc.IActionResult>
-			OnGetAsync(int pageSize = 10, int pageNumber = 1, System.Guid? id = null)
-		{
-			try
-			{
-				ParentId = id;
+    public async System.Threading.Tasks.Task
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id = null)
+    {
+        try
+        {
+            ParentId = id;
 
-				if (pageNumber > 0)
-				{
-					// **************************************************
-					ViewModel = new ViewModels.Shared.PaginationWithDataViewModel
-						<ViewModels.Pages.Admin.MenuItemManager.GetMenuItemViewModel>
-					{
-						PageInformation = new()
-						{
-							PageSize = pageSize,
-							PageNumber = pageNumber,
-						},
-					};
-					// **************************************************
+            ViewModel =
+                await
+                DatabaseContext.MenuItems
+                .Where(x => x.ParentId == ParentId)
+                .OrderBy(current => current.Ordering)
+                .ThenBy(current => current.Title)
+                .Select(current => new ViewModels.Pages.Admin.MenuItemManager.IndexItemViewModel
+                {
+                    Id = current.Id,
+                    Icon = current.Icon,
+                    Title = current.Title,
+                    IsActive = current.IsActive,
+                    IsPublic = current.IsPublic,
+                    Ordering = current.Ordering,
+                    IsDeleted = current.IsDeleted,
+                    IsUndeletable = current.IsUndeletable,
+                    HasAnySubMenu = current.SubMenus.Any(),
+                    InsertDateTime = current.InsertDateTime,
+                    UpdateDateTime = current.UpdateDateTime,
+                })
+                .ToListAsync()
+                ;
+        }
+        catch (System.Exception ex)
+        {
+            Logger.LogError
+                (message: Domain.SeedWork.Constants
+                .Logger.ErrorMessage, args: ex.Message);
 
-					var data =
-						DatabaseContext.MenuItems
-						//.Where(current => current.IsDeleted == false)
-						.Where(current => current.ParentId == ParentId)
-						;
+            AddPageError
+                (message: Resources.Messages.Errors.UnexpectedError);
+        }
+        finally
+        {
+            await DisposeDatabaseContextAsync();
+        }
 
-
-					// **************************************************
-					ViewModel.PageInformation.TotalCount = await data.CountAsync();
-
-					if (ViewModel.PageInformation.TotalCount > 0)
-					{
-						ViewModel.Data =
-							await data
-							.Skip((pageNumber - 1) * pageSize)
-							.Take(pageSize)
-							.Select(current => new ViewModels.Pages.Admin.MenuItemManager.GetMenuItemViewModel
-							{
-								Id = current.Id,
-								Icon = current.Icon,
-								Title = current.Title,
-								IsPublic = current.IsPublic,
-								IsActive = current.IsActive,
-								IsDeleted = current.IsDeleted,
-								IsUndeletable = current.IsUndeletable,
-								HasAnySubMenu = current.SubMenus.Any(),
-								UpdateDateTime = current.UpdateDateTime,
-								InsertDateTime = current.InsertDateTime,
-							})
-							.AsNoTracking()
-							.ToListAsync()
-							;
-					}
-					// **************************************************
-
-					//if ((ViewModel == null) || (ViewModel.Data == null) || (ViewModel.Data.Any() == false))
-					//{
-					//	return RedirectToPage(pageName: "/admin/menuitemmanager/create");
-					//}
-				}
-			}
-			catch (System.Exception ex)
-			{
-				Logger.LogError(message: ex.Message);
-
-				//System.Console.WriteLine(value: ex.Message);
-
-				AddToastError(message: Resources.Messages.Errors.UnexpectedError);
-			}
-			finally
-			{
-				await DisposeDatabaseContextAsync();
-			}
-
-			return Page();
-		}
-		#endregion /On Get
-	}
+        return Page();
+    }
 }
