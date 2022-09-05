@@ -30,7 +30,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 	// **********
 	[Microsoft.AspNetCore.Mvc.BindProperty]
-	public ViewModels.Pages.Admin.MenuItemManager.CreateViewModel ViewModel { get; set; }
+	public ViewModels.Pages.Admin.MenuItemManager.CreateViewModel ViewModel { get; private set; }
 	// **********
 
 	// **********

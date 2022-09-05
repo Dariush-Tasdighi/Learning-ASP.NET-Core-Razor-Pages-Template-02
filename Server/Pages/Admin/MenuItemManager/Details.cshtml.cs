@@ -10,7 +10,8 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public DetailsModel
 		(Data.DatabaseContext databaseContext,
-		Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) : base(databaseContext: databaseContext)
+		Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) :
+		base(databaseContext: databaseContext)
 	{
 		Logger = logger;
 	}
