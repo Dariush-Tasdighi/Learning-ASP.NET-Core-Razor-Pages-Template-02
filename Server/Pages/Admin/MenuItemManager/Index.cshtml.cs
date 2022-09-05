@@ -21,11 +21,6 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 	}
 
 	// **********
-	[Microsoft.AspNetCore.Mvc.BindProperty]
-	public System.Guid? ParentId { get; set; }
-	// **********
-
-	// **********
 	private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
 	// **********
 
@@ -40,12 +35,19 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		try
 		{
-			ParentId = id;
+
+			if (id.HasValue == false)
+			{
+				AddToastError
+					(message: Resources.Messages.Errors.IdIsNull);
+
+				return RedirectToPage(pageName: "Index");
+			}
 
 			ViewModel =
 				await
 				DatabaseContext.MenuItems
-				.Where(x => x.ParentId == ParentId)
+				.Where(x => x.ParentId == id)
 				.OrderBy(current => current.Ordering)
 				.ThenBy(current => current.Title)
 				.Select(current => new ViewModels.Pages.Admin.MenuItemManager.IndexItemViewModel

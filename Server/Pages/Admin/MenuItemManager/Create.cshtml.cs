@@ -10,10 +10,10 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public CreateModel
 		(Data.DatabaseContext databaseContext,
-		Microsoft.Extensions.Logging.ILogger<CreateModel> logger) : base(databaseContext: databaseContext)
+		Microsoft.Extensions.Logging.ILogger<CreateModel> logger) :
+		base(databaseContext: databaseContext)
 	{
 		Logger = logger;
-
 		ViewModel = new();
 
 		ParentsViewModel = new System.Collections.Generic.List
@@ -25,12 +25,8 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 
 	// **********
-	public string? ReturnUrl { get; set; }
-	// **********
-
-	// **********
 	[Microsoft.AspNetCore.Mvc.BindProperty]
-	public ViewModels.Pages.Admin.MenuItemManager.CreateViewModel ViewModel { get; private set; }
+	public ViewModels.Pages.Admin.MenuItemManager.CreateViewModel ViewModel { get; set; }
 	// **********
 
 	// **********
@@ -39,22 +35,9 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{ get; private set; }
 	// **********
 
-	public async System.Threading.Tasks.Task OnGetAsync(string? returnUrl)
+	public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
 	{
-		ReturnUrl = returnUrl;
-
-		try
-		{
-			await SetAccessibleParent();
-		}
-		catch (System.Exception ex)
-		{
-			Logger.LogError(message: ex.Message);
-		}
-		finally
-		{
-			await DisposeDatabaseContextAsync();
-		}
+		return Page();
 	}
 
 	public async System.Threading.Tasks.Task
@@ -62,36 +45,37 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		try
 		{
-			// **************************************************
 			if (ModelState.IsValid == false)
 			{
 				return Page();
 			}
-			// **************************************************
 
 			string? fixedTitle =
 				Dtat.Utility.FixText(text: ViewModel.Title);
 
 			// **************************************************
-			bool hasAny =
+			bool foundedAny =
 				await DatabaseContext.MenuItems
 				.Where(current => current.Title.ToLower() == fixedTitle.ToLower())
 				.Where(current => current.ParentId == ViewModel.ParentId)
 				.Where(current => current.IsDeleted == false)
 				.AnyAsync();
 
-			if (hasAny)
+			if (foundedAny)
 			{
-				string errorMessage = string.Format
-					(Resources.Messages.Errors.AlreadyExists, Resources.DataDictionary.Title);
+				// **************************************************
+				var errorMessage = string.Format
+					(Resources.Messages.Errors.AlreadyExists,
+					Resources.DataDictionary.Name);
 
 				AddPageError(message: errorMessage);
+				// **************************************************
 
 				return Page();
 			}
 			// **************************************************
 
-			Domain.MenuItem menu = new(title: fixedTitle)
+			Domain.MenuItem newEntity = new(title: fixedTitle)
 			{
 				Icon = ViewModel.Icon,
 				IsPublic = ViewModel.IsPublic,
@@ -104,60 +88,37 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 			};
 
 			var entityEntry =
-				await DatabaseContext.AddAsync(entity: menu);
+				await
+				DatabaseContext.AddAsync(entity: newEntity);
 
-			int affectedRow =
-				await DatabaseContext.SaveChangesAsync();
+			var affectedRows =
+				await
+				DatabaseContext.SaveChangesAsync();
+			// **************************************************
 
 			// **************************************************
-			if (affectedRow > 0)
-			{
-				string successMessage = string.Format
-					(Resources.Messages.Successes.Created,
-					Resources.DataDictionary.MenuItem);
+			var successMessage = string.Format
+				(Resources.Messages.Successes.Created,
+				Resources.DataDictionary.PageCategory);
 
-				AddToastSuccess(message: successMessage);
-			}
+			AddToastSuccess(message: successMessage);
 			// **************************************************
+
+			return RedirectToPage(pageName: "Index");
 		}
 		catch (System.Exception ex)
 		{
-			Logger.LogError(message: ex.Message);
+			Logger.LogError
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
-			//System.Console.WriteLine(value: ex.Message);
+			AddToastError
+				(message: Resources.Messages.Errors.UnexpectedError);
 
-			AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+			return RedirectToPage(pageName: "Index");
 		}
 		finally
 		{
-			await SetAccessibleParent();
-
 			await DisposeDatabaseContextAsync();
 		}
-
-		if (string.IsNullOrWhiteSpace(value: ReturnUrl))
-		{
-			return RedirectToPage(pageName: "./Index");
-		}
-		else
-		{
-			return Redirect(url: ReturnUrl);
-		}
-	}
-
-	private async System.Threading.Tasks.Task SetAccessibleParent()
-	{
-		ParentsViewModel =
-			await DatabaseContext.MenuItems
-			.Where(current => current.IsDeleted == false)
-			.Where(current => current.ParentId == null)
-			.OrderBy(current => current.Ordering)
-			.Select(current => new ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel
-			{
-				Id = current.Id,
-				Title = current.Title,
-			})
-			.ToListAsync()
-			;
 	}
 }
