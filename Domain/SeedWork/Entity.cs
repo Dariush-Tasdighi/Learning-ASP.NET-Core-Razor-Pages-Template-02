@@ -1,6 +1,7 @@
-﻿namespace Domain.SeedWork
+﻿namespace Domain.Seedwork
 {
-	public abstract class Entity : object, IEntity
+	public abstract class Entity : object,
+		Dtat.Seedwork.Abstractions.IEntity<System.Guid>
 	{
 		public Entity() : base()
 		{

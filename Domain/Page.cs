@@ -1,14 +1,14 @@
 ﻿namespace Domain;
 
 public class Page :
-	SeedWork.Entity,
-	SeedWork.IEntityHasIsActive,
-	SeedWork.IEntityHasIsSystemic,
-	SeedWork.IEntityHasIsUnupdatable,
-	SeedWork.IEntityHasIsUndeletable,
-	SeedWork.IEntityHasUpdateDateTime,
-	SeedWork.IEntityHasDeleteDateTime,
-	SeedWork.IEntityHasLogicalDelete
+	Seedwork.Entity,
+	Dtat.Seedwork.Abstractions.IEntityHasIsActive,
+	Dtat.Seedwork.Abstractions.IEntityHasIsSystemic,
+	Dtat.Seedwork.Abstractions.IEntityHasIsUnupdatable,
+	Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,
+	Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime,
+	Dtat.Seedwork.Abstractions.IEntityHasDeleteDateTime,
+	Dtat.Seedwork.Abstractions.IEntityHasLogicalDelete
 {
 	#region Constant(s)
 	public const byte TitleMaxLength = 100;
@@ -97,7 +97,7 @@ public class Page :
 	[System.ComponentModel.DataAnnotations.Required
 		(ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-	public virtual PageCategory PageCategory { get; set; }
+	public virtual PageCategory? PageCategory { get; set; }
 	// **********
 	// **********
 	// **********
@@ -395,17 +395,19 @@ public class Page :
 	#region Method(s)
 	public void SetUpdateDateTime()
 	{
-		UpdateDateTime = SeedWork.Utility.Now;
+		UpdateDateTime =
+			Seedwork.Utility.Now;
 	}
 
 	public void SetDeleteDateTime()
 	{
 		//if (IsDeleted)
 		//{
-		//	DeleteDateTime = SeedWork.Utility.Now;
+		//	DeleteDateTime = Seedwork.Utility.Now;
 		//}
 
-		DeleteDateTime = SeedWork.Utility.Now;
+		DeleteDateTime =
+			Seedwork.Utility.Now;
 	}
 	#endregion /Method(s)
 }

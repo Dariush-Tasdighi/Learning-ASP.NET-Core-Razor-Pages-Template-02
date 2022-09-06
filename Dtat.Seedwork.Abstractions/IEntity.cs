@@ -1,9 +1,9 @@
-﻿namespace Domain.SeedWork
+﻿namespace Dtat.Seedwork.Abstractions
 {
-	public interface IEntity
+	public interface IEntity<T>
 	{
 		// **********
-		public System.Guid Id { get; }
+		public T Id { get; }
 		// **********
 
 		// **********

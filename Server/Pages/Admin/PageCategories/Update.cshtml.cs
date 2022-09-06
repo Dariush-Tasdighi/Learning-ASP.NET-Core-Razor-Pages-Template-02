@@ -127,8 +127,8 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			{
 				// **************************************************
 				var errorMessage = string.Format
-					(Resources.Messages.Errors.AlreadyExists,
-					Resources.DataDictionary.Name);
+					(format: Resources.Messages.Errors.AlreadyExists,
+					arg0: Resources.DataDictionary.Name);
 
 				AddPageError(message: errorMessage);
 				// **************************************************
@@ -156,8 +156,8 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 			// **************************************************
 			var successMessage = string.Format
-				(Resources.Messages.Successes.Updated,
-				Resources.DataDictionary.PageCategory);
+				(format: Resources.Messages.Successes.Updated,
+				arg0: Resources.DataDictionary.PageCategory);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************

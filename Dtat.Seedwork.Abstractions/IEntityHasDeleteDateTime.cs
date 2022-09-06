@@ -1,4 +1,4 @@
-﻿namespace Domain.SeedWork
+﻿namespace Dtat.Seedwork.Abstractions
 {
 	public interface IEntityHasDeleteDateTime
 	{

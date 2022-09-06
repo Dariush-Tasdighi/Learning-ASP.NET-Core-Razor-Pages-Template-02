@@ -1,9 +1,9 @@
 ﻿namespace Domain;
 
 public class Role :
-	SeedWork.Entity,
-	SeedWork.IEntityHasIsActive,
-	SeedWork.IEntityHasUpdateDateTime
+	Seedwork.Entity,
+	Dtat.Seedwork.Abstractions.IEntityHasIsActive,
+	Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 {
 	#region Constructor
 	public Role(string name) : base()

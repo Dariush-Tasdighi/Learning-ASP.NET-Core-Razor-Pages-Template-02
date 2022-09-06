@@ -39,10 +39,11 @@
 			<section-form-field>
 				<label asp-for="ViewModel.RoleId"></label>
 
-				<select class="form-select" asp-for="ViewModel.RoleId"
+				<select asp-for="ViewModel.RoleId"
 						asp-items="@(new SelectList(Model.RolesViewModel,
 						nameof(ViewModels.Shared.KeyValueViewModel.Id),
-						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+						nameof(ViewModels.Shared.KeyValueViewModel.Name)))"
+						class="form-select">
 
 					<option value="@(null)" selected>
 						@(Resources.DataDictionary.WithoutRole)

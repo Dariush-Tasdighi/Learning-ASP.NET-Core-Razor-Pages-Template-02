@@ -1,11 +1,11 @@
 ﻿namespace Domain
 {
 	public class MenuItem :
-		SeedWork.Entity,
-		SeedWork.IEntityHasIsActive,
-		SeedWork.IEntityHasIsUndeletable,
-		SeedWork.IEntityHasLogicalDelete,
-		SeedWork.IEntityHasUpdateDateTime
+		Seedwork.Entity,
+		Dtat.Seedwork.Abstractions.IEntityHasIsActive,
+		Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,
+		Dtat.Seedwork.Abstractions.IEntityHasLogicalDelete,
+		Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 	{
 		#region Constant(s)
 		public const int LinkMaxLength = 500;
@@ -152,7 +152,8 @@
 		#region Method(s)
 		public void SetUpdateDateTime()
 		{
-			UpdateDateTime = SeedWork.Utility.Now;
+			UpdateDateTime =
+				Seedwork.Utility.Now;
 		}
 		#endregion /Method(s)
 	}
