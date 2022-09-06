@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.Users;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	#region Constructor(s)
@@ -53,7 +53,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -89,8 +89,8 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 			{
 				// **************************************************
 				var errorMessage = string.Format
-					(Resources.Messages.Errors.AlreadyExists,
-					Resources.DataDictionary.EmailAddress);
+					(format: Resources.Messages.Errors.AlreadyExists,
+					arg0: Resources.DataDictionary.EmailAddress);
 
 				AddPageError
 					(message: errorMessage);
@@ -133,8 +133,8 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 			// **************************************************
 			var successMessage = string.Format
-				(Resources.Messages.Successes.Created,
-				Resources.DataDictionary.User);
+				(format: Resources.Messages.Successes.Created,
+				arg0: Resources.DataDictionary.User);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************
@@ -144,7 +144,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -162,7 +162,8 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	private async System.Threading.Tasks.Task SetAccessibleRoleAsync()
 	{
 		RolesViewModel =
-			await DatabaseContext.Roles
+			await
+			DatabaseContext.Roles
 			.OrderBy(current => current.Ordering)
 			.ThenBy(current => current.Name)
 			.Select(current => new ViewModels.Shared.KeyValueViewModel

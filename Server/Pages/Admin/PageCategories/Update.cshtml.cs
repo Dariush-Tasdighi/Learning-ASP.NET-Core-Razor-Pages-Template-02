@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.PageCategories;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public UpdateModel
@@ -72,8 +72,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage,
-				args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -128,8 +127,8 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			{
 				// **************************************************
 				var errorMessage = string.Format
-					(Resources.Messages.Errors.AlreadyExists,
-					Resources.DataDictionary.Name);
+					(format: Resources.Messages.Errors.AlreadyExists,
+					arg0: Resources.DataDictionary.Name);
 
 				AddPageError(message: errorMessage);
 				// **************************************************
@@ -157,8 +156,8 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 			// **************************************************
 			var successMessage = string.Format
-				(Resources.Messages.Successes.Updated,
-				Resources.DataDictionary.PageCategory);
+				(format: Resources.Messages.Successes.Updated,
+				arg0: Resources.DataDictionary.PageCategory);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************
@@ -168,8 +167,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage,
-				args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);

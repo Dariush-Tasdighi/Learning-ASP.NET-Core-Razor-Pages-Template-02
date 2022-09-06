@@ -3,12 +3,14 @@
 
 @{
 	var pageTitle =
-		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.Role}";
+		$"{Resources.ButtonCaptions.UpdateOf} {Resources.DataDictionary.Role}";
 
-	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <form method="post">
+
+	<input type="hidden" asp-for="ViewModel.Id" />
 
 	<section-form>
 		<fieldset>
@@ -18,30 +20,13 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<input type="hidden" asp-for="ViewModel.Id" />
+			<dtat-full-input asp-for="ViewModel.Name" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Name"></label>
-				<input asp-for="ViewModel.Name" />
-				<span asp-validation-for="ViewModel.Name"></span>
-			</section-form-field>
+			<dtat-full-checkbox asp-for="ViewModel.IsActive" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsActive" />
-				<label asp-for="ViewModel.IsActive"></label>
-			</section-form-check>
+			<dtat-full-input asp-for="ViewModel.Ordering" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" />
-				<span asp-validation-for="ViewModel.Ordering"></span>
-			</section-form-field>
-
-			<section-form-field>
-				<label asp-for="ViewModel.Description"></label>
-				<textarea asp-for="ViewModel.Description"></textarea>
-				<span asp-validation-for="ViewModel.Description"></span>
-			</section-form-field>
+			<dtat-full-textarea asp-for="ViewModel.Description" />
 		</fieldset>
 
 		<section-form-buttons>

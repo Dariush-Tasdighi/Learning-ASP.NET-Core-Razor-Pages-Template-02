@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.Roles;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public CreateModel(Data.DatabaseContext databaseContext,
@@ -56,9 +56,15 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 			if (foundedAny)
 			{
 				// **************************************************
+				//var errorMessage =
+				//	"The name already exists!";
+
+				//var errorMessage = string.Format
+				//	(format: "The {0} already exists!", arg0: "name");
+
 				var errorMessage = string.Format
-					(Resources.Messages.Errors.AlreadyExists,
-					Resources.DataDictionary.Name);
+					(format: Resources.Messages.Errors.AlreadyExists,
+					arg0: Resources.DataDictionary.Name);
 
 				AddPageError(message: errorMessage);
 				// **************************************************
@@ -90,20 +96,20 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 			// **************************************************
 			var successMessage = string.Format
-				(Resources.Messages.Successes.Created,
-				Resources.DataDictionary.Role);
+				(format: Resources.Messages.Successes.Created,
+				arg0: Resources.DataDictionary.Role);
 
 			AddToastSuccess(message: successMessage);
+			//AddPageSuccess(message: successMessage);
 			// **************************************************
 
-			//return RedirectToPage(pageName: "./Index");
-
 			return RedirectToPage(pageName: "Index");
+			//return RedirectToPage(pageName: "./Index");
 		}
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);

@@ -5,46 +5,32 @@
 	var pageTitle =
 		$"{Resources.ButtonCaptions.Details} {Resources.DataDictionary.PageCategory}";
 
-	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <section-form>
-	<fieldset disabled>
+	<fieldset>
 		<section-form-header>
 			@(pageTitle)
 		</section-form-header>
 
 		<partial name="PartialViews/_DisplayPageMessages" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Id"></label>
-			<input asp-for="ViewModel.Id" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Id" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Name"></label>
-			<input asp-for="ViewModel.Name" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Name" />
 
-		<section-form-check>
-			<input asp-for="ViewModel.IsActive" />
-			<label asp-for="ViewModel.IsActive"></label>
-		</section-form-check>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsActive" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.PageCount"></label>
-			<input asp-for="ViewModel.PageCount" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Ordering" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Ordering"></label>
-			<input asp-for="ViewModel.Ordering" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.PageCount" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Description"></label>
-			<textarea asp-for="ViewModel.Description"></textarea>
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.InsertDateTime" />
+
+		<dtat-readonly-input asp-for="ViewModel.UpdateDateTime" />
+
+		<dtat-readonly-textarea asp-for="ViewModel.Description" />
 	</fieldset>
 
 	<section-form-footer>

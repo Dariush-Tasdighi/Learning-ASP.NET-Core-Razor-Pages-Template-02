@@ -1,6 +1,6 @@
 ﻿namespace Domain
 {
-	public class UserLogin : SeedWork.Entity
+	public class UserLogin : Seedwork.Entity
 	{
 		public UserLogin(System.Guid userId, string userIP) : base()
 		{
@@ -40,12 +40,12 @@
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 		[System.ComponentModel.DataAnnotations.MaxLength
-			(length: SeedWork.Constants.MaxLength.IP,
+			(length: Constants.MaxLength.IP,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 		[System.ComponentModel.DataAnnotations.RegularExpression
-			(pattern: SeedWork.Constants.RegularExpression.IP,
+			(pattern: Constants.RegularExpression.IP,
 			ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 			ErrorMessageResourceName = nameof(Resources.Messages.Validations.IP))]
 		public string UserIP { get; set; }

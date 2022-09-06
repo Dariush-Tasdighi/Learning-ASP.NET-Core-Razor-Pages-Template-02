@@ -1,4 +1,4 @@
-﻿namespace Domain.SeedWork
+﻿namespace Domain.Seedwork
 {
 	public static class Utility
 	{

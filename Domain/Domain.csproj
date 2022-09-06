@@ -7,7 +7,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Dtat.Seedwork.Abstractions\Dtat.Seedwork.Abstractions.csproj" />
 		<ProjectReference Include="..\Dtat\Dtat.csproj" />
+		<ProjectReference Include="..\Constants\Constants.csproj" />
 		<ProjectReference Include="..\Resources\Resources.csproj" />
 	</ItemGroup>
 

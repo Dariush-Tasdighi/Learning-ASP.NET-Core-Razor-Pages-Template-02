@@ -5,7 +5,7 @@
 	var pageTitle =
 		Resources.PageTitles.CreatePage;
 
-	ViewData["PageTitle"] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 
 	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
 	{

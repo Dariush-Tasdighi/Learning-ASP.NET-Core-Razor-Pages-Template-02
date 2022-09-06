@@ -1,14 +1,12 @@
 ﻿namespace Domain;
 
 public class Page :
-	SeedWork.Entity,
-	SeedWork.IEntityHasIsActive,
-	SeedWork.IEntityHasIsSystemic,
-	SeedWork.IEntityHasIsUnupdatable,
-	SeedWork.IEntityHasIsUndeletable,
-	SeedWork.IEntityHasUpdateDateTime,
-	SeedWork.IEntityHasDeleteDateTime,
-	SeedWork.IEntityHasLogicalDelete
+	Seedwork.Entity,
+	Dtat.Seedwork.Abstractions.IEntityHasIsActive,
+	Dtat.Seedwork.Abstractions.IEntityHasIsSystemic,
+	Dtat.Seedwork.Abstractions.IEntityHasIsUnupdatable,
+	Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,
+	Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 {
 	#region Constant(s)
 	public const byte TitleMaxLength = 100;
@@ -97,7 +95,7 @@ public class Page :
 	[System.ComponentModel.DataAnnotations.Required
 		(ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-	public virtual PageCategory PageCategory { get; set; }
+	public virtual PageCategory? PageCategory { get; set; }
 	// **********
 	// **********
 	// **********
@@ -360,26 +358,6 @@ public class Page :
 
 	// **********
 	/// <summary>
-	/// آیا صفحه مورد نظر حذف شده است؟
-	/// </summary>
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsDeleted))]
-	public bool IsDeleted { get; set; }
-	// **********
-
-	// **********
-	/// <summary>
-	/// تاریخ و زمان حذف صفحه
-	/// </summary>
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.DeleteDateTime))]
-	public System.DateTime DeleteDateTime { get; private set; }
-	// **********
-
-	// **********
-	/// <summary>
 	/// سیستمی است؟
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
@@ -395,17 +373,8 @@ public class Page :
 	#region Method(s)
 	public void SetUpdateDateTime()
 	{
-		UpdateDateTime = SeedWork.Utility.Now;
-	}
-
-	public void SetDeleteDateTime()
-	{
-		//if (IsDeleted)
-		//{
-		//	DeleteDateTime = SeedWork.Utility.Now;
-		//}
-
-		DeleteDateTime = SeedWork.Utility.Now;
+		UpdateDateTime =
+			Seedwork.Utility.Now;
 	}
 	#endregion /Method(s)
 }

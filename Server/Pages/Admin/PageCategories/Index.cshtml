@@ -5,7 +5,7 @@
 	var pageTitle =
 		$"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.PageCategories}";
 
-	ViewData[Infrastructure.ViewDataKeyNames.PageTitle] = pageTitle;
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <section-page-header>
@@ -17,6 +17,8 @@
 		@(Html.DtatGetLinkCaptionForCreate())
 	</a>
 </section-page-actions>
+
+<partial name="PartialViews/_DisplayPageMessages" />
 
 <section-table>
 	<table>

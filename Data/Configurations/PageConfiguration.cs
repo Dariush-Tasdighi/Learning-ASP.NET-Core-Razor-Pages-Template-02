@@ -26,7 +26,7 @@ namespace Data.Configurations
 			// **************************************************
 			builder
 				.Property(current => current.Password)
-				.HasMaxLength(maxLength: Domain.SeedWork.Constants.MaxLength.Password)
+				.HasMaxLength(maxLength: Constants.MaxLength.Password)
 				.IsRequired(required: true)
 				.IsUnicode(unicode: false)
 				;

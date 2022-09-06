@@ -4,8 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.Roles;
 
-[Microsoft.AspNetCore.Authorization.Authorize
-	(Roles = Infrastructure.Constants.Role.Admin)]
+[Microsoft.AspNetCore.Authorization
+	.Authorize(Roles = Constants.Role.Admin)]
 public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public DeleteModel
@@ -69,7 +69,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
@@ -87,6 +87,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		try
 		{
+			// **************************************************
 			if (id.HasValue == false)
 			{
 				AddToastError
@@ -94,7 +95,9 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
+			// **************************************************
 			var hasAnyChildren =
 				await
 				DatabaseContext.Users
@@ -105,14 +108,15 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 			{
 				// **************************************************
 				var errorMessage = string.Format
-					(Resources.Messages.Errors.CascadeDelete,
-					Resources.DataDictionary.Role);
+					(format: Resources.Messages.Errors.CascadeDelete,
+					arg0: Resources.DataDictionary.Role);
 
 				AddToastError(message: errorMessage);
 				// **************************************************
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
 			// **************************************************
 			var foundedItem =
@@ -128,16 +132,21 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+			// **************************************************
 
-			DatabaseContext.Remove(entity: foundedItem);
+			// **************************************************
+			var entityEntry =
+				DatabaseContext.Remove(entity: foundedItem);
 
-			await DatabaseContext.SaveChangesAsync();
+			var affectedRows =
+				await
+				DatabaseContext.SaveChangesAsync();
 			// **************************************************
 
 			// **************************************************
 			var successMessage = string.Format
-				(Resources.Messages.Successes.Deleted,
-				Resources.DataDictionary.Role);
+				(format: Resources.Messages.Successes.Deleted,
+				arg0: Resources.DataDictionary.Role);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************
@@ -147,7 +156,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 		catch (System.Exception ex)
 		{
 			Logger.LogError
-				(message: Domain.SeedWork.Constants.Logger.ErrorMessage, args: ex.Message);
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
 			AddToastError
 				(message: Resources.Messages.Errors.UnexpectedError);
