@@ -1,6 +1,6 @@
 ﻿namespace Dtat.Seedwork.Abstractions
 {
-	public interface IEntityCanSetId
+	public interface IEntityIdIsSetable
 	{
 		void SetId(System.Guid id);
 	}

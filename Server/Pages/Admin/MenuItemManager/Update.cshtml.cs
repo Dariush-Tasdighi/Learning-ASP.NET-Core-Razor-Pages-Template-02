@@ -194,7 +194,6 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		ParentsViewModel =
 			await DatabaseContext.MenuItems
-			.Where(current => current.IsDeleted == false)
 			.Where(current => current.ParentId == null)
 			.Where(current => current.Id != id)
 			.OrderBy(current => current.Ordering)

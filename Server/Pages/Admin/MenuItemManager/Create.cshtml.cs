@@ -78,7 +78,6 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 				await DatabaseContext.MenuItems
 				.Where(current => current.Title.ToLower() == fixedTitle.ToLower())
 				.Where(current => current.ParentId == ViewModel.ParentId)
-				.Where(current => current.IsDeleted == false)
 				.AnyAsync();
 
 			if (hasAny)
@@ -151,7 +150,6 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		ParentsViewModel =
 			await DatabaseContext.MenuItems
-			.Where(current => current.IsDeleted == false)
 			.Where(current => current.ParentId == null)
 			.OrderBy(current => current.Ordering)
 			.Select(current => new ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel

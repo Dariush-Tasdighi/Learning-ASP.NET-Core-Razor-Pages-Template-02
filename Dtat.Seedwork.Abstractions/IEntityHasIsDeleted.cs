@@ -1,7 +1,9 @@
 ﻿namespace Dtat.Seedwork.Abstractions
 {
-	public interface IEntityHasDeleteDateTime
+	public interface IEntityHasIsDeleted
 	{
+		bool IsDeleted { get; set; }
+
 		System.DateTime DeleteDateTime { get; }
 
 		void SetDeleteDateTime();

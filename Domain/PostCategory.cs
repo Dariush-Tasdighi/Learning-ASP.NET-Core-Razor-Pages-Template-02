@@ -4,7 +4,6 @@
 		Seedwork.Entity,
 		Dtat.Seedwork.Abstractions.IEntityHasIsActive,
 		Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,
-		Dtat.Seedwork.Abstractions.IEntityHasLogicalDelete,
 		Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 	{
 		#region Constructor
@@ -93,16 +92,6 @@
 			(Name = nameof(Resources.DataDictionary.IsUndeletable),
 			ResourceType = typeof(Resources.DataDictionary))]
 		public bool IsUndeletable { get; set; }
-		// **********
-
-		// **********
-		/// <summary>
-		/// حذف شده/نشده
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeleted),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeleted { get; set; }
 		// **********
 
 		// **********

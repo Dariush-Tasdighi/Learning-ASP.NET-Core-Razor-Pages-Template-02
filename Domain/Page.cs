@@ -6,9 +6,7 @@ public class Page :
 	Dtat.Seedwork.Abstractions.IEntityHasIsSystemic,
 	Dtat.Seedwork.Abstractions.IEntityHasIsUnupdatable,
 	Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,
-	Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime,
-	Dtat.Seedwork.Abstractions.IEntityHasDeleteDateTime,
-	Dtat.Seedwork.Abstractions.IEntityHasLogicalDelete
+	Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 {
 	#region Constant(s)
 	public const byte TitleMaxLength = 100;
@@ -360,26 +358,6 @@ public class Page :
 
 	// **********
 	/// <summary>
-	/// آیا صفحه مورد نظر حذف شده است؟
-	/// </summary>
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsDeleted))]
-	public bool IsDeleted { get; set; }
-	// **********
-
-	// **********
-	/// <summary>
-	/// تاریخ و زمان حذف صفحه
-	/// </summary>
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.DeleteDateTime))]
-	public System.DateTime DeleteDateTime { get; private set; }
-	// **********
-
-	// **********
-	/// <summary>
 	/// سیستمی است؟
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
@@ -396,17 +374,6 @@ public class Page :
 	public void SetUpdateDateTime()
 	{
 		UpdateDateTime =
-			Seedwork.Utility.Now;
-	}
-
-	public void SetDeleteDateTime()
-	{
-		//if (IsDeleted)
-		//{
-		//	DeleteDateTime = Seedwork.Utility.Now;
-		//}
-
-		DeleteDateTime =
 			Seedwork.Utility.Now;
 	}
 	#endregion /Method(s)

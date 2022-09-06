@@ -71,7 +71,6 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 				var foundedItem =
 					await DatabaseContext.MenuItems
 					.Where(current => current.Id == id.Value)
-					.Where(current => current.IsDeleted == false)
 					.FirstOrDefaultAsync();
 
 				if (foundedItem == null)
@@ -97,7 +96,6 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 				}
 				else
 				{
-					foundedItem.IsDeleted = true;
 					foundedItem.SetUpdateDateTime();
 
 					await DatabaseContext.SaveChangesAsync();

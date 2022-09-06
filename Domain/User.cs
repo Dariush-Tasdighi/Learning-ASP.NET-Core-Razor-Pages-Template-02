@@ -2,7 +2,7 @@
 
 public class User :
 	Seedwork.Entity,
-	Dtat.Seedwork.Abstractions.IEntityCanSetId,
+	Dtat.Seedwork.Abstractions.IEntityIdIsSetable,
 	Dtat.Seedwork.Abstractions.IEntityHasIsActive,
 	Dtat.Seedwork.Abstractions.IEntityHasIsSystemic,
 	Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,

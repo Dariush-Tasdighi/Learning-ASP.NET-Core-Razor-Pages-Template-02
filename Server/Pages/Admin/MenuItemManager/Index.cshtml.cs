@@ -84,7 +84,6 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 							Title = current.Title,
 							IsPublic = current.IsPublic,
 							IsActive = current.IsActive,
-							IsDeleted = current.IsDeleted,
 							IsUndeletable = current.IsUndeletable,
 							HasAnySubMenu = current.SubMenus.Any(),
 							UpdateDateTime = current.UpdateDateTime,

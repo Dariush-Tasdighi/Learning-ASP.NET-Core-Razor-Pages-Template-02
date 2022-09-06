@@ -51,7 +51,6 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 						IsPublic = current.IsPublic,
 						IsActive = current.IsActive,
 						Parent = current.Parent.Title,
-						IsDeleted = current.IsDeleted,
 						IconPosition = current.IconPosition,
 						IsUndeletable = current.IsUndeletable,
 						UpdateDateTime = current.UpdateDateTime,
