@@ -12,6 +12,10 @@
 
 		bool IsActive { get; }
 
+		string Icon { get; }
+
+		string Color { get; }
+
 		string ActionTitle { get; }
 
 		string Description { get; }
