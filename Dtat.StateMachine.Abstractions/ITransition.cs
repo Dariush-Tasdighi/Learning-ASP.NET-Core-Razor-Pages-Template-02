@@ -8,6 +8,8 @@
 
 		T FromStateId { get; }
 
+		T StateMachineId { get; }
+
 		int Code { get; }
 
 		bool IsActive { get; }
