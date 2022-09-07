@@ -10,8 +10,6 @@
 
 		T StateMachineId { get; }
 
-		int Code { get; }
-
 		bool IsActive { get; }
 
 		string Icon { get; }
