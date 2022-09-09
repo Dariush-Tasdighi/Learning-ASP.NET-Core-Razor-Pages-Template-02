@@ -99,7 +99,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 			// **************************************************
 			var successMessage = string.Format
 				(Resources.Messages.Successes.Created,
-				Resources.DataDictionary.PageCategory);
+				Resources.DataDictionary.MenuItem);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Server.Pages.Admin.MenuItemManager;
@@ -14,8 +15,9 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 		base(databaseContext: databaseContext)
 	{
 		Logger = logger;
-
 		ViewModel = new();
+		ParentsViewModel = new 
+			List<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel>();
 	}
 
 	// **********
@@ -184,7 +186,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			// **************************************************
 			var successMessage = string.Format
 				(Resources.Messages.Successes.Updated,
-				Resources.DataDictionary.PageCategory);
+				Resources.DataDictionary.MenuItem);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************

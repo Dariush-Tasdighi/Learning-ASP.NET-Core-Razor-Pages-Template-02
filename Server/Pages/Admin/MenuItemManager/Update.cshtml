@@ -32,11 +32,12 @@
 }
 
 	<form method="post">
+		<input type="hidden" asp-for="ViewModel.Id" />
 
 		<section-form>
-			<fieldset>
 
-				<section-form-header>
+			<fieldset>
+			<section-form-header>
 					@(pageTitle)
 			</section-form-header>
 

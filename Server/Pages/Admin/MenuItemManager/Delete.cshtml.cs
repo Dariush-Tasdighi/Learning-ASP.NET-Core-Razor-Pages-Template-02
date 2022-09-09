@@ -108,7 +108,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 				// **************************************************
 				var errorMessage = string.Format
 					(Resources.Messages.Errors.CascadeDelete,
-					Resources.DataDictionary.PageCategory);
+					Resources.DataDictionary.MenuItem);
 
 				AddToastError(message: errorMessage);
 				// **************************************************
@@ -129,7 +129,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 			{
 				string errorMessage = string.Format
 					(Resources.Messages.Errors.NotFound,
-					Resources.DataDictionary.Role);
+					Resources.DataDictionary.MenuItem);
 
 				AddToastError(message: errorMessage);
 
@@ -144,7 +144,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				AddPageError(message: errorMessage);
 
-				return Page();
+				return Page;
 			}
 
 			// **************************************************
@@ -160,7 +160,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 			// **************************************************
 			var successMessage = string.Format
 				(Resources.Messages.Successes.Deleted,
-				Resources.DataDictionary.Role);
+				Resources.DataDictionary.MenuItem);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************
