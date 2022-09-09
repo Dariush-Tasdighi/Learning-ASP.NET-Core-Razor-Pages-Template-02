@@ -1,11 +1,10 @@
 ﻿namespace Domain
 {
 	public class PostCategory :
-		SeedWork.Entity,
-		SeedWork.IEntityHasIsActive,
-		SeedWork.IEntityHasIsUndeletable,
-		SeedWork.IEntityHasLogicalDelete,
-		SeedWork.IEntityHasUpdateDateTime
+		Seedwork.Entity,
+		Dtat.Seedwork.Abstractions.IEntityHasIsActive,
+		Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,
+		Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 	{
 		#region Constructor
 		public PostCategory(string title) : base()
@@ -96,16 +95,6 @@
 		// **********
 
 		// **********
-		/// <summary>
-		/// حذف شده/نشده
-		/// </summary>
-		[System.ComponentModel.DataAnnotations.Display
-			(Name = nameof(Resources.DataDictionary.IsDeleted),
-			ResourceType = typeof(Resources.DataDictionary))]
-		public bool IsDeleted { get; set; }
-		// **********
-
-		// **********
 		public virtual System.Collections.Generic.IList<PostCategory> SubCategories { get; set; }
 		// **********
 
@@ -117,7 +106,8 @@
 		#region Method(s)
 		public void SetUpdateDateTime()
 		{
-			UpdateDateTime = SeedWork.Utility.Now;
+			UpdateDateTime =
+				Seedwork.Utility.Now;
 		}
 		#endregion /Method(s)
 	}

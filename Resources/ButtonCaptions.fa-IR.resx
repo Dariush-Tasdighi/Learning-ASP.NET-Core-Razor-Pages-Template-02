@@ -186,4 +186,7 @@
   <data name="Update" xml:space="preserve">
     <value>ویرایش</value>
   </data>
+  <data name="UpdateOf" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
 </root>

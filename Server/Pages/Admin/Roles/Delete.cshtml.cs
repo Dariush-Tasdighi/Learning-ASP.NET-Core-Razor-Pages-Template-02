@@ -108,8 +108,8 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 			{
 				// **************************************************
 				var errorMessage = string.Format
-					(Resources.Messages.Errors.CascadeDelete,
-					Resources.DataDictionary.Role);
+					(format: Resources.Messages.Errors.CascadeDelete,
+					arg0: Resources.DataDictionary.Role);
 
 				AddToastError(message: errorMessage);
 				// **************************************************
@@ -145,8 +145,8 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 			// **************************************************
 			var successMessage = string.Format
-				(Resources.Messages.Successes.Deleted,
-				Resources.DataDictionary.Role);
+				(format: Resources.Messages.Successes.Deleted,
+				arg0: Resources.DataDictionary.Role);
 
 			AddToastSuccess(message: successMessage);
 			// **************************************************
