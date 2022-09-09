@@ -86,6 +86,19 @@ public static class Utility : object
 		return icon;
 	}
 
+	public static Microsoft.AspNetCore.Mvc.Rendering.TagBuilder GetIconCustom(string iconName)
+	{
+		var icon =
+			new Microsoft.AspNetCore.Mvc
+			.Rendering.TagBuilder(tagName: "i");
+
+		icon.AddCssClass(value: "mx-1");
+		icon.AddCssClass(value: "bi");
+		icon.AddCssClass(value: iconName);
+
+		return icon;
+	}
+
 	public static void CreateOrMergeAttribute
 		(string name, object content,
 		Microsoft.AspNetCore.Razor.TagHelpers.TagHelperOutput output)

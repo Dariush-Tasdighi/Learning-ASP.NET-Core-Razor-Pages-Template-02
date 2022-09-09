@@ -10,7 +10,7 @@
 	var pageTitle =
 		Resources.PageTitles.MenuItemDetails;
 
-	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+	ViewData["PageTitle"] = pageTitle;
 
 	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
 	{
@@ -38,8 +38,8 @@
 		</section-form-field>
 
 		<section-form-field>
-			<label asp-for="ViewModel.Parent"></label>
-			<input asp-for="ViewModel.Parent" />
+			<label asp-for="ViewModel.ParentTitle"></label>
+			<input asp-for="ViewModel.ParentTitle" />
 		</section-form-field>
 
 		<section-form-field>
@@ -54,12 +54,12 @@
 
 		<section-form-field>
 			<label asp-for="ViewModel.Icon"></label>
-			<input asp-for="ViewModel.Icon"/>
+			<input asp-for="ViewModel.Icon" />
 		</section-form-field>
 
 		<section-form-field>
 			<label asp-for="ViewModel.IconPosition"></label>
-			<input asp-for="ViewModel.IconPosition"/>
+			<input asp-for="ViewModel.IconPosition" />
 		</section-form-field>
 
 		<section-form-check>
