@@ -36,14 +36,6 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 		try
 		{
 
-			if (id.HasValue == false)
-			{
-				AddToastError
-					(message: Resources.Messages.Errors.IdIsNull);
-
-				return RedirectToPage(pageName: "Index");
-			}
-
 			ViewModel =
 				await
 				DatabaseContext.MenuItems

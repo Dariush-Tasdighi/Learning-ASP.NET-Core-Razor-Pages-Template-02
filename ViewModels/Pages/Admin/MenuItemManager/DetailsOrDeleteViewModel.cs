@@ -5,10 +5,10 @@
 		public DetailsOrDeleteViewModel() : base()
 		{
 			InsertDateTime =
-				Domain.SeedWork.Utility.Now;
+				Domain.Seedwork.Utility.Now;
 
 			UpdateDateTime =
-				Domain.SeedWork.Utility.Now;
+				Domain.Seedwork.Utility.Now;
 		}
 
 		// **********
