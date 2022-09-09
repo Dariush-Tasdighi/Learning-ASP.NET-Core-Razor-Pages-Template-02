@@ -1,6 +1,7 @@
-using System.Linq;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Server.Pages.Admin.MenuItemManager;
 
@@ -10,11 +11,13 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
 	public UpdateModel
 		(Data.DatabaseContext databaseContext,
-		Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) : base(databaseContext: databaseContext)
+		Microsoft.Extensions.Logging.ILogger<UpdateModel> logger) :
+		base(databaseContext: databaseContext)
 	{
 		Logger = logger;
-
 		ViewModel = new();
+		ParentsViewModel = new 
+			List<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel>();
 	}
 
 	// **********
@@ -23,7 +26,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 	// **********
 	[Microsoft.AspNetCore.Mvc.BindProperty]
-	public ViewModels.Pages.Admin.MenuItemManager.UpdateMenuItemViewModel ViewModel { get; set; }
+	public ViewModels.Pages.Admin.MenuItemManager.UpdateViewModel ViewModel { get; set; }
 	// **********
 
 	// **********
@@ -33,14 +36,22 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 
 	public async System.Threading.Tasks.Task
-		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid id)
+		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 	{
 		try
 		{
+			if (id.HasValue == false)
+			{
+				AddToastError
+					(message: Resources.Messages.Errors.IdIsNull);
+
+				return RedirectToPage(pageName: "Index");
+			}
+
 			ViewModel =
 				await DatabaseContext.MenuItems
 				.Where(current => current.Id == id)
-				.Select(current => new ViewModels.Pages.Admin.MenuItemManager.UpdateMenuItemViewModel
+				.Select(current => new ViewModels.Pages.Admin.MenuItemManager.UpdateViewModel
 				{
 					Id = current.Id,
 					Icon = current.Icon,
@@ -50,29 +61,40 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 					IsPublic = current.IsPublic,
 					IsActive = current.IsActive,
 					ParentId = current.ParentId,
-					Parent = current.Parent.Title,
+					ParentTitle = current.Parent.Title,
 					IsUndeletable = current.IsUndeletable,
 					IconPosition = current.IconPosition,
-				}).FirstOrDefaultAsync();
+				})
+				.FirstOrDefaultAsync();
+
+			if (ViewModel == null)
+			{
+				AddToastError
+					(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
+
+				return RedirectToPage(pageName: "Index");
+			}
+
+			return Page();
 		}
 		catch (System.Exception ex)
 		{
-			Logger.Log(logLevel: LogLevel.Error, message: ex.Message);
+			Logger.LogError
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
-			AddToastError(message: Resources.Messages.Errors.UnexpectedError);
+			AddToastError
+				(message: Resources.Messages.Errors.UnexpectedError);
+
+			return RedirectToPage(pageName: "Index");
 		}
 		finally
 		{
-			await SetAccessibleParent(id: id);
-
 			await DisposeDatabaseContextAsync();
 		}
-
-		return Page();
 	}
 
 	public async System.Threading.Tasks.Task
-		<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync(System.Guid id)
+		<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 	{
 		if (ModelState.IsValid == false)
 		{
@@ -81,128 +103,109 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 		try
 		{
+			// **************************************************
 			var foundedItem =
-				await DatabaseContext.MenuItems
-				.Where(current => current.Id == id)
+				await
+				DatabaseContext.MenuItems
+				.Where(current => current.Id == ViewModel.Id)
 				.FirstOrDefaultAsync();
 
 			if (foundedItem == null)
 			{
-				string errorMessage = string.Format
-					(Resources.Messages.Errors.NotFound,
-					Resources.DataDictionary.MenuItem);
+				AddToastError
+					(message: Resources.Messages.Errors.ThereIsNotAnyDataWithThisId);
 
-				AddToastError(message: errorMessage);
+				return RedirectToPage(pageName: "Index");
 			}
-			else
-			{
-				string? fixedTitle =
-					Dtat.Utility.FixText(text: foundedItem.Title);
+			// **************************************************
+			string? fixedTitle =
+					Dtat.Utility.FixText
+					(text: foundedItem.Title);
 
-				bool hasAny =
+			bool foundedAny =
+				await
+				DatabaseContext.MenuItems
+				.Where(current => current.Title.ToLower() == ViewModel.Title.ToLower())
+				.Where(current => current.Id != foundedItem.Id)
+				.Where(current => current.ParentId == foundedItem.ParentId)
+				.AnyAsync();
+
+			if (foundedAny)
+			{
+				// **************************************************
+				var errorMessage = string.Format
+					(Resources.Messages.Errors.AlreadyExists,
+					Resources.DataDictionary.Name);
+
+				AddPageError(message: errorMessage);
+				// **************************************************
+
+				return Page();
+			}
+			// **************************************************
+
+			if (ViewModel.ParentId.HasValue)
+			{
+				// **************************************************
+				bool isParent =
 					await DatabaseContext.MenuItems
-					.Where(current => current.Title.ToLower() == ViewModel.Title.ToLower())
-					.Where(current => current.Id != foundedItem.Id)
-					.Where(current => current.ParentId == foundedItem.ParentId)
+					.Where(current => current.ParentId == foundedItem.Id)
 					.AnyAsync();
 
-				if (hasAny)
+				if (isParent)
 				{
-					// **************************************************
-					string errorMessage = string.Format
-						(Resources.Messages.Errors.AlreadyExists,
-						Resources.DataDictionary.Title);
-					// **************************************************
+					string errorMesage =
+						Resources.Messages.Errors.UnableToUpdateParent;
 
-					AddPageError(message: errorMessage);
+					AddPageError(message: errorMesage);
+					// **************************************************
 
 					return Page();
 				}
-
-				if (ViewModel.ParentId.HasValue)
-				{
-					// **************************************************
-					bool isParent =
-						await DatabaseContext.MenuItems
-						.Where(current => current.ParentId == foundedItem.Id)
-						.AnyAsync();
-					// **************************************************
-
-					if (isParent)
-					{
-						string errorMesage =
-							Resources.Messages.Errors.UnableToUpdateParent;
-
-						AddPageError(message: errorMesage);
-
-						return Page();
-					}
-				}
-
-				// **************************************************
-				foundedItem.Icon = ViewModel.Icon;
-				foundedItem.Title = ViewModel.Title;
-				foundedItem.ParentId = ViewModel.ParentId;
-				foundedItem.IsPublic = ViewModel.IsPublic;
-				foundedItem.IsActive = ViewModel.IsActive;
-				foundedItem.Ordering = ViewModel.Ordering;
-				foundedItem.IsUndeletable = ViewModel.IsUndeletable;
-				foundedItem.IconPosition = ViewModel.IconPosition;
-
-				foundedItem.SetUpdateDateTime();
-				// **************************************************
-
-				//var entityEntry =
-				//	DatabaseContext.Update(entity: foundedItem);
-
-				int affectedRows =
-					await DatabaseContext.SaveChangesAsync();
-
-				// **************************************************
-				if (affectedRows > 0)
-				{
-					string successMessage = string.Format
-						(Resources.Messages.Successes.Updated,
-						Resources.DataDictionary.MenuItem);
-
-					AddToastSuccess(message: successMessage);
-				}
-				// **************************************************
 			}
+			// **************************************************
 
-			return RedirectToPage("./Index");
+			// **************************************************
+			foundedItem.Icon = ViewModel.Icon;
+			foundedItem.Title = ViewModel.Title;
+			foundedItem.ParentId = ViewModel.ParentId;
+			foundedItem.IsPublic = ViewModel.IsPublic;
+			foundedItem.IsActive = ViewModel.IsActive;
+			foundedItem.Ordering = ViewModel.Ordering;
+			foundedItem.IsUndeletable = ViewModel.IsUndeletable;
+			foundedItem.IconPosition = ViewModel.IconPosition;
+			foundedItem.Link = ViewModel.Link;
+
+			foundedItem.SetUpdateDateTime();
+			// **************************************************
+
+			var affectedRows =
+				await
+				DatabaseContext.SaveChangesAsync();
+
+			// **************************************************
+			var successMessage = string.Format
+				(Resources.Messages.Successes.Updated,
+				Resources.DataDictionary.MenuItem);
+
+			AddToastSuccess(message: successMessage);
+			// **************************************************
+
+			return RedirectToPage(pageName: "Index");
 		}
 		catch (System.Exception ex)
 		{
-			Logger.LogError(message: ex.Message);
+			Logger.LogError
+				(message: Constants.Logger.ErrorMessage, args: ex.Message);
 
-			//System.Console.WriteLine(value: ex.Message);
+			AddToastError
+				(message: Resources.Messages.Errors.UnexpectedError);
 
-			AddToastError(message: Resources.Messages.Errors.UnexpectedError);
-
-			return Page();
+			return RedirectToPage(pageName: "Index");
 		}
 		finally
 		{
-			await SetAccessibleParent(id: id);
-
 			await DisposeDatabaseContextAsync();
 		}
-	}
-
-	private async System.Threading.Tasks.Task SetAccessibleParent(System.Guid id)
-	{
-		ParentsViewModel =
-			await DatabaseContext.MenuItems
-			.Where(current => current.ParentId == null)
-			.Where(current => current.Id != id)
-			.OrderBy(current => current.Ordering)
-			.Select(current => new ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel
-			{
-				Id = current.Id,
-				Title = current.Title,
-			})
-			.ToListAsync()
-			;
 	}
 }
