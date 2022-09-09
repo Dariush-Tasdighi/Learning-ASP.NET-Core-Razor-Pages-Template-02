@@ -104,6 +104,13 @@ public class User :
 	// **********
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.DisplayInContactUsPage))]
+	public bool DisplayInContactUsPage { get; set; }
+	// **********
+
+	// **********
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.IsEmailAddressVerified))]
 	public bool IsEmailAddressVerified { get; set; }
 	// **********
@@ -182,6 +189,18 @@ public class User :
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string? FullName { get; set; }
+	// **********
+
+	// **********
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.DisplayNameInContactUsPage))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.Name,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+	public string? DisplayNameInContactUsPage { get; set; }
 	// **********
 
 	// **********

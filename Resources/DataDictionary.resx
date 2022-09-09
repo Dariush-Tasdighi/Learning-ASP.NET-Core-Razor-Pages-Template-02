@@ -471,4 +471,10 @@
   <data name="LastLoginDateTime" xml:space="preserve">
     <value>Last Login Date Time</value>
   </data>
+  <data name="DisplayInContactUsPage" xml:space="preserve">
+    <value>Display In Contact Us Page</value>
+  </data>
+  <data name="DisplayNameInContactUsPage" xml:space="preserve">
+    <value>Display Name In Contact Us Page</value>
+  </data>
 </root>

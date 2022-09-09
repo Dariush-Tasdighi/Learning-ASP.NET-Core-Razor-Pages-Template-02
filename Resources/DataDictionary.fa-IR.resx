@@ -474,4 +474,10 @@
   <data name="LastLoginDateTime" xml:space="preserve">
     <value>زمان آخرین ورود به سامانه</value>
   </data>
+  <data name="DisplayInContactUsPage" xml:space="preserve">
+    <value>نمایش در صفحه تماس با ما</value>
+  </data>
+  <data name="DisplayNameInContactUsPage" xml:space="preserve">
+    <value>نام نمایش داده شده، در صفحه تماس با ما</value>
+  </data>
 </root>

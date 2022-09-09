@@ -259,6 +259,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display In Contact Us Page.
+        /// </summary>
+        public static string DisplayInContactUsPage {
+            get {
+                return ResourceManager.GetString("DisplayInContactUsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Name In Contact Us Page.
+        /// </summary>
+        public static string DisplayNameInContactUsPage {
+            get {
+                return ResourceManager.GetString("DisplayNameInContactUsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Does Search Engines Follow It.
         /// </summary>
         public static string DoesSearchEnginesFollowIt {
