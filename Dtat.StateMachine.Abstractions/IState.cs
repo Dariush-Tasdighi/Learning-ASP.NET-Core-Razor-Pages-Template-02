@@ -14,6 +14,10 @@
 
 		bool IsInitial { get; }
 
+		string Icon { get; }
+
+		string Color { get; }
+
 		string Title { get; }
 
 		string Description { get; }

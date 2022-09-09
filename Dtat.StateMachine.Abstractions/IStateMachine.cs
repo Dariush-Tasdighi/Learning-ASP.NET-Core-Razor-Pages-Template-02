@@ -14,9 +14,7 @@
 
 		string Description { get; }
 
-		string EntityTypeName { get; }
-
-		string EntityFieldName { get; }
+		string TargetEntityFieldName { get; }
 
 		void Validate();
 

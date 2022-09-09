@@ -8,9 +8,13 @@
 
 		T FromStateId { get; }
 
-		int Code { get; }
+		T StateMachineId { get; }
 
 		bool IsActive { get; }
+
+		string Icon { get; }
+
+		string Color { get; }
 
 		string ActionTitle { get; }
 
