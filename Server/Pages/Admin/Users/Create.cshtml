@@ -18,11 +18,7 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.EmailAddress"></label>
-				<input asp-for="ViewModel.EmailAddress" />
-				<span asp-validation-for="ViewModel.EmailAddress"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.EmailAddress" />
 
 			<section-form-field>
 				<label asp-for="ViewModel.Password"></label>
@@ -53,32 +49,15 @@
 				<span asp-validation-for="ViewModel.RoleId"></span>
 			</section-form-field>
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsProgrammer" />
-				<label asp-for="ViewModel.IsProgrammer"></label>
-			</section-form-check>
+			<dtat-full-checkbox asp-for="ViewModel.IsProgrammer" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" value="10000" />
-				<span asp-validation-for="ViewModel.Ordering"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.Ordering" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsActive" />
-				<label asp-for="ViewModel.IsActive"></label>
-			</section-form-check>
+			<dtat-full-checkbox asp-for="ViewModel.IsActive" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsUndeletable" />
-				<label asp-for="ViewModel.IsUndeletable"></label>
-			</section-form-check>
+			<dtat-full-checkbox asp-for="ViewModel.IsUndeletable" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.AdminDescription"></label>
-				<textarea asp-for="ViewModel.AdminDescription"></textarea>
-				<span asp-validation-for="ViewModel.AdminDescription"></span>
-			</section-form-field>
+			<dtat-full-textarea asp-for="ViewModel.AdminDescription" />
 		</fieldset>
 
 		<section-form-buttons>
