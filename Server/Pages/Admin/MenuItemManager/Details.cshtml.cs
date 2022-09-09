@@ -8,8 +8,7 @@ namespace Server.Pages.Admin.MenuItemManager;
 	.Authorize(Roles = Constants.Role.Admin)]
 public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 {
-	public DetailsModel
-		(Data.DatabaseContext databaseContext,
+	public DetailsModel(Data.DatabaseContext databaseContext,
 		Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) :
 		base(databaseContext: databaseContext)
 	{

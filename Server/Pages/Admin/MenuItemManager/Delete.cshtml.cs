@@ -144,7 +144,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				AddPageError(message: errorMessage);
 
-				return Page;
+				return Page();
 			}
 
 			// **************************************************
