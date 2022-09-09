@@ -4,6 +4,7 @@ public class CreateViewModel : CommonViewModel
 {
 	public CreateViewModel() : base()
 	{
+		Ordering = 10_000;
 	}
 
 	// **********

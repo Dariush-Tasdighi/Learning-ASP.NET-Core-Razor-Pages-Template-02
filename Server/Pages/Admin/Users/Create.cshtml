@@ -20,17 +20,9 @@
 
 			<dtat-full-input asp-for="ViewModel.EmailAddress" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Password"></label>
-				<input type="password" asp-for="ViewModel.Password" />
-				<span asp-validation-for="ViewModel.Password"></span>
-			</section-form-field>
+			<dtat-full-password-input asp-for="ViewModel.Password" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.ConfirmPassword"></label>
-				<input type="password" asp-for="ViewModel.ConfirmPassword" />
-				<span asp-validation-for="ViewModel.ConfirmPassword"></span>
-			</section-form-field>
+			<dtat-full-password-input asp-for="ViewModel.ConfirmPassword" />
 
 			<section-form-field>
 				<label asp-for="ViewModel.RoleId"></label>

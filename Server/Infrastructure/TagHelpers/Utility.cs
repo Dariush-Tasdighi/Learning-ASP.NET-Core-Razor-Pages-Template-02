@@ -201,6 +201,42 @@ public static class Utility : object
 		return result;
 	}
 
+
+	public static async
+		System.Threading.Tasks.Task<string> GeneratePasswordTextBoxAsync
+		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
+		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for)
+	{
+		var tagBuilder =
+			generator.GenerateTextBox
+			(viewContext: viewContext,
+			modelExplorer: @for.ModelExplorer, expression: @for.Name,
+			value: @for.Model, format: null, htmlAttributes: null);
+
+		tagBuilder.AddCssClass
+			(value: "form-control");
+
+		tagBuilder.AddCssClass(value: "ltr");
+
+		tagBuilder.Attributes.Remove(key: "type");
+		tagBuilder.Attributes.Add(key: "type", value: "password");
+
+		var writer =
+			new System.IO.StringWriter();
+
+		tagBuilder.WriteTo(writer: writer,
+			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+
+		var result =
+			writer.ToString();
+
+		await writer.DisposeAsync();
+
+		return result;
+	}
+
+
 	public static async
 		System.Threading.Tasks.Task<string> GenerateCheckBoxAsync
 		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
