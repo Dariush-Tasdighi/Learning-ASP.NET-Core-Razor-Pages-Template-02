@@ -1,4 +1,4 @@
-﻿namespace ViewModels.Pages.Admin.MenuItemManager;
+﻿namespace ViewModels.Pages.Admin.MenuItems;
 
 public class CreateViewModel : object
 {
