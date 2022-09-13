@@ -348,4 +348,19 @@ public static class HtmlHelpers : object
 
 		return icon;
 	}
+
+	public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetIconCustom
+	(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, string iconName)
+	{
+		if (html is null)
+		{
+			throw new System
+				.ArgumentNullException(paramName: nameof(html));
+		}
+
+		var icon =
+			TagHelpers.Utility.GetIconCustom(iconName: iconName);
+
+		return icon;
+	}
 }
