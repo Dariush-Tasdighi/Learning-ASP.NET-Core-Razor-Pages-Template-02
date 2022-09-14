@@ -6,6 +6,13 @@
 
 		int Code { get; }
 
+		/// <summary>
+		/// New
+		/// Code and Factor togetter (both) are Unique!
+		/// MaxLength: 100
+		/// </summary>
+		string Factor { get; }
+
 		bool IsValid { get; }
 
 		bool IsActive { get; }

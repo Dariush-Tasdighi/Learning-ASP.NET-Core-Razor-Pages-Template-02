@@ -12,6 +12,16 @@
 
 		bool IsActive { get; }
 
+		/// <summary>
+		/// New
+		/// </summary>
+		bool IsSystemic { get; set; }
+
+		/// <summary>
+		/// New
+		/// </summary>
+		bool IsCommentRequired { get; }
+
 		string Icon { get; }
 
 		string Color { get; }
