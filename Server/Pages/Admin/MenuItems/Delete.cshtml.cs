@@ -49,7 +49,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 					IsActive = current.IsActive,
 					IsPublic = current.IsPublic,
 					InsertDateTime = current.InsertDateTime,
-					NumberOfSubMenus = current.SubMenus.Count(),
+					NumberOfSubMenus = current.SubMenus.Count,
 				})
 				.FirstOrDefaultAsync();
 
@@ -149,7 +149,7 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 
 			// **************************************************
 			//Logical Delete
-			foundedItem.IsDeleted = true;
+			//foundedItem.IsDeleted = true;
 			foundedItem.SetUpdateDateTime();
 
 			var affectedRows =
