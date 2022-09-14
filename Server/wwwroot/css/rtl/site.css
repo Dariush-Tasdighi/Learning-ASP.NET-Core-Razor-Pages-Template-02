@@ -19,3 +19,7 @@ h1 {
 .form-check-input[disabled] ~ .form-check-label, .form-check-input:disabled ~ .form-check-label {
 	opacity: 1 !important;
 }
+
+div.tox {
+	font-family: IRANSansX !important;
+}
