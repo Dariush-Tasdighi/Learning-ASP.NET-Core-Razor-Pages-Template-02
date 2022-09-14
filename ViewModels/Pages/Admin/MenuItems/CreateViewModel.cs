@@ -41,7 +41,7 @@ public class CreateViewModel : object
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
 
 	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: Domain.MenuItem.LinkMaxLength,
+		(length: Constants.MaxLength.Link,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
@@ -96,7 +96,7 @@ public class CreateViewModel : object
 		Name = nameof(Resources.DataDictionary.Icon))]
 
 	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: Domain.MenuItem.IconMaxLength,
+		(length: Constants.MaxLength.Icon,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string? Icon { get; set; }
