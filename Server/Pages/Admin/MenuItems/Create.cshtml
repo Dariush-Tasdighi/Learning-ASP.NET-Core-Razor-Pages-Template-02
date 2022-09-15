@@ -1,21 +1,21 @@
 ﻿@page
-@model Server.Pages.Admin.MenuItemManager.UpdateModel
+@model Server.Pages.Admin.MenuItems.CreateModel
 
 @{
 	var pageTitle =
-	$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.MenuItem}";
+		$"{Resources.ButtonCaptions.Create} {Resources.DataDictionary.MenuItem}";
 
 	ViewData["PageTitle"] = pageTitle;
 
 	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
 	{
 		Layout =
-		"Layouts/Rtl/_Layout";
+			"Layouts/Rtl/_Layout";
 	}
 	else
 	{
 		Layout =
-		"Layouts/Ltr/_Layout";
+			"Layouts/Ltr/_Layout";
 	}
 }
 
@@ -24,21 +24,18 @@
 	<link href="/lib/bootstrap-icon-picker/css/bootstrapicons-iconpicker.min.css" rel="stylesheet">
 
 	<style>
-		.popover-title-text,
-		.iconpicker-btn {
+
+		.popover-title-text, .iconpicker-btn {
 			font-family: IRANSansX
 		}
+
 	</style>
 }
-
 	<form method="post">
-		<input type="hidden" asp-for="ViewModel.Id" />
-
 		<section-form>
-
 			<fieldset>
 			<section-form-header>
-					@(pageTitle)
+				@(pageTitle)
 			</section-form-header>
 
 			<partial name="PartialViews/_DisplayPageMessages" />
@@ -75,23 +72,18 @@
 
 			<section-form-field>
 				<label asp-for="ViewModel.Icon"></label>
-				<input asp-for="ViewModel.Icon" onclick="$(this).pickIcon(@(Resources.DataDictionary.Icon));"
-					   class="iconpicker" />
+				<input asp-for="ViewModel.Icon" onclick="$(this).pickIcon(@(Resources.DataDictionary.Icon));" class="iconpicker" />
 			</section-form-field>
 
 			<section-form-field>
 				<label asp-for="ViewModel.IconPosition"></label>
 				<select asp-for="ViewModel.IconPosition">
-					<option value="@(Domain.Enumerations.IconPosition.Left)" selected>
-						@(Resources.DataDictionary.Left)
-					</option>
+					<option value="@(Domain.Enumerations.IconPosition.Left)" selected>@(Resources.DataDictionary.Left)</option>
 					<option value="@(Domain.Enumerations.IconPosition.Right)">@(Resources.DataDictionary.Right)</option>
 					@if (Model?.ViewModel?.ParentId == null)
 					{
 						<option value="@(Domain.Enumerations.IconPosition.Top)">@(Resources.DataDictionary.Top)</option>
-						<option value="@(Domain.Enumerations.IconPosition.Bottom)">
-							@(Resources.DataDictionary.Bottom)
-						</option>
+						<option value="@(Domain.Enumerations.IconPosition.Bottom)">@(Resources.DataDictionary.Bottom)</option>
 					}
 				</select>
 			</section-form-field>
@@ -114,7 +106,7 @@
 		</fieldset>
 
 		<section-form-buttons>
-			<button-save />
+			<button-create />
 			<button-reset />
 		</section-form-buttons>
 
@@ -122,19 +114,11 @@
 			<a asp-page="Index">
 				@(Html.DtatGetLinkCaptionForList())
 			</a>
-			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
-				@(Html.DtatGetLinkCaptionForDetails())
-			</a>
-			<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
-				@(Html.DtatGetLinkCaptionForDelete())
-			</a>
 		</section-form-footer>
-
 	</section-form>
 </form>
 
 @section Scripts {
-
 	<script src="/lib/bootstrap-icon-picker/js/bootstrapicon-iconpicker.min.js"></script>
 	<script>
 		$('.iconpicker').iconpicker({

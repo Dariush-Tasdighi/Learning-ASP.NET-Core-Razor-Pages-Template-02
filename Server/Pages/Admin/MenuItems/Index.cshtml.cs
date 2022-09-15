@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 
-namespace Server.Pages.Admin.MenuItemManager;
+namespace Server.Pages.Admin.MenuItems;
 
 [Microsoft.AspNetCore.Authorization
 	.Authorize(Roles = Constants.Role.Admin)]
@@ -17,7 +17,7 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 
 		ViewModel =
 			new System.Collections.Generic.List
-			<ViewModels.Pages.Admin.MenuItemManager.IndexItemViewModel>();
+			<ViewModels.Pages.Admin.MenuItems.IndexItemViewModel>();
 	}
 
 	// **********
@@ -26,7 +26,7 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 
 	// **********
 	public System.Collections.Generic.IList
-		<ViewModels.Pages.Admin.MenuItemManager.IndexItemViewModel> ViewModel
+		<ViewModels.Pages.Admin.MenuItems.IndexItemViewModel> ViewModel
 	{ get; private set; }
 	// **********
 
@@ -42,7 +42,7 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 				.Where(x => x.ParentId == id)
 				.OrderBy(current => current.Ordering)
 				.ThenBy(current => current.Title)
-				.Select(current => new ViewModels.Pages.Admin.MenuItemManager.IndexItemViewModel
+				.Select(current => new ViewModels.Pages.Admin.MenuItems.IndexItemViewModel
 				{
 					Id = current.Id,
 					Icon = current.Icon,

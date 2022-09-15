@@ -6,10 +6,6 @@ public class MenuItem :
 	Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,
 	Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 {
-	#region Constant(s)
-	public const int LinkMaxLength = 500;
-	public const byte IconMaxLength = 100;
-	#endregion /Constant(s)
 
 	#region Constructor
 	public MenuItem(string title) : base()
@@ -21,7 +17,7 @@ public class MenuItem :
 		SubMenus =
 			new System.Collections.Generic.List<MenuItem>();
 	}
-	#endregion /Constructor(s)
+	#endregion /Constructor
 
 
 	// **********
@@ -40,6 +36,11 @@ public class MenuItem :
 	[System.ComponentModel.DataAnnotations.Display
 		(Name = nameof(Resources.DataDictionary.Title),
 		ResourceType = typeof(Resources.DataDictionary))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.Title,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string? Title { get; set; }
 	// **********
 
@@ -47,6 +48,11 @@ public class MenuItem :
 	[System.ComponentModel.DataAnnotations.Display
 		(Name = nameof(Resources.DataDictionary.Link),
 		ResourceType = typeof(Resources.DataDictionary))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.Link,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string? Link { get; set; }
 	// **********
 
@@ -82,6 +88,11 @@ public class MenuItem :
 	[System.ComponentModel.DataAnnotations.Display
 		(Name = nameof(Resources.DataDictionary.Icon),
 		ResourceType = typeof(Resources.DataDictionary))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.Icon,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string? Icon { get; set; }
 	// **********
 
@@ -104,11 +115,11 @@ public class MenuItem :
 		UpdateDateTime = Seedwork.Utility.Now;
 	}
 
-        // **********
-        public virtual MenuItem? Parent { get; set; }
-        // **********
+	// **********
+	public virtual MenuItem? Parent { get; set; }
+	// **********
 
-        // **********
+	// **********
 	public virtual System.Collections.Generic.IList<MenuItem> SubMenus { get; set; }
 	// **********
 
