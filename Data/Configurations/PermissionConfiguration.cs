@@ -1,20 +1,20 @@
 ﻿namespace Data.Configurations;
 
-internal class RoleConfiguration : object,
-	Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Role>
+internal class PermissionConfiguration : object,
+	Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Permission>
 {
-	public RoleConfiguration() : base()
+	public PermissionConfiguration() : base()
 	{
 	}
 
-	public void Configure
-		(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.Role> builder)
+	public void Configure(Microsoft.EntityFrameworkCore
+		.Metadata.Builders.EntityTypeBuilder<Domain.Permission> builder)
 	{
 		// **************************************************
 		// **************************************************
 		// **************************************************
 		builder
-			.HasIndex(current => new { current.Name })
+			.HasIndex(current => new { current.RoleId, current.ApplicationHandlerId })
 			.IsUnique(unique: true)
 			;
 		// **************************************************
@@ -25,12 +25,10 @@ internal class RoleConfiguration : object,
 		// **************************************************
 		// **************************************************
 		builder
-			.HasMany(current => current.Users)
-			.WithOne(other => other.Role)
-			.IsRequired(required: false)
-			.HasForeignKey(other => other.RoleId)
-			.OnDelete(deleteBehavior:
-				Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
+			.HasOne(current => current.Role)
+			.WithMany(other => other.Permissions)
+			.HasForeignKey(current => current.RoleId)
+			.OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
 			;
 		// **************************************************
 		// **************************************************
@@ -40,12 +38,10 @@ internal class RoleConfiguration : object,
 		// **************************************************
 		// **************************************************
 		builder
-			.HasMany(current => current.Permissions)
-			.WithOne(other => other.Role)
-			.IsRequired(required: false)
-			.HasForeignKey(other => other.RoleId)
-			.OnDelete(deleteBehavior:
-				Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
+			.HasOne(current => current.ApplicationHandler)
+			.WithMany(other => other.Permissions)
+			.HasForeignKey(current => current.ApplicationHandlerId)
+			.OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
 			;
 		// **************************************************
 		// **************************************************

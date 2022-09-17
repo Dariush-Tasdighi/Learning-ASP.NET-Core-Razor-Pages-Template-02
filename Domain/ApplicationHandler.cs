@@ -11,9 +11,25 @@ public class ApplicationHandler :
 		Path = path;
 		//SetUpdateDateTime();
 		UpdateDateTime = InsertDateTime;
+
+		Permissions =
+			new System.Collections.Generic.List<Permission>();
 	}
 
 	// **********
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.Name))]
+
+	[System.ComponentModel.DataAnnotations.Required
+		(AllowEmptyStrings = false,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.Name,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string Name { get; set; }
 	// **********
 
@@ -25,19 +41,43 @@ public class ApplicationHandler :
 	// **********
 
 	// **********
-	public string Path { get; set; }
+	public Enumerations.AccessType AccessType { get; set; }
 	// **********
 
 	// **********
+	[System.ComponentModel.DataAnnotations.Display
+		(Name = nameof(Resources.DataDictionary.Title),
+		ResourceType = typeof(Resources.DataDictionary))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.Title,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string? Title { get; set; }
 	// **********
 
 	// **********
-	public string? Description { get; set; }
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.Path))]
+
+	[System.ComponentModel.DataAnnotations.Required
+		(AllowEmptyStrings = false,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.Path,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+	public string Path { get; set; }
 	// **********
 
 	// **********
-	public Enumerations.AccessType AccessType { get; set; }
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.Description))]
+	public string? Description { get; set; }
 	// **********
 
 	// **********
@@ -55,4 +95,8 @@ public class ApplicationHandler :
 		UpdateDateTime =
 			Dtat.Utility.Now;
 	}
+
+	// **********
+	public virtual System.Collections.Generic.IList<Permission> Permissions { get; private set; }
+	// **********
 }

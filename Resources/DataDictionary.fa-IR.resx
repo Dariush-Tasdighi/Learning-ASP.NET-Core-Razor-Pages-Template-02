@@ -480,4 +480,19 @@
   <data name="DisplayNameInContactUsPage" xml:space="preserve">
     <value>نام نمایش داده شده، در صفحه تماس با ما</value>
   </data>
+  <data name="AccessType" xml:space="preserve">
+    <value>سطح دسترسی</value>
+  </data>
+  <data name="ApplicationHandler" xml:space="preserve">
+    <value>موجودیت سامانه</value>
+  </data>
+  <data name="ApplicationHandlerManager" xml:space="preserve">
+    <value>مدیریت موجودیت های سامانه</value>
+  </data>
+  <data name="ApplicationHandlers" xml:space="preserve">
+    <value>موجودیت های سامانه</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>مجوزها</value>
+  </data>
 </root>

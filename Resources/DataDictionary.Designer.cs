@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access Type.
+        /// </summary>
+        public static string AccessType {
+            get {
+                return ResourceManager.GetString("AccessType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action.
         /// </summary>
         public static string Action {
@@ -84,6 +93,33 @@ namespace Resources {
         public static string AdminDescription {
             get {
                 return ResourceManager.GetString("AdminDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Handler.
+        /// </summary>
+        public static string ApplicationHandler {
+            get {
+                return ResourceManager.GetString("ApplicationHandler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Handler Manager.
+        /// </summary>
+        public static string ApplicationHandlerManager {
+            get {
+                return ResourceManager.GetString("ApplicationHandlerManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Handlers.
+        /// </summary>
+        public static string ApplicationHandlers {
+            get {
+                return ResourceManager.GetString("ApplicationHandlers", resourceCulture);
             }
         }
         
@@ -840,6 +876,15 @@ namespace Resources {
         public static string Path {
             get {
                 return ResourceManager.GetString("Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Permissions.
+        /// </summary>
+        public static string Permissions {
+            get {
+                return ResourceManager.GetString("Permissions", resourceCulture);
             }
         }
         

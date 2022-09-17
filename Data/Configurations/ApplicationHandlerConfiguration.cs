@@ -1,20 +1,35 @@
 ﻿namespace Data.Configurations;
 
-internal class RoleConfiguration : object,
-	Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.Role>
+internal class ApplicationHandlerConfiguration : object,
+	Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.ApplicationHandler>
 {
-	public RoleConfiguration() : base()
+	public void Configure(Microsoft.EntityFrameworkCore.Metadata
+		.Builders.EntityTypeBuilder<Domain.ApplicationHandler> builder)
 	{
-	}
 
-	public void Configure
-		(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.Role> builder)
-	{
+		// **************************************************
+		builder
+			.Property(current => current.Name)
+			.HasMaxLength(maxLength: Constants.MaxLength.Name)
+			.IsRequired(required: true)
+			.IsUnicode(unicode: false)
+			;
+		// **************************************************
+
+		// **************************************************
+		builder
+			.Property(current => current.Path)
+			.HasMaxLength(maxLength: Constants.MaxLength.Path)
+			.IsRequired(required: true)
+			.IsUnicode(unicode: false)
+			;
+		// **************************************************
+
 		// **************************************************
 		// **************************************************
 		// **************************************************
 		builder
-			.HasIndex(current => new { current.Name })
+			.HasIndex(current => new { current.Name, current.Path })
 			.IsUnique(unique: true)
 			;
 		// **************************************************
@@ -25,12 +40,8 @@ internal class RoleConfiguration : object,
 		// **************************************************
 		// **************************************************
 		builder
-			.HasMany(current => current.Users)
-			.WithOne(other => other.Role)
-			.IsRequired(required: false)
-			.HasForeignKey(other => other.RoleId)
-			.OnDelete(deleteBehavior:
-				Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
+			.HasIndex(current => new { current.Name, current.Path })
+			.IsUnique(unique: true)
 			;
 		// **************************************************
 		// **************************************************
@@ -41,9 +52,9 @@ internal class RoleConfiguration : object,
 		// **************************************************
 		builder
 			.HasMany(current => current.Permissions)
-			.WithOne(other => other.Role)
+			.WithOne(other => other.ApplicationHandler)
 			.IsRequired(required: false)
-			.HasForeignKey(other => other.RoleId)
+			.HasForeignKey(other => other.ApplicationHandlerId)
 			.OnDelete(deleteBehavior:
 				Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
 			;

@@ -261,6 +261,34 @@ public static class HtmlHelpers : object
 		return span;
 	}
 
+	public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetLinkCaptionForUpdateInformationsAgain
+		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
+	{
+		if (html is null)
+		{
+			throw new System
+				.ArgumentNullException(paramName: nameof(html));
+		}
+
+		var icon =
+			TagHelpers.Utility.GetIconReset();
+
+		var span =
+			new Microsoft.AspNetCore.Mvc
+			.Rendering.TagBuilder(tagName: "span");
+
+		span.AddCssClass(value: "mx-1");
+
+		span.InnerHtml.Append(unencoded: "[");
+		span.InnerHtml.Append(unencoded: " ");
+		span.InnerHtml.AppendHtml(content: icon);
+		span.InnerHtml.Append(unencoded: Resources.ButtonCaptions.UpdateInformationsAgain);
+		span.InnerHtml.Append(unencoded: " ");
+		span.InnerHtml.Append(unencoded: "]");
+
+		return span;
+	}
+
 	public static Microsoft.AspNetCore.Html.IHtmlContent DtatGetLinkCaptionForDelete
 		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html)
 	{

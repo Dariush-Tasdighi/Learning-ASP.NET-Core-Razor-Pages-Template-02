@@ -477,4 +477,19 @@
   <data name="DisplayNameInContactUsPage" xml:space="preserve">
     <value>Display Name In Contact Us Page</value>
   </data>
+  <data name="AccessType" xml:space="preserve">
+    <value>Access Type</value>
+  </data>
+  <data name="ApplicationHandler" xml:space="preserve">
+    <value>Application Handler</value>
+  </data>
+  <data name="ApplicationHandlerManager" xml:space="preserve">
+    <value>Application Handler Manager</value>
+  </data>
+  <data name="ApplicationHandlers" xml:space="preserve">
+    <value>Application Handlers</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Permissions</value>
+  </data>
 </root>

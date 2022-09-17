@@ -43,7 +43,7 @@ public static class RouteFinder : object
 				IsActive = true,
 				Name = current.Name,
 				AccessType = Domain.Enumerations.AccessType.Special,
-				Path = GetPath(current.DeclaringType.Namespace, current.Name),
+				Path = GetPath(current.DeclaringType.FullName, current.Name),
 			})
 			.OrderBy(current => current.Name)
 			.ToList()
@@ -52,15 +52,24 @@ public static class RouteFinder : object
 		return foundedHandlers;
 	}
 
-	private static string GetPath(string @namespace, string actionName)
+	private static string GetPath(string fullName, string handler)
 	{
 		var dot = ".";
 		var slash = "/";
+		var model = "model";
 		var doubleSlash = slash + slash;
+		var baseNamespace = $"{nameof(Server)}.{nameof(Server.Pages)}";
+
+		if (fullName.ToLower().EndsWith(value: model))
+		{
+			fullName =
+				fullName
+				.Remove(startIndex: fullName.Length - 5);
+		}
 
 		var path =
-			@namespace
-			.Replace(oldValue: nameof(Server.Pages), newValue: string.Empty)
+			fullName
+			.Replace(oldValue: baseNamespace, newValue: string.Empty)
 			;
 
 		path =
@@ -73,7 +82,7 @@ public static class RouteFinder : object
 			path += slash;
 		}
 
-		path += actionName;
+		path += handler;
 
 		while (path.Contains(value: doubleSlash))
 		{
