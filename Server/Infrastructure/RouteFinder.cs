@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Linq;
 
 namespace Infrastructure;
 
@@ -56,11 +57,12 @@ public static class RouteFinder : object
 	{
 		var dot = ".";
 		var slash = "/";
-		var model = "model";
-		var doubleSlash = slash + slash;
+		var doubleSlash = "//";
+
+		var model = nameof(Model);
 		var baseNamespace = $"{nameof(Server)}.{nameof(Server.Pages)}";
 
-		if (fullName.ToLower().EndsWith(value: model))
+		if (fullName.ToLower().EndsWith(value: model.ToLower()))
 		{
 			fullName =
 				fullName
