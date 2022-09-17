@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Server.Pages.Admin.MenuItemManager;
+namespace Server.Pages.Admin.MenuItems;
 
 [Microsoft.AspNetCore.Authorization
 	.Authorize(Roles = Constants.Role.Admin)]
@@ -17,7 +17,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 		Logger = logger;
 		ViewModel = new();
 		ParentsViewModel = new 
-			List<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel>();
+			List<ViewModels.Pages.Admin.MenuItems.GetAccessibleParentViewModel>();
 	}
 
 	// **********
@@ -26,12 +26,12 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 	// **********
 	[Microsoft.AspNetCore.Mvc.BindProperty]
-	public ViewModels.Pages.Admin.MenuItemManager.UpdateViewModel ViewModel { get; set; }
+	public ViewModels.Pages.Admin.MenuItems.UpdateViewModel ViewModel { get; set; }
 	// **********
 
 	// **********
 	public System.Collections.Generic.IList
-		<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel>? ParentsViewModel
+		<ViewModels.Pages.Admin.MenuItems.GetAccessibleParentViewModel>? ParentsViewModel
 	{ get; private set; }
 	// **********
 
@@ -51,7 +51,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			ViewModel =
 				await DatabaseContext.MenuItems
 				.Where(current => current.Id == id)
-				.Select(current => new ViewModels.Pages.Admin.MenuItemManager.UpdateViewModel
+				.Select(current => new ViewModels.Pages.Admin.MenuItems.UpdateViewModel
 				{
 					Id = current.Id,
 					Icon = current.Icon,

@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 
-namespace Server.Pages.Admin.MenuItemManager;
+namespace Server.Pages.Admin.MenuItems;
 
 [Microsoft.AspNetCore.Authorization
 	.Authorize(Roles = Constants.Role.Admin)]
@@ -21,7 +21,7 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 
 	// **********
-	public ViewModels.Pages.Admin.MenuItemManager.DetailsOrDeleteViewModel ViewModel { get; set; }
+	public ViewModels.Pages.Admin.MenuItems.DetailsOrDeleteViewModel ViewModel { get; set; }
 	// **********
 
 	public async System.Threading.Tasks.Task
@@ -40,7 +40,7 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 			ViewModel =
 				await DatabaseContext.MenuItems
 				.Where(current => current.Id == id.Value)
-				.Select(current => new ViewModels.Pages.Admin.MenuItemManager.DetailsOrDeleteViewModel
+				.Select(current => new ViewModels.Pages.Admin.MenuItems.DetailsOrDeleteViewModel
 				{
 					Id = current.Id,
 					Link = current.Link,

@@ -2,7 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 
-namespace Server.Pages.Admin.MenuItemManager;
+
+namespace Server.Pages.Admin.MenuItems;
 
 [Microsoft.AspNetCore.Authorization
 	.Authorize(Roles = Constants.Role.Admin)]
@@ -17,7 +18,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 		ViewModel = new();
 
 		ParentsViewModel = new System.Collections.Generic.List
-			<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel>();
+			<ViewModels.Pages.Admin.MenuItems.GetAccessibleParentViewModel>();
 	}
 
 	// **********
@@ -26,12 +27,12 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 	// **********
 	[Microsoft.AspNetCore.Mvc.BindProperty]
-	public ViewModels.Pages.Admin.MenuItemManager.CreateViewModel ViewModel { get; set; }
+	public ViewModels.Pages.Admin.MenuItems.CreateViewModel ViewModel { get; set; }
 	// **********
 
 	// **********
 	public System.Collections.Generic.IList
-		<ViewModels.Pages.Admin.MenuItemManager.GetAccessibleParentViewModel> ParentsViewModel
+		<ViewModels.Pages.Admin.MenuItems.GetAccessibleParentViewModel> ParentsViewModel
 	{ get; private set; }
 	// **********
 

@@ -18,6 +18,9 @@ public class SectionFormFieldTextArea :
 		Utility.CreateOrMergeAttribute
 			(name: "class", content: "form-control", output: output);
 
+		Utility.CreateOrMergeAttribute
+			(name: "class", content: "tinymce", output: output);
+
 		return base.ProcessAsync(context, output);
 	}
 }
