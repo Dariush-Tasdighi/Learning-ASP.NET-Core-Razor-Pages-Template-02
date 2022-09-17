@@ -96,7 +96,7 @@
 </section-table>
 
 <section-page-actions>
-	<a asp-page="Index" asp-page-handler="OnPostAsync" method="post">
+	<a asp-page="Index" asp-route-reloadData="true">
 		@(Html.DtatGetLinkCaptionForUpdateInformationsAgain())
 	</a>
 </section-page-actions>

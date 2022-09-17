@@ -32,7 +32,7 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 
 	public async System.Threading.Tasks.Task
-		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync()
+		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(bool reloadData = false)
 	{
 		try
 		{
@@ -41,9 +41,9 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 				DatabaseContext.ApplicationHandlers
 				.AnyAsync();
 
-			if (foundAny == false)
+			if (reloadData || (foundAny == false))
 			{
-				await OnPostAsync();
+				await UpdateHandlersAsync();
 			}
 
 			ViewModel =
@@ -82,8 +82,7 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 		return Page();
 	}
 
-	public async System.Threading.Tasks.Task
-		<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
+	private async System.Threading.Tasks.Task UpdateHandlersAsync()
 	{
 		try
 		{
@@ -128,11 +127,5 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 			AddPageError
 				(message: Resources.Messages.Errors.UnexpectedError);
 		}
-		finally
-		{
-			await DisposeDatabaseContextAsync();
-		}
-
-		return RedirectToPage(pageName: "Index");
 	}
 }
