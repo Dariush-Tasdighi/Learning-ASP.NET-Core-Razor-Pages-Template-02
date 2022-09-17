@@ -495,4 +495,13 @@
   <data name="Permissions" xml:space="preserve">
     <value>مجوزها</value>
   </data>
+  <data name="Public" xml:space="preserve">
+    <value>عمومی</value>
+  </data>
+  <data name="Registered" xml:space="preserve">
+    <value>نیازمند ورود به سامانه</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>خاص</value>
+  </data>
 </root>

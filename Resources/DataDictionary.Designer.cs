@@ -889,6 +889,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Public.
+        /// </summary>
+        public static string Public {
+            get {
+                return ResourceManager.GetString("Public", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Publish Finish Date Time.
         /// </summary>
         public static string PublishFinishDateTime {
@@ -903,6 +912,15 @@ namespace Resources {
         public static string PublishStartDateTime {
             get {
                 return ResourceManager.GetString("PublishStartDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registered.
+        /// </summary>
+        public static string Registered {
+            get {
+                return ResourceManager.GetString("Registered", resourceCulture);
             }
         }
         
@@ -1038,6 +1056,15 @@ namespace Resources {
         public static string SourceCode {
             get {
                 return ResourceManager.GetString("SourceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special.
+        /// </summary>
+        public static string Special {
+            get {
+                return ResourceManager.GetString("Special", resourceCulture);
             }
         }
         

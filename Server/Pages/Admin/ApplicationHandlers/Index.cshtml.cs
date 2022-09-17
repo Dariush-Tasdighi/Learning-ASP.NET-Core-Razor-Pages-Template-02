@@ -93,15 +93,18 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 			{
 				foreach (var item in handlers)
 				{
+					// **************************************************
 					bool foundAny =
 						await
 						DatabaseContext.ApplicationHandlers
 						.Where(current => current.Name.ToLower().Trim() == item.Name.ToLower().Trim())
 						.Where(current => current.Path.ToLower().Trim() == item.Path.ToLower().Trim())
 						.AnyAsync();
+					// **************************************************
 
 					if (foundAny == false)
 					{
+						// **************************************************
 						var newEntity =
 							new Domain.ApplicationHandler(name: item.Name, path: item.Path)
 							{
@@ -112,9 +115,14 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 								Description = item.Description,
 							};
 
-						await DatabaseContext.AddAsync(entity: newEntity);
+						var entityEntry =
+							await
+							DatabaseContext.AddAsync(entity: newEntity);
 
-						await DatabaseContext.SaveChangesAsync();
+						var affectedRows =
+							await
+							DatabaseContext.SaveChangesAsync();
+						// **************************************************
 					}
 				}
 			}

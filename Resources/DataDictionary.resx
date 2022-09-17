@@ -492,4 +492,13 @@
   <data name="Permissions" xml:space="preserve">
     <value>Permissions</value>
   </data>
+  <data name="Public" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="Registered" xml:space="preserve">
+    <value>Registered</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>Special</value>
+  </data>
 </root>
