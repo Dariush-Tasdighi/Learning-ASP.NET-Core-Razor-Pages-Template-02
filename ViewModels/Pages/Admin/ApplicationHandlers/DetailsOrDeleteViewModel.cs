@@ -25,6 +25,46 @@ public class DetailsOrDeleteViewModel : UpdateViewModel
 	// **********
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.AccessType))]
+	public string AccessTypeTitle
+	{
+		get
+		{
+			string title = string.Empty;
+
+			switch (AccessType)
+			{
+				case Domain.Enumerations.AccessType.Special:
+				{
+					title =
+						Resources.DataDictionary.Special;
+
+					break;
+				}
+				case Domain.Enumerations.AccessType.Registered:
+				{
+					title =
+						Resources.DataDictionary.Registered;
+
+					break;
+				}
+				case Domain.Enumerations.AccessType.Public:
+				{
+					title =
+						Resources.DataDictionary.Public;
+
+					break;
+				}
+			}
+
+			return title;
+		}
+	}
+	// **********
+
+	// **********
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.Permissions))]
 	public Shared.KeyValueViewModel Permissions { get; set; }
 	// **********
