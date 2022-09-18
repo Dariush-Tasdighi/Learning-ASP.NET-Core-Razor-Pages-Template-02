@@ -32,51 +32,23 @@
 
 		<partial name="PartialViews/_DisplayPageMessages" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Title"></label>
-			<input asp-for="ViewModel.Title" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Title" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.ParentTitle"></label>
-			<input asp-for="ViewModel.ParentTitle" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.ParentTitle" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Ordering"></label>
-			<input asp-for="ViewModel.Ordering" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Ordering" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Link"></label>
-			<input asp-for="ViewModel.Link" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Link" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Icon"></label>
-			<input asp-for="ViewModel.Icon" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Icon" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.IconPosition"></label>
-			<input asp-for="ViewModel.IconPosition" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.IconPosition" />
 
-		<section-form-check>
-			<label asp-for="ViewModel.IsActive"></label>
-			<input asp-for="ViewModel.IsActive" />
-		</section-form-check>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsActive" />
 
-		<section-form-check>
-			<label asp-for="ViewModel.IsPublic"></label>
-			<input asp-for="ViewModel.IsPublic" />
-		</section-form-check>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsPublic" />
 
-		<section-form-check>
-			<label asp-for="ViewModel.IsUndeletable"></label>
-			<input asp-for="ViewModel.IsUndeletable" />
-		</section-form-check>
-
+		<dtat-readonly-checkbox asp-for="ViewModel.IsUndeletable" />
 	</fieldset>
 
 	<section-form-footer>

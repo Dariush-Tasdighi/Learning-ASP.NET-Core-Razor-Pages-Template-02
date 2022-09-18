@@ -32,40 +32,19 @@
 
 		<partial name="PartialViews/_DisplayPageMessages" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Id"></label>
-			<input asp-for="ViewModel.Id" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Id" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Title"></label>
-			<input asp-for="ViewModel.Title" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Title" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Link"></label>
-			<input asp-for="ViewModel.Link" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Link" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.NumberOfSubMenus"></label>
-			<input asp-for="ViewModel.NumberOfSubMenus" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.NumberOfSubMenus" />
 
-		<section-form-check>
-			<input asp-for="ViewModel.IsActive" />
-			<label asp-for="ViewModel.IsActive"></label>
-		</section-form-check>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsActive" />
 
-		<section-form-check>
-			<input asp-for="ViewModel.IsPublic" />
-			<label asp-for="ViewModel.IsPublic"></label>
-		</section-form-check>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsPublic" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.InsertDateTime"></label>
-			<input asp-for="ViewModel.InsertDateTime" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.InsertDateTime" />
 	</fieldset>
 
 	<form method="post">
