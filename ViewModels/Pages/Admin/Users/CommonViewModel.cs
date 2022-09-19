@@ -94,6 +94,9 @@ public class CommonViewModel : object
 	[System.ComponentModel.DataAnnotations.Display
 		(Name = nameof(Resources.DataDictionary.AdminDescription),
 		ResourceType = typeof(Resources.DataDictionary))]
+
+	[System.ComponentModel.DataAnnotations.DataType
+		(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
 	public string? AdminDescription { get; set; }
 	// **********
 }
