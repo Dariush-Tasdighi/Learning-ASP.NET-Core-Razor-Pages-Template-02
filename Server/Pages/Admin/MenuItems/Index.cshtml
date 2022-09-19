@@ -1,0 +1,130 @@
+﻿@page
+@model Server.Pages.Admin.MenuItems.IndexModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+
+@{
+	var pageTitle =
+		$"{Resources.ButtonCaptions.ListOf} {Resources.DataDictionary.MenuItem}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<section-page-header>
+	@(pageTitle)
+</section-page-header>
+
+<section-page-actions>
+	<a asp-page="Create">
+		@(Html.DtatGetLinkCaptionForCreate())
+	</a>
+</section-page-actions>
+
+<section-table>
+	<table>
+		<caption>
+			@(pageTitle)
+		</caption>
+
+		<thead>
+			<tr>
+				<th>
+					@(Resources.DataDictionary.RowNumber)
+				</th>
+				<th>
+				</th>
+				<th>
+					@(Resources.DataDictionary.Title)
+				</th>
+				<th>
+					@(Resources.DataDictionary.Icon)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsActive)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsPublic)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsDeleted)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsUndeletable)
+				</th>
+				<th>
+					@(Resources.DataDictionary.Ordering)
+				</th>
+				<th>
+					@(Resources.DataDictionary.InsertDateTime)
+				</th>
+				<th>
+					@(Resources.DataDictionary.UpdateDateTime)
+				</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			@for (var index = 0; index <= Model.ViewModel.Count - 1; index++)
+			{
+				var item = Model.ViewModel[index];
+
+				<tr>
+					@(Html.DtatDisplayRowNumberWithTd(value: index + 1))
+					<table-actions>
+						@if (item.IsDeleted == false)
+						{
+							<a asp-page="Details" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDetails())
+							</a>
+							<a asp-page="Update" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconUpdate())
+							</a>
+							<a asp-page="Delete" asp-route-id="@(item.Id)">
+								@(Html.DtatGetIconDelete())
+							</a>
+							@if (item.HasAnySubMenu)
+							{
+								<a asp-page="./Index" asp-route-id="@(item.Id)">
+									@(Html.DtatGetIconCustom(
+										applicationSettings.IconSettings.TableIcons.Children))
+								</a>
+
+								@*<a asp-page="./Index" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
+									<i class="@(applicationSettings.IconSettings.TableIcons.Children)"></i>
+								</a>*@
+							}
+						}
+						else
+						{
+							<span>---</span>
+						}
+					</table-actions>
+
+					<td>
+						@(item.Title)
+					</td>
+
+					<td>
+						@if (string.IsNullOrWhiteSpace(value: item.Icon) == false)
+						{
+							<i class="@(item.Icon)"></i>
+						}
+					</td>
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsActive))
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsPublic))
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsDeleted))
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsUndeletable))
+
+					@(Html.DtatDisplayIntegerWithTd(value: item.Ordering))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
+
+					@(Html.DtatDisplayDateTimeWithTd(value: item.UpdateDateTime))
+				</tr>
+			}
+		</tbody>
+	</table>
+</section-table>

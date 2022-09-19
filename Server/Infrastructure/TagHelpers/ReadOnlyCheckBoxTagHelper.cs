@@ -1,7 +1,7 @@
 ﻿namespace Infrastructure.TagHelpers;
 
 [Microsoft.AspNetCore.Razor.TagHelpers
-	.HtmlTargetElement(tag: "readonly-checkbox",
+	.HtmlTargetElement(tag: Constants.TagHelper.ReadOnlyCheckBox,
 	TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
 public class ReadOnlyCheckBoxTagHelper :
 	Microsoft.AspNetCore.Razor.TagHelpers.TagHelper

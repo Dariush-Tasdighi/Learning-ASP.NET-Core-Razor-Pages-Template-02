@@ -1,12 +1,12 @@
 ﻿namespace Domain;
 
 public class User :
-	SeedWork.Entity,
-	SeedWork.IEntityCanSetId,
-	SeedWork.IEntityHasIsActive,
-	SeedWork.IEntityHasIsSystemic,
-	SeedWork.IEntityHasIsUndeletable,
-	SeedWork.IEntityHasUpdateDateTime
+	Seedwork.Entity,
+	Dtat.Seedwork.Abstractions.IEntityIdIsSetable,
+	Dtat.Seedwork.Abstractions.IEntityHasIsActive,
+	Dtat.Seedwork.Abstractions.IEntityHasIsSystemic,
+	Dtat.Seedwork.Abstractions.IEntityHasIsUndeletable,
+	Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 {
 	#region Static(s)
 	public static readonly System.Guid

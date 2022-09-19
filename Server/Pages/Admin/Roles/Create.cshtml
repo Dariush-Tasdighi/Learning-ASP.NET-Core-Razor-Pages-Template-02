@@ -18,28 +18,52 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Name"></label>
-				<input asp-for="ViewModel.Name" />
-				<span asp-validation-for="ViewModel.Name"></span>
-			</section-form-field>
+			@*
+			<div class="mb-3">
+			<label asp-for="ViewModel.Name" class="form-label"></label>
+			<input asp-for="ViewModel.Name" class="form-control" />
+			<span asp-validation-for="ViewModel.Name" class="text-danger"></span>
+			</div>
+			*@
 
+			@*
+			<section-form-field>
+			<label asp-for="ViewModel.Name"></label>
+			<input asp-for="ViewModel.Name" />
+			<span asp-validation-for="ViewModel.Name"></span>
+			</section-form-field>
+			*@
+
+			<dtat-full-input asp-for="ViewModel.Name" />
+
+			@*
 			<section-form-check>
-				<input asp-for="ViewModel.IsActive" />
-				<label asp-for="ViewModel.IsActive"></label>
+			<input asp-for="ViewModel.IsActive" />
+			<label asp-for="ViewModel.IsActive"></label>
 			</section-form-check>
+			*@
 
-			<section-form-field>
-				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" dir="ltr" />
-				<span asp-validation-for="ViewModel.Ordering"></span>
-			</section-form-field>
+			<dtat-full-checkbox asp-for="ViewModel.IsActive" />
 
+			@*
 			<section-form-field>
-				<label asp-for="ViewModel.Description"></label>
-				<textarea asp-for="ViewModel.Description"></textarea>
-				<span asp-validation-for="ViewModel.Description"></span>
+			<label asp-for="ViewModel.Ordering"></label>
+			<input asp-for="ViewModel.Ordering" dir="ltr" />
+			<span asp-validation-for="ViewModel.Ordering"></span>
 			</section-form-field>
+			*@
+
+			<dtat-full-input asp-for="ViewModel.Ordering" />
+
+			@*
+			<section-form-field>
+			<label asp-for="ViewModel.Description"></label>
+			<textarea asp-for="ViewModel.Description"></textarea>
+			<span asp-validation-for="ViewModel.Description"></span>
+			</section-form-field>
+			*@
+
+			<dtat-full-textarea asp-for="ViewModel.Description" />
 		</fieldset>
 
 		<section-form-buttons>

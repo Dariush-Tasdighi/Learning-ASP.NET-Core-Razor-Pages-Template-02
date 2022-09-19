@@ -1,6 +1,6 @@
 ﻿namespace Domain
 {
-	public class UserLogin : SeedWork.Entity
+	public class UserLogin : Seedwork.Entity
 	{
 		public UserLogin(System.Guid userId, string userIP) : base()
 		{
