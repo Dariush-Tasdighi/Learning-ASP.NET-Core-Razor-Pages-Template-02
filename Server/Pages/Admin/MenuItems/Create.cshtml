@@ -34,45 +34,25 @@
 	<form method="post">
 		<section-form>
 			<fieldset>
-			<section-form-header>
-				@(pageTitle)
+				<section-form-header>
+					@(pageTitle)
 			</section-form-header>
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Title"></label>
-				<input asp-for="ViewModel.Title" />
-				<span asp-validation-for="ViewModel.Title"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.Title" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.ParentId"></label>
-				<select asp-for="ViewModel.ParentId">
-					<option value="@(null)">@(Resources.DataDictionary.NoParent)</option>
-					@foreach (var item in Model?.ParentsViewModel)
-					{
-						<option value="@(item.Id)">@(item.Title)</option>
-					}
-				</select>
-				<span asp-validation-for="ViewModel.ParentId"></span>
-			</section-form-field>
+			<dtat-full-select asp-for="ViewModel.ParentId" asp-items="Model?.ParentSelectList"
+							  asp-option-label="@(Resources.DataDictionary.NoParent)" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" />
-				<span asp-validation-for="ViewModel.Ordering"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.Ordering" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Link"></label>
-				<input asp-for="ViewModel.Link" />
-				<span asp-validation-for="ViewModel.Link"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.Link" />
 
 			<section-form-field>
 				<label asp-for="ViewModel.Icon"></label>
-				<input asp-for="ViewModel.Icon" onclick="$(this).pickIcon(@(Resources.DataDictionary.Icon));" class="iconpicker" />
+				<input asp-for="ViewModel.Icon" onclick="$(this).pickIcon(@(Resources.DataDictionary.Icon));"
+					   class="iconpicker" />
 			</section-form-field>
 
 			<section-form-field>
@@ -88,21 +68,11 @@
 				</select>
 			</section-form-field>
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsActive" />
-				<label asp-for="ViewModel.IsActive"></label>
-			</section-form-check>
+			<dtat-full-checkbox asp-for="ViewModel.IsActive" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsPublic" />
-				<label asp-for="ViewModel.IsPublic"></label>
-			</section-form-check>
+			<dtat-full-checkbox asp-for="ViewModel.IsPublic" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsUndeletable" />
-				<label asp-for="ViewModel.IsUndeletable"></label>
-			</section-form-check>
-
+			<dtat-full-checkbox asp-for="ViewModel.IsUndeletable" />
 		</fieldset>
 
 		<section-form-buttons>

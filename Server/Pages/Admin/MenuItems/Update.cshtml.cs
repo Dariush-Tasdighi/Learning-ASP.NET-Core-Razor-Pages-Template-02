@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
@@ -16,8 +17,9 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		Logger = logger;
 		ViewModel = new();
-		ParentsViewModel = new 
+		ParentsViewModel = new
 			List<ViewModels.Pages.Admin.MenuItems.GetAccessibleParentViewModel>();
+		ParentSelectList = new System.Collections.Generic.List<SelectListItem>();
 	}
 
 	// **********
@@ -35,6 +37,12 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{ get; private set; }
 	// **********
 
+	// **********
+	public System.Collections.Generic.IList
+		<SelectListItem> ParentSelectList
+	{ get; private set; }
+	// **********
+
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
 	{
@@ -47,6 +55,10 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				return RedirectToPage(pageName: "Index");
 			}
+
+			await SetAccessibleParent();
+
+			SetAccessibleParentToSelectList();
 
 			ViewModel =
 				await DatabaseContext.MenuItems
@@ -208,4 +220,32 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			await DisposeDatabaseContextAsync();
 		}
 	}
+	private async System.Threading.Tasks.Task SetAccessibleParent()
+	{
+		ParentsViewModel =
+			await DatabaseContext.MenuItems
+			.Where(current => current.IsDeleted == false)
+			.Where(current => current.ParentId == null)
+			.OrderBy(current => current.Ordering)
+			.Select(current => new ViewModels.Pages.Admin.MenuItems.GetAccessibleParentViewModel
+			{
+				Id = current.Id,
+				Title = current.Title,
+			})
+			.ToListAsync()
+			;
+	}
+
+	private void SetAccessibleParentToSelectList()
+	{
+		foreach (var item in ParentsViewModel)
+		{
+			ParentSelectList.Add(new SelectListItem
+			{
+				Text = item.Title,
+				Value = item.Id.ToString(),
+			});
+		}
+	}
+
 }

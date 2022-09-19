@@ -14,6 +14,7 @@ public static class TagHelper : object
 	public const string TextArea = Prefix + "simple-textarea";
 
 	public const string FullInput = Prefix + "full-input";
+	public const string FullSelect = Prefix + "full-select";
 	public const string FullCheckBox = Prefix + "full-checkbox";
 	public const string FullTextArea = Prefix + "full-textarea";
 	public const string FullPasswordInput = Prefix + "full-password-input";

@@ -342,4 +342,35 @@ public static class Utility : object
 
 		return result;
 	}
+
+	public static async
+		System.Threading.Tasks.Task<string> GenerateSelectAsync
+		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
+		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for,
+		System.Collections.Generic.IList
+		<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> @Items,
+		string? @OptionLabel)
+	{
+		var tagBuilder =
+			generator.GenerateSelect
+			(viewContext: viewContext, modelExplorer: @for.ModelExplorer, optionLabel: @OptionLabel,
+			expression: @for.Name, selectList: @Items,allowMultiple: false, htmlAttributes: null);
+
+		tagBuilder.AddCssClass
+			(value: "form-control");
+
+		var writer =
+			new System.IO.StringWriter();
+
+		tagBuilder.WriteTo(writer: writer,
+			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+
+		var result =
+			writer.ToString();
+
+		await writer.DisposeAsync();
+
+		return result;
+	}
 }
