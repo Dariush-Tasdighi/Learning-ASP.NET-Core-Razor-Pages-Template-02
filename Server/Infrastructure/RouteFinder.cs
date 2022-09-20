@@ -12,6 +12,7 @@ public static class RouteFinder : object
 	public static System.Collections.Generic.IList
 		<ViewModels.Pages.Admin.ApplicationHandlers.CreateViewModel> Find()
 	{
+		// **************************************************
 		var assembly =
 			System.Reflection.Assembly
 			.GetAssembly(type: typeof(Server.Pages.IndexModel));
@@ -21,7 +22,9 @@ public static class RouteFinder : object
 
 		var compilerGeneratedAttributeType =
 			typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute);
+		// **************************************************
 
+		// **************************************************
 		var routes =
 			assembly
 			.GetTypes()
@@ -34,7 +37,9 @@ public static class RouteFinder : object
 				System.Reflection.BindingFlags.Instance |
 				System.Reflection.BindingFlags.DeclaredOnly
 			));
+		// **************************************************
 
+		// **************************************************
 		var foundedHandlers =
 			routes
 			.Where(current => current.GetCustomAttributes
@@ -49,18 +54,20 @@ public static class RouteFinder : object
 			.OrderBy(current => current.Name)
 			.ToList()
 			;
+		// **************************************************
 
 		return foundedHandlers;
 	}
 
 	private static string GetPath(string fullName, string handler)
 	{
+		// **************************************************
 		var dot = ".";
 		var slash = "/";
 		var doubleSlash = "//";
-
 		var model = nameof(Model);
 		var baseNamespace = $"{nameof(Server)}.{nameof(Server.Pages)}";
+		// **************************************************
 
 		if (fullName.ToLower().EndsWith(value: model.ToLower()))
 		{
@@ -69,6 +76,7 @@ public static class RouteFinder : object
 				.Remove(startIndex: fullName.Length - 5);
 		}
 
+		// **************************************************
 		var path =
 			fullName
 			.Replace(oldValue: baseNamespace, newValue: string.Empty)
@@ -78,6 +86,7 @@ public static class RouteFinder : object
 			path
 			.Replace(oldValue: dot, newValue: slash)
 			;
+		// **************************************************
 
 		if (path.EndsWith(value: slash) == false)
 		{
@@ -86,6 +95,7 @@ public static class RouteFinder : object
 
 		path += handler;
 
+		// **************************************************
 		while (path.Contains(value: doubleSlash))
 		{
 			path =
@@ -93,6 +103,7 @@ public static class RouteFinder : object
 				.Replace(oldValue: doubleSlash, newValue: slash)
 				;
 		}
+		// **************************************************
 
 		return path;
 	}
