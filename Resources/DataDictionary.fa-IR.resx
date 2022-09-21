@@ -474,4 +474,7 @@
   <data name="LastLoginDateTime" xml:space="preserve">
     <value>زمان آخرین ورود به سامانه</value>
   </data>
+  <data name="UserPhoto" xml:space="preserve">
+    <value>عکس کاربر</value>
+  </data>
 </root>

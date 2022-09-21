@@ -1,0 +1,122 @@
+﻿@page
+@model Server.Pages.Account.UpdateProfileModel
+@inject Infrastructure.Settings.ApplicationSettings applicationSettings
+
+
+@{
+    var pageTitle =
+        $"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.User}";
+
+    ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+    
+    var photoPath = $"/{applicationSettings.FileManagerSettings.UserPhotoPath}/{@Model.ViewModel.PhotoPath}";
+    
+    var unknownphoto = "/UsersPhotos/Empty.png";
+
+
+}
+ 
+
+<form method="post" enctype="multipart/form-data">
+
+    <section-form>
+        <fieldset>
+            <section-form-header>
+                @(pageTitle)
+            </section-form-header>
+
+            <partial name="PartialViews/_DisplayPageMessages" />
+
+                  @if (string.IsNullOrWhiteSpace(value: Model.ViewModel.PhotoPath))
+                    {       
+                        <img id="unknown" src="@Url.Content(unknownphoto)"  class="rounded-circle mb-3 " width="150" height="150" alt="Avatar" />
+                         <label for="unkfile" class="@(applicationSettings.IconSettings.TableIcons.Update) ">
+                             <input id="unkfile" name="file" type="file" aria-label="Select File" style="display: none;" class="form-control" accept="image/png" onchange="changeunknownpicture(event)" >
+                        </label>
+                    }
+                    else
+                    {
+                         <img id="photo" src="@Url.Content(photoPath)" class="rounded-circle mb-3" width="150" height="150" alt="Avatar" />
+                            <label for="file" class="@(applicationSettings.IconSettings.TableIcons.Update) ">
+                         <input id="file" name="file" type="file" aria-label="Select File" style="display: none;" class="form-control" accept="image/png" onchange="changepicture(event)" >
+                    </label>
+                    }
+                      @if (Model.ViewModel.IsActive == false)
+                    {
+                        <p class="mb-2">@(Resources.DataDictionary.Deactive)</p>
+                    }
+                    else
+                    {
+                         <p class="mb-2">@(Resources.DataDictionary.Active)</p>
+                    }
+                   
+                    <p class="text-muted"> <span class="badge bg-primary">@(Model.ViewModel.Role)</span></p>                  
+
+                    <br />
+
+                  <section-form-field>
+                <label asp-for="ViewModel.FullName"></label>
+                <input asp-for="ViewModel.FullName"/>
+                <span asp-validation-for="ViewModel.FullName"></span>
+            </section-form-field>
+
+             <section-form-field>
+                <label asp-for="ViewModel.Username"></label>
+                <input asp-for="ViewModel.Username"/>
+                <span asp-validation-for="ViewModel.Username"></span>
+            </section-form-field>
+
+
+            <section-form-field>
+                <label asp-for="ViewModel.EmailAddress"></label>
+                <input asp-for="ViewModel.EmailAddress"/>
+                <span asp-validation-for="ViewModel.EmailAddress"></span>
+            </section-form-field>
+
+            <section-form-field>
+            <label asp-for="ViewModel.CellPhoneNumber"></label>
+            <input asp-for="ViewModel.CellPhoneNumber"/>
+            <span asp-validation-for="ViewModel.CellPhoneNumber"></span>
+            </section-form-field>
+
+            <section-form-field>
+				<label asp-for="ViewModel.Description"></label>
+				<textarea asp-for="ViewModel.Description"></textarea>
+				<span asp-validation-for="ViewModel.Description"></span>
+			</section-form-field>
+            
+            <section-form-check>
+				<input asp-for="ViewModel.IsProfilePublic" />
+				<label asp-for="ViewModel.IsProfilePublic"></label>
+			</section-form-check>
+
+
+        </fieldset>
+
+
+        <section-form-buttons>
+            <button-save />
+            <button-reset />
+        </section-form-buttons>
+
+        </section-form>
+
+</form>
+
+
+<script type="text/javascript">
+var changepicture = function(event)
+{ 
+    var imagetag = document.getElementById('photo');//get img tag
+    imagetag.src = URL.createObjectURL(event.target.files[0]);
+ 
+}
+
+var changeunknownpicture = function(event)
+{ 
+    var imagetagempt = document.getElementById('unknown');//get img tag
+    imagetagempt.src = URL.createObjectURL(event.target.files[0]);
+
+}
+
+</script>
