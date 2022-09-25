@@ -934,6 +934,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select An Item.
+        /// </summary>
+        public static string SelectAnItem {
+            get {
+                return ResourceManager.GetString("SelectAnItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
         public static string Settings {

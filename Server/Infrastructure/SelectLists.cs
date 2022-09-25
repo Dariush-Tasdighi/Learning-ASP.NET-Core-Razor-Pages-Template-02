@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Drawing.Imaging;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure
@@ -11,7 +12,7 @@ namespace Infrastructure
 
 		public static async System.Threading.Tasks.Task
 			<Microsoft.AspNetCore.Mvc.Rendering.SelectList>
-			GetRoles(Data.DatabaseContext databaseContext, object? selectedValue = null)
+			GetRolesAsync(Data.DatabaseContext databaseContext, object? selectedValue = null)
 		{
 			var list =
 				await
@@ -25,6 +26,14 @@ namespace Infrastructure
 				})
 				.ToListAsync()
 				;
+
+			// **************************************************
+			var emptyItem =
+				new ViewModels.Shared.KeyValueViewModel
+				(id: null, name: Resources.DataDictionary.SelectAnItem);
+
+			list.Insert(index: 0, item: emptyItem);
+			// **************************************************
 
 			var result =
 				new Microsoft.AspNetCore.Mvc.Rendering

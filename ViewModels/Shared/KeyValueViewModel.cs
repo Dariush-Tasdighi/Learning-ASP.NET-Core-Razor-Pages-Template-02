@@ -6,6 +6,12 @@ public class KeyValueViewModel : object
 	{
 	}
 
+	public KeyValueViewModel(System.Guid? id, string? name) : base()
+	{
+		Id = id;
+		Name = name;
+	}
+
 	// **********
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),

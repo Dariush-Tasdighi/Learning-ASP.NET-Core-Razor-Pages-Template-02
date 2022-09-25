@@ -36,18 +36,30 @@
 				<span asp-validation-for="ViewModel.ConfirmPassword"></span>
 			</section-form-field>
 
+			@*			<section-form-field>
+			<label asp-for="ViewModel.RoleId"></label>
+
+			<select asp-for="ViewModel.RoleId"
+			asp-items="@(new SelectList(Model.RolesViewModel,
+			nameof(ViewModels.Shared.KeyValueViewModel.Id),
+			nameof(ViewModels.Shared.KeyValueViewModel.Name)))"
+			class="form-select">
+
+			<option value="@(null)" selected>
+			@(Resources.DataDictionary.WithoutRole)
+			</option>
+			</select>
+
+			<span asp-validation-for="ViewModel.RoleId"></span>
+			</section-form-field>
+			*@
+
 			<section-form-field>
 				<label asp-for="ViewModel.RoleId"></label>
 
 				<select asp-for="ViewModel.RoleId"
-						asp-items="@(new SelectList(Model.RolesViewModel,
-						nameof(ViewModels.Shared.KeyValueViewModel.Id),
-						nameof(ViewModels.Shared.KeyValueViewModel.Name)))"
+						asp-items="@(Model.RolesSelectList)"
 						class="form-select">
-
-					<option value="@(null)" selected>
-						@(Resources.DataDictionary.WithoutRole)
-					</option>
 				</select>
 
 				<span asp-validation-for="ViewModel.RoleId"></span>

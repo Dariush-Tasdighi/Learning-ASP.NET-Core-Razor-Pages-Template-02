@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Data;
 
 namespace Server.Pages.Admin.Users;
 
@@ -29,6 +30,10 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	// **********
 
 	// **********
+	public Microsoft.AspNetCore.Mvc.Rendering.SelectList? RolesSelectList { get; set; }
+	// **********
+
+	// **********
 	public System.Collections.Generic.IList
 		<ViewModels.Shared.KeyValueViewModel> RolesViewModel
 	{ get; private set; }
@@ -46,6 +51,11 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	{
 		try
 		{
+			RolesSelectList =
+				await
+				Infrastructure.SelectLists.GetRolesAsync
+				(databaseContext: DatabaseContext, selectedValue: null);
+
 			await SetAccessibleRoleAsync();
 
 			return Page();
@@ -71,13 +81,18 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 	public async System.Threading.Tasks.Task
 		<Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
 	{
-		if (ModelState.IsValid == false)
-		{
-			return Page();
-		}
-
 		try
 		{
+			RolesSelectList =
+				await
+				Infrastructure.SelectLists.GetRolesAsync
+				(databaseContext: DatabaseContext, selectedValue: null);
+
+			if (ModelState.IsValid == false)
+			{
+				return Page();
+			}
+
 			var foundedAny =
 				await
 				DatabaseContext.Users
