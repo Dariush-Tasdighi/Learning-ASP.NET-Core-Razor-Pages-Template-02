@@ -18,6 +18,8 @@
 	</a>
 </section-page-actions>
 
+<partial name="PartialViews/_DisplayPageMessages" />
+
 <section-table>
 	<table>
 		<caption>
@@ -35,25 +37,40 @@
 					@(Resources.DataDictionary.EmailAddress)
 				</th>
 				<th>
-					@(Resources.DataDictionary.IsVerified)
+					@(Resources.DataDictionary.IsEmailAddressVerified)
 				</th>
 				<th>
 					@(Resources.DataDictionary.Role)
 				</th>
 				<th>
-					@(Resources.DataDictionary.IsActive)
+					@(Resources.DataDictionary.RoleIsActive)
 				</th>
 				<th>
-					@(Resources.DataDictionary.Ordering)
+					@(Resources.DataDictionary.Username)
+				</th>
+				<th>
+					@(Resources.DataDictionary.FirstName)
+				</th>
+				<th>
+					@(Resources.DataDictionary.LastName)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsActive)
 				</th>
 				<th>
 					@(Resources.DataDictionary.IsProgrammer)
 				</th>
 				<th>
-					@(Resources.DataDictionary.IsSystemic)
+					@(Resources.DataDictionary.CellPhoneNumber)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsCellPhoneNumberVerified)
 				</th>
 				<th>
 					@(Resources.DataDictionary.LastLoginDateTime)
+				</th>
+				<th>
+					@(Resources.DataDictionary.IsVisibleInContactUsPage)
 				</th>
 				<th>
 					@(Resources.DataDictionary.InsertDateTime)
@@ -65,7 +82,7 @@
 		</thead>
 
 		<tbody>
-			@for (int index = 0; index <= Model.ViewModel.Count - 1; index++)
+			@for (var index = 0; index <= Model.ViewModel.Count - 1; index++)
 			{
 				var item = Model.ViewModel[index];
 
@@ -79,34 +96,36 @@
 						<a asp-page="Update" asp-route-id="@(item.Id)">
 							@(Html.DtatGetIconUpdate())
 						</a>
-
-						@if ((item.IsUndeletable == false) && (item.IsProgrammer == false))
-						{
-							<a asp-page="Delete" asp-route-id="@(item.Id)">
-								@(Html.DtatGetIconDelete())
-							</a>
-						}
+						<a asp-page="Delete" asp-route-id="@(item.Id)">
+							@(Html.DtatGetIconDelete())
+						</a>
 					</table-actions>
 
-					<td>
-						@(item.EmailAddress)
-					</td>
+					@(Html.DtatDisplayStringWithTd(value: item.EmailAddress))
 
 					@(Html.DtatDisplayBooleanWithTd(value: item.IsEmailAddressVerified))
 
-					<td>
-						@(item.Role)
-					</td>
+					@(Html.DtatDisplayStringWithTd(value: item.RoleName))
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsRoleActive))
+
+					@(Html.DtatDisplayStringWithTd(value: item.Username))
+
+					@(Html.DtatDisplayStringWithTd(value: item.FirstName))
+
+					@(Html.DtatDisplayStringWithTd(value: item.LastName))
 
 					@(Html.DtatDisplayBooleanWithTd(value: item.IsActive))
 
-					@(Html.DtatDisplayIntegerWithTd(value: item.Ordering))
-
 					@(Html.DtatDisplayBooleanWithTd(value: item.IsProgrammer))
 
-					@(Html.DtatDisplayBooleanWithTd(value: item.IsSystemic))
+					@(Html.DtatDisplayStringWithTd(value: item.CellPhoneNumber))
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsCellPhoneNumberVerified))
 
 					@(Html.DtatDisplayDateTimeWithTd(value: item.LastLoginDateTime))
+
+					@(Html.DtatDisplayBooleanWithTd(value: item.IsVisibleInContactUsPage))
 
 					@(Html.DtatDisplayDateTimeWithTd(value: item.InsertDateTime))
 

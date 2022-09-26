@@ -50,11 +50,11 @@ public class DeleteModel : Infrastructure.BasePageModelWithDatabaseContext
 				.Where(current => current.Id == id.Value)
 				.Select(current => new ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel
 				{
-					Id = current.Id,
-					Role = current.Role.Name,
-					Ordering = current.Ordering,
-					Username = current.Username,
-					FullName = current.FullName,
+					//Id = current.Id,
+					//Role = current.Role.Name,
+					//Ordering = current.Ordering,
+					//Username = current.Username,
+					//FullName = current.FullName,
 					IsActive = current.IsActive,
 					EmailAddress = current.EmailAddress,
 					IsRoleActive = current.Role.IsActive,

@@ -49,11 +49,11 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 				.Where(current => current.Id == id)
 				.Select(current => new ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel
 				{
-					Id = current.Id,
-					Role = current.Role.Name,
+					//Id = current.Id,
+					//Role = current.Role.Name,
 					Ordering = current.Ordering,
 					Username = current.Username,
-					FullName = current.FullName,
+					//FullName = current.FullName,
 					IsActive = current.IsActive,
 					EmailAddress = current.EmailAddress,
 					IsRoleActive = current.Role.IsActive,

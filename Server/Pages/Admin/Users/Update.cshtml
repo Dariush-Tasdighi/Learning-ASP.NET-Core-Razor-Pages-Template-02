@@ -26,20 +26,23 @@
 				<span asp-validation-for="ViewModel.EmailAddress"></span>
 			</section-form-field>
 
-			<section-form-field>
-				<label asp-for="ViewModel.RoleId"></label>
+			@*			<section-form-field>
+			<label asp-for="ViewModel.RoleId"></label>
 
-				<select class="form-select" asp-for="ViewModel.RoleId"
-						asp-items="@(new SelectList(Model.RolesViewModel,
-						nameof(ViewModels.Shared.KeyValueViewModel.Id),
-						nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+			<select class="form-select" asp-for="ViewModel.RoleId"
+			asp-items="@(new SelectList(Model.RolesViewModel,
+			nameof(ViewModels.Shared.KeyValueViewModel.Id),
+			nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
 
-					<option value="@(null)" selected="@(Model.ViewModel.RoleId == null)">
-						@(Resources.DataDictionary.WithoutRole)
-					</option>
-				</select>
+			<option value="@(null)" selected="@(Model.ViewModel.RoleId == null)">
+			@(Resources.DataDictionary.WithoutRole)
+			</option>
+			</select>
 			</section-form-field>
+			*@
 
+@*			<dtat-full-select asp-for="ViewModel.RoleId" asp-items="@(Model.RolesSelectList)" />
+*@
 			<section-form-check>
 				<input asp-for="ViewModel.IsProgrammer" />
 				<label asp-for="ViewModel.IsProgrammer"></label>
@@ -54,11 +57,6 @@
 			<section-form-check>
 				<input asp-for="ViewModel.IsActive" />
 				<label asp-for="ViewModel.IsActive"></label>
-			</section-form-check>
-
-			<section-form-check>
-				<input asp-for="ViewModel.IsUndeletable" />
-				<label asp-for="ViewModel.IsUndeletable"></label>
 			</section-form-check>
 
 			<section-form-field>

@@ -1,14 +1,14 @@
 ﻿namespace Data.Configurations
 {
 	internal class UserLoginConfiguration : object,
-		Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.UserLogin>
+		Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.LoginLog>
 	{
 		public UserLoginConfiguration() : base()
 		{
 		}
 
 		public void Configure
-			(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.UserLogin> builder)
+			(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Domain.LoginLog> builder)
 		{
 			// **************************************************
 			// **************************************************

@@ -2,105 +2,149 @@
 
 public class IndexItemViewModel : object
 {
+	#region Constructor
 	public IndexItemViewModel() : base()
 	{
+		EmailAddress = string.Empty;
 	}
+	#endregion /Constructor
 
-	// **********
+	#region Properties
+
+	#region Id Property
+	/// <summary>
+	/// شناسه
+	/// </summary>
+	public System.Guid Id { get; set; }
+	#endregion /Id Property
+
+	#region InsertDateTime Property
+	/// <summary>
+	/// تاریخ و ساعت ایجاد
+	/// </summary>
+	public System.DateTime InsertDateTime { get; set; }
+	#endregion /InsertDateTime Property
+
+	#region UpdateDateTime Property
+	/// <summary>
+	/// تاریخ و زمان ویرایش اطلاعات
+	/// </summary>
+	public System.DateTime UpdateDateTime { get; set; }
+	#endregion /UpdateDateTime Property
+
+	#region LastLoginDateTime Property
+	/// <summary>
+	/// آخرین زمان ورود به سامانه
+	/// </summary>
+	public System.DateTime? LastLoginDateTime { get; set; }
+	#endregion /LastLoginDateTime Property
+
+	#region RoleId Property
+	/// <summary>
+	/// نقش کاربر
+	/// </summary>
+	public System.Guid? RoleId { get; set; }
+	#endregion /RoleId Property
+
+	#region RoleName Property
+	/// <summary>
+	/// نام نقش کاربر
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.Id),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public System.Guid? Id { get; init; }
-	// **********
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.Role))]
+	public string? RoleName { get; set; }
+	#endregion /RoleName Property
 
-	// **********
+	#region IsRoleActive Property
+	/// <summary>
+	/// نقش انتخاب شده فعال است
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.Role),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public string? Role { get; init; }
-	// **********
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsActive))]
+	public bool? IsRoleActive { get; init; }
+	#endregion /IsRoleActive Property
 
-	// **********
+	#region IsActive Property
+	/// <summary>
+	/// وضعیت
+	/// </summary>
+	public bool IsActive { get; set; }
+	#endregion /IsActive Property
+
+	#region IsProgrammer Property
+	/// <summary>
+	/// برنامه‌نویس
+	/// </summary>
+	public bool IsProgrammer { get; set; }
+	#endregion /IsProgrammer Property
+
+	#region IsUndeletable Property
+	/// <summary>
+	/// غیر قابل حذف
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.Ordering),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public int Ordering { get; init; }
-	// **********
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsUndeletable))]
+	public bool IsUndeletable { get; set; }
+	#endregion /IsUndeletable Property
 
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.EmailAddress),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public string? EmailAddress { get; init; }
-	// **********
+	#region IsVisibleInContactUsPage Property
+	/// <summary>
+	/// امکان نمایش در صفحه تماس با ما
+	/// </summary>
+	public bool IsVisibleInContactUsPage { get; set; }
+	#endregion /IsVisibleInContactUsPage Property
 
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.IsEmailAddressVerified),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public bool? IsEmailAddressVerified { get; init; }
-	// **********
+	#region IsEmailAddressVerified Property
+	/// <summary>
+	/// نشانی پست الکترونیکی تایید شده است
+	/// </summary>
+	public bool IsEmailAddressVerified { get; set; }
+	#endregion /IsEmailAddressVerified Property
 
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.IsProgrammer),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public bool IsProgrammer { get; init; }
-	// **********
+	#region IsCellPhoneNumberVerified Property
+	/// <summary>
+	/// شماره تلفن همراه تایید شده است
+	/// </summary>
+	public bool IsCellPhoneNumberVerified { get; set; }
+	#endregion /IsCellPhoneNumberVerified Property
 
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.IsSystemic),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public bool IsSystemic { get; init; }
-	// **********
+	#region Username Property
+	/// <summary>
+	/// شناسه کاربری
+	/// </summary>
+	public string? Username { get; set; }
+	#endregion /Username Property
 
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.IsActive),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public bool IsActive { get; init; }
-	// **********
+	#region FirstName Property
+	/// <summary>
+	/// نام
+	/// </summary>
+	public string? FirstName { get; set; }
+	#endregion /FirstName Property
 
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.IsUndeletable),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public bool IsUndeletable { get; init; }
-	// **********
+	#region LastName Property
+	/// <summary>
+	/// نام خانوادگی
+	/// </summary>
+	public string? LastName { get; set; }
+	#endregion /LastName Property
 
-	// **********
-	//[System.ComponentModel.DataAnnotations.Display
-	//	(Name = nameof(Resources.DataDictionary.CreatedPagesCountByThisUser),
-	//	ResourceType = typeof(Resources.DataDictionary))]
-	//public int CreatedPagesCount { get; init; }
-	// **********
+	#region EmailAddress Property
+	/// <summary>
+	/// نشانی پست الکترونیکی
+	/// </summary>
+	public string EmailAddress { get; set; }
+	#endregion /EmailAddress Property
 
-	//// **********
-	//[System.ComponentModel.DataAnnotations.Display
-	//	(Name = nameof(Resources.DataDictionary.RemovedPagesCountByThisUser),
-	//	ResourceType = typeof(Resources.DataDictionary))]
-	//public int RemovedPagesCount { get; init; }
-	//// **********
+	#region CellPhoneNumber Property
+	/// <summary>
+	/// شماره تلفن همراه
+	/// </summary>
+	public string? CellPhoneNumber { get; set; }
+	#endregion /CellPhoneNumber Property
 
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.LastLoginDateTime),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public System.DateTime? LastLoginDateTime { get; init; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.UpdateDateTime),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public System.DateTime? UpdateDateTime { get; init; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = nameof(Resources.DataDictionary.InsertDateTime),
-		ResourceType = typeof(Resources.DataDictionary))]
-	public System.DateTime? InsertDateTime { get; init; }
-	// **********
+	#endregion /Properties
 }

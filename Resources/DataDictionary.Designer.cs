@@ -565,6 +565,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Visible in Contact Us Page.
+        /// </summary>
+        public static string IsVisibleInContactUsPage {
+            get {
+                return ResourceManager.GetString("IsVisibleInContactUsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Keywords.
         /// </summary>
         public static string Keywords {
@@ -898,6 +907,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role Is Active.
+        /// </summary>
+        public static string RoleIsActive {
+            get {
+                return ResourceManager.GetString("RoleIsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role Manager.
         /// </summary>
         public static string RoleManager {
@@ -1002,6 +1020,15 @@ namespace Resources {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title in Contact Us Page.
+        /// </summary>
+        public static string TitleInContactUsPage {
+            get {
+                return ResourceManager.GetString("TitleInContactUsPage", resourceCulture);
             }
         }
         

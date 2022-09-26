@@ -13,109 +13,28 @@ public class User :
 		SuperUserId = new(g: "CC75D635-EF6D-4E86-907A-BC532CDC3ACC");
 	#endregion /Static(s)
 
+	#region Constructor(s)
 	public User(string emailAddress) : base()
 	{
-		//SetUpdateDateTime();
 		UpdateDateTime = InsertDateTime;
 
-		//RoleId = roleId;
 		EmailAddress = emailAddress;
 		EmailAddressVerificationKey = System.Guid.NewGuid();
-
-		RemovedPages =
-			new System.Collections.Generic.List<Page>();
 
 		CreatedPages =
 			new System.Collections.Generic.List<Page>();
 
-		UserLogins =
-			new System.Collections.Generic.List<UserLogin>();
+		LoginLogs =
+			new System.Collections.Generic.List<LoginLog>();
 	}
+	#endregion /Constructor(s)
 
-	// **********
-	// **********
-	// **********
-	//[System.ComponentModel.DataAnnotations.Display
-	//	(ResourceType = typeof(Resources.DataDictionary),
-	//	Name = nameof(Resources.DataDictionary.Role))]
+	#region Property(ies)
 
-	//[System.ComponentModel.DataAnnotations.Required
-	//	(ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-	//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-	//public System.Guid RoleId { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.Role))]
-	public System.Guid? RoleId { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.Role))]
-
-	// نکته مهم: نباید دستور ذیل نوشته شود
-	//[System.ComponentModel.DataAnnotations.Required
-	//	(ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-	//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-	public virtual Role? Role { get; set; }
-	// **********
-	// **********
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsActive))]
-	public bool IsActive { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsSystemic))]
-	public bool IsSystemic { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsProgrammer))]
-	public bool IsProgrammer { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsUndeletable))]
-	public bool IsUndeletable { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsProfilePublic))]
-	public bool IsProfilePublic { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsEmailAddressVerified))]
-	public bool IsEmailAddressVerified { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified))]
-	public bool IsCellPhoneNumberVerified { get; set; }
-	// **********
-
-	// **********
+	#region UpdateDateTime Property
+	/// <summary>
+	/// تاریخ و زمان ویرایش اطلاعات
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.UpdateDateTime))]
@@ -123,11 +42,122 @@ public class User :
 	[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
 		(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
 	public System.DateTime UpdateDateTime { get; private set; }
-	// **********
+	#endregion /UpdateDateTime Property
 
-	// **********
+	#region LastLoginDateTime Property
 	/// <summary>
-	/// Note: Username is nullable!
+	/// آخرین زمان ورود به سامانه
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.LastLoginDateTime))]
+
+	[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
+		(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
+	public System.DateTime? LastLoginDateTime { get; set; }
+	#endregion /LastLoginDateTime Property
+
+	#region RoleId Property
+	/// <summary>
+	/// نقش کاربر
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.Role))]
+	public System.Guid? RoleId { get; set; }
+
+	/// <summary>
+	/// نقش کاربر
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.Role))]
+	public virtual Role? Role { get; set; }
+	#endregion /RoleId Property
+
+	#region IsActive Property
+	/// <summary>
+	/// وضعیت
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsActive))]
+	public bool IsActive { get; set; }
+	#endregion /IsActive Property
+
+	#region IsSystemic Property
+	/// <summary>
+	/// سیستمی
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsSystemic))]
+	public bool IsSystemic { get; set; }
+	#endregion /IsSystemic Property
+
+	#region IsProgrammer Property
+	/// <summary>
+	/// برنامه‌نویس
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsProgrammer))]
+	public bool IsProgrammer { get; set; }
+	#endregion /IsProgrammer Property
+
+	#region IsUndeletable Property
+	/// <summary>
+	/// غیر قابل حذف
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsUndeletable))]
+	public bool IsUndeletable { get; set; }
+	#endregion /IsUndeletable Property
+
+	#region IsProfilePublic Property
+	/// <summary>
+	/// پروفایل به صورت عمومی قابل روئت خواهد بود
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsProfilePublic))]
+	public bool IsProfilePublic { get; set; }
+	#endregion /IsProfilePublic Property
+
+	#region IsVisibleInContactUsPage Property
+	/// <summary>
+	/// امکان نمایش در صفحه تماس با ما
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsVisibleInContactUsPage))]
+	public bool IsVisibleInContactUsPage { get; set; }
+	#endregion /IsVisibleInContactUsPage Property
+
+	#region IsEmailAddressVerified Property
+	/// <summary>
+	/// نشانی پست الکترونیکی تایید شده است
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsEmailAddressVerified))]
+	public bool IsEmailAddressVerified { get; set; }
+	#endregion /IsEmailAddressVerified Property
+
+	#region IsCellPhoneNumberVerified Property
+	/// <summary>
+	/// شماره تلفن همراه تایید شده است
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.IsCellPhoneNumberVerified))]
+	public bool IsCellPhoneNumberVerified { get; set; }
+	#endregion /IsCellPhoneNumberVerified Property
+
+	#region Username Property
+	/// <summary>
+	/// شناسه کاربری
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
@@ -137,17 +167,12 @@ public class User :
 		(length: Constants.MaxLength.Username,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-
-	//[System.ComponentModel.DataAnnotations.RegularExpression
-	//	(pattern: Constant.RegularExpression.Username,
-	//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-	//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Username))]
 	public string? Username { get; set; }
-	// **********
+	#endregion /Username Property
 
-	// **********
+	#region Password Property
 	/// <summary>
-	/// Note: Password is nullable!
+	/// گذرواژه
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
@@ -156,35 +181,56 @@ public class User :
 	[System.ComponentModel.DataAnnotations.MinLength
 		(length: Constants.FixedLength.DatabasePassword,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MinLength))]
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
 	[System.ComponentModel.DataAnnotations.MaxLength
 		(length: Constants.FixedLength.DatabasePassword,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-
-	// نکته مهم: دستور ذیل نباید نوشته شود
-	// ها می‌باشد ViewModel دستور ذیل مربوط به
-	//[System.ComponentModel.DataAnnotations.RegularExpression
-	//	(pattern: SeedWork.Constant.RegularExpression.Password,
-	//	ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-	//	ErrorMessageResourceName = nameof(Resources.Messages.Validations.Password))]
 	public string? Password { get; set; }
-	// **********
+	#endregion /Password Property
 
-	// **********
+	#region FirstName Property
+	/// <summary>
+	/// نام
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.FullName))]
+		Name = nameof(Resources.DataDictionary.FirstName))]
 
 	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: Constants.MaxLength.FullName,
+		(length: Constants.MaxLength.FirstName,
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-	public string? FullName { get; set; }
-	// **********
+	public string? FirstName { get; set; }
+	#endregion /FirstName Property
 
-	// **********
+	#region LastName Property
+	/// <summary>
+	/// نام خانوادگی
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.LastName))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.LastName,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+	public string? LastName { get; set; }
+	#endregion /LastName Property
+
+	#region TitleInContactUsPage Property
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.TitleInContactUsPage))]
+	public string? TitleInContactUsPage { get; set; }
+	#endregion /TitleInContactUsPage Property
+
+	#region EmailAddress Property
+	/// <summary>
+	/// نشانی پست الکترونیکی
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.EmailAddress))]
@@ -203,16 +249,22 @@ public class User :
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.EmailAddress))]
 	public string EmailAddress { get; set; }
-	// **********
+	#endregion /EmailAddress Property
 
-	// **********
+	#region EmailAddressVerificationKey Property
+	/// <summary>
+	/// کد تایید نشانی پست الکترونیکی
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.EmailAddressVerificationKey))]
 	public System.Guid EmailAddressVerificationKey { get; private set; }
-	// **********
+	#endregion /EmailAddressVerificationKey Property
 
-	// **********
+	#region CellPhoneNumber Property
+	/// <summary>
+	/// شماره تلفن همراه
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.CellPhoneNumber))]
@@ -227,9 +279,12 @@ public class User :
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.CellPhoneNumber))]
 	public string? CellPhoneNumber { get; set; }
-	// **********
+	#endregion /CellPhoneNumber Property
 
-	// **********
+	#region CellPhoneNumberVerificationKey Property
+	/// <summary>
+	/// کد تایید شماره تلفن همراه
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.CellPhoneNumberVerificationKey))]
@@ -244,42 +299,64 @@ public class User :
 		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
 		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 	public string? CellPhoneNumberVerificationKey { get; private set; }
-	// **********
+	#endregion /CellPhoneNumberVerificationKey Property
 
-	// **********
+	#region Description Property
+	/// <summary>
+	/// توضیحات
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.Description))]
 	public string? Description { get; set; }
-	// **********
+	#endregion /Description Property
 
-	// **********
+	#region AdminDescription Property
+	/// <summary>
+	/// توضیحات مدیریتی
+	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.AdminDescription))]
 	public string? AdminDescription { get; set; }
-	// **********
+	#endregion /AdminDescription Property
 
+	#endregion /Property(ies)
+
+	#region Method(s)
+
+	#region SetUpdateDateTime Method
 	public void SetUpdateDateTime()
 	{
 		UpdateDateTime =
 			Dtat.Utility.Now;
 	}
+	#endregion /SetUpdateDateTime Method
 
+	#region SetId Method
 	public void SetId(System.Guid id)
 	{
 		Id = id;
 	}
+	#endregion SetId Method
 
-	// **********
+	#endregion /Method(s)
+
+	#region Collection(s)
+
+	#region CreatedPages
+	/// <summary>
+	/// صفحات ایجاد کرده
+	/// </summary>
 	public virtual System.Collections.Generic.IList<Page> CreatedPages { get; private set; }
-	// **********
+	#endregion /CreatedPages
 
-	// **********
-	public virtual System.Collections.Generic.IList<Page> RemovedPages { get; private set; }
-	// **********
+	#region LoginLogs
+	/// <summary>
+	/// ورودهای موفق کاربر
+	/// </summary>
+	public virtual System.Collections.Generic.IList<LoginLog> LoginLogs { get; private set; }
+	#endregion /LoginLogs
 
-	// **********
-	public virtual System.Collections.Generic.IList<UserLogin> UserLogins { get; private set; }
-	// **********
+	#endregion /Collection(s)
 }

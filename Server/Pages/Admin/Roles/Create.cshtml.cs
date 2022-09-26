@@ -8,6 +8,7 @@ namespace Server.Pages.Admin.Roles;
 	.Authorize(Roles = Constants.Role.Admin)]
 public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
+	#region Constructor
 	public CreateModel(Data.DatabaseContext databaseContext,
 		Microsoft.Extensions.Logging.ILogger<CreateModel> logger) :
 		base(databaseContext: databaseContext)
@@ -15,6 +16,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 		Logger = logger;
 		ViewModel = new();
 	}
+	#endregion /Constructor
 
 	// **********
 	private Microsoft.Extensions.Logging.ILogger<CreateModel> Logger { get; }

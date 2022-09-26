@@ -18,25 +18,24 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.EmailAddress"></label>
-				<input asp-for="ViewModel.EmailAddress" />
-				<span asp-validation-for="ViewModel.EmailAddress"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.EmailAddress" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Password"></label>
-				<input type="password" asp-for="ViewModel.Password" />
-				<span asp-validation-for="ViewModel.Password"></span>
-			</section-form-field>
+			<dtat-full-checkbox asp-for="ViewModel.IsEmailAddressVerified" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.ConfirmPassword"></label>
-				<input type="password" asp-for="ViewModel.ConfirmPassword" />
-				<span asp-validation-for="ViewModel.ConfirmPassword"></span>
-			</section-form-field>
+			<dtat-full-input asp-for="ViewModel.Username" />
 
-			@*			<section-form-field>
+			<dtat-full-input asp-for="ViewModel.Password" />
+
+			<dtat-full-input asp-for="ViewModel.FirstName" />
+
+			<dtat-full-input asp-for="ViewModel.LastName" />
+
+			<dtat-full-input asp-for="ViewModel.CellPhoneNumber" />
+
+			<dtat-full-checkbox asp-for="ViewModel.IsCellPhoneNumberVerified" />
+
+			@*
+			<section-form-field>
 			<label asp-for="ViewModel.RoleId"></label>
 
 			<select asp-for="ViewModel.RoleId"
@@ -54,43 +53,36 @@
 			</section-form-field>
 			*@
 
+			@*
 			<section-form-field>
-				<label asp-for="ViewModel.RoleId"></label>
+			<label asp-for="ViewModel.RoleId"></label>
 
-				<select asp-for="ViewModel.RoleId"
-						asp-items="@(Model.RolesSelectList)"
-						class="form-select">
-				</select>
+			<select asp-for="ViewModel.RoleId"
+			asp-items="@(Model.RolesSelectList)"
+			class="form-select">
+			</select>
 
-				<span asp-validation-for="ViewModel.RoleId"></span>
+			<span asp-validation-for="ViewModel.RoleId"></span>
 			</section-form-field>
+			*@
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsProgrammer" />
-				<label asp-for="ViewModel.IsProgrammer"></label>
-			</section-form-check>
+			<dtat-full-select asp-for="ViewModel.RoleId" asp-items="@(Model.RolesSelectList)" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" value="10000" />
-				<span asp-validation-for="ViewModel.Ordering"></span>
-			</section-form-field>
+			<dtat-full-checkbox asp-for="ViewModel.IsVisibleInContactUsPage" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsActive" />
-				<label asp-for="ViewModel.IsActive"></label>
-			</section-form-check>
+			<dtat-full-input asp-for="ViewModel.TitleInContactUsPage" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsUndeletable" />
-				<label asp-for="ViewModel.IsUndeletable"></label>
-			</section-form-check>
+			<dtat-full-input asp-for="ViewModel.Ordering" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.AdminDescription"></label>
-				<textarea asp-for="ViewModel.AdminDescription"></textarea>
-				<span asp-validation-for="ViewModel.AdminDescription"></span>
-			</section-form-field>
+			<dtat-full-checkbox asp-for="ViewModel.IsActive" />
+
+			<dtat-full-checkbox asp-for="ViewModel.IsProgrammer" />
+
+			<dtat-full-checkbox asp-for="ViewModel.IsProfilePublic" />
+
+			<dtat-full-textarea asp-for="ViewModel.Description" />
+
+			<dtat-full-textarea asp-for="ViewModel.AdminDescription" />
 		</fieldset>
 
 		<section-form-buttons>

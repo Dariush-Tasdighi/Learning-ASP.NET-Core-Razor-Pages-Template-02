@@ -8,8 +8,9 @@ namespace Server.Pages.Admin.Users;
 	.Authorize(Roles = Constants.Role.Admin)]
 public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 {
-	#region Constructor(s)
-	public IndexModel(Data.DatabaseContext databaseContext,
+	#region Constructor
+	public IndexModel
+		(Data.DatabaseContext databaseContext,
 		Microsoft.Extensions.Logging.ILogger<IndexModel> logger) :
 		base(databaseContext: databaseContext)
 	{
@@ -19,19 +20,15 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 			new System.Collections.Generic.List
 			<ViewModels.Pages.Admin.Users.IndexItemViewModel>();
 	}
-	#endregion /Constructor(s)
+	#endregion /Constructor
 
-	#region Property(ies)
-	// **********
+	#region Properties
 	private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }
-	// **********
 
-	// **********
 	public System.Collections.Generic.IList
 		<ViewModels.Pages.Admin.Users.IndexItemViewModel> ViewModel
 	{ get; private set; }
-	// **********
-	#endregion /Property(ies)
+	#endregion /Properties
 
 	#region OnGetAsync
 	public async System.Threading.Tasks.Task
@@ -42,24 +39,32 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 			ViewModel =
 				await
 				DatabaseContext.Users
-				.OrderBy(current => current.Ordering)
-				//.ThenBy(current => current.EmailAddress)
+				.OrderByDescending(current => current.InsertDateTime)
 				.Select(current => new ViewModels.Pages.Admin.Users.IndexItemViewModel
 				{
 					Id = current.Id,
-					Role = current.Role.Name,
-					Ordering = current.Ordering,
+
 					IsActive = current.IsActive,
-					IsSystemic = current.IsSystemic,
 					IsProgrammer = current.IsProgrammer,
-					EmailAddress = current.EmailAddress,
 					IsUndeletable = current.IsUndeletable,
+					IsEmailAddressVerified = current.IsEmailAddressVerified,
+					IsVisibleInContactUsPage = current.IsVisibleInContactUsPage,
+					IsCellPhoneNumberVerified = current.IsCellPhoneNumberVerified,
+
+					RoleId = current.RoleId,
+					RoleName = current.Role.Name,
+					IsRoleActive = current.Role.IsActive,
+
+					LastName = current.LastName,
+					Username = current.Username,
+					FirstName = current.FirstName,
+					EmailAddress = current.EmailAddress,
+					CellPhoneNumber = current.CellPhoneNumber,
+
 					InsertDateTime = current.InsertDateTime,
 					UpdateDateTime = current.UpdateDateTime,
-					IsEmailAddressVerified = current.IsEmailAddressVerified,
-					LastLoginDateTime = current.UserLogins.Max(current => current.InsertDateTime),
+					LastLoginDateTime = current.LastLoginDateTime,
 				})
-				//.AsNoTracking()
 				.ToListAsync()
 				;
 		}

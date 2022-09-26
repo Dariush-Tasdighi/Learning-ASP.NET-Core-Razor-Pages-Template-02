@@ -103,29 +103,10 @@ internal class UserConfiguration : object,
 				Microsoft.EntityFrameworkCore.DeleteBehavior.Cascade)
 			;
 		// **************************************************
-		// **************************************************
-		// **************************************************
 
 		// **************************************************
-		// **************************************************
-		// **************************************************
 		builder
-			.HasMany(current => current.RemovedPages)
-			.WithOne(other => other.RemoverUser)
-			.IsRequired(required: false)
-			.HasForeignKey(other => other.RemoverUserId)
-			.OnDelete(deleteBehavior:
-				Microsoft.EntityFrameworkCore.DeleteBehavior.NoAction)
-			;
-		// **************************************************
-		// **************************************************
-		// **************************************************
-
-		// **************************************************
-		// **************************************************
-		// **************************************************
-		builder
-			.HasMany(current => current.UserLogins)
+			.HasMany(current => current.LoginLogs)
 			.WithOne(other => other.User)
 			.IsRequired(required: true)
 			.HasForeignKey(other => other.UserId)
@@ -162,14 +143,17 @@ internal class UserConfiguration : object,
 				IsUndeletable = true,
 				IsProfilePublic = true,
 				IsEmailAddressVerified = true,
+				IsVisibleInContactUsPage = true,
 				IsCellPhoneNumberVerified = true,
 
 				Description = null,
 				AdminDescription = null,
 
 				Username = "Dariush",
-				FullName = "داریوش تصدیقی",
+				FirstName = "داریوش",
+				LastName = "تصدیقی",
 				CellPhoneNumber = "00989121087461",
+				TitleInContactUsPage = "مالک پایگاه",
 
 				Password =
 					Dtat.Security.Hashing.GetSha256(text: "1234512345"),

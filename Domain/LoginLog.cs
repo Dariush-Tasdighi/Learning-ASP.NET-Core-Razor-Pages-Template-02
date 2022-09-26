@@ -1,8 +1,8 @@
 ﻿namespace Domain
 {
-	public class UserLogin : Seedwork.Entity
+	public class LoginLog : Seedwork.Entity
 	{
-		public UserLogin(System.Guid userId, string userIP) : base()
+		public LoginLog(System.Guid userId, string userIP) : base()
 		{
 			UserIP = userIP;
 			UserId = userId;

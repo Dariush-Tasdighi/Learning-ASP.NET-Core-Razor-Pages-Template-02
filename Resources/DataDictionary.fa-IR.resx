@@ -124,7 +124,7 @@
     <value>فعال</value>
   </data>
   <data name="AdminDescription" xml:space="preserve">
-    <value>توضیحات ادمین</value>
+    <value>توضیحات مدیریتی</value>
   </data>
   <data name="Author" xml:space="preserve">
     <value>نویسنده</value>
@@ -229,7 +229,7 @@
     <value>آدرس تصویر</value>
   </data>
   <data name="InsertDateTime" xml:space="preserve">
-    <value>زمان درج</value>
+    <value>زمان ایجاد</value>
   </data>
   <data name="Introduction" xml:space="preserve">
     <value>مقدمه</value>
@@ -472,9 +472,18 @@
     <value>ردیف</value>
   </data>
   <data name="LastLoginDateTime" xml:space="preserve">
-    <value>زمان آخرین ورود به سامانه</value>
+    <value>آخرین ورود</value>
   </data>
   <data name="SelectAnItem" xml:space="preserve">
     <value>گزینه‌ای را انتخاب نمایید</value>
+  </data>
+  <data name="IsVisibleInContactUsPage" xml:space="preserve">
+    <value>نمایش در صفحه تماس با ما</value>
+  </data>
+  <data name="TitleInContactUsPage" xml:space="preserve">
+    <value>عنوان کاربر در صفحه تماس با ما</value>
+  </data>
+  <data name="RoleIsActive" xml:space="preserve">
+    <value>نقش فعال است</value>
   </data>
 </root>

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using Data;
 
 namespace Server.Pages.Admin.Users;
 
@@ -9,41 +8,26 @@ namespace Server.Pages.Admin.Users;
 	.Authorize(Roles = Constants.Role.Admin)]
 public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 {
-	#region Constructor(s)
+	#region Constructor
 	public CreateModel(Data.DatabaseContext databaseContext,
 		Microsoft.Extensions.Logging.ILogger<CreateModel> logger) :
 		base(databaseContext: databaseContext)
 	{
 		Logger = logger;
-
 		ViewModel = new();
-
-		RolesViewModel =
-			new System.Collections.Generic.List
-			<ViewModels.Shared.KeyValueViewModel>();
 	}
-	#endregion /Constructor(s)
+	#endregion /Constructor
 
-	#region Property(ies)
-	// **********
+	#region Properties
 	private Microsoft.Extensions.Logging.ILogger<CreateModel> Logger { get; }
-	// **********
 
-	// **********
-	public Microsoft.AspNetCore.Mvc.Rendering.SelectList? RolesSelectList { get; set; }
-	// **********
-
-	// **********
-	public System.Collections.Generic.IList
-		<ViewModels.Shared.KeyValueViewModel> RolesViewModel
-	{ get; private set; }
-	// **********
-
-	// **********
 	[Microsoft.AspNetCore.Mvc.BindProperty]
 	public ViewModels.Pages.Admin.Users.CreateViewModel ViewModel { get; set; }
-	// **********
-	#endregion /Property(ies)
+
+	public Microsoft.AspNetCore.Mvc.Rendering.SelectList? RolesSelectList { get; set; }
+	#endregion /Properties
+
+	#region Methods
 
 	#region OnGetAsync
 	public async System.Threading.Tasks.Task
@@ -55,8 +39,6 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 				await
 				Infrastructure.SelectLists.GetRolesAsync
 				(databaseContext: DatabaseContext, selectedValue: null);
-
-			await SetAccessibleRoleAsync();
 
 			return Page();
 		}
@@ -86,18 +68,24 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 			RolesSelectList =
 				await
 				Infrastructure.SelectLists.GetRolesAsync
-				(databaseContext: DatabaseContext, selectedValue: null);
+				(databaseContext: DatabaseContext, selectedValue: ViewModel.RoleId);
 
 			if (ModelState.IsValid == false)
 			{
 				return Page();
 			}
 
+			// **************************************************
+			// **************************************************
+			// **************************************************
+			var fixedEmailAddress =
+				Dtat.Utility.FixText
+				(text: ViewModel.EmailAddress);
+
 			var foundedAny =
 				await
 				DatabaseContext.Users
-				.Where(current => current.EmailAddress.ToLower() == ViewModel.EmailAddress.ToLower())
-				.Where(current => current.IsEmailAddressVerified)
+				.Where(current => current.EmailAddress.ToLower() == fixedEmailAddress.ToLower())
 				.AnyAsync();
 
 			if (foundedAny)
@@ -107,41 +95,112 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 					(format: Resources.Messages.Errors.AlreadyExists,
 					arg0: Resources.DataDictionary.EmailAddress);
 
-				AddPageError
-					(message: errorMessage);
+				AddPageError(message: errorMessage);
 				// **************************************************
 
 				return Page();
 			}
+			// **************************************************
+			// **************************************************
+			// **************************************************
 
 			// **************************************************
-			var hashedPassword =
-				Dtat.Security.Hashing.GetSha256
-				(text: ViewModel.Password);
+			// **************************************************
+			// **************************************************
+			var fixedUsername =
+				Dtat.Utility.FixText
+				(text: ViewModel.Username);
+
+			if (fixedUsername != null)
+			{
+				foundedAny =
+					await
+					DatabaseContext.Users
+					.Where(current => current.Username.ToLower() == fixedUsername.ToLower())
+					.AnyAsync();
+
+				if (foundedAny)
+				{
+					// **************************************************
+					var errorMessage = string.Format
+						(format: Resources.Messages.Errors.AlreadyExists,
+						arg0: Resources.DataDictionary.Username);
+
+					AddPageError(message: errorMessage);
+					// **************************************************
+
+					return Page();
+				}
+			}
+			// **************************************************
+			// **************************************************
+			// **************************************************
+
+			// **************************************************
+			var fixedFirstName =
+				Dtat.Utility.FixText
+				(text: ViewModel.FirstName);
+
+			var fixedLastName =
+				Dtat.Utility.FixText
+				(text: ViewModel.LastName);
 
 			var fixedDescription =
 				Dtat.Utility.FixText
+				(text: ViewModel.Description);
+
+			var fixedAdminDescription =
+				Dtat.Utility.FixText
 				(text: ViewModel.AdminDescription);
 
+			var hashOfPassword =
+				Dtat.Security.Hashing.GetSha256
+				(text: ViewModel.Password);
+
 			var newEntity =
-				new Domain.User(emailAddress: ViewModel.EmailAddress)
+				new Domain.User(emailAddress: fixedEmailAddress)
 				{
-					Password = hashedPassword,
+					//Id
+					//Role
+					//LoginLogs
+					//CreatedPages
+					//EmailAddress
+					//InsertDateTime
+					//UpdateDateTime
+					//EmailAddressVerificationKey
+					//CellPhoneNumberVerificationKey
+
 					RoleId = ViewModel.RoleId,
-					IsEmailAddressVerified = true,
+
 					Ordering = ViewModel.Ordering,
+
+					IsSystemic = false,
+					IsUndeletable = false,
+
 					IsActive = ViewModel.IsActive,
-					AdminDescription = fixedDescription,
 					IsProgrammer = ViewModel.IsProgrammer,
-					IsUndeletable = ViewModel.IsUndeletable,
+					IsProfilePublic = ViewModel.IsProfilePublic,
+					IsEmailAddressVerified = ViewModel.IsEmailAddressVerified,
+					IsVisibleInContactUsPage = ViewModel.IsVisibleInContactUsPage,
+					IsCellPhoneNumberVerified = ViewModel.IsCellPhoneNumberVerified,
+
+					Password = hashOfPassword,
+
+					Username = ViewModel.Username,
+					LastName = ViewModel.LastName,
+					FirstName = ViewModel.FirstName,
 					CellPhoneNumber = ViewModel.CellPhoneNumber,
+					TitleInContactUsPage = ViewModel.TitleInContactUsPage,
+
+					Description = fixedDescription,
+					AdminDescription = fixedAdminDescription,
 				};
 
 			var entityEntry =
 				await
 				DatabaseContext.AddAsync(entity: newEntity);
 
-			var affectedRow =
+			var affectedRows =
 				await
 				DatabaseContext.SaveChangesAsync();
 			// **************************************************
@@ -171,23 +230,7 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 			await DisposeDatabaseContextAsync();
 		}
 	}
-	#endregion OnPostAsync
+	#endregion /OnPostAsync
 
-	#region SetAccessibleRoleAsync
-	private async System.Threading.Tasks.Task SetAccessibleRoleAsync()
-	{
-		RolesViewModel =
-			await
-			DatabaseContext.Roles
-			.OrderBy(current => current.Ordering)
-			.ThenBy(current => current.Name)
-			.Select(current => new ViewModels.Shared.KeyValueViewModel
-			{
-				Id = current.Id,
-				Name = current.Name,
-			})
-			.ToListAsync()
-			;
-	}
-	#endregion /SetAccessibleRoleAsync
+	#endregion /Methods
 }

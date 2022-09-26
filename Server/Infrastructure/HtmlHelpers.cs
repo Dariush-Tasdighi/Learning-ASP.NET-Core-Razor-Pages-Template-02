@@ -1,9 +1,26 @@
-﻿namespace Infrastructure;
+﻿using Domain.Seedwork;
+
+namespace Infrastructure;
 
 public static class HtmlHelpers : object
 {
 	static HtmlHelpers()
 	{
+	}
+
+	public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayString
+		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, string? value)
+	{
+		if (string.IsNullOrWhiteSpace(value: value))
+		{
+			return html.Raw
+				(value: Constants.Format.NullValue);
+		}
+
+		var result =
+			Dtat.Utility.FixText(text: value);
+
+		return html.Raw(value: result);
 	}
 
 	public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayInteger
@@ -75,6 +92,21 @@ public static class HtmlHelpers : object
 		div.InnerHtml.AppendHtml(content: input);
 
 		return div;
+	}
+
+	public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayStringWithTd
+		(this Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper html, string? value)
+	{
+		var td =
+			new Microsoft.AspNetCore.Mvc
+			.Rendering.TagBuilder(tagName: "td");
+
+		var innerHtml =
+			DtatDisplayString(html: html, value: value);
+
+		td.InnerHtml.AppendHtml(content: innerHtml);
+
+		return td;
 	}
 
 	public static Microsoft.AspNetCore.Html.IHtmlContent DtatDisplayBooleanWithTd

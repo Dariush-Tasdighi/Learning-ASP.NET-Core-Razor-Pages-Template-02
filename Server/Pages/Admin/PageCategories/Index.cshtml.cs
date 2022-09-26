@@ -8,6 +8,7 @@ namespace Server.Pages.Admin.PageCategories;
 	.Authorize(Roles = Constants.Role.Admin)]
 public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 {
+	#region Constructor(s)
 	public IndexModel
 		(Data.DatabaseContext databaseContext,
 		Microsoft.Extensions.Logging.ILogger<IndexModel> logger) :
@@ -19,6 +20,7 @@ public class IndexModel : Infrastructure.BasePageModelWithDatabaseContext
 			new System.Collections.Generic.List
 			<ViewModels.Pages.Admin.PageCategories.IndexItemViewModel>();
 	}
+	#endregion /Constructor(s)
 
 	// **********
 	private Microsoft.Extensions.Logging.ILogger<IndexModel> Logger { get; }

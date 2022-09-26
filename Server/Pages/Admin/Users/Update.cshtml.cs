@@ -62,13 +62,13 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 				.Where(current => current.Id == id.Value)
 				.Select(current => new ViewModels.Pages.Admin.Users.UpdateViewModel
 				{
-					Id = current.Id,
+					//Id = current.Id,
 					RoleId = current.RoleId,
 					Ordering = current.Ordering,
 					IsActive = current.IsActive,
 					IsProgrammer = current.IsProgrammer,
 					EmailAddress = current.EmailAddress,
-					IsUndeletable = current.IsUndeletable,
+					//IsUndeletable = current.IsUndeletable,
 					AdminDescription = current.AdminDescription,
 				})
 				.FirstOrDefaultAsync();
@@ -137,7 +137,7 @@ public class UpdateModel : Infrastructure.BasePageModelWithDatabaseContext
 			foundedItem.IsActive = ViewModel.IsActive;
 			foundedItem.Ordering = ViewModel.Ordering;
 			foundedItem.IsProgrammer = ViewModel.IsProgrammer;
-			foundedItem.IsUndeletable = ViewModel.IsUndeletable;
+			//foundedItem.IsUndeletable = ViewModel.IsUndeletable;
 			foundedItem.AdminDescription = fixedAdminDescription;
 			// **************************************************
 

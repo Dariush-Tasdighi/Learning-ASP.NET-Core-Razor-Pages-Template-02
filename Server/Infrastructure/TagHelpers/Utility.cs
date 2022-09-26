@@ -252,6 +252,50 @@ public static class Utility : object
 	}
 
 	public static async
+		System.Threading.Tasks.Task<string> GenerateSelectAsync
+		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
+		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for,
+		System.Collections.Generic.IEnumerable
+		<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem> selectList)
+	{
+		var currentValues =
+			new System.Collections.Generic.List<string>();
+
+		if (@for.Model == null)
+		{
+			//currentValues.Add(item: null);
+		}
+		else
+		{
+			currentValues.Add(@for.Model.ToString());
+		}
+
+		var tagBuilder =
+			generator.GenerateSelect
+			(viewContext: viewContext,
+			modelExplorer: @for.ModelExplorer,
+			optionLabel: null, expression: @for.Name, selectList: selectList,
+			currentValues: currentValues, allowMultiple: false, htmlAttributes: null);
+
+		tagBuilder.AddCssClass
+			(value: "form-select");
+
+		var writer =
+			new System.IO.StringWriter();
+
+		tagBuilder.WriteTo(writer: writer,
+			encoder: Microsoft.AspNetCore.Razor.TagHelpers.NullHtmlEncoder.Default);
+
+		var result =
+			writer.ToString();
+
+		await writer.DisposeAsync();
+
+		return result;
+	}
+
+	public static async
 		System.Threading.Tasks.Task<string> GenerateTextAreaAsync
 		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
 		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,

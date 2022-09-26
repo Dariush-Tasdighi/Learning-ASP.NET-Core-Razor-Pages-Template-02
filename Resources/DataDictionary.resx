@@ -474,4 +474,13 @@
   <data name="SelectAnItem" xml:space="preserve">
     <value>Select An Item</value>
   </data>
+  <data name="IsVisibleInContactUsPage" xml:space="preserve">
+    <value>Visible in Contact Us Page</value>
+  </data>
+  <data name="TitleInContactUsPage" xml:space="preserve">
+    <value>Title in Contact Us Page</value>
+  </data>
+  <data name="RoleIsActive" xml:space="preserve">
+    <value>Role Is Active</value>
+  </data>
 </root>
