@@ -76,8 +76,6 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 			}
 
 			// **************************************************
-			// **************************************************
-			// **************************************************
 			var fixedEmailAddress =
 				Dtat.Utility.FixText
 				(text: ViewModel.EmailAddress);
@@ -90,22 +88,18 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 			if (foundedAny)
 			{
-				// **************************************************
+				var key =
+					$"{nameof(ViewModel)}.{nameof(ViewModel.EmailAddress)}";
+
 				var errorMessage = string.Format
 					(format: Resources.Messages.Errors.AlreadyExists,
 					arg0: Resources.DataDictionary.EmailAddress);
 
-				AddPageError(message: errorMessage);
-				// **************************************************
-
-				return Page();
+				ModelState.AddModelError
+					(key: key, errorMessage: errorMessage);
 			}
 			// **************************************************
-			// **************************************************
-			// **************************************************
 
-			// **************************************************
-			// **************************************************
 			// **************************************************
 			var fixedUsername =
 				Dtat.Utility.FixText
@@ -121,20 +115,51 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 				if (foundedAny)
 				{
-					// **************************************************
+					var key =
+						$"{nameof(ViewModel)}.{nameof(ViewModel.Username)}";
+
 					var errorMessage = string.Format
 						(format: Resources.Messages.Errors.AlreadyExists,
 						arg0: Resources.DataDictionary.Username);
 
-					AddPageError(message: errorMessage);
-					// **************************************************
-
-					return Page();
+					ModelState.AddModelError
+						(key: key, errorMessage: errorMessage);
 				}
 			}
 			// **************************************************
+
 			// **************************************************
+			var fixedCellPhoneNumber =
+				Dtat.Utility.FixText
+				(text: ViewModel.CellPhoneNumber);
+
+			if (fixedCellPhoneNumber != null)
+			{
+				foundedAny =
+					await
+					DatabaseContext.Users
+					.Where(current => current.CellPhoneNumber == fixedCellPhoneNumber)
+					.AnyAsync();
+
+				if (foundedAny)
+				{
+					var key =
+						$"{nameof(ViewModel)}.{nameof(ViewModel.CellPhoneNumber)}";
+
+					var errorMessage = string.Format
+						(format: Resources.Messages.Errors.AlreadyExists,
+						arg0: Resources.DataDictionary.CellPhoneNumber);
+
+					ModelState.AddModelError
+						(key: key, errorMessage: errorMessage);
+				}
+			}
 			// **************************************************
+
+			if (ModelState.IsValid == false)
+			{
+				return Page();
+			}
 
 			// **************************************************
 			var fixedFirstName =
@@ -152,6 +177,10 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 			var fixedAdminDescription =
 				Dtat.Utility.FixText
 				(text: ViewModel.AdminDescription);
+
+			var fixedTitleInContactUsPage =
+				Dtat.Utility.FixText
+				(text: ViewModel.TitleInContactUsPage);
 
 			var hashOfPassword =
 				Dtat.Security.Hashing.GetSha256
@@ -186,14 +215,13 @@ public class CreateModel : Infrastructure.BasePageModelWithDatabaseContext
 
 					Password = hashOfPassword,
 
-					Username = ViewModel.Username,
-					LastName = ViewModel.LastName,
-					FirstName = ViewModel.FirstName,
-					CellPhoneNumber = ViewModel.CellPhoneNumber,
-					TitleInContactUsPage = ViewModel.TitleInContactUsPage,
-
+					Username = fixedUsername,
+					LastName = fixedLastName,
+					FirstName = fixedFirstName,
 					Description = fixedDescription,
+					CellPhoneNumber = fixedCellPhoneNumber,
 					AdminDescription = fixedAdminDescription,
+					TitleInContactUsPage = fixedTitleInContactUsPage,
 				};
 
 			var entityEntry =

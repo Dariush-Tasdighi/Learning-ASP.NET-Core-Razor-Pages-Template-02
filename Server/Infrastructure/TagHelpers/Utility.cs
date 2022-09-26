@@ -175,7 +175,8 @@ public static class Utility : object
 		System.Threading.Tasks.Task<string> GenerateTextBoxAsync
 		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator,
 		Microsoft.AspNetCore.Mvc.Rendering.ViewContext viewContext,
-		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for)
+		Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression @for,
+		string? dir)
 	{
 		var tagBuilder =
 			generator.GenerateTextBox
@@ -185,6 +186,11 @@ public static class Utility : object
 
 		tagBuilder.AddCssClass
 			(value: "form-control");
+
+		if (string.IsNullOrWhiteSpace(value: dir) == false)
+		{
+			tagBuilder.Attributes.Add(key: "dir", value: dir);
+		}
 
 		if ((@for.ModelExplorer.ModelType == typeof(System.Int16))
 			||

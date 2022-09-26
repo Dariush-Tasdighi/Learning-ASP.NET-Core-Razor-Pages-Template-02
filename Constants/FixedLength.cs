@@ -7,6 +7,6 @@ public static class FixedLength : object
 	}
 
 	public const int NationalCode = 10;
-	public const int CellPhoneNumber = 14;
+	public const int CellPhoneNumber = 11;
 	public const int DatabasePassword = 44;
 }

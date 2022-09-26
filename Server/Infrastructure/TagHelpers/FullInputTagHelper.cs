@@ -43,10 +43,28 @@ public class FullInputTagHelper :
 		// **************************************************
 
 		// **************************************************
+		string? dirString = null;
+		var dirAttribute = output.Attributes["dir"];
+		if (dirAttribute != null)
+		{
+			var dirValue =
+				dirAttribute.Value;
+
+			if (dirValue != null)
+			{
+				dirString =
+					dirValue.ToString()
+					.Replace(oldValue: "{", newValue: string.Empty)
+					.Replace(oldValue: "}", newValue: string.Empty);
+			}
+		}
+		// **************************************************
+
+		// **************************************************
 		var textBox =
 			await
 			Utility.GenerateTextBoxAsync
-			(generator: Generator, viewContext: ViewContext, @for: For);
+			(generator: Generator, viewContext: ViewContext, @for: For, dir: dirString);
 
 		div.InnerHtml.AppendHtml(encoded: textBox);
 		// **************************************************

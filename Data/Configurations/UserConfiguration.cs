@@ -120,15 +120,14 @@ internal class UserConfiguration : object,
 		// **************************************************
 		// **************************************************
 		// **************************************************
-		//var user =
-		//	new Domain.User(emailAddress: "DariushT@GMail.com", roleId: Domain.Role.DefaultRoleId)
-
 		var user =
 			new Domain.User(emailAddress: "DariushT@GMail.com")
 			{
 				//Id,
 				//Role,
 				//RoleId,
+				//LoginLogs,
+				//CreatedPages,
 				//EmailAddress,
 				//InsertDateTime,
 				//UpdateDateTime,
@@ -148,11 +147,12 @@ internal class UserConfiguration : object,
 
 				Description = null,
 				AdminDescription = null,
+				LastLoginDateTime = null,
 
 				Username = "Dariush",
 				FirstName = "داریوش",
 				LastName = "تصدیقی",
-				CellPhoneNumber = "00989121087461",
+				CellPhoneNumber = "09121087461",
 				TitleInContactUsPage = "مالک پایگاه",
 
 				Password =

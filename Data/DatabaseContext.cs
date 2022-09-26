@@ -18,9 +18,9 @@ public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
 
 	public Microsoft.EntityFrameworkCore.DbSet<Domain.Page> Pages { get; set; }
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.MenuItem> MenuItems { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.LoginLog> LoginLogs { get; set; }
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.LoginLog> UserLogins { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.MenuItem> MenuItems { get; set; }
 
 	public Microsoft.EntityFrameworkCore.DbSet<Domain.PageCategory> PageCategories { get; set; }
 
