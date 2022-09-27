@@ -2,7 +2,11 @@
 {
 	public class PersianDateTime : PersianDate
 	{
-		public static string ConvertToDateTime(System.DateTime dateTime)
+		static PersianDateTime()
+		{
+		}
+
+		public static string ConvertToDateTimeString(System.DateTime dateTime)
 		{
 			var persianDateTime =
 				new PersianDateTime(dateTime: dateTime);

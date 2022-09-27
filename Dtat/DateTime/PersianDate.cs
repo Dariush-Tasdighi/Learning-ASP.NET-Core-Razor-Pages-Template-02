@@ -10,7 +10,7 @@
 
 		protected static System.Globalization.PersianCalendar PersianCalendar { get; }
 
-		public static string ConvertToDate(System.DateTime dateTime)
+		public static string ConvertToDateString(System.DateTime dateTime)
 		{
 			var persianDate =
 				new PersianDate(dateTime: dateTime);
