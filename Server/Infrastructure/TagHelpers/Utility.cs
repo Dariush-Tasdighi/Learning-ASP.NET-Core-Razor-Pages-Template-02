@@ -196,14 +196,20 @@ public static class Utility : object
 			||
 			(@for.ModelExplorer.ModelType == typeof(System.Int32))
 			||
-			(@for.ModelExplorer.ModelType == typeof(System.Int64))
-			||
-			(@for.ModelExplorer.ModelType == typeof(System.DateTime)))
+			(@for.ModelExplorer.ModelType == typeof(System.Int64)))
 		{
 			tagBuilder.AddCssClass(value: "ltr");
 
 			tagBuilder.Attributes.Remove(key: "type");
 			tagBuilder.Attributes.Add(key: "type", value: "number");
+		}
+
+		if (@for.ModelExplorer.ModelType == typeof(System.DateTime))
+		{
+			tagBuilder.AddCssClass(value: "ltr");
+
+			tagBuilder.Attributes.Remove(key: "type");
+			tagBuilder.Attributes.Add(key: "type", value: "text");
 		}
 
 		var writer =

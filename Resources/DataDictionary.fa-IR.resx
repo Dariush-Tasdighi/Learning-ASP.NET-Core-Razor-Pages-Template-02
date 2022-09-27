@@ -472,7 +472,7 @@
     <value>ردیف</value>
   </data>
   <data name="LastLoginDateTime" xml:space="preserve">
-    <value>آخرین ورود</value>
+    <value>آخرین زمان ورود</value>
   </data>
   <data name="SelectAnItem" xml:space="preserve">
     <value>گزینه‌ای را انتخاب نمایید</value>
@@ -485,5 +485,20 @@
   </data>
   <data name="RoleIsActive" xml:space="preserve">
     <value>نقش فعال است</value>
+  </data>
+  <data name="DetailsOf" xml:space="preserve">
+    <value>جزئیات</value>
+  </data>
+  <data name="CreateOf" xml:space="preserve">
+    <value>ایجاد</value>
+  </data>
+  <data name="DeleteOf" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="UpdateOf" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+  <data name="ListOf" xml:space="preserve">
+    <value>فهرست</value>
   </data>
 </root>

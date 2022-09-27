@@ -8,26 +8,22 @@ namespace Server.Pages.Admin.Users;
 	.Authorize(Roles = Constants.Role.Admin)]
 public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 {
-	#region Constructor(s)
-	public DetailsModel(Data.DatabaseContext databaseContext,
+	#region Constructor
+	public DetailsModel
+		(Data.DatabaseContext databaseContext,
 		Microsoft.Extensions.Logging.ILogger<DetailsModel> logger) :
 		base(databaseContext: databaseContext)
 	{
 		Logger = logger;
-
 		ViewModel = new();
 	}
-	#endregion /Constructor(s)
+	#endregion /Constructor
 
-	#region Property(ies)
-	// **********
+	#region Properties
 	private Microsoft.Extensions.Logging.ILogger<DetailsModel> Logger { get; }
-	// **********
 
-	// **********
 	public ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel ViewModel { get; private set; }
-	// **********
-	#endregion /Property(ies)
+	#endregion /Properties
 
 	#region OnGetAsync
 	public async System.Threading.Tasks.Task
@@ -46,24 +42,39 @@ public class DetailsModel : Infrastructure.BasePageModelWithDatabaseContext
 			ViewModel =
 				await
 				DatabaseContext.Users
-				.Where(current => current.Id == id)
-				.Select(current => new ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel
+				.Where(current => current.Id == id.Value)
+				.Select(current => new ViewModels.Pages.Admin.Users.DetailsOrDeleteViewModel()
 				{
-					//Id = current.Id,
-					//Role = current.Role.Name,
-					Ordering = current.Ordering,
-					Username = current.Username,
-					//FullName = current.FullName,
+					Id = current.Id,
+
 					IsActive = current.IsActive,
-					EmailAddress = current.EmailAddress,
-					IsRoleActive = current.Role.IsActive,
-					CellPhoneNumber = current.CellPhoneNumber,
+					IsSystemic = current.IsSystemic,
+					IsProgrammer = current.IsProgrammer,
+					IsUndeletable = current.IsUndeletable,
 					IsProfilePublic = current.IsProfilePublic,
-					AdminDescription = current.AdminDescription,
 					IsEmailAddressVerified = current.IsEmailAddressVerified,
+					IsVisibleInContactUsPage = current.IsVisibleInContactUsPage,
 					IsCellPhoneNumberVerified = current.IsCellPhoneNumberVerified,
+
+					RoleId = current.RoleId,
+					RoleName = current.Role.Name,
+					IsRoleActive = current.Role.IsActive,
+
+					Ordering = current.Ordering,
+
+					LastName = current.LastName,
+					Username = current.Username,
+					FirstName = current.FirstName,
+					Description = current.Description,
+					EmailAddress = current.EmailAddress,
+					CellPhoneNumber = current.CellPhoneNumber,
+					AdminDescription = current.AdminDescription,
+					TitleInContactUsPage = current.TitleInContactUsPage,
+
+					InsertDateTime = current.InsertDateTime,
+					UpdateDateTime = current.UpdateDateTime,
+					LastLoginDateTime = current.LastLoginDateTime,
 				})
-				//.AsNoTracking()
 				.FirstOrDefaultAsync();
 
 			if (ViewModel == null)

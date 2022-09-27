@@ -8,8 +8,6 @@ public class UpdateViewModel : CommonViewModel
 	}
 	#endregion /Constructor
 
-	#region Properties
-
 	#region Id Property
 	/// <summary>
 	/// شناسه
@@ -17,11 +15,6 @@ public class UpdateViewModel : CommonViewModel
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.Id))]
-
-	[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
-		(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
-	public System.Guid Id { get; protected set; }
+	public System.Guid Id { get; set; }
 	#endregion /Id Property
-
-	#endregion /Properties
 }

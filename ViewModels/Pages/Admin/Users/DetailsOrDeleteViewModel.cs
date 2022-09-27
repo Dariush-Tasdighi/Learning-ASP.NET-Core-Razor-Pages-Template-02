@@ -57,10 +57,7 @@ public class DetailsOrDeleteViewModel : UpdateViewModel
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.InsertDateTime))]
-
-	[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
-		(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
-	public System.DateTime InsertDateTime { get; private set; }
+	public System.DateTime InsertDateTime { get; set; }
 	#endregion /InsertDateTime Property
 
 	#region UpdateDateTime Property
@@ -70,11 +67,18 @@ public class DetailsOrDeleteViewModel : UpdateViewModel
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.UpdateDateTime))]
-
-	[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
-		(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
-	public System.DateTime UpdateDateTime { get; private set; }
+	public System.DateTime UpdateDateTime { get; set; }
 	#endregion /UpdateDateTime Property
+
+	#region LastLoginDateTime Property
+	/// <summary>
+	/// آخرین زمان ورود به سامانه
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.LastLoginDateTime))]
+	public System.DateTime? LastLoginDateTime { get; set; }
+	#endregion /LastLoginDateTime Property
 
 	#endregion /Properties
 }

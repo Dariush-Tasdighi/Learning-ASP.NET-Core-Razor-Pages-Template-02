@@ -483,4 +483,19 @@
   <data name="RoleIsActive" xml:space="preserve">
     <value>Role Is Active</value>
   </data>
+  <data name="DetailsOf" xml:space="preserve">
+    <value>Details of</value>
+  </data>
+  <data name="CreateOf" xml:space="preserve">
+    <value>Create of</value>
+  </data>
+  <data name="DeleteOf" xml:space="preserve">
+    <value>Delete of</value>
+  </data>
+  <data name="UpdateOf" xml:space="preserve">
+    <value>Update of</value>
+  </data>
+  <data name="ListOf" xml:space="preserve">
+    <value>List of</value>
+  </data>
 </root>

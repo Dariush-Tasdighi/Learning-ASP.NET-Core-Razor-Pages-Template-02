@@ -3,12 +3,14 @@
 
 @{
 	var pageTitle =
-		$"{Resources.ButtonCaptions.Update} {Resources.DataDictionary.User}";
+		$"{Resources.DataDictionary.UpdateOf} {Resources.DataDictionary.User}";
 
 	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <form method="post">
+
+	<input type="hidden" asp-for="ViewModel.Id" />
 
 	<section-form>
 		<fieldset>
@@ -18,52 +20,37 @@
 
 			<partial name="PartialViews/_DisplayPageMessages" />
 
-			<input type="hidden" asp-for="ViewModel.Id" />
+			<dtat-full-input asp-for="ViewModel.EmailAddress" dir="ltr" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.EmailAddress"></label>
-				<input asp-for="ViewModel.EmailAddress" readonly="readonly" />
-				<span asp-validation-for="ViewModel.EmailAddress"></span>
-			</section-form-field>
+			<dtat-full-checkbox asp-for="ViewModel.IsEmailAddressVerified" />
 
-			@*			<section-form-field>
-			<label asp-for="ViewModel.RoleId"></label>
+			<dtat-full-input asp-for="ViewModel.Username" dir="ltr" />
 
-			<select class="form-select" asp-for="ViewModel.RoleId"
-			asp-items="@(new SelectList(Model.RolesViewModel,
-			nameof(ViewModels.Shared.KeyValueViewModel.Id),
-			nameof(ViewModels.Shared.KeyValueViewModel.Name)))">
+			<dtat-full-input asp-for="ViewModel.FirstName" />
 
-			<option value="@(null)" selected="@(Model.ViewModel.RoleId == null)">
-			@(Resources.DataDictionary.WithoutRole)
-			</option>
-			</select>
-			</section-form-field>
-			*@
+			<dtat-full-input asp-for="ViewModel.LastName" />
 
-@*			<dtat-full-select asp-for="ViewModel.RoleId" asp-items="@(Model.RolesSelectList)" />
-*@
-			<section-form-check>
-				<input asp-for="ViewModel.IsProgrammer" />
-				<label asp-for="ViewModel.IsProgrammer"></label>
-			</section-form-check>
+			<dtat-full-input asp-for="ViewModel.CellPhoneNumber" dir="ltr" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.Ordering"></label>
-				<input asp-for="ViewModel.Ordering" />
-				<span asp-validation-for="ViewModel.Ordering"></span>
-			</section-form-field>
+			<dtat-full-checkbox asp-for="ViewModel.IsCellPhoneNumberVerified" />
 
-			<section-form-check>
-				<input asp-for="ViewModel.IsActive" />
-				<label asp-for="ViewModel.IsActive"></label>
-			</section-form-check>
+			<dtat-full-select asp-for="ViewModel.RoleId" asp-items="@(Model.RolesSelectList)" />
 
-			<section-form-field>
-				<label asp-for="ViewModel.AdminDescription"></label>
-				<textarea asp-for="ViewModel.AdminDescription"></textarea>
-				<span asp-validation-for="ViewModel.AdminDescription"></span>
-			</section-form-field>
+			<dtat-full-checkbox asp-for="ViewModel.IsVisibleInContactUsPage" />
+
+			<dtat-full-input asp-for="ViewModel.TitleInContactUsPage" />
+
+			<dtat-full-input asp-for="ViewModel.Ordering" />
+
+			<dtat-full-checkbox asp-for="ViewModel.IsActive" />
+
+			<dtat-full-checkbox asp-for="ViewModel.IsProgrammer" />
+
+			<dtat-full-checkbox asp-for="ViewModel.IsProfilePublic" />
+
+			<dtat-full-textarea asp-for="ViewModel.Description" />
+
+			<dtat-full-textarea asp-for="ViewModel.AdminDescription" />
 		</fieldset>
 
 		<section-form-buttons>

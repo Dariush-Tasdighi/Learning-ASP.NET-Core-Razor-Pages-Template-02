@@ -47,9 +47,27 @@ public class ReadOnlyInputTagHelper :
 		// **************************************************
 
 		// **************************************************
+		string? dirString = null;
+		var dirAttribute = output.Attributes["dir"];
+		if (dirAttribute != null)
+		{
+			var dirValue =
+				dirAttribute.Value;
+
+			if (dirValue != null)
+			{
+				dirString =
+					dirValue.ToString()
+					.Replace(oldValue: "{", newValue: string.Empty)
+					.Replace(oldValue: "}", newValue: string.Empty);
+			}
+		}
+		// **************************************************
+
+		// **************************************************
 		var textBoxElement =
 			await
-			CreateTextBoxElementAsync();
+			CreateTextBoxElementAsync(dir: dirString);
 
 		div.InnerHtml.AppendHtml(encoded: textBoxElement);
 		// **************************************************
@@ -87,7 +105,7 @@ public class ReadOnlyInputTagHelper :
 		return result;
 	}
 
-	private async System.Threading.Tasks.Task<string> CreateTextBoxElementAsync()
+	private async System.Threading.Tasks.Task<string> CreateTextBoxElementAsync(string? dir)
 	{
 		Microsoft.AspNetCore.Mvc.Rendering.TagBuilder tagBuilder;
 
@@ -182,6 +200,13 @@ public class ReadOnlyInputTagHelper :
 		if (leftToRight)
 		{
 			tagBuilder.AddCssClass(value: "ltr");
+		}
+		else
+		{
+			if (string.IsNullOrWhiteSpace(value: dir) == false)
+			{
+				tagBuilder.Attributes.Add(key: "dir", value: dir);
+			}
 		}
 
 		var writer =

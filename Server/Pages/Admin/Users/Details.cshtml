@@ -3,75 +3,62 @@
 
 @{
 	var pageTitle =
-		$"{Resources.ButtonCaptions.Details} {Resources.DataDictionary.User}";
+		$"{Resources.DataDictionary.DetailsOf} {Resources.DataDictionary.User}";
 
 	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <section-form>
-	<fieldset disabled>
+	<fieldset>
 		<section-form-header>
 			@(pageTitle)
 		</section-form-header>
 
 		<partial name="PartialViews/_DisplayPageMessages" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Id"></label>
-			<input asp-for="ViewModel.Id" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.Id" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Username"></label>
-			<input asp-for="ViewModel.Username" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.EmailAddress" dir="ltr" />
 
-		<section-form-check>
-			<input asp-for="ViewModel.IsActive" />
-			<label asp-for="ViewModel.IsActive"></label>
-		</section-form-check>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsEmailAddressVerified" />
 
+		<dtat-readonly-checkbox asp-for="ViewModel.IsActive" />
 
-		<section-form-check>
-			<input asp-for="ViewModel.IsRoleActive.Value" />
-			<label asp-for="ViewModel.IsRoleActive"></label>
-		</section-form-check>
+		<dtat-readonly-input asp-for="ViewModel.Username" dir="ltr" />
 
+		<dtat-readonly-input asp-for="ViewModel.FirstName" />
 
-		<section-form-check>
-			<input asp-for="ViewModel.IsProfilePublic" />
-			<label asp-for="ViewModel.IsProfilePublic"></label>
-		</section-form-check>
+		<dtat-readonly-input asp-for="ViewModel.LastName" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.EmailAddress"></label>
-			<input asp-for="ViewModel.EmailAddress" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.CellPhoneNumber" dir="ltr" />
 
-		<section-form-check>
-			<input asp-for="ViewModel.IsEmailAddressVerified" />
-			<label asp-for="ViewModel.IsEmailAddressVerified"></label>
-		</section-form-check>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsCellPhoneNumberVerified" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.CellPhoneNumber"></label>
-			<input asp-for="ViewModel.CellPhoneNumber" />
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.RoleName" />
 
-		<section-form-check>
-			<input asp-for="ViewModel.IsCellPhoneNumberVerified" />
-			<label asp-for="ViewModel.IsCellPhoneNumberVerified"></label>
-		</section-form-check>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsRoleActive" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.Ordering"></label>
-			<input asp-for="ViewModel.Ordering" />
-		</section-form-field>
+		<dtat-readonly-checkbox asp-for="ViewModel.IsVisibleInContactUsPage" />
 
-		<section-form-field>
-			<label asp-for="ViewModel.AdminDescription"></label>
-			<textarea asp-for="ViewModel.AdminDescription"></textarea>
-		</section-form-field>
+		<dtat-readonly-input asp-for="ViewModel.TitleInContactUsPage" />
+
+		<dtat-readonly-input asp-for="ViewModel.Ordering" />
+
+		<dtat-readonly-checkbox asp-for="ViewModel.IsActive" />
+
+		<dtat-readonly-checkbox asp-for="ViewModel.IsProgrammer" />
+
+		<dtat-readonly-checkbox asp-for="ViewModel.IsProfilePublic" />
+
+		<dtat-readonly-input asp-for="ViewModel.LastLoginDateTime" />
+
+		<dtat-readonly-input asp-for="ViewModel.InsertDateTime" />
+
+		<dtat-readonly-input asp-for="ViewModel.UpdateDateTime" />
+
+		<dtat-readonly-textarea asp-for="ViewModel.Description" />
+
+		<dtat-readonly-textarea asp-for="ViewModel.AdminDescription" />
 	</fieldset>
 
 	<section-form-footer>

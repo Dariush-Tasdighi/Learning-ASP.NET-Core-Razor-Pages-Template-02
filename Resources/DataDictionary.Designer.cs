@@ -196,6 +196,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create of.
+        /// </summary>
+        public static string CreateOf {
+            get {
+                return ResourceManager.GetString("CreateOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creator User.
         /// </summary>
         public static string CreatorUser {
@@ -241,11 +250,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete of.
+        /// </summary>
+        public static string DeleteOf {
+            get {
+                return ResourceManager.GetString("DeleteOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details of.
+        /// </summary>
+        public static string DetailsOf {
+            get {
+                return ResourceManager.GetString("DetailsOf", resourceCulture);
             }
         }
         
@@ -655,6 +682,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List of.
+        /// </summary>
+        public static string ListOf {
+            get {
+                return ResourceManager.GetString("ListOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to List of {0}.
         /// </summary>
         public static string ListOfItems {
@@ -1056,6 +1092,15 @@ namespace Resources {
         public static string UpdateDateTime {
             get {
                 return ResourceManager.GetString("UpdateDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update of.
+        /// </summary>
+        public static string UpdateOf {
+            get {
+                return ResourceManager.GetString("UpdateOf", resourceCulture);
             }
         }
         

@@ -153,9 +153,6 @@
   <data name="Home" xml:space="preserve">
     <value>خانه</value>
   </data>
-  <data name="ListOf" xml:space="preserve">
-    <value>فهرست</value>
-  </data>
   <data name="Login" xml:space="preserve">
     <value>ورود</value>
   </data>
@@ -184,9 +181,6 @@
     <value>ارسال مجدد کد تایید نشانی پست الکترونیکی</value>
   </data>
   <data name="Update" xml:space="preserve">
-    <value>ویرایش</value>
-  </data>
-  <data name="UpdateOf" xml:space="preserve">
     <value>ویرایش</value>
   </data>
 </root>
