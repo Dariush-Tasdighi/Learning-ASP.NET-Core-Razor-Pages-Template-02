@@ -20,7 +20,6 @@ namespace Data.Configurations
 				.IsRequired(required: true)
 				.IsUnicode(unicode: true)
 				;
-
 			// **************************************************
 
 			// **************************************************

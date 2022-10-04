@@ -12,6 +12,7 @@ public static class MaxLength : object
 	public const int Title = 50;
 
 	public const int Link = 500;
+	public const int Path = 200;
 
 	public const int Icon = 100;
 

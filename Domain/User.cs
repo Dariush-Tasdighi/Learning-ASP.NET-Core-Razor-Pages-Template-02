@@ -233,6 +233,18 @@ public class User :
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.DisplayNameInContactUsPage))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: Constants.MaxLength.Name,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+	public string? DisplayNameInContactUsPage { get; set; }
+	// **********
+
+	// **********
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.EmailAddress))]
 
 	[System.ComponentModel.DataAnnotations.Required

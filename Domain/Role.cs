@@ -14,6 +14,9 @@ public class Role :
 
 		Users =
 			new System.Collections.Generic.List<User>();
+
+		Permissions =
+			new System.Collections.Generic.List<Permission>();
 	}
 	#endregion /Constructor
 
@@ -66,5 +69,9 @@ public class Role :
 
 	// **********
 	public virtual System.Collections.Generic.IList<User> Users { get; private set; }
+	// **********
+
+	// **********
+	public virtual System.Collections.Generic.IList<Permission> Permissions { get; private set; }
 	// **********
 }

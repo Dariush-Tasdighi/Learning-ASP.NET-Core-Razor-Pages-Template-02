@@ -1,0 +1,70 @@
+﻿@page
+@model Server.Pages.Admin.ApplicationHandlers.UpdateModel
+
+@{
+	var pageTitle =
+		$"{Resources.ButtonCaptions.UpdateOf} {Resources.DataDictionary.ApplicationHandlers}";
+
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
+}
+
+<form method="post">
+
+	<input type="hidden" asp-for="ViewModel.Id" />
+
+	<section-form>
+		<fieldset>
+			<section-form-header>
+				@(pageTitle)
+			</section-form-header>
+
+			<partial name="PartialViews/_DisplayPageMessages" />
+
+			<dtat-full-input asp-for="ViewModel.Name" />
+
+			<dtat-full-input asp-for="ViewModel.Title" />
+
+			<dtat-full-input asp-for="ViewModel.Path" />
+
+			<dtat-full-checkbox asp-for="ViewModel.IsActive" />
+
+			<section-form-field>
+				<label asp-for="ViewModel.AccessType"></label>
+
+				<select asp-for="ViewModel.AccessType">
+					<option value="@(Domain.Enumerations.AccessType.Special)">
+						@(Resources.DataDictionary.Special)
+					</option>
+					<option value="@(Domain.Enumerations.AccessType.Registered)">
+						@(Resources.DataDictionary.Registered)
+					</option>
+					<option value="@(Domain.Enumerations.AccessType.Public)">
+						@(Resources.DataDictionary.Public)
+					</option>
+				</select>
+			</section-form-field>
+
+			<dtat-full-input asp-for="ViewModel.Ordering" />
+
+			<dtat-full-textarea asp-for="ViewModel.Description" />
+		</fieldset>
+
+		<section-form-buttons>
+			<button-save />
+			<button-reset />
+		</section-form-buttons>
+
+		<section-form-footer>
+			<a asp-page="Index">
+				@(Html.DtatGetLinkCaptionForList())
+			</a>
+			<a asp-page="Details" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDetails())
+			</a>
+			<a asp-page="Delete" asp-route-id="@(Model.ViewModel.Id)">
+				@(Html.DtatGetLinkCaptionForDelete())
+			</a>
+		</section-form-footer>
+	</section-form>
+
+</form>

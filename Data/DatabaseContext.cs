@@ -22,7 +22,11 @@ public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
 
 	public Microsoft.EntityFrameworkCore.DbSet<Domain.MenuItem> MenuItems { get; set; }
 
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.Permission> Permissions { get; set; }
+
 	public Microsoft.EntityFrameworkCore.DbSet<Domain.PageCategory> PageCategories { get; set; }
+
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.ApplicationHandler> ApplicationHandlers { get; set; }
 
 	protected override void OnConfiguring
 		(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)

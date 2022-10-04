@@ -1,31 +1,15 @@
 ﻿@page
-@model Server.Pages.Admin.MenuItems.DeleteModel
+@model Server.Pages.Admin.ApplicationHandlers.DeleteModel
 
 @{
-	@if (Model.ViewModel == null)
-	{
-		return;
-	}
-
 	var pageTitle =
-		Resources.PageTitles.DeleteMenuItem;
+		$"{Resources.ButtonCaptions.Delete} {Resources.DataDictionary.ApplicationHandler}";
 
-	ViewData["PageTitle"] = pageTitle;
-
-	if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
-	{
-		Layout =
-			"Layouts/Rtl/_Layout";
-	}
-	else
-	{
-		Layout =
-			"Layouts/Ltr/_Layout";
-	}
+	ViewData[Constants.ViewDataKeyName.PageTitle] = pageTitle;
 }
 
 <section-form>
-	<fieldset disabled>
+	<fieldset>
 		<section-form-header>
 			@(pageTitle)
 		</section-form-header>
@@ -34,17 +18,23 @@
 
 		<dtat-readonly-input asp-for="ViewModel.Id" />
 
+		<dtat-readonly-input asp-for="ViewModel.Name" />
+
 		<dtat-readonly-input asp-for="ViewModel.Title" />
 
-		<dtat-readonly-input asp-for="ViewModel.Link" />
+		<dtat-readonly-input asp-for="ViewModel.Path" />
 
-		<dtat-readonly-input asp-for="ViewModel.NumberOfSubMenus" />
+		<dtat-readonly-input asp-for="ViewModel.AccessTypeTitle" />
 
 		<dtat-readonly-checkbox asp-for="ViewModel.IsActive" />
 
-		<dtat-readonly-checkbox asp-for="ViewModel.IsPublic" />
+		<dtat-readonly-input asp-for="ViewModel.Ordering" />
 
 		<dtat-readonly-input asp-for="ViewModel.InsertDateTime" />
+
+		<dtat-readonly-input asp-for="ViewModel.UpdateDateTime" />
+
+		<dtat-readonly-textarea asp-for="ViewModel.Description" />
 	</fieldset>
 
 	<form method="post">

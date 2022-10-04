@@ -501,4 +501,34 @@
   <data name="ListOf" xml:space="preserve">
     <value>فهرست</value>
   </data>
+  <data name="DisplayInContactUsPage" xml:space="preserve">
+    <value>نمایش در صفحه تماس با ما</value>
+  </data>
+  <data name="DisplayNameInContactUsPage" xml:space="preserve">
+    <value>نام نمایش داده شده، در صفحه تماس با ما</value>
+  </data>
+  <data name="AccessType" xml:space="preserve">
+    <value>سطح دسترسی</value>
+  </data>
+  <data name="ApplicationHandler" xml:space="preserve">
+    <value>موجودیت سامانه</value>
+  </data>
+  <data name="ApplicationHandlerManager" xml:space="preserve">
+    <value>مدیریت موجودیت های سامانه</value>
+  </data>
+  <data name="ApplicationHandlers" xml:space="preserve">
+    <value>موجودیت های سامانه</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>مجوزها</value>
+  </data>
+  <data name="Public" xml:space="preserve">
+    <value>عمومی</value>
+  </data>
+  <data name="Registered" xml:space="preserve">
+    <value>نیازمند ورود به سامانه</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>خاص</value>
+  </data>
 </root>

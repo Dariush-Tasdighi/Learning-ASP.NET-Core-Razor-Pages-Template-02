@@ -1,13 +1,12 @@
 ﻿namespace Infrastructure.TagHelpers;
 
 [Microsoft.AspNetCore.Razor.TagHelpers
-	.HtmlTargetElement(tag: Constants.TagHelper.FullSelect,
+	.HtmlTargetElement(tag: Constants.TagHelper.FullPasswordInput,
 	TagStructure = Microsoft.AspNetCore.Razor.TagHelpers.TagStructure.WithoutEndTag)]
-public class FullSelectTagHelper :
+public class FullPasswordInputTagHelper :
 	Microsoft.AspNetCore.Razor.TagHelpers.TagHelper
-
 {
-	public FullSelectTagHelper
+	public FullPasswordInputTagHelper
 		(Microsoft.AspNetCore.Mvc.ViewFeatures.IHtmlGenerator generator) : base()
 	{
 		Generator = generator;
@@ -21,12 +20,6 @@ public class FullSelectTagHelper :
 
 	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeName(name: "asp-for")]
 	public Microsoft.AspNetCore.Mvc.ViewFeatures.ModelExpression? For { get; set; }
-
-	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeName(name: "asp-items")]
-	public System.Collections.Generic.IEnumerable<Microsoft.AspNetCore.Mvc.Rendering.SelectListItem>? Items { get; set; }
-
-	[Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeName(name: "asp-option-label")]
-	public string? OptionLabel	{ get; set; }
 
 	public override async System.Threading.Tasks.Task ProcessAsync
 		(Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext context,
@@ -50,12 +43,12 @@ public class FullSelectTagHelper :
 		// **************************************************
 
 		// **************************************************
-		var select =
+		var textBox =
 			await
-			Utility.GenerateSelectAsync
-			(generator: Generator, viewContext: ViewContext, @for: For, selectList: Items);
+			Utility.GeneratePasswordTextBoxAsync
+			(generator: Generator, viewContext: ViewContext, @for: For);
 
-		div.InnerHtml.AppendHtml(encoded: select);
+		div.InnerHtml.AppendHtml(encoded: textBox);
 		// **************************************************
 
 		// **************************************************

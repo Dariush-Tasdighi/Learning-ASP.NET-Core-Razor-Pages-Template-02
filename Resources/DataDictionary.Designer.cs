@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Access Type.
+        /// </summary>
+        public static string AccessType {
+            get {
+                return ResourceManager.GetString("AccessType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Action.
         /// </summary>
         public static string Action {
@@ -84,6 +93,33 @@ namespace Resources {
         public static string AdminDescription {
             get {
                 return ResourceManager.GetString("AdminDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Handler.
+        /// </summary>
+        public static string ApplicationHandler {
+            get {
+                return ResourceManager.GetString("ApplicationHandler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Handler Manager.
+        /// </summary>
+        public static string ApplicationHandlerManager {
+            get {
+                return ResourceManager.GetString("ApplicationHandlerManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Handlers.
+        /// </summary>
+        public static string ApplicationHandlers {
+            get {
+                return ResourceManager.GetString("ApplicationHandlers", resourceCulture);
             }
         }
         
@@ -282,6 +318,24 @@ namespace Resources {
         public static string DisplayCreatorUser {
             get {
                 return ResourceManager.GetString("DisplayCreatorUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display In Contact Us Page.
+        /// </summary>
+        public static string DisplayInContactUsPage {
+            get {
+                return ResourceManager.GetString("DisplayInContactUsPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Name In Contact Us Page.
+        /// </summary>
+        public static string DisplayNameInContactUsPage {
+            get {
+                return ResourceManager.GetString("DisplayNameInContactUsPage", resourceCulture);
             }
         }
         
@@ -871,6 +925,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Permissions.
+        /// </summary>
+        public static string Permissions {
+            get {
+                return ResourceManager.GetString("Permissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Public.
+        /// </summary>
+        public static string Public {
+            get {
+                return ResourceManager.GetString("Public", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Publish Finish Date Time.
         /// </summary>
         public static string PublishFinishDateTime {
@@ -885,6 +957,15 @@ namespace Resources {
         public static string PublishStartDateTime {
             get {
                 return ResourceManager.GetString("PublishStartDateTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registered.
+        /// </summary>
+        public static string Registered {
+            get {
+                return ResourceManager.GetString("Registered", resourceCulture);
             }
         }
         
@@ -1038,6 +1119,15 @@ namespace Resources {
         public static string SourceCode {
             get {
                 return ResourceManager.GetString("SourceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Special.
+        /// </summary>
+        public static string Special {
+            get {
+                return ResourceManager.GetString("Special", resourceCulture);
             }
         }
         

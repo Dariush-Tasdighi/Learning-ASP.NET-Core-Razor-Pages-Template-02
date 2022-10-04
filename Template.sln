@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Constants", "Constants\Constants.csproj", "{A2A58057-6795-49CF-B0CD-43CD3F0F35F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtat.Seedwork.Abstractions", "Dtat.Seedwork.Abstractions\Dtat.Seedwork.Abstractions.csproj", "{BD4933FB-2374-449E-A211-9B30DDBE1BF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtat.Seedwork.Abstractions", "Dtat.Seedwork.Abstractions\Dtat.Seedwork.Abstractions.csproj", "{BD4933FB-2374-449E-A211-9B30DDBE1BF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtat.StateMachine.Abstractions", "Dtat.StateMachine.Abstractions\Dtat.StateMachine.Abstractions.csproj", "{F84C779D-78CF-4018-9AB3-7DFC40908DE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtat.StateMachine.Abstractions", "Dtat.StateMachine.Abstractions\Dtat.StateMachine.Abstractions.csproj", "{F84C779D-78CF-4018-9AB3-7DFC40908DE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

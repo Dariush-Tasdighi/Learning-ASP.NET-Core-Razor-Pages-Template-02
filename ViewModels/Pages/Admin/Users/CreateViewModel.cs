@@ -5,6 +5,7 @@ public class CreateViewModel : CommonViewModel
 	#region Constructor
 	public CreateViewModel() : base()
 	{
+		Ordering = 10_000;
 	}
 	#endregion /Constructor
 

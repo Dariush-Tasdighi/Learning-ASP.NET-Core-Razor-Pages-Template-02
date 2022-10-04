@@ -8,6 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Pages\Admin\ApplicationHandlers\cyplncat.hzs~" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Data\Data.csproj" />
 		<ProjectReference Include="..\Dtat.Seedwork.Abstractions\Dtat.Seedwork.Abstractions.csproj" />
 		<ProjectReference Include="..\Dtat\Dtat.csproj" />
