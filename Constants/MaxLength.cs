@@ -11,6 +11,10 @@ public static class MaxLength : object
 	public const int Name = 50;
 	public const int Title = 50;
 
+	public const int Link = 500;
+
+	public const int Icon = 100;
+
 	public const int Username = 20;
 	public const int Password = 20;
 	public const int LastName = 50;
@@ -19,4 +23,5 @@ public static class MaxLength : object
 	public const int EmailAddress = 254;
 
 	public const int CellPhoneNumberVerificationKey = 10;
+
 }
