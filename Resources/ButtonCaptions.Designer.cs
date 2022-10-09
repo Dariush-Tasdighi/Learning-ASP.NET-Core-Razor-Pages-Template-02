@@ -257,5 +257,14 @@ namespace Resources {
                 return ResourceManager.GetString("Update", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Informations Again.
+        /// </summary>
+        public static string UpdateInformationsAgain {
+            get {
+                return ResourceManager.GetString("UpdateInformationsAgain", resourceCulture);
+            }
+        }
     }
 }

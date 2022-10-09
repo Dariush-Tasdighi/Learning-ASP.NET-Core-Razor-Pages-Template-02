@@ -183,4 +183,7 @@
   <data name="Update" xml:space="preserve">
     <value>ویرایش</value>
   </data>
+  <data name="UpdateInformationsAgain" xml:space="preserve">
+    <value>مجددا اطلاعات را بروز نمایید</value>
+  </data>
 </root>
