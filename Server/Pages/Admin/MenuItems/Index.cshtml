@@ -85,7 +85,7 @@
 							{
 								<a asp-page="./Index" asp-route-id="@(item.Id)">
 									@(Html.DtatGetIconCustom(
-										applicationSettings.IconSettings.TableIcons.Children))
+										applicationSettings.IconSettings!.TableIcons.Children))
 								</a>
 
 								@*<a asp-page="./Index" asp-route-id="@(item.Id)" class="mx-1 text-danger text-decoration-none">
