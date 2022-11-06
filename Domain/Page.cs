@@ -1,4 +1,6 @@
-﻿namespace Domain;
+﻿using System.Net.Mail;
+
+namespace Domain;
 
 public class Page :
 	Seedwork.Entity,
@@ -9,6 +11,8 @@ public class Page :
 	Dtat.Seedwork.Abstractions.IEntityHasUpdateDateTime
 {
 	#region Constant(s)
+	public const byte NameMaxLength = 100;
+
 	public const byte TitleMaxLength = 100;
 
 	public const byte AuthorMaxLength = 200;
@@ -26,6 +30,7 @@ public class Page :
 	public const int ClassificationMaxLength = 1000;
 	#endregion /Constant(s)
 
+	#region Constructor
 	public Page(string title, System.Guid pageCategoryId, System.Guid creatorUserId) : base()
 	{
 		Title = title;
@@ -35,6 +40,7 @@ public class Page :
 
 		UpdateDateTime = InsertDateTime;
 	}
+	#endregion /Constructor
 
 	// **********
 	// **********
@@ -60,27 +66,6 @@ public class Page :
 	// **********
 	// **********
 	// **********
-	/// <summary>
-	/// کاربر حذف کننده ی صفحه
-	/// </summary>
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.RemoverUser))]
-	public System.Guid? RemoverUserId { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DataAnnotations.Display
-		(ResourceType = typeof(Resources.DataDictionary),
-		Name = nameof(Resources.DataDictionary.RemoverUser))]
-	public virtual User? RemoverUser { get; set; }
-	// **********
-	// **********
-	// **********
-
-	// **********
-	// **********
-	// **********
 	[System.ComponentModel.DataAnnotations.Display
 		(ResourceType = typeof(Resources.DataDictionary),
 		Name = nameof(Resources.DataDictionary.PageCategory))]
@@ -99,6 +84,75 @@ public class Page :
 	// **********
 	// **********
 	// **********
+
+
+
+
+
+
+
+	#region Properties
+	#endregion /Properties
+
+
+
+
+
+
+
+	#region Username Property
+	/// <summary>
+	/// نام صفحه به انگلیسی
+	/// </summary>
+	[System.ComponentModel.DataAnnotations.Display
+		(ResourceType = typeof(Resources.DataDictionary),
+		Name = nameof(Resources.DataDictionary.Name))]
+
+	[System.ComponentModel.DataAnnotations.MaxLength
+		(length: NameMaxLength,
+		ErrorMessageResourceType = typeof(Resources.Messages.Validations),
+		ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
+
+	//[System.ComponentModel.DataAnnotations.RegularExpression
+	//	(Constants.RegularExpression.file.Text.RegularExpressions.Patterns.FileName,
+	//	ErrorMessageResourceType = typeof(Resources.Messages.Errors),
+	//	ErrorMessageResourceName = nameof(Resources.DataDictionary.FileManager)]
+	public string Name { get; set; }
+	#endregion /Username Property
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// **********
 	// **********

@@ -13,7 +13,7 @@ public class User :
 		SuperUserId = new(g: "CC75D635-EF6D-4E86-907A-BC532CDC3ACC");
 	#endregion /Static(s)
 
-	#region Constructor(s)
+	#region Constructor
 	public User(string emailAddress) : base()
 	{
 		UpdateDateTime = InsertDateTime;
@@ -27,9 +27,9 @@ public class User :
 		LoginLogs =
 			new System.Collections.Generic.List<LoginLog>();
 	}
-	#endregion /Constructor(s)
+	#endregion /Constructor
 
-	#region Property(ies)
+	#region Properties
 
 	#region UpdateDateTime Property
 	/// <summary>
@@ -333,9 +333,9 @@ public class User :
 	public string? AdminDescription { get; set; }
 	#endregion /AdminDescription Property
 
-	#endregion /Property(ies)
+	#endregion /Properties
 
-	#region Method(s)
+	#region Methods
 
 	#region SetUpdateDateTime Method
 	public void SetUpdateDateTime()
@@ -352,9 +352,9 @@ public class User :
 	}
 	#endregion SetId Method
 
-	#endregion /Method(s)
+	#endregion /Methods
 
-	#region Collection(s)
+	#region Collections
 
 	#region CreatedPages
 	/// <summary>
@@ -370,5 +370,5 @@ public class User :
 	public virtual System.Collections.Generic.IList<LoginLog> LoginLogs { get; private set; }
 	#endregion /LoginLogs
 
-	#endregion /Collection(s)
+	#endregion /Collections
 }
