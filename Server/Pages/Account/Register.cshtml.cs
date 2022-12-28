@@ -81,12 +81,12 @@ namespace Server.Pages.Security
 				//}
 
 				//// **************************************************
-				//Domain.User user = new()
+				//Domain.User user = new(fixedEmailAddress)
 				//{
 				//	Username = fixedUsername,
 				//	//RoleId = DefaultRoleId,
 				//	EmailAddress = fixedEmailAddress,
-				//	Password = Dtat.Security.Cryptography.GetSha256(text: ViewModel.Password),
+				//	Password = Dtat.Security.Hashing.GetSha256(text: ViewModel.Password),
 				//};
 
 				//await DatabaseContext.AddAsync(entity: user);
