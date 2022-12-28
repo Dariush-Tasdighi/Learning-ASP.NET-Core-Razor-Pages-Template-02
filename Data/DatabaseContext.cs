@@ -4,29 +4,27 @@ namespace Data;
 
 public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
 {
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 	public DatabaseContext
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 		(Microsoft.EntityFrameworkCore.DbContextOptions<DatabaseContext> options) : base(options: options)
 	{
 		Database.EnsureCreated();
 	}
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.Role> Roles { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.Role> Roles => Set<Domain.Role>();
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.User> Users { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.User> Users => Set<Domain.User>();
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.Page> Pages { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.Page> Pages => Set<Domain.Page>();
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.LoginLog> LoginLogs { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.LoginLog> LoginLogs => Set<Domain.LoginLog>();
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.MenuItem> MenuItems { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.MenuItem> MenuItems => Set<Domain.MenuItem>();
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.Permission> Permissions { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.Permission> Permissions => Set<Domain.Permission>();
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.PageCategory> PageCategories { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.PageCategory> PageCategories => Set<Domain.PageCategory>();
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.ApplicationHandler> ApplicationHandlers { get; set; }
+	public Microsoft.EntityFrameworkCore.DbSet<Domain.ApplicationHandler> ApplicationHandlers => Set<Domain.ApplicationHandler>();
 
 	protected override void OnConfiguring
 		(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
