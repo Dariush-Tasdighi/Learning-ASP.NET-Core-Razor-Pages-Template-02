@@ -36,10 +36,10 @@ namespace Server.Pages.Security
 			}
 
 			// **************************************************
-			//string? fixedUsername = Infrastructure.Utility
+			//string? fixedUsername = Dtat.Utility
 			//	.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.Username);
 
-			//string? fixedEmailAddress = Infrastructure.Utility
+			//string? fixedEmailAddress = Dtat.Utility
 			//	.RemoveSpacesAndMakeTextCaseInsensitive(text: ViewModel.EmailAddress);
 			// **************************************************
 
@@ -53,8 +53,9 @@ namespace Server.Pages.Security
 				//bool isEmailAddressFound =
 				//	await DatabaseContext.Users
 				//	.Where(current => current.EmailAddress == fixedEmailAddress)
-				//	.Where(current => current.IsEmailAddressVerified.HasValue && current.IsEmailAddressVerified.Value)
-				//	.Where(current => current.IsDeleted == false)
+				//	.Where(current => current.IsEmailAddressVerified && current.IsEmailAddressVerified)
+				//	// User no longer has a IsDeleted property.
+				//	//.Where(current => current.IsDeleted == false)
 				//	.AnyAsync();
 
 				//// **************************************************
